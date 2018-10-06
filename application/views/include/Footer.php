@@ -1,3 +1,5 @@
+</main>
+
 <footer class="site-footer">
     <div class="row">
         <div class="col-md-6">

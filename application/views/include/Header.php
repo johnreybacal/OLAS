@@ -18,3 +18,5 @@
 <body>
 <?php include("Menu.php"); ?>
 <?php include("TopBar.php"); ?>
+
+<main class="main-container">
