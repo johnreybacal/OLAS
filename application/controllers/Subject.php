@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-class Series extends _BaseController {
+class Subject extends _BaseController {
 
     public function __construct(){
 		parent::__construct();		
@@ -9,22 +9,22 @@ class Series extends _BaseController {
     
     public function index(){		          		              	
 		$this->header();
-		$this->load->view('Series/index');
+		$this->load->view('Subject/index');
 		$this->footer();
     }
     
     public function View($id){
-        $data['series'] = $this->series->convert($this->series->_get($id));
+        $data['subject'] = $this->subject->convert($this->subject->_get($id));
         $this->header();
-        $this->load->view('Series/View', $data);
+        $this->load->view('Subject/View', $data);
         $this->footer();
     }
-
+    
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->series->_list() as $data){
+        foreach($this->subject->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Series/'.$data->SeriesId).'\'>'.$data->Data.'</a>",'
+                .'"<a href = \''.base_url('Book/Subject/'.$data->SubjectId).'\'>'.$data->Data.'</a>",'
                 .'"'.$data->Data.'"'
             .']';            
             $json .= ',';
@@ -35,7 +35,7 @@ class Series extends _BaseController {
     }
     
     public function Save(){        
-        $this->book->save($this->input->post('series'));
+        $this->book->save($this->input->post('subject'));
     }
     
 }
