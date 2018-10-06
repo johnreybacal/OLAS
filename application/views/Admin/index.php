@@ -1,1 +1,1 @@
-Admin index admin index
+Admin index

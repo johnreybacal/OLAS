@@ -144,6 +144,7 @@ $autoload['model'] = array(
 	'CourseModel' => 'course',
 	'GenreModel' => 'genre',
 	'MemberModel' => 'member',
+	'MemberTypeModel' => 'membertype',
 	'PublisherModel' => 'publisher',
 	'SeriesModel' => 'series',
 	'SubjectModel' => 'subject',

@@ -56,18 +56,12 @@
 
         <ul class="menu-submenu">
             <li class="menu-item">
-            <a class="menu-link" href="Publishers.html">
+            <a class="menu-link" href="<?php echo base_url('Publisher/'); ?>">
                 <span class="dot"></span>
                 <span class="title">Publishers</span>
             </a>
             </li>
 
-            <li class="menu-item">
-            <a class="menu-link" href="AddPublisher.html">
-                <span class="dot"></span>
-                <span class="title">Add Publisher</span>
-            </a>
-            </li>
         </ul>
         </li>
 
@@ -81,18 +75,19 @@
 
         <ul class="menu-submenu">
             <li class="menu-item">
-            <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
+            <a class="menu-link" href="<?php echo base_url('Author'); ?>">
                 <span class="dot"></span>
                 <span class="title">Authors</span>
             </a>
             </li>
 
             <li class="menu-item">
-            <a class="menu-link" href="AddAuthor.html">
+            <a class="menu-link" href="<?php echo base_url('Author/Add'); ?>">
                 <span class="dot"></span>
                 <span class="title">Add Author</span>
             </a>
             </li>
+
         </ul>
         </li>
 
@@ -106,18 +101,12 @@
 
         <ul class="menu-submenu">
             <li class="menu-item">
-            <a class="menu-link" href="AllGenre.html">
+            <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
                 <span class="dot"></span>
                 <span class="title">Genre</span>
             </a>
             </li>
 
-            <li class="menu-item">
-            <a class="menu-link" href="AddGenre.html">
-                <span class="dot"></span>
-                <span class="title">Add Genre</span>
-            </a>
-            </li>
         </ul>
         </li>
 
@@ -131,18 +120,12 @@
 
         <ul class="menu-submenu">
             <li class="menu-item">
-            <a class="menu-link" href="AllSeries.html">
+            <a class="menu-link" href="<?php echo base_url('Series'); ?>">
                 <span class="dot"></span>
                 <span class="title">Series</span>
             </a>
             </li>
 
-            <li class="menu-item">
-            <a class="menu-link" href="AddSeries.html">
-                <span class="dot"></span>
-                <span class="title">Add Series</span>
-            </a>
-            </li>
         </ul>
         </li>
 
@@ -162,14 +145,21 @@
 
         <ul class="menu-submenu">
             <li class="menu-item">
-            <a class="menu-link" href="AllMember.html">
+            <a class="menu-link" href="<?php echo base_url('Member'); ?>">
                 <span class="dot"></span>
                 <span class="title">Member</span>
             </a>
             </li>
 
             <li class="menu-item">
-            <a class="menu-link" href="MemberType.html">
+            <a class="menu-link" href="<?php echo base_url('Member/Add'); ?>">
+                <span class="dot"></span>
+                <span class="title">Add Member</span>
+            </a>
+            </li>
+            
+            <li class="menu-item">
+            <a class="menu-link" href="<?php echo base_url('MemberType'); ?>">
                 <span class="dot"></span>
                 <span class="title">Member Type</span>
             </a>

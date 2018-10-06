@@ -25,10 +25,10 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Author/GenerateTable") ?>">
+				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Genre/GenerateTable") ?>">
 					<thead>
 						<tr>
-						<th>Author ID</th>			
+						<th>Genre ID</th>			
 						<th>Data</th>
 						</tr>
 					</thead>
