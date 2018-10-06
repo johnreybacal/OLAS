@@ -1,0 +1,222 @@
+﻿*{
+    box-sizing:border-box;
+}
+body{
+    padding-right: 0px !important;
+}
+.center{
+    text-align:center;
+}
+.input[type=text]:disabled {
+    background: #ffffff;
+}
+.main-content{
+    padding-top: 0px !important;
+}
+.row.gap-1{
+    margin-bottom: -15px;
+}
+.card-report .card-body{
+    overflow: hidden;
+    min-width: 165px;
+}
+.card-icon{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    overflow: hidden;
+}
+.card-icon span{
+    overflow: hidden;
+    font-size: 45px;
+}
+.page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+    background-color: #48b0f7;
+    border-color: #48b0f7;
+    font-weight: 500;
+}
+.view-employee-details{
+    
+}
+.truncate{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#box-reg{
+    background: #D1F2A5;
+    color: #39422D;
+}
+#box-age{
+    background: #EFFAB4;
+    color: #424532;
+}
+#box-exp{
+    background: #FFC48C;
+    color: #463627;
+}
+#box-pro{
+    background: #FF9F80;
+    color: #462C23;
+}
+#box-lea{
+    background: #F56991;    
+    color: #431D28;
+}
+a.fs-25{
+    color: black;
+}
+textarea{
+    resize:none;
+}
+::selection {
+    background: #48b0f7; 
+}
+nav .breadcrumb{
+    border:1px solid black;
+}
+.modal-sakto{
+    width: 59.5% !important;       
+    max-height: 90%;  
+}
+
+.changePage, .changePage h3{
+    cursor:pointer;
+}
+table{
+    max-width: 100%;
+    width: 100% !important;
+}
+
+@media screen and (max-width: 480px) {
+    div.title{
+       display:none;
+    }
+    .modal-xlg {
+        max-width: 100%;        
+        width: 95% !important;
+        max-height: 90%;
+        overflow-y: scroll;
+    }
+}
+@media screen and (min-width: 480px) {    
+   .modal-xlg {
+        max-width: 75%;
+        overflow-y: auto; 
+    }
+   
+}
+ /*
+ .AddIcon{
+      display:block;
+  }
+  .AddText{
+      display:none;
+  }
+
+@media screen and (max-width:599px) {
+  .AddIcon{
+      display:none;
+  }
+  .AddText{
+      display:block;
+  }*/
+
+/*}
+@media (min-width: 641px) {
+    .AddIcon {display:none}
+    .AddText {display:inline-block}
+}
+
+@media (max-width: 640px) {
+    .AddIcon {display:inline-block}
+    .AddText {display:none}
+}*/
+@media (max-width: 570px) {
+    /*applied if browser window width is less than or equal to 600px*/
+    .AddText,.ExportText {
+        display: block;
+    }.AddIcon,.ExportIcon {
+        display: none;
+    }
+}
+
+@media (min-width: 571px) {
+    /*applied if browser window width is greater than 600px*/
+    .AddIcon,.ExportIcon {
+        display: block;
+    }.AddText,.ExportText {
+        display: none;
+    }
+}
+
+/* Month header */
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+    text-align: center;
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: #777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
