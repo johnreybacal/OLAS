@@ -22,10 +22,14 @@ class Subject extends _BaseController {
     
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->subject->_list() as $data){
-            $json .= '['
-                .'"<a href = \''.base_url('Book/Subject/'.$data->SubjectId).'\'>'.$data->Data.'</a>",'
-                .'"'.$data->Data.'"'
+        foreach($this->subjectCourse->_list() as $data){
+            $subject = $this->subject->_get($data->SubjectId)[0];
+            $course = $this->course->_get($data->CourseId)[0];
+            $college = $this->college->_get($course->CollegeId)[0];
+            $json .= '['                
+                .'"<a href = \''.base_url('College/View/'.$college->CollegeId).'\'>'.$college->Name.'</a>",'                
+                .'"<a href = \''.base_url('Course/View/'.$course->CourseId).'\'>'.$course->Name.'</a>",'                
+                .'"<a href = \''.base_url('Subject/View/'.$subject->SubjectId).'\'>'.$subject->Name.'</a>"'                
             .']';            
             $json .= ',';
         }

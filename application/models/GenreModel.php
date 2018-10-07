@@ -15,14 +15,14 @@ class GenreModel extends _BaseModel{
 	public function save($genre){
 		if($genre['GenreId'] == 0){//insert			
 			$this->db->query("INSERT into genre "
-				."(Data) VALUES ("                   
-					."'".$genre['Data']."'"
+				."(Name) VALUES ("                   
+					."'".$genre['Name']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE genre SET "
-                ."Data = '".$genre['Data']."'"
+                ."Name = '".$genre['Name']."'"
                 ."WHERE GenreId = '".$genre['GenreId']."'"
 			);			
 		}

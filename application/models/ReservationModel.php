@@ -15,14 +15,20 @@ class ReservationModel extends _BaseModel{
 	public function save($reservation){
 		if($reservation['ReservationId'] == 0){//insert			
 			$this->db->query("INSERT into reservation "
-				."(Data) VALUES ("                   
-					."'".$reservation['Data']."'"
+				."(MemberId, AccessionNumber, DateReserved, IsDiscarded) VALUES ("                   
+					."'".$reservation['MemberId']."'"
+					."'".$reservation['AccessionNumber']."'"
+					."'".$reservation['DateReserved']."'"
+					."'false'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE reservation SET "
-                ."Data = '".$reservation['Data']."'"
+                ."MemberId = '".$reservation['MemberId']."'"
+                ."AccessionNumber = '".$reservation['AccessionNumber']."'"
+                ."DateReserved = '".$reservation['DateReserved']."'"
+                ."IsDiscarded = '".$reservation['IsDiscarded']."'"
                 ."WHERE ReservationId = '".$reservation['ReservationId']."'"
 			);			
 		}

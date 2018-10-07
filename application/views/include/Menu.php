@@ -13,7 +13,7 @@
             <li class="menu-category">Preview</li>
 
             <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('/'); ?>">
+                <a class="menu-link" href="<?php echo base_url('Librarian/Dashboard'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Dashboard</span>
                 </a>
@@ -45,9 +45,9 @@
                     </li>
             
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Course'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Subject'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Course</span>
+                            <span class="title">Subject</span>
                         </a>
                     </li>
 

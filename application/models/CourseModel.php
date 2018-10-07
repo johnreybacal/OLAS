@@ -15,14 +15,14 @@ class CourseModel extends _BaseModel{
 	public function save($course){
 		if($course['CourseId'] == 0){//insert			
 			$this->db->query("INSERT into course "
-				."(Data) VALUES ("                   
-					."'".$course['Data']."'"
+				."(Name) VALUES ("                   
+					."'".$course['Name']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE course SET "
-                ."Data = '".$course['Data']."'"
+                ."Name = '".$course['Name']."'"
                 ."WHERE CourseId = '".$course['CourseId']."'"
 			);			
 		}

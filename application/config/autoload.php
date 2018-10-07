@@ -145,6 +145,7 @@ $autoload['model'] = array(
 	'BookGenreModel' => 'bookGenre',
 	'BookModel' => 'book',
 	'BookSubjectModel' => 'bookSubject',
+	'CollegeModel' => 'college',
 	'CourseModel' => 'course',
 	'GenreModel' => 'genre',
 	'LibrarianModel' => 'librarian',

@@ -25,7 +25,7 @@ class Author extends _BaseController {
         foreach($this->author->_list() as $data){
             $json .= '['
                 .'"<a href = \''.base_url('Author/View/'.$data->AuthorId).'\'>'.$data->AuthorId.'</a>",'
-                .'"'.$data->Data.'"'                
+                .'"'.$data->Name.'"'                
             .']';            
             $json .= ',';
         }

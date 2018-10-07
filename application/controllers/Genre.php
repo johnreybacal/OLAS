@@ -36,12 +36,12 @@ class Genre extends _BaseController {
         $json = '{ "data": [';
         foreach($this->genre->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Genre/'.$data->GenreId).'\'>'.$data->Data.'</a>",'
-                .'"'.$data->Data.'",'
-                .'"'.$data->Data.'",'
-                .'"'.$data->Data.'",'
-                .'"'.$data->Data.'",'
-                .'"'.$data->Data.'"'
+                .'"<a href = \''.base_url('Book/Genre/'.$data->GenreId).'\'>'.$data->Name.'</a>",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Name.'"'
             .']';            
             $json .= ',';
         }

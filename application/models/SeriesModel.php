@@ -15,14 +15,14 @@ class SeriesModel extends _BaseModel{
 	public function save($series){
 		if($series['SeriesId'] == 0){//insert			
 			$this->db->query("INSERT into series "
-				."(Data) VALUES ("                   
-					."'".$series['Data']."'"
+				."(Name) VALUES ("                   
+					."'".$series['Name']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE series SET "
-                ."Data = '".$series['Data']."'"
+                ."Name = '".$series['Name']."'"
                 ."WHERE SeriesId = '".$series['SeriesId']."'"
 			);			
 		}

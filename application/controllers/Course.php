@@ -24,8 +24,8 @@ class Course extends _BaseController {
         $json = '{ "data": [';
         foreach($this->course->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Course/'.$data->CourseId).'\'>'.$data->Data.'</a>",'
-                .'"'.$data->Data.'"'
+                .'"<a href = \''.base_url('Book/Course/'.$data->CourseId).'\'>'.$data->Name.'</a>",'
+                .'"'.$data->Name.'"'
             .']';            
             $json .= ',';
         }

@@ -11,9 +11,15 @@ class Librarian extends _BaseController {
 		$this->header();
 		$this->load->view('Librarian/index');
 		$this->footer();
+    }
+    
+    public function Dashboard(){
+		$this->header();
+        $this->load->view('Librarian/Dashboard');
+		$this->footer();
 	}
 	
-	public function View($id){
+	public function Profile($id){
         $data['librarian'] = $this->convert($this->librarian->_get($id));
         $this->header();
         $this->load->view('Librarian/View', $data);

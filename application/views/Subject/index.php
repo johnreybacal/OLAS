@@ -28,8 +28,9 @@
 				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Subject/GenerateTable") ?>">
 					<thead>
 						<tr>
-						<th>Subject ID</th>			
-						<th>Data</th>
+							<th>College</th>			
+							<th>Course</th>
+							<th>Subject</th>
 						</tr>
 					</thead>
 				</table>            			
