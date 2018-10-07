@@ -7,35 +7,36 @@ class BookModel extends _BaseModel{
 		parent::_setDai(
 			array(
 				"book",
-				"AccessionNumber",
+				"ISBN",
 			)
 		);
 	}
 
 	public function save($book){
-		if($book['AccessionNumber'] == 0){//insert			
+		if($book['ISBN'] == 0){//insert			
 			$this->db->query("INSERT into book "
-				."(CallNumber, ISBN, Status, DateAcquired, AcquiredFrom) VALUES ("
-					."'".$book['CallNumber']."', "
-					."'".$book['ISBN']."', "
-					."'".$book['Status']."', "
-					."'".$book['DateAcquired']."', "
-					."'".$book['AcquiredFrom']."'"
+				."(ISBN, Title, PublisherId, SeriesId, Edition, DatePublished) VALUES ("
+                    ."'".$book['ISBN']."', "
+					."'".$book['Title']."', "					
+					."'".$book['PublisherId']."', "
+					."'".$book['SeriesId']."', "					
+					."'".$book['Edition']."', "
+					."'".$book['DatePublished']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE book SET "
-				."CallNumber = '".$book['CallNumber']."', "
-				."ISBN = '".$book['ISBN']."', "				
-				."Status = '".$book['Status']."', "
-				."DateAcquired = '".$book['DateAcquired']."', "
-				."AcquiredFrom = '".$book['AcquiredFrom']."' "
-				."WHERE AccessionNumber = '".$book['AccessionNumber']."'"
+                ."ISBN = '".$book['ISBN']."', "
+                ."Title = '".$book['Title']."', "                
+                ."PublisherId = '".$book['PublisherId']."', "
+                ."SeriesId = '".$book['SeriesId']."', "                
+                ."Edition = '".$book['Edition']."', "
+                ."DatePublished = '".$book['DatePublished']."'"
 			);			
 		}
 	}	
-
+	
 	public function getAuthor($isbn){
 		$dbList = $this->db->query("select * from author WHERE AuthorID IN "
 			."(select AuthorId from bookauthor WHERE ISBN = '".$isbn."')")->result();
@@ -77,5 +78,5 @@ class BookModel extends _BaseModel{
 		get quantity of books that have the status 'In'
 			select ISBN, Count(ISBN) from book WHERE Status = 'In' group by ISBN
 	*/
-
+    
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2018 at 05:18 AM
+-- Generation Time: Oct 07, 2018 at 05:44 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -74,12 +74,12 @@ INSERT INTO `author` (`AuthorId`, `Data`) VALUES
 --
 
 CREATE TABLE `book` (
-  `AccessionNumber` int(11) NOT NULL,
-  `CallNumber` varchar(20) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
-  `Status` varchar(20) NOT NULL,
-  `DateAcquired` date NOT NULL,
-  `AcquiredFrom` varchar(100) NOT NULL
+  `Title` varchar(100) NOT NULL,
+  `PublisherId` int(11) NOT NULL,
+  `SeriesId` int(11) DEFAULT NULL,
+  `Edition` varchar(30) DEFAULT NULL,
+  `DatePublished` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -91,8 +91,8 @@ TRUNCATE TABLE `book`;
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`AccessionNumber`, `CallNumber`, `ISBN`, `Status`, `DateAcquired`, `AcquiredFrom`) VALUES
-(1, '1', '1', 'In', '2018-09-04', 'Johnrey');
+INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
+('1', 'Libro', 1, 1, NULL, '2018-09-24');
 
 -- --------------------------------------------------------
 
@@ -121,29 +121,29 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bookdetails`
+-- Table structure for table `bookcatalogue`
 --
 
-CREATE TABLE `bookdetails` (
+CREATE TABLE `bookcatalogue` (
+  `AccessionNumber` int(11) NOT NULL,
+  `CallNumber` varchar(20) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
-  `Title` varchar(100) NOT NULL,
-  `PublisherId` int(11) NOT NULL,
-  `SeriesId` int(11) DEFAULT NULL,
-  `Edition` varchar(30) DEFAULT NULL,
-  `DatePublished` date NOT NULL
+  `Status` varchar(20) NOT NULL,
+  `DateAcquired` date NOT NULL,
+  `AcquiredFrom` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `bookdetails`
+-- Truncate table before insert `bookcatalogue`
 --
 
-TRUNCATE TABLE `bookdetails`;
+TRUNCATE TABLE `bookcatalogue`;
 --
--- Dumping data for table `bookdetails`
+-- Dumping data for table `bookcatalogue`
 --
 
-INSERT INTO `bookdetails` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'Libro', 1, 1, NULL, '2018-09-24');
+INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `Status`, `DateAcquired`, `AcquiredFrom`) VALUES
+(1, '1', '1', 'In', '2018-09-04', 'Johnrey');
 
 -- --------------------------------------------------------
 
@@ -505,13 +505,13 @@ ALTER TABLE `author`
 -- Indexes for table `book`
 --
 ALTER TABLE `book`
-  ADD PRIMARY KEY (`AccessionNumber`);
+  ADD PRIMARY KEY (`ISBN`);
 
 --
--- Indexes for table `bookdetails`
+-- Indexes for table `bookcatalogue`
 --
-ALTER TABLE `bookdetails`
-  ADD PRIMARY KEY (`ISBN`);
+ALTER TABLE `bookcatalogue`
+  ADD PRIMARY KEY (`AccessionNumber`);
 
 --
 -- Indexes for table `college`
@@ -606,9 +606,9 @@ ALTER TABLE `admission`
 ALTER TABLE `author`
   MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `book`
+-- AUTO_INCREMENT for table `bookcatalogue`
 --
-ALTER TABLE `book`
+ALTER TABLE `bookcatalogue`
   MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `college`
