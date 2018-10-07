@@ -15,7 +15,8 @@ class _BaseController extends CI_Controller {
 		$this->load->view('include/Footer');
 	}
 
-	public function convert($param){//$param - mga value ng member ng child class		
+	//converts any query to json
+	public function convert($param){
 		$str = '{';		
 		$counter = 0;		
 		foreach($param as $data => $record){
@@ -40,6 +41,7 @@ class _BaseController extends CI_Controller {
 		return $str;
 	}
 
+	//loops through multivalued attributes
 	public function loopAll($param){
 		$str = '';
 		foreach($param as $data => $record){
@@ -50,6 +52,14 @@ class _BaseController extends CI_Controller {
 			}
 		}
 		return $str;
+	}
+
+	//removes excess comma at the end for generating tables
+	public function removeExcessComma($json){
+		if($json != '{ "data": ['){
+            $json = substr($json, 0, strlen($json) - 1);
+		}
+		return $json;
 	}
 
 }

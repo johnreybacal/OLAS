@@ -40,7 +40,7 @@ class Member extends _BaseController {
             .']';            
             $json .= ',';
         }
-        $json = substr($json, 0, strlen($json) - 1);
+        $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
     }
