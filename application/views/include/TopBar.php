@@ -75,7 +75,7 @@
             <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
             <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="ti-power-off"></i> Logout</a>
+            <a class="dropdown-item" href="<?php echo base_url('Librarian/LogOut'); ?>"><i class="ti-power-off"></i> Logout</a>
         </div>
         </li>
 

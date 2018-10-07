@@ -15,6 +15,21 @@ class _BaseController extends CI_Controller {
 		$this->load->view('include/Footer');
 	}
 
+	public function isLoggedIn(){
+		if(!$this->session->has_userdata('isLoggedIn')){
+			redirect(base_url('Librarian/Login'));
+		}
+		return true;
+	}
+
+	public function isLibrarian(){
+		$this->isLoggedIn();
+		if(!$this->session->has_userdata('isLibrarian')){
+			echo "403: Access Denied";
+		}
+		return true;
+	}
+
 	//converts any query to json
 	public function convert($param){
 		$str = '{';		
@@ -46,7 +61,7 @@ class _BaseController extends CI_Controller {
 		$str = '';
 		foreach($param as $data => $record){
 			foreach($record as $column => $value){
-				if($column == "Data" || $column == "Name"){
+				if($column == "Name"){
 					$str .= $value .", ";
 				}
 			}

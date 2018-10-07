@@ -35,7 +35,12 @@ class LibrarianModel extends _BaseModel{
 	}	
 
 	public function authenticate($username, $password){
-		return $this->db->query("SELECT * FROM librarian WHERE Username = '$username' AND Password = '$password'")->num_rows();
+		$dbResult = $this->db->query("SELECT * FROM librarian WHERE Username = '$username' AND Password = '$password'")->row();
+		if($dbResult != null){
+            return $dbResult->LibrarianId;
+        }else{
+            return 0;
+		}		
 	}
 
 }

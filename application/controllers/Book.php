@@ -52,8 +52,7 @@ class Book extends _BaseController {
     public function GenerateTableComplete(){
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list() as $data){   
-            $x = $this->book->_get($data->ISBN)[0];    
-            $series = $this->series->_get($x->SeriesId);
+            $x = $this->book->_get($data->ISBN);                
             $json .= '['
                 .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$data->AccessionNumber.'</a>",'
                 .'"'.$data->CallNumber.'",'
@@ -61,8 +60,8 @@ class Book extends _BaseController {
                 .'"'.$x->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                
-                .'"'.$this->publisher->_get($x->PublisherId)[0]->Name.'",'
-                .'"'.(is_array($series) ? $series[0]->Name : "").'",'
+                .'"'.$this->publisher->_get($x->PublisherId)->Name.'",'
+                .'"'.$this->series->_get($x->SeriesId)->Name.'",'
                 .'"'.$x->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCourse($data->ISBN)).'",'

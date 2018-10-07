@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2018 at 12:12 PM
+-- Generation Time: Oct 07, 2018 at 01:49 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -237,6 +237,13 @@ CREATE TABLE `librarian` (
   `Password` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `librarian`
+--
+
+INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `Name`, `Username`, `Password`) VALUES
+(1, 1, 'Johnrey Bacal', 'admin', 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -248,6 +255,13 @@ CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `librarianrole`
+--
+
+INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`) VALUES
+(1, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -545,12 +559,12 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `librarian`
 --
 ALTER TABLE `librarian`
-  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `librarianrole`
 --
 ALTER TABLE `librarianrole`
-  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `loan`
 --

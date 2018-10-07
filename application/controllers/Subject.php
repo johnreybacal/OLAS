@@ -23,9 +23,9 @@ class Subject extends _BaseController {
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->subjectCourse->_list() as $data){
-            $subject = $this->subject->_get($data->SubjectId)[0];
-            $course = $this->course->_get($data->CourseId)[0];
-            $college = $this->college->_get($course->CollegeId)[0];
+            $subject = $this->subject->_get($data->SubjectId);
+            $course = $this->course->_get($data->CourseId);
+            $college = $this->college->_get($course->CollegeId);
             $json .= '['                
                 .'"<a href = \''.base_url('College/View/'.$college->CollegeId).'\'>'.$college->Name.'</a>",'                
                 .'"<a href = \''.base_url('Course/View/'.$course->CourseId).'\'>'.$course->Name.'</a>",'                

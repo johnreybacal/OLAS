@@ -16,7 +16,7 @@ class _BaseModel extends CI_Model{
 	}	
 
 	public function _get($id){
-		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."'")->result();
+		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."'")->row();
 		return $dbList;		
 	}
 
