@@ -14,7 +14,7 @@ class Genre extends _BaseController {
     }
     
     public function View($id){
-        $data['genre'] = $this->genre->convert($this->genre->_get($id));
+        $data['genre'] = $this->convert($this->genre->_get($id));
         $this->header();
         $this->load->view('Genre/View', $data);
         $this->footer();

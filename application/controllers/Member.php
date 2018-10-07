@@ -14,7 +14,7 @@ class Member extends _BaseController {
 	}
 	
 	public function View($id){
-        $data['member'] = $this->member->convert($this->member->_get($id));
+        $data['member'] = $this->convert($this->member->_get($id));
         $this->header();
         $this->load->view('Member/View', $data);
         $this->footer();

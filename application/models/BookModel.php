@@ -36,6 +36,39 @@ class BookModel extends _BaseModel{
 		}
 	}	
 
+	public function getAuthor($isbn){
+		$dbList = $this->db->query("select * from author WHERE AuthorID IN "
+			."(select AuthorId from bookauthor WHERE ISBN = '".$isbn."')")->result();
+		return $dbList;
+	}
+
+	public function getGenre($isbn){
+		$dbList = $this->db->query("select * from genre WHERE GenreID IN "
+			."(select GenreId from bookgenre WHERE ISBN = '".$isbn."')")->result();
+		return $dbList;
+	}
+
+	public function getSubject($isbn){
+		$dbList = $this->db->query("select * from subject WHERE SubjectID IN "
+			."(select SubjectId from bookgenre WHERE ISBN = '".$isbn."')")->result();
+		return $dbList;
+	}
+
+	public function getCourse($isbn){
+		$dbList = $this->db->query("select * from course WHERE CourseId IN "
+			."(select CourseId from subjectcourse WHERE SubjectId IN "
+				."(select SubjectId from booksubject WHERE ISBN = '".$isbn."'))")->result();
+		return $dbList;		
+	}
+
+	public function getCollege($isbn){		
+		$dbList = $this->db->query("select * from college where CollegeId IN "
+			."(select CollegeId from course WHERE CourseId IN "
+				."(select CourseId from subjectcourse WHERE SubjectId IN "
+					."(select SubjectId from booksubject WHERE ISBN = '".$isbn."')))")->result();
+		return $dbList;
+	}
+
 	/*queries to use in the future
 		unique books
 			select * from bookdetails where ISBN IN (select DISTINCT ISBN from book)

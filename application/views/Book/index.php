@@ -35,8 +35,10 @@
 							<th>Genre</th>
 							<th>Publisher</th>
 							<th>Series</th>
-							<th>Course</th>
+							<th>Edition</th>
 							<th>Subject</th>
+							<th>Course</th>
+							<th>College</th>
 							<th>Date Acquired</th>
 							<th>Acquired From</th>
 						</tr>

@@ -14,7 +14,7 @@ class Subject extends _BaseController {
     }
     
     public function View($id){
-        $data['subject'] = $this->subject->convert($this->subject->_get($id));
+        $data['subject'] = $this->convert($this->subject->_get($id));
         $this->header();
         $this->load->view('Subject/View', $data);
         $this->footer();

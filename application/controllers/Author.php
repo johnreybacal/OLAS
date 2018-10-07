@@ -14,7 +14,7 @@ class Author extends _BaseController {
 	}
 
 	public function View($id){
-        $data['author'] = $this->author->convert($this->author->_get($id));
+        $data['author'] = $this->convert($this->author->_get($id));
         $this->header();
         $this->load->view('Author/View', $data);
         $this->footer();

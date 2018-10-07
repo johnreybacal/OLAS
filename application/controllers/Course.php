@@ -14,7 +14,7 @@ class Course extends _BaseController {
     }
     
     public function View($id){
-        $data['course'] = $this->course->convert($this->course->_get($id));
+        $data['course'] = $this->convert($this->course->_get($id));
         $this->header();
         $this->load->view('Course/View', $data);
         $this->footer();

@@ -14,7 +14,7 @@ class MemberType extends _BaseController {
     }
     
     public function View($id){
-        $data['membertype'] = $this->membertype->convert($this->membertype->_get($id));
+        $data['membertype'] = $this->convert($this->membertype->_get($id));
         $this->header();
         $this->load->view('MemberType/View', $data);
         $this->footer();

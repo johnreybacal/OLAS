@@ -14,7 +14,7 @@ class Series extends _BaseController {
     }
     
     public function View($id){
-        $data['series'] = $this->series->convert($this->series->_get($id));
+        $data['series'] = $this->convert($this->series->_get($id));
         $this->header();
         $this->load->view('Series/View', $data);
         $this->footer();

@@ -14,7 +14,7 @@ class Publisher extends _BaseController {
     }
     
     public function View($id){
-        $data['publisher'] = $this->publisher->convert($this->publisher->_get($id));
+        $data['publisher'] = $this->convert($this->publisher->_get($id));
         $this->header();
         $this->load->view('Publisher/View', $data);
         $this->footer();

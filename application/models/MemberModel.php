@@ -31,7 +31,7 @@ class MemberModel extends _BaseModel{
 				."Username = '".$member['Username']."', "
 				."Password = '".$member['Password']."', "
 				."ContactNumber = '".$member['ContactNumber']."' "
-				."WHERE AccessionNumber = '".$member['AccessionNumber']."'"
+				."WHERE MemberId = '".$member['MemberId']."'"
 			);			
 		}
 	}	
