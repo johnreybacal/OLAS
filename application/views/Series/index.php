@@ -30,6 +30,7 @@
 						<tr>
 						<th>Series ID</th>			
 						<th>Data</th>
+						<th>Data</th>
 						</tr>
 					</thead>
 				</table>            			

@@ -24,8 +24,9 @@ class Series extends _BaseController {
         $json = '{ "data": [';
         foreach($this->series->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Series/'.$data->SeriesId).'\'>'.$data->Data.'</a>",'
-                .'"'.$data->Data.'"'
+                .'"<a href = \''.base_url('Book/Series/'.$data->SeriesId).'\'>'.$data->Name.'</a>",'
+                .'"'.$data->Name.'",'
+                .'<button onclick="Series_Modal.new('.$this->series->_get($data->ISBN)->SeriesId.')"></button>'//error pa to bacs
             .']';            
             $json .= ',';
         }

@@ -29,7 +29,8 @@
 					<thead>
 						<tr>
 						<th>Genre ID</th>			
-						<th>Data</th>
+						<th>Name</th>			
+						<th>Action</th>			
 						</tr>
 					</thead>
 				</table>            			
