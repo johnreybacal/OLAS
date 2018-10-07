@@ -44,7 +44,13 @@
                         </a>
                     </li>
             
-                
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Course'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Course</span>
+                        </a>
+                    </li>
+
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
                             <span class="dot"></span>
@@ -53,19 +59,26 @@
                     </li>
 
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Series'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Series</span>
-                        </a>
-                    </li>
-
-            
-                    <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Publisher/'); ?>">
                             <span class="dot"></span>
                             <span class="title">Publisher</span>
                         </a>
                     </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Series/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Series</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Subject/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Subject</span>
+                        </a>
+                    </li>
+
 
                 </ul>
             </li>
@@ -122,6 +135,20 @@
                         <a class="menu-link" href="<?php echo base_url('MemberType'); ?>">
                             <span class="dot"></span>
                             <span class="title">Member Type</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Librarian'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian Role</span>
                         </a>
                     </li>
                 </ul>

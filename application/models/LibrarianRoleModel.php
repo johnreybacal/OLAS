@@ -12,21 +12,26 @@ class LibrarianRoleModel extends _BaseModel{
 		);
 	}
 
-	public function save($librarianrole){
-		if($librarianrole['LibrarianRoleId'] == 0){//insert			
-			$this->db->query("INSERT into librarianrole "
-				."(LibrarianRoleRoleId, Name, Username, Password) VALUES ("
-					."'".$librarianrole['LibrarianRoleRoleId']."', "
-					."'".$librarianrole['Name']."', "										
+	public function save($memberType){
+		if($memberType['LibrarianRoleId'] == 0){//insert			
+			$this->db->query("INSERT into member "
+				."(LibrarianRoleId, Name, NumberOfBooks, NumberOfDays) VALUES ("
+					."'".$memberType['LibrarianRoleId']."', "
+					."'".$memberType['Name']."'"
 				.")"
 			);
 		}
 		else{//update
-			$this->db->query("UPDATE librarianrole SET "
-				."LibrarianRoleRoleId = '".$librarianrole['LibrarianRoleRoleId']."', "
-				."Name = '".$librarianrole['Name']."', "								
-				."WHERE LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."'"
+			$this->db->query("UPDATE member SET "
+				."LibrarianRoleId = '".$memberType['LibrarianRoleId']."', "
+				."Name = '".$memberType['Name']."', "				
+				."WHERE LibrarianRoleId = '".$member['LibrarianRoleId']."'"
 			);			
 		}
 	}	
+
+	public function authenticate($username, $password){
+		return $this->db->query("SELECT * FROM Member WHERE Username = '$username' AND Password = '$password'")->num_rows();
+	}
+
 }

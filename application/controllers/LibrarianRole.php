@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-class MemberType extends _BaseController {
+class LibrarianRole extends _BaseController {
 
     public function __construct(){
 		parent::__construct();		
@@ -9,24 +9,23 @@ class MemberType extends _BaseController {
     
     public function index(){		          		              	
 		$this->header();
-		$this->load->view('MemberType/index');
+		$this->load->view('LibrarianRole/index');
 		$this->footer();
     }
     
     public function View($id){
-        $data['membertype'] = $this->convert($this->membertype->_get($id));
+        $data['librarianRole'] = $this->convert($this->librarianrole->_get($id));
         $this->header();
-        $this->load->view('MemberType/View', $data);
+        $this->load->view('LibrarianRole/View', $data);
         $this->footer();
     }
     
+    // .'"<button onclick = var.method()\''.base_url('LibrarianRole/View/'.$data->LibrarianRoleId).'\'>'.$data->Name.'</a>",'
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->membertype->_list() as $data){
+        foreach($this->librarianrole->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
-                // .'"<button onclick = var.method()\''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
-                .'"'.$data->MemberTypeId.'",'
+                .'"<a href = \''.base_url('LibrarianRole/View/'.$data->LibrarianRoleId).'\'>'.$data->LibrarianRoleId.'</a>",'
                 .'"'.$data->Name.'"'
             .']';            
             $json .= ',';
@@ -37,7 +36,7 @@ class MemberType extends _BaseController {
     }
     
     public function Save(){        
-        $this->membertype->save($this->input->post('membertype'));
+        $this->librarianrole->save($this->input->post('librarianrole'));
     }
     
 }

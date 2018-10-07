@@ -1,5 +1,3 @@
-
-
 <header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
 <div class="container">
 	<div class="header-info">
@@ -12,8 +10,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Genre_Modal.new();"
-	data-toggle="modal" data-target="#modal-genre" data-provide="tooltip" data-original-title="Add Book">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="LibrarianRole_Modal.new();"
+	data-toggle="modal" data-target="#modal-librarianrole" data-provide="tooltip" data-original-title="Add Book">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -25,11 +23,11 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Genre/GenerateTable") ?>">
+				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("LibrarianRole/GenerateTable") ?>">
 					<thead>
 						<tr>
-						<th>Genre ID</th>			
-						<th>Data</th>
+							<th>LibrarianRole ID</th>
+							<th>Name</th>
 						</tr>
 					</thead>
 				</table>            			
@@ -38,20 +36,20 @@
 	</div>
 </div>
 
-<?php include("_Genre_Modal.php"); ?>
+<?php include("_LibrarianRole_Modal.php"); ?>
 
 <script>
     $(document).ready(function () {
-        Genre.init();
+        LibrarianRole.init();
     });
 
-    var Genre = {
+    var LibrarianRole = {
         init: function () {
             $('.modal').on('hidden.bs.modal', function () {
-                Genre.reset();
+                LibrarianRole.reset();
             });
 
-            Genre.reset();
+            LibrarianRole.reset();
         },
 
         reset: function () {

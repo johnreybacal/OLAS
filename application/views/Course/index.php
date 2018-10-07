@@ -12,8 +12,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();"
-	data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Course_Modal.new();"
+	data-toggle="modal" data-target="#modal-course" data-provide="tooltip" data-original-title="Add Book">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -37,3 +37,25 @@
 		</div>
 	</div>
 </div>
+
+<?php include("_Course_Modal.php"); ?>
+
+<script>
+    $(document).ready(function () {
+        Course.init();
+    });
+
+    var Course = {
+        init: function () {
+            $('.modal').on('hidden.bs.modal', function () {
+                Course.reset();
+            });
+
+            Course.reset();
+        },
+
+        reset: function () {
+            //$('#utilities-pantype-table').DataTable().ajax.reload();
+        }
+    }
+</script>
