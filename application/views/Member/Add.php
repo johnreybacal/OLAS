@@ -94,9 +94,7 @@
 </div>
 
 <script>
-	
-</script>
-	
+																	    
 	var Member_Add = {
 		data: function () {
 			return {
@@ -109,41 +107,39 @@
 
                 message = "Nice! Member has been updated";
 
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Member',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-										
-                    $.post('<?php echo base_url('Book/Save'); ?>',{
-											book: Book_Add.data()
-											}, function(i){
-												swal('Good Job!', message, 'success');
-										},
-										if(i == 0){
-											//error
-											swal('Something went wrong!', 'If problem persist contact administrator', 'error');
-										}
-								});
-						} else {
+		    swal({
+			title: 'Confirm Submission',
+			text: 'Save changes for Member',
+			type: 'warning',
+			showCancelButton: true,
+			cancelButtonText: 'No! Cancel',
+			cancelButtonClass: 'btn btn-default',
+			confirmButtonText: 'Yes! Go for it',
+			confirmButtonClass: 'btn btn-info'
+		    }).then((result) => {
+			if (result.value) {
 
-						}
-				})
+			    $.post('<?php echo base_url('Book/Save'); ?>',{
+				book: Book_Add.data()
+				}, function(i){
+				swal('Good Job!', message, 'success');
+			    },
+				if(i == 0){
+					//error
+					swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+				}
+			});
+			} else {
+			  }
+		    })
 		}
 		
 	}
 
-
-
-
-
-
-
-
-
+</script>
+							 
+							 
+							 
+							 
+							 
+							 
