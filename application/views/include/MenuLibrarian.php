@@ -154,6 +154,13 @@
                     </li>                            
 
                     <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Author</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
                             <span class="dot"></span>
                             <span class="title">Genre</span>
