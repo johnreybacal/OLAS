@@ -33,22 +33,26 @@ class _BaseController extends CI_Controller {
 	//converts any query to json
 	public function convert($param){
 		$str = '{';		
-		$counter = 0;		
+		$counter = 0;				
 		foreach($param as $data => $record){
 			if($counter != 0){
 				$str .= ',';
 			}
-			$str .= '"'.$counter.'":{';							
-			$first = true;
-			foreach($record as $column => $value){
-				if(!$first){
-					$str .= ',';
+			if(is_array($record)){
+				$str .= '"'.$counter.'":{';							
+				$first = true;
+				foreach($record as $column => $value){
+					if(!$first){
+						$str .= ',';
+					}
+					$str .= '"'.$column.'":"'.$value.'"';
+					$first = false;
 				}
-				$str .= '"'.$column.'":"'.$value.'"';
-				$first = false;
+				$str .= '}';				
+			}else{
+				$str .= '"'.$data .':'.$record.'"';
 			}
-			$str .= '}';
-			$counter++;					
+			$counter++;			
 		}
 		$str .= '}';
 		if($str == '{}')

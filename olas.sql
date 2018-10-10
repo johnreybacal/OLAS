@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2018 at 01:49 PM
+-- Generation Time: Oct 10, 2018 at 02:00 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -28,7 +28,6 @@ USE `olas`;
 -- Table structure for table `admission`
 --
 
-DROP TABLE IF EXISTS `admission`;
 CREATE TABLE `admission` (
   `AdmissionId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -39,18 +38,27 @@ CREATE TABLE `admission` (
   `AmountPayed` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `admission`
+--
+
+TRUNCATE TABLE `admission`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `author`
 --
 
-DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `AuthorId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `author`
+--
+
+TRUNCATE TABLE `author`;
 --
 -- Dumping data for table `author`
 --
@@ -65,7 +73,6 @@ INSERT INTO `author` (`AuthorId`, `Name`) VALUES
 -- Table structure for table `book`
 --
 
-DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `ISBN` varchar(13) NOT NULL,
   `Title` varchar(100) NOT NULL,
@@ -75,6 +82,11 @@ CREATE TABLE `book` (
   `DatePublished` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `book`
+--
+
+TRUNCATE TABLE `book`;
 --
 -- Dumping data for table `book`
 --
@@ -88,12 +100,16 @@ INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `Date
 -- Table structure for table `bookauthor`
 --
 
-DROP TABLE IF EXISTS `bookauthor`;
 CREATE TABLE `bookauthor` (
   `ISBN` int(11) NOT NULL,
   `AuthorId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `bookauthor`
+--
+
+TRUNCATE TABLE `bookauthor`;
 --
 -- Dumping data for table `bookauthor`
 --
@@ -108,7 +124,6 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 -- Table structure for table `bookcatalogue`
 --
 
-DROP TABLE IF EXISTS `bookcatalogue`;
 CREATE TABLE `bookcatalogue` (
   `AccessionNumber` int(11) NOT NULL,
   `CallNumber` varchar(20) NOT NULL,
@@ -118,6 +133,11 @@ CREATE TABLE `bookcatalogue` (
   `AcquiredFrom` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `bookcatalogue`
+--
+
+TRUNCATE TABLE `bookcatalogue`;
 --
 -- Dumping data for table `bookcatalogue`
 --
@@ -131,12 +151,16 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `Status`, 
 -- Table structure for table `bookgenre`
 --
 
-DROP TABLE IF EXISTS `bookgenre`;
 CREATE TABLE `bookgenre` (
   `ISBN` int(11) NOT NULL,
   `GenreId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `bookgenre`
+--
+
+TRUNCATE TABLE `bookgenre`;
 --
 -- Dumping data for table `bookgenre`
 --
@@ -150,12 +174,16 @@ INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
 -- Table structure for table `booksubject`
 --
 
-DROP TABLE IF EXISTS `booksubject`;
 CREATE TABLE `booksubject` (
   `ISBN` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `booksubject`
+--
+
+TRUNCATE TABLE `booksubject`;
 --
 -- Dumping data for table `booksubject`
 --
@@ -169,12 +197,16 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 -- Table structure for table `college`
 --
 
-DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college` (
   `CollegeId` int(11) NOT NULL,
   `Name` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `college`
+--
+
+TRUNCATE TABLE `college`;
 --
 -- Dumping data for table `college`
 --
@@ -188,13 +220,17 @@ INSERT INTO `college` (`CollegeId`, `Name`) VALUES
 -- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `CourseId` int(11) NOT NULL,
   `CollegeId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `course`
+--
+
+TRUNCATE TABLE `course`;
 --
 -- Dumping data for table `course`
 --
@@ -209,12 +245,16 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`) VALUES
 -- Table structure for table `genre`
 --
 
-DROP TABLE IF EXISTS `genre`;
 CREATE TABLE `genre` (
   `GenreId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `genre`
+--
+
+TRUNCATE TABLE `genre`;
 --
 -- Dumping data for table `genre`
 --
@@ -228,21 +268,26 @@ INSERT INTO `genre` (`GenreId`, `Name`) VALUES
 -- Table structure for table `librarian`
 --
 
-DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
   `LibrarianRoleId` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `librarian`
+--
+
+TRUNCATE TABLE `librarian`;
+--
 -- Dumping data for table `librarian`
 --
 
-INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `Name`, `Username`, `Password`) VALUES
-(1, 1, 'Johnrey Bacal', 'admin', 'admin');
+INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
+(1, 1, 'Johnrey', 'Bacal', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -250,12 +295,16 @@ INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `Name`, `Username`, `
 -- Table structure for table `librarianrole`
 --
 
-DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `librarianrole`
+--
+
+TRUNCATE TABLE `librarianrole`;
 --
 -- Dumping data for table `librarianrole`
 --
@@ -269,7 +318,6 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`) VALUES
 -- Table structure for table `loan`
 --
 
-DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL,
   `MemberId` int(11) NOT NULL,
@@ -279,13 +327,17 @@ CREATE TABLE `loan` (
   `DateReturned` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loan`
+--
+
+TRUNCATE TABLE `loan`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `loanhistory`
 --
 
-DROP TABLE IF EXISTS `loanhistory`;
 CREATE TABLE `loanhistory` (
   `LoanHistoryId` int(11) NOT NULL,
   `LoanId` int(11) NOT NULL,
@@ -293,29 +345,39 @@ CREATE TABLE `loanhistory` (
   `Status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `loanhistory`
+--
+
+TRUNCATE TABLE `loanhistory`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `MemberId` int(11) NOT NULL,
   `MemberTypeId` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
   `Username` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
-  `ContactNumber` varchar(20) NOT NULL
+  `ContactNumber` varchar(20) NOT NULL,
+  `Email` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `member`
+--
+
+TRUNCATE TABLE `member`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `membertype`
 --
 
-DROP TABLE IF EXISTS `membertype`;
 CREATE TABLE `membertype` (
   `MemberTypeId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
@@ -323,18 +385,27 @@ CREATE TABLE `membertype` (
   `NumberOfDays` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `membertype`
+--
+
+TRUNCATE TABLE `membertype`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `publisher`
 --
 
-DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE `publisher` (
   `PublisherId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `publisher`
+--
+
+TRUNCATE TABLE `publisher`;
 --
 -- Dumping data for table `publisher`
 --
@@ -348,7 +419,6 @@ INSERT INTO `publisher` (`PublisherId`, `Name`) VALUES
 -- Table structure for table `reservation`
 --
 
-DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `ReservationId` int(11) NOT NULL,
   `MemberId` int(11) NOT NULL,
@@ -357,18 +427,27 @@ CREATE TABLE `reservation` (
   `IsDiscarded` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `reservation`
+--
+
+TRUNCATE TABLE `reservation`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `series`
 --
 
-DROP TABLE IF EXISTS `series`;
 CREATE TABLE `series` (
   `SeriesId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `series`
+--
+
+TRUNCATE TABLE `series`;
 --
 -- Dumping data for table `series`
 --
@@ -382,12 +461,16 @@ INSERT INTO `series` (`SeriesId`, `Name`) VALUES
 -- Table structure for table `subject`
 --
 
-DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `SubjectId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `subject`
+--
+
+TRUNCATE TABLE `subject`;
 --
 -- Dumping data for table `subject`
 --
@@ -401,12 +484,16 @@ INSERT INTO `subject` (`SubjectId`, `Name`) VALUES
 -- Table structure for table `subjectcourse`
 --
 
-DROP TABLE IF EXISTS `subjectcourse`;
 CREATE TABLE `subjectcourse` (
   `SubjectId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `subjectcourse`
+--
+
+TRUNCATE TABLE `subjectcourse`;
 --
 -- Dumping data for table `subjectcourse`
 --
