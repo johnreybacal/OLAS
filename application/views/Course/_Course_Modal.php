@@ -90,12 +90,36 @@
         },
 
         save: function () {
-            $.post('<?php echo base_url('Course/Save'); ?>',{
-				course: Course_Modal.data()
-				}, function(i){				
-					$('#modal-course').modal('hide');
-				}
-			);
+
+            var message;
+                console.log(Course_Modal.data());
+                if ($('#CourseId').val() == 0) {
+                    message = "Great Job! New Course has been created";
+                } else {
+                    message = "Nice! Course has been updated";
+                }
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Course',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Course/Save'); ?>',{
+				            course: Course_Modal.data()
+		            		}, function(i){				
+                            swal('Good Job!', message, 'success');
+        					$('#modal-course').modal('hide');		
+                            console.log(i);
+                            }
+                        );	
+                    }
+                })
         }
 
     }

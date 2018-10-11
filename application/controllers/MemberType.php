@@ -32,7 +32,8 @@ class MemberType extends _BaseController {
                 // .'"<button onclick = var.method()\''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->NumberOfBooks.'",'
-                .'"'.$data->NumberOfDays.'"'
+                .'"'.$data->NumberOfDays.'",'
+                .'"<button onclick = \"MemberType_Modal.edit('.$data->MemberTypeId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }
@@ -41,6 +42,10 @@ class MemberType extends _BaseController {
         echo $json;        
     }
     
+    public function GetAll(){
+        echo $this->convert($this->membertype->_list());
+    }
+
     public function Save(){        
         $this->membertype->save($this->input->post('membertype'));
     }

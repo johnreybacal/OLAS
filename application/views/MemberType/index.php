@@ -32,6 +32,7 @@
 						<th>Data</th>
 						<th>Number of Books</th>
 						<th>Number of Days</th>
+						<th>Reload Reload Action Action</th>
 						</tr>
 					</thead>
 				</table>            			

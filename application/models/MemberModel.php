@@ -15,22 +15,26 @@ class MemberModel extends _BaseModel{
 	public function save($member){
 		if($member['MemberId'] == 0){//insert			
 			$this->db->query("INSERT into member "
-				."(MemberTypeId, Name, Username, Password, ContactNumber) VALUES ("
-					."'".$member['MemberTypeId']."', "
-					."'".$member['Name']."', "
-					."'".$member['Username']."', "
-					."'".$member['Password']."', "
-					."'".$member['ContactNumber']."'"
+				."(MemberTypeId, FirstName, LastName, Username, Password, ContactNumber, Email) VALUES ("
+					."'".$member['MemberTypeId']."',"
+					."'".$member['FirstName']."',"
+					."'".$member['LastName']."',"
+					."'".$member['Username']."',"
+					."'".$member['Password']."',"
+					."'".$member['ContactNumber']."',"
+					."'".$member['Email']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE member SET "
 				."MemberTypeId = '".$member['MemberTypeId']."', "
-				."Name = '".$member['Name']."', "				
+				."FirstName = '".$member['FirstName']."', "				
+				."LastName = '".$member['LastName']."', "				
 				."Username = '".$member['Username']."', "
 				."Password = '".$member['Password']."', "
-				."ContactNumber = '".$member['ContactNumber']."' "
+				."ContactNumber = '".$member['ContactNumber']."', "
+				."Email = '".$member['Email']."' "
 				."WHERE MemberId = '".$member['MemberId']."'"
 			);			
 		}

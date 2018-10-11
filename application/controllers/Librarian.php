@@ -7,8 +7,20 @@ class Librarian extends _BaseController {
 		parent::__construct();
     }
     
-    public function index(){		          		              	
+    // public function index(){		          		              	
 		
+    // }
+
+    public function index(){		          		              	
+		$this->header();
+		$this->load->view('Librarian/index');
+		$this->footer();
+    }
+
+    public function Add(){		          		              	
+		$this->header();
+		$this->load->view('Librarian/Add');
+		$this->footer();
     }
 
     public function Login(){        
@@ -20,13 +32,13 @@ class Librarian extends _BaseController {
 		$this->footer();
     }
     
-    public function Dashboard(){
-        if($this->isLibrarian()){
-            $this->header();
-            $this->load->view('Librarian/Dashboard');
-            $this->footer();            
-        }
-	}
+    // public function Dashboard(){
+    //     if($this->isLibrarian()){
+    //         $this->header();
+    //         $this->load->view('Librarian/Dashboard');
+    //         $this->footer();            
+    //     }
+	// }
 	
 	public function Profile($id){
         $data['librarian'] = $this->convert($this->librarian->_get($id));
@@ -61,7 +73,8 @@ class Librarian extends _BaseController {
             $json .= '['
 				.'"<a href = \''.base_url('Librarian/View/'.$data->LibrarianId).'\'>'.$data->LibrarianId.'</a>",'
                 .'"'.$data->LibrarianRoleId.'",'
-                .'"'.$data->Name.'",'
+                .'"'.$data->FirstName.'",'
+                .'"'.$data->LastName.'",'
                 .'"'.$data->Username.'"'
             .']';            
             $json .= ',';
@@ -69,6 +82,10 @@ class Librarian extends _BaseController {
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function Save(){        
+        $this->librarian->save($this->input->post('librarian'));
     }
 
 }

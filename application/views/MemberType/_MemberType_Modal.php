@@ -142,46 +142,13 @@
                             swal('Good Job!', message, 'success');
                             $('#modal-membertype').modal('hide');
 
-                            // if(i == 0){
-                            //         //error
-                            //     swal('Something went wrong!', 'If problem persist contact administrator', 'error');
-                            //     }
                                 console.log(i);
                                 //$('table').DataTable().ajax.reload();
                             }
-                        );			
-                        //
-
-                        // $.ajax({
-                        //     url: $('#siteUrl').val() + "membertype/save",
-                        //     type: "POST",
-                        //     contentType: "application/json",
-                        //     data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
-                        //     success: function (i) {
-                        //         swal('Good Job!', message, 'success');
-                        //         $('#modal-membertype').modal('hide');
-                        //     },
-                        //     error: function (i) {
-                        //         swal('Something went wrong!', 'If symptomps persist consult your doctor', 'error');
-                        //     }
-                        // });
-                        //
+                        );	
                     }
                 })
-            //
-            //     $.post('<?php echo base_url('Book/Save'); ?>',{
-			// 	book: Book_Add.data()
-			// 	}, function(i){
-				
-			// 		if(i == 0){
-			// 			//error
-			// 			swal('Something went wrong!', 'If problem persist contact administrator', 'error');
-			// 		}
-			// 		console.log(i);
-			// 		//$('table').DataTable().ajax.reload();
-			// 	}
-			// );			
-            //
+            
         }
     };
 
