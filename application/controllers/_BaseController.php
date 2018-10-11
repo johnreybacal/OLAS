@@ -38,7 +38,7 @@ class _BaseController extends CI_Controller {
 			if($counter != 0){
 				$str .= ',';
 			}
-			if(is_array($record)){
+			if(is_array($record) || is_object($record)){
 				$str .= '"'.$counter.'":{';							
 				$first = true;
 				foreach($record as $column => $value){
@@ -50,7 +50,7 @@ class _BaseController extends CI_Controller {
 				}
 				$str .= '}';				
 			}else{
-				$str .= '"'.$data .':'.$record.'"';
+				$str .= '"'.$data .'":"'.$record.'"';
 			}
 			$counter++;			
 		}
@@ -63,22 +63,27 @@ class _BaseController extends CI_Controller {
 	//loops through multivalued attributes
 	public function loopAll($param){
 		$str = '';
+		$first = true;
 		foreach($param as $data => $record){
 			foreach($record as $column => $value){
-				if($column == "Name"){
-					$str .= $value .", ";
+				if(!$first){
+					$str .= ' ';
 				}
+				if($column == "Name"){
+					$str .= $value .",";
+				}
+				$first = false;
 			}
 		}
-		return $str;
+		return $this->removeExcessComma($str);
 	}
 
 	//removes excess comma at the end for generating tables
-	public function removeExcessComma($json){
-		if($json != '{ "data": ['){
-            $json = substr($json, 0, strlen($json) - 1);
+	public function removeExcessComma($str){
+		if($str != '{ "data": ['){
+            $str = substr($str, 0, strlen($str) - 1);
 		}
-		return $json;
+		return $str;
 	}
 
 }

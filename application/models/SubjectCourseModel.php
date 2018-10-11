@@ -1,31 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SubjectCourseModel extends _BaseModel{
+class SubjectCourseModel extends CI_Model{
 
-	public function __construct(){		
-		parent::_setDai(
-			array(
-				"subjectcourse",
-				"SubjectCourseId",
-			)
-		);
-	}
-
-	public function save($subjectcourse){
-		if($subjectcourse['SubjectCourseId'] == 0){//insert			
+	public function save($subject, $course){
+		$this->db->query("DELETE FROM subjectcourse WHERE SubjectId = '".$subject."'");
+		foreach($course as $c){
 			$this->db->query("INSERT into SubjectCourse "
-				."(Name) VALUES ("                   
-					."'".$subjectcourse['Name']."'"
+				."(SubjectId, CourseId) VALUES ("                   
+					."'".$subject."',"
+					."'".$c."'"
 				.")"
 			);
 		}
-		else{//update
-			$this->db->query("UPDATE SubjectCourse SET "
-                ."Name = '".$subjectcourse['Name']."'"
-                ."WHERE SubjectCourseId = '".$subjectcourse['SubjectCourseId']."'"
-			);			
-		}
-    }	
+	}	
+	
+	public function _list($id){
+		return $this->db->query("SELECT * FROM subjectcourse WHERE SubjectId = '".$id."'")->result();
+	}
     
 }

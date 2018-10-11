@@ -25,12 +25,13 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Subject/GenerateTable") ?>">
+				<table id = "subject-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Subject/GenerateTable") ?>">
 					<thead>
 						<tr>
-							<th>College</th>			
-							<th>Course</th>
 							<th>Subject</th>
+							<th>Course</th>
+							<th>College</th>
+							<th></th>
 						</tr>
 					</thead>
 				</table>            			
@@ -56,7 +57,7 @@
         },
 
         reset: function () {
-            //$('#utilities-pantype-table').DataTable().ajax.reload();
+            $('#subject-table').DataTable().ajax.reload();
         }
     }
 </script>
