@@ -19,15 +19,20 @@ class MemberType extends _BaseController {
         $this->load->view('MemberType/View', $data);
         $this->footer();
     }
+
+    public function Validate(){
+        
+    }
     
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->membertype->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
+                .'"<a href = \''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->MemberTypeId.'</a>",'
                 // .'"<button onclick = var.method()\''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
-                .'"'.$data->MemberTypeId.'",'
-                .'"'.$data->Name.'"'
+                .'"'.$data->Name.'",'
+                .'"'.$data->NumberOfBooks.'",'
+                .'"'.$data->NumberOfDays.'"'
             .']';            
             $json .= ',';
         }

@@ -14,7 +14,7 @@ class MemberTypeModel extends _BaseModel{
 
 	public function save($memberType){
 		if($memberType['MemberTypeId'] == 0){//insert			
-			$this->db->query("INSERT into member "
+			$this->db->query("INSERT into membertype "
 				."(MemberTypeId, Name, NumberOfBooks, NumberOfDays) VALUES ("
 					."'".$memberType['MemberTypeId']."', "
 					."'".$memberType['Name']."', "
@@ -27,9 +27,9 @@ class MemberTypeModel extends _BaseModel{
 			$this->db->query("UPDATE member SET "
 				."MemberTypeId = '".$memberType['MemberTypeId']."', "
 				."Name = '".$memberType['Name']."', "				
-				."NumberOfBooks = '".$member['NumberOfBooks']."', "
-				."NumberOfDays = '".$member['NumberOfDays']."', "
-				."WHERE MemberTypeId = '".$member['MemberTypeId']."'"
+				."NumberOfBooks = '".$memberType['NumberOfBooks']."', "
+				."NumberOfDays = '".$memberType['NumberOfDays']."', "
+				."WHERE MemberTypeId = '".$memberType['MemberTypeId']."'"
 			);			
 		}
 	}	

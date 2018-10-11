@@ -69,7 +69,7 @@
 
     <ul class="topbar-btns">
         <li class="dropdown">
-        <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../assets/img/avatar/1.jpg" alt="..."></span>
+        <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" <?php echo base_url('../assets/img/avatar/1.jpg'); ?> alt="..."></span>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
             <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
@@ -142,7 +142,7 @@
             <div class="media-list media-list-divided media-list-hover scrollable" style="height: 280px">
             <a class="media media-new" href="#">
                 <span class="avatar status-success">
-                <img src="../assets/img/avatar/1.jpg" alt="...">
+                <img <?php echo base_url('../assets/img/avatar/1.jpg'); ?> alt="...">
                 </span>
 
                 <div class="media-body">
@@ -153,7 +153,7 @@
 
             <a class="media media-new" href="#">
                 <span class="avatar status-warning">
-                <img src="../assets/img/avatar/2.jpg" alt="...">
+                <img <?php echo base_url('../assets/img/avatar/2.jpg'); ?> alt="...">
                 </span>
 
                 <div class="media-body">
@@ -164,7 +164,7 @@
 
             <a class="media" href="#">
                 <span class="avatar status-dark">
-                <img src="../assets/img/avatar/3.jpg" alt="...">
+                <img <?php echo base_url('../assets/img/avatar/3.jpg'); ?> alt="...">
                 </span>
 
                 <div class="media-body">
@@ -184,7 +184,7 @@
 
             <a class="media" href="#">
                 <span class="avatar status-danger">
-                <img src="../assets/img/avatar/4.jpg" alt="...">
+                <img <?php echo base_url('../assets/img/avatar/4.jpg'); ?> alt="...">
                 </span>
 
                 <div class="media-body">

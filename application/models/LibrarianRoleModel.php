@@ -12,20 +12,20 @@ class LibrarianRoleModel extends _BaseModel{
 		);
 	}
 
-	public function save($memberType){
-		if($memberType['LibrarianRoleId'] == 0){//insert			
-			$this->db->query("INSERT into member "
-				."(LibrarianRoleId, Name, NumberOfBooks, NumberOfDays) VALUES ("
-					."'".$memberType['LibrarianRoleId']."', "
-					."'".$memberType['Name']."'"
+	public function save($librarianrole){
+		if($librarianrole['LibrarianRoleId'] == 0){//insert			
+			$this->db->query("INSERT into librarianrole "
+				."(LibrarianRoleId, Name) VALUES ("
+					."'".$librarianrole['LibrarianRoleId']."', "
+					."'".$librarianrole['Name']."'"
 				.")"
 			);
 		}
 		else{//update
-			$this->db->query("UPDATE member SET "
-				."LibrarianRoleId = '".$memberType['LibrarianRoleId']."', "
-				."Name = '".$memberType['Name']."', "				
-				."WHERE LibrarianRoleId = '".$member['LibrarianRoleId']."'"
+			$this->db->query("UPDATE librarianrole SET "
+				."LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."', "
+				."Name = '".$librarianrole['Name']."', "				
+				."WHERE LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."'"
 			);			
 		}
 	}	

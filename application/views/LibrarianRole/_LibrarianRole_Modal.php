@@ -43,7 +43,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="LibrarianRole_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="LibrarianRole_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -76,8 +76,77 @@
 
         validate: function () {
             
+        },
+
+        save: function () {
+            var message;
+                console.log(LibrarianRole_Modal.data());
+                console.log($('#LibrarianRoleId').val());
+                if ($('#LibrarianRoleId').val() == 0) {
+                    message = "Great Job! New LibrarianRole has been created";
+                } else {
+                    message = "Nice! LibrarianRole has been updated";
+                }
+                console.log($('#LibrarianRoleId').val());
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Member Type',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('LibrarianRole/Save'); ?>',{
+                        librarianrole: LibrarianRole_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+                            $('#modal-librarianrole').modal('hide');
+
+                            // if(i == 0){
+                            //         //error
+                            //     swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+                            //     }
+                                console.log(i);
+                                //$('table').DataTable().ajax.reload();
+                            }
+                        );			
+                        //
+
+                        // $.ajax({
+                        //     url: $('#siteUrl').val() + "librarianrole/save",
+                        //     type: "POST",
+                        //     contentType: "application/json",
+                        //     data: JSON.stringify({ "librarianrole": LibrarianRole_Modal.data() }),
+                        //     success: function (i) {
+                        //         swal('Good Job!', message, 'success');
+                        //         $('#modal-librarianrole').modal('hide');
+                        //     },
+                        //     error: function (i) {
+                        //         swal('Something went wrong!', 'If symptomps persist consult your doctor', 'error');
+                        //     }
+                        // });
+                        //
+                    }
+                })
+            //
+            //     $.post('<?php echo base_url('Book/Save'); ?>',{
+			// 	book: Book_Add.data()
+			// 	}, function(i){
+				
+			// 		if(i == 0){
+			// 			//error
+			// 			swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+			// 		}
+			// 		console.log(i);
+			// 		//$('table').DataTable().ajax.reload();
+			// 	}
+			// );			
+            //
         }
     }
-
 
 </script>

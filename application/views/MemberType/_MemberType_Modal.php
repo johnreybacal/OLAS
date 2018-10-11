@@ -19,6 +19,8 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input id="Name" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
+                                        <input id="NumberOfBooks" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
+                                        <input id="NumberOfDays" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
                                     </div>
                                 </div>
                            
@@ -55,9 +57,12 @@
             return {
                 MemberTypeId: $('#MemberTypeId').val(),
                 Name: $('#Name').val(),
+                NumberOfBooks: $('#NumberOfBooks').val(),
+                NumberOfDays: $('#NumberOfDays').val()
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
             }
+            console.log(MemberType_Modal.data.val());
         },
 
         init: function () {
@@ -111,43 +116,74 @@
 
         save: function () {
             var message;
-            console.log(MemberType_Modal.data());
-            console.log($('#MemberTypeId').val());
-            if ($('#MemberTypeId').val() == 0) {
-                message = "Great Job! New MemberType has been created";
-            } else {
-                message = "Nice! MemberType has been updated";
-            }
-            console.log($('#MemberTypeId').val());
+                console.log(MemberType_Modal.data());
+                console.log($('#MemberTypeId').val());
+                if ($('#MemberTypeId').val() == 0) {
+                    message = "Great Job! New MemberType has been created";
+                } else {
+                    message = "Nice! MemberType has been updated";
+                }
+                console.log($('#MemberTypeId').val());
 
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Member Type',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: $('#siteUrl').val() + "membertype/save",
-                        type: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
-                        success: function (i) {
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Member Type',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('MemberType/Save'); ?>',{
+                        membertype: MemberType_Modal.data()
+                        }, function(i){
                             swal('Good Job!', message, 'success');
                             $('#modal-membertype').modal('hide');
-                        },
-                        error: function (i) {
-                            swal('Something went wrong!', 'If symptomps persist consult your doctor', 'error');
-                        }
-                    });
-                }
-            })
+
+                            // if(i == 0){
+                            //         //error
+                            //     swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+                            //     }
+                                console.log(i);
+                                //$('table').DataTable().ajax.reload();
+                            }
+                        );			
+                        //
+
+                        // $.ajax({
+                        //     url: $('#siteUrl').val() + "membertype/save",
+                        //     type: "POST",
+                        //     contentType: "application/json",
+                        //     data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
+                        //     success: function (i) {
+                        //         swal('Good Job!', message, 'success');
+                        //         $('#modal-membertype').modal('hide');
+                        //     },
+                        //     error: function (i) {
+                        //         swal('Something went wrong!', 'If symptomps persist consult your doctor', 'error');
+                        //     }
+                        // });
+                        //
+                    }
+                })
+            //
+            //     $.post('<?php echo base_url('Book/Save'); ?>',{
+			// 	book: Book_Add.data()
+			// 	}, function(i){
+				
+			// 		if(i == 0){
+			// 			//error
+			// 			swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+			// 		}
+			// 		console.log(i);
+			// 		//$('table').DataTable().ajax.reload();
+			// 	}
+			// );			
+            //
         }
-    }
+    };
 
 
 </script>
