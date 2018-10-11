@@ -18,7 +18,7 @@
                                         <label>MemberType Data</label>
                                     </div>
                                     <div class="col-md-9">
-                                        <input id="Data" name="Data" type="text" class="form-control" placeholder="MemberType Data" />
+                                        <input id="Name" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
                                     </div>
                                 </div>
                            
@@ -43,7 +43,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="MemberType_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="MemberType_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
         data: function () {
             return {
                 MemberTypeId: $('#MemberTypeId').val(),
-                Data: $('#Data').val(),
+                Name: $('#Name').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
             }
@@ -75,7 +75,77 @@
         },
 
         validate: function () {
-            
+            $('input').removeClass('is-invalid').addClass('');
+            $('.invalid-feedback').remove();
+
+            $.ajax({
+                url: $('#siteUrl').val() + "membertype/validate",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
+                success: function (i) {
+                    if (i.status == false) {
+                        $.each(i.data, function (key, value) {
+                            var element = $('#' + value.key);
+
+                            element.closest('.form-control')
+                            .removeClass('.is-invalid')
+                            .addClass(value.message.length > 0 ? 'is-invalid' : '')
+
+                            element.closest('form-group')
+                            .find('invalid-feedback')
+                            .remove();
+
+                            element.after(value.message);
+                        });
+                    } else {
+                        MemberType_Modal.save();
+                    }
+                }
+            });
+        },
+
+        sad: function(){
+
+        },
+
+        save: function () {
+            var message;
+            console.log(MemberType_Modal.data());
+            console.log($('#MemberTypeId').val());
+            if ($('#MemberTypeId').val() == 0) {
+                message = "Great Job! New MemberType has been created";
+            } else {
+                message = "Nice! MemberType has been updated";
+            }
+            console.log($('#MemberTypeId').val());
+
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Member Type',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: $('#siteUrl').val() + "membertype/save",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
+                        success: function (i) {
+                            swal('Good Job!', message, 'success');
+                            $('#modal-membertype').modal('hide');
+                        },
+                        error: function (i) {
+                            swal('Something went wrong!', 'If symptomps persist consult your doctor', 'error');
+                        }
+                    });
+                }
+            })
         }
     }
 
