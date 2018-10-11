@@ -12,7 +12,7 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Course_Modal.new();"
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="College_Modal.new();"
 	data-toggle="modal" data-target="#modal-course" data-provide="tooltip" data-original-title="Add Book">
 		<i class="ti-plus"></i>
 		</a>
@@ -25,12 +25,11 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id = "course-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Course/GenerateTable") ?>">
+				<table id = "college-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("College/GenerateTable") ?>">
 					<thead>
 						<tr>
-							<th>College</th>			
-							<th>Course</th>
-							<th></th>
+							<th>College name</th>	
+							<th></th>									
 						</tr>
 					</thead>
 				</table>            			
@@ -39,24 +38,23 @@
 	</div>
 </div>
 
-<?php include("_Course_Modal.php"); ?>
+<?php include("_College_Modal.php"); ?>
 
 <script>
     $(document).ready(function () {
-        Course.init();
+        College.init();
     });
 
-    var Course = {
+    var College = {
         init: function () {
             $('.modal').on('hidden.bs.modal', function () {
-                Course.reset();
+                College.reset();
             });
-
-            Course.reset();
+            College.reset();
         },
 
         reset: function () {
-            $('#course-table').DataTable().ajax.reload();
+            $('#college-table').DataTable().ajax.reload();
         }
     }
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2018 at 02:00 PM
+-- Generation Time: Oct 11, 2018 at 12:37 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -92,7 +92,8 @@ TRUNCATE TABLE `book`;
 --
 
 INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'Libro', 1, 1, NULL, '2018-09-24');
+('1', 'Libro', 1, 1, NULL, '2018-09-24'),
+('', '', 0, 0, '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -212,7 +213,8 @@ TRUNCATE TABLE `college`;
 --
 
 INSERT INTO `college` (`CollegeId`, `Name`) VALUES
-(1, 'COS');
+(1, 'COS'),
+(2, 'CIT');
 
 -- --------------------------------------------------------
 
@@ -237,7 +239,8 @@ TRUNCATE TABLE `course`;
 
 INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`) VALUES
 (1, 1, 'BSIT'),
-(2, 1, 'BSCS');
+(2, 1, 'BSCS'),
+(5, 2, 'BTIT');
 
 -- --------------------------------------------------------
 
@@ -476,7 +479,8 @@ TRUNCATE TABLE `subject`;
 --
 
 INSERT INTO `subject` (`SubjectId`, `Name`) VALUES
-(1, 'Web Development');
+(1, 'Web Development'),
+(11, 'Mathematics');
 
 -- --------------------------------------------------------
 
@@ -500,7 +504,9 @@ TRUNCATE TABLE `subjectcourse`;
 
 INSERT INTO `subjectcourse` (`SubjectId`, `CourseId`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(11, 5),
+(11, 1);
 
 --
 -- Indexes for dumped tables
@@ -631,12 +637,12 @@ ALTER TABLE `bookcatalogue`
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `genre`
 --
@@ -691,7 +697,7 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

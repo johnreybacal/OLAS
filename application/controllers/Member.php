@@ -11,6 +11,12 @@ class Member extends _BaseController {
 		$this->header();
 		$this->load->view('Member/index');
 		$this->footer();
+    }
+    
+    public function Add(){
+		$this->header();
+		$this->load->view('Member/Add');
+		$this->footer();
 	}
 	
 	public function View($id){

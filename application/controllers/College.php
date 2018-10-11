@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-class Course extends _BaseController {
+class College extends _BaseController {
 
     public function __construct(){
 		parent::__construct();		
@@ -9,24 +9,23 @@ class Course extends _BaseController {
     
     public function index(){		          		              	
 		$this->header();
-		$this->load->view('Course/index');
+		$this->load->view('College/index');
 		$this->footer();
     }
     
     public function View($id){
-        $data['course'] = $this->convert($this->course->_get($id));
+        $data['college'] = $this->convert($this->college->_get($id));
         $this->header();
-        $this->load->view('Course/View', $data);
+        $this->load->view('College/View', $data);
         $this->footer();
     }
     
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->course->_list() as $data){
-            $json .= '['
-                .'"'.$this->college->_get($data->CollegeId)->Name.'", '
-                .'"'.$data->Name.'", '
-                .'"<button onclick = \"Course_Modal.edit('.$data->CourseId.');\">Edit</button>"'
+        foreach($this->college->_list() as $data){
+            $json .= '['                
+                .'"'.$data->Name.'",'
+                .'"<button onclick = \"College_Modal.edit('.$data->CollegeId.');\">Edit</button>"'
             .']';            
             $json .= ',';
         }
@@ -35,16 +34,16 @@ class Course extends _BaseController {
         echo $json;        
     }
 
-    public function GetAll(){
-        echo $this->convert($this->course->_list());
+    public function GetAll(){        
+        echo $this->convert($this->college->_list());
     }
 
     public function Get($id){        
-        echo $this->convert($this->course->_get($id));
+        echo $this->convert($this->college->_get($id));
     }
-
+    
     public function Save(){        
-        $this->course->save($this->input->post('course'));
+        $this->college->save($this->input->post('college'));
     }
     
 }

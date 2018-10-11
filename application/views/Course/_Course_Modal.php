@@ -10,32 +10,23 @@
             <div class="modal-body">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-course-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="CourseId"/>
-                        
-                          
-                                <div class="row mb-2">
-                                    <div class="col-md-2">
-                                        <label>Course Data</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="Data" name="Data" type="text" class="form-control" placeholder="Course Data" />
-                                    </div>
-                                </div>
-                           
-                            <!-- <div class="row" id="rowActive">
-                                <div class="col-sm-2 col-md-2">
-                                    <label>Status:</label>
-                                </div>
-                                <div class="col-sm-8 col-md-8">
-                                    <div class="form-group">
-                                        <label class="switch switch-info">
-                                            <input type="checkbox" id="IsActive" name="IsActive" checked />
-                                            <span class="switch-indicator"></span>
-                                            <label>Active</label>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> -->
+                        <input type="hidden" id="CourseId"/>       
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <label>Select College</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select id="CollegeId" data-provide="selectpicker"></select>
+                            </div>
+                        </div>                                        
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <label>Course Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Course Name" />
+                            </div>
+                        </div>                                                   
                       
                     </form>
                 </div>
@@ -43,7 +34,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Course_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Course_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -54,13 +45,25 @@
         data: function () {
             return {
                 CourseId: $('#CourseId').val(),
-                Data: $('#Data').val(),
-                //s: $('#s').find(":selected").text(),
-                //Active: $('#IsActive').prop("checked")
+                CollegeId: $('#CollegeId').selectpicker('val'),
+                Name: $('#Name').val(),                
             }
         },
 
         init: function () {
+            $.ajax({
+                url: "<?php echo base_url('College/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    $.each(i, function(index, data){                        
+                        $('#CollegeId').append('<option value = "' + data.CollegeId + '">' + data.Name + '</option>');
+                    })
+                    $('#CollegeId').selectpicker('refresh');
+                }
+            })
+            $('#rowActive').addClass('invisible');
+            $('#modal-course').modal('show');
             $('#modal-course-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
@@ -68,15 +71,33 @@
 
         new: function () {
             $('#CourseId').val('0');
-            $('.modal-title').text('Update');
-            $('#rowActive').addClass('invisible');
-            $('#modal-course').modal('show');
+            $('.modal-title').text('Add Course');            
             Course_Modal.init();
         },
 
-        validate: function () {
-            
+        edit: function (id) {
+            $('.modal-title').text('Edit Course');            
+            Course_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('Course/Get/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    $('#CourseId').val(i.CourseId);
+                    $('#CollegeId').selectpicker('val', i.CollegeId);
+                    $('#Name').val(i.Name);
+                }
+            })
+        },
+
+        save: function () {
+            $.post('<?php echo base_url('Course/Save'); ?>',{
+				course: Course_Modal.data()
+				}, function(i){				
+					$('#modal-course').modal('hide');
+				}
+			);
         }
+
     }
 
 

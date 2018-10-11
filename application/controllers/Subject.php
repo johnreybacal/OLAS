@@ -22,24 +22,41 @@ class Subject extends _BaseController {
     
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->subjectCourse->_list() as $data){
-            $subject = $this->subject->_get($data->SubjectId);
-            $course = $this->course->_get($data->CourseId);
-            $college = $this->college->_get($course->CollegeId);
+        foreach($this->subject->_list() as $subject){            
+            $courses = [];
             $json .= '['                
-                .'"<a href = \''.base_url('College/View/'.$college->CollegeId).'\'>'.$college->Name.'</a>",'                
-                .'"<a href = \''.base_url('Course/View/'.$course->CourseId).'\'>'.$course->Name.'</a>",'                
-                .'"<a href = \''.base_url('Subject/View/'.$subject->SubjectId).'\'>'.$subject->Name.'</a>"'                
-            .']';            
-            $json .= ',';
+                .'"'.$subject->Name.'","';
+            foreach($this->subjectCourse->_list($subject->SubjectId) as $c){
+                $courses[] = $c->CourseId;
+                $course = $this->course->_get($c->CourseId);                    
+                $json .= ' '.$course->Name.',';
+            }
+            $json = $this->removeExcessComma($json).'",'
+                .'"'.$this->loopAll($this->college->getDistinct($courses)).'",'
+                .'"<button onclick = \"Subject_Modal.edit('.$subject->SubjectId.');\">Edit</button>"'
+            .'],';
         }
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
     }
+
+    public function Get($id){
+        echo $this->convert($this->subject->_get($id));
+    }
+
+    public function GetCourses($id){
+        $str = '[';
+        foreach($this->subjectCourse->_list($id) as $c){
+            $str .= $c->CourseId.',';
+        }
+        echo $this->removeExcessComma($str).']';    
+    }
     
-    public function Save(){        
-        $this->book->save($this->input->post('subject'));
+    public function Save(){                                
+        $s = $this->subject->save($this->input->post('subject'));
+        $c = $this->input->post('subject')['CourseId'];
+        $this->subjectCourse->save($s, $c);
     }
     
 }

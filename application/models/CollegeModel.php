@@ -26,6 +26,16 @@ class CollegeModel extends _BaseModel{
                 ."WHERE CollegeId = '".$college['CollegeId']."'"
 			);			
 		}
-    }	
+	}	
+	
+	public function getDistinct($courses){
+		$where = '';
+		foreach($courses as $course){
+			$where .= "CourseId = '".$course."' OR ";
+		}
+		$where = substr($where, 0, strlen($where) - 4);
+		return $this->db->query("SELECT Name FROM college WHERE CollegeId IN "
+			."(SELECT DISTINCT(CollegeId) FROM course WHERE ".$where.")")->result();
+	}
     
 }
