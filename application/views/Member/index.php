@@ -40,4 +40,26 @@
 	</div>
 </div>
 
-<?php echo base_url('/Member/Edit'); ?>
+<?php //include('/Member/Edit'); ?>
+
+<?php include("_Member_Modal_Edit.php"); ?>
+
+<script>
+    $(document).ready(function () {
+        Member.init();
+    });
+
+    var Member = {
+        init: function () {
+            $('.modal').on('hidden.bs.modal', function () {
+                Member.reset();
+            });
+
+            Member.reset();
+        },
+
+        reset: function () {
+            //$('#utilities-pantype-table').DataTable().ajax.reload();
+        }
+    }
+</script>

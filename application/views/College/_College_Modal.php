@@ -72,7 +72,7 @@
 
             var message;
                 console.log(College_Modal.data());
-                if ($('#CollgeId').val() == 0) {
+                if ($('#CollegeId').val() == 0) {
                     message = "Great Job! New College has been created";
                 } else {
                     message = "Nice! College has been updated";
