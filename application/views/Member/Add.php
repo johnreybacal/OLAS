@@ -19,8 +19,9 @@
 </div>
 </header><!--/.header -->
 
-<div class=main-content">
-	<form id="member-addmember">
+<div class="main-content">
+	<form id="member-add-form">
+		<input id="MemberId" value="0" hidden/>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
@@ -85,8 +86,9 @@
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
-							<button type="button" class="btn btn-info" onclick="Employee_NewEmployee.validate()">Save</button>
+							<button type="button" class="btn btn-info" onclick="Member_Add.save()">Save</button>
 					</div>
+					<input id="member" >
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
 		</div> <!-- row -->
@@ -94,43 +96,96 @@
 </div>
 
 <script>
-																	    
+	$(document).ready(function(){
+		$(function () {
+			$.ajax({
+					url: "<?php echo base_url('MemberType/GetAll'); ?>",
+					async: false,
+					success: function(i){
+						i = JSON.parse(i);                    
+						$('#MemberTypeId').empty();
+						$.each(i, function(index, data){                        
+							$('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+						})
+						$('#MemberTypeId').selectpicker('refresh');
+					}
+				})
+				$('#member-add-form')[0].reset();
+				$('input').removeClass('is-invalid').addClass('');
+				$('.invalid-feedback').remove();
+		});
+		Member_Add.init;
+	})															    
 	var Member_Add = {
+		init: function () {
+			console.log("latta");
+            $.ajax({
+                url: "<?php echo base_url('MemberType/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    $('#MemberTypeId').empty();
+                    $.each(i, function(index, data){                        
+                        $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+                    })
+                    $('#MemberTypeId').selectpicker('refresh');
+                }
+            })
+            $('#member-add-form')[0].reset();
+            $('input').removeClass('is-invalid').addClass('');
+            $('.invalid-feedback').remove();
+            //$('#rowActive').addClass('invisible');
+            //$('#modal-subject').modal('show');
+        },
+
 		data: function () {
 			return {
-				"columnname" :  $('#idname').val(),
+				MemberId: $('#MemberId').val(),
+				MemberTypeId: $('#MemberTypeid').val(),
+				FirstName: $('#FirstName').val(),
+				LastName: $('#Lastname').val(),
+				Username: $('#Username').val(),
+				Password: $('#Password').val(),
+				ContactNumber: $('#ContactNumber').val(),
+				Email: $('#Email').val(),
 			}
 		},
 		
 		save: function () {
 			var message;
-
-                message = "Nice! Member has been updated";
+				console.log(Member_Add.data());
+				if ($('#MemberId').val() == 0) {
+                    message = "Great Job! New Subject has been created";
+                } else {
+                    message = "Nice! Subject has been updated";
+                }
 
 		    swal({
-			title: 'Confirm Submission',
-			text: 'Save changes for Member',
-			type: 'warning',
-			showCancelButton: true,
-			cancelButtonText: 'No! Cancel',
-			cancelButtonClass: 'btn btn-default',
-			confirmButtonText: 'Yes! Go for it',
-			confirmButtonClass: 'btn btn-info'
+				title: 'Confirm Submission',
+				text: 'Save changes for Member',
+				type: 'warning',
+				showCancelButton: true,
+				cancelButtonText: 'No! Cancel',
+				cancelButtonClass: 'btn btn-default',
+				confirmButtonText: 'Yes! Go for it',
+				confirmButtonClass: 'btn btn-info'
 		    }).then((result) => {
-			if (result.value) {
+				console.log(Member_Add.data());
+				if (result.value) {
 
-			    $.post('<?php echo base_url('Book/Save'); ?>',{
-				book: Book_Add.data()
-				}, function(i){
-				swal('Good Job!', message, 'success');
-			    },
-				if(i == 0){
-					//error
-					swal('Something went wrong!', 'If problem persist contact administrator', 'error');
-				}
-			});
-			} else {
-			  }
+					$.post('<?php echo base_url('Member/Save'); ?>',{
+					member: Member_Add.data()
+					}, function(i){
+						swal('Good Job!', message, 'success');
+					// if(i == 0){
+					// 	//error
+					// 	swal('Something went wrong!', 'If problem persist contact administrator', 'error');
+					// }
+						}
+					);
+				} 
+					// else {
+					//   }
 		    })
 		}
 		

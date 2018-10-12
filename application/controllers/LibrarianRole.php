@@ -26,7 +26,8 @@ class LibrarianRole extends _BaseController {
         foreach($this->librarianrole->_list() as $data){
             $json .= '['
                 .'"<a href = \''.base_url('LibrarianRole/View/'.$data->LibrarianRoleId).'\'>'.$data->LibrarianRoleId.'</a>",'
-                .'"'.$data->Name.'"'
+                .'"'.$data->Name.'",'
+                .'"<button onclick = \"LibrarianRole_Modal.edit('.$subject->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }
@@ -35,6 +36,10 @@ class LibrarianRole extends _BaseController {
         echo $json;        
     }
     
+    public function GetAll(){
+        echo $this->convert($this->librarianrole->_list());
+    }
+
     public function Save(){        
         $this->librarianrole->save($this->input->post('librarianrole'));
     }

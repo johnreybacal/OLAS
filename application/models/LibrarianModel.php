@@ -15,18 +15,20 @@ class LibrarianModel extends _BaseModel{
 	public function save($librarian){
 		if($librarian['LibrarianId'] == 0){//insert			
 			$this->db->query("INSERT into librarian "
-				."(LibrarianRoleId, Name, Username, Password) VALUES ("
+				."(LibrarianRoleId, FirstName, LastName, Username, Password) VALUES ("
 					."'".$librarian['LibrarianRoleId']."', "
-					."'".$librarian['Name']."', "
+					."'".$librarian['FirstName']."', "
+					."'".$librarian['LastName']."', "
 					."'".$librarian['Username']."', "
-					."'".$librarian['Password']."', "					
+					."'".$librarian['Password']."' "					
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE librarian SET "
 				."LibrarianRoleId = '".$librarian['LibrarianRoleId']."', "
-				."Name = '".$librarian['Name']."', "				
+				."FirstName = '".$librarian['FirstName']."', "				
+				."LastName = '".$librarian['LastName']."', "				
 				."Username = '".$librarian['Username']."', "
 				."Password = '".$librarian['Password']."', "				
 				."WHERE LibrarianId = '".$librarian['LibrarianId']."'"

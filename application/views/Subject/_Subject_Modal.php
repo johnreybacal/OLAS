@@ -97,13 +97,35 @@
         },
 
         save: function () {
-            console.log(Subject_Modal.data());
-            $.post('<?php echo base_url('Subject/Save'); ?>',{
-				subject: Subject_Modal.data()
-				}, function(i){
-					$('#modal-subject').modal('hide');
-				}
-			);
+            var message;
+                console.log(Subject_Modal.data());
+                if ($('#SubjectId').val() == 0) {
+                    message = "Great Job! New Subject has been created";
+                } else {
+                    message = "Nice! Subject has been updated";
+                }
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Subject',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Subject/Save'); ?>',{
+                        subject: Subject_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+        					$('#modal-subject').modal('hide');
+                            console.log(i);
+                            }
+                        );	
+                    }
+                })
         }
     }
 

@@ -69,12 +69,37 @@
         },
 
         save: function () {
-            $.post('<?php echo base_url('College/Save'); ?>',{
-				college: College_Modal.data()
-				}, function(i){				
-					$('#modal-college').modal('hide');
-				}
-			);
+
+            var message;
+                console.log(College_Modal.data());
+                if ($('#CollgeId').val() == 0) {
+                    message = "Great Job! New College has been created";
+                } else {
+                    message = "Nice! College has been updated";
+                }
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for College',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('College/Save'); ?>',{
+				            college: College_Modal.data()
+				            }, function(i){				
+                            swal('Good Job!', message, 'success');
+					        $('#modal-college').modal('hide');
+                            console.log(i);
+                            }
+                        );	
+                    }
+                })
+           
         }
     }
 

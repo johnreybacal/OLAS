@@ -10,8 +10,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Librarian_Modal.new();"
-	data-toggle="modal" data-target="#modal-librarian" data-provide="tooltip" data-original-title="Add Book">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" href="<?php echo base_url('/Librarian/Add'); ?>"
+	data-provide="tooltip" data-original-title="Add Book">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -28,7 +28,8 @@
 						<tr>
 							<th>Librarian ID</th>
 							<th>LibrarianRole ID</th>
-							<th>Name</th>
+							<th>First Name</th>
+							<th>Last Name</th>
 							<th>Username</th>
 						</tr>
 					</thead>
@@ -37,25 +38,3 @@
 		</div>
 	</div>
 </div>
-
-<?php include("_Librarian_Modal.php"); ?>
-
-<script>
-    $(document).ready(function () {
-        Librarian.init();
-    });
-
-    var Librarian = {
-        init: function () {
-            $('.modal').on('hidden.bs.modal', function () {
-                Librarian.reset();
-            });
-
-            Librarian.reset();
-        },
-
-        reset: function () {
-            //$('#utilities-pantype-table').DataTable().ajax.reload();
-        }
-    }
-</script>

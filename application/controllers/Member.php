@@ -39,10 +39,11 @@ class Member extends _BaseController {
         foreach($this->member->_list() as $data){
             $json .= '['
 				.'"<a href = \''.base_url('Member/View/'.$data->MemberId).'\'>'.$data->MemberId.'</a>",'
-                .'"'.$data->Name.'",'
+                .'"'.$data->FirstName.'",'
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Username.'",'
-                .'"'.$data->MemberTypeId.'"'
+                .'"'.$data->MemberTypeId.'",'
+                .'"<button onclick = \"Member.edit('.$data->MemberId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }
@@ -51,4 +52,7 @@ class Member extends _BaseController {
         echo $json;        
     }
 
+    public function Save(){        
+        $this->member->save($this->input->post('member'));
+    }
 }
