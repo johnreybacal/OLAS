@@ -26,7 +26,6 @@ class Course extends _BaseController {
             $json .= '['
                 .'"'.$this->college->_get($data->CollegeId)->Name.'", '
                 .'"'.$data->Name.'", '
-<<<<<<< HEAD
                 .'"<button onclick = \"Course_Modal.edit('.$data->CourseId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
 
             .']';            

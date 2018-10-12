@@ -8,7 +8,6 @@ class Librarian extends _BaseController {
     }
     
     // public function index(){		          		              	
-<<<<<<< HEAD
         //$this->Login();		
     // }
 
