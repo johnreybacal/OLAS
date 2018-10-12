@@ -27,10 +27,9 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Genre/GenerateTable") ?>">
 					<thead>
-						<tr>
-						<th>Genre ID</th>			
-						<th>Name</th>			
-						<th>Action</th>			
+						<tr>							
+							<th>Name</th>			
+							<th></th>			
 						</tr>
 					</thead>
 				</table>            			

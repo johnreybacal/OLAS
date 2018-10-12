@@ -18,30 +18,14 @@ class Publisher extends _BaseController {
         $this->header();
         $this->load->view('Publisher/View', $data);
         $this->footer();
-    }
-    
-    // public function Add(){
-    //     $this->header();
-    //     $this->load->view('Publisher/Add');
-    //     $this->footer();
-    // }
-    
-    // public function MarcUpload(){
-    //     $this->header();
-    //     $this->load->view('Book/MarcUpload');
-    //     $this->footer();
-    // }
+    }    
 
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->publisher->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Publisher/'.$data->PublisherId).'\'>'.$data->Name.'</a>",'
                 .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'"'
+                .'"<button onclick=\"Publisher_Modal.edit('.$data->PublisherId.')\">Edit</button>"'
             .']';            
             $json .= ',';
         }

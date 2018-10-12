@@ -23,10 +23,9 @@ class Series extends _BaseController {
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->series->_list() as $data){
-            $json .= '['
-                .'"<a href = \''.base_url('Book/Series/'.$data->SeriesId).'\'>'.$data->Name.'</a>",'
+            $json .= '['                
                 .'"'.$data->Name.'",'
-                .'<button onclick="Series_Modal.new('.$this->series->_get($data->ISBN)->SeriesId.')"></button>'//error pa to bacs
+                .'"<button onclick=\"Series_Modal.edit('.$data->SeriesId.')\">Edit</button>"'
             .']';            
             $json .= ',';
         }
