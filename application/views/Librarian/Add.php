@@ -22,7 +22,7 @@
 
 <div class="main-content">
   <form id="librarian-add-form">
-    <input id="LibrarianId" hidden value="0"/>
+    <input id="LibrarianId" hidden />
     <div class="row">
       <div class="col-lg-12">
         <div class="card card-shadowed">
@@ -136,13 +136,13 @@
               $('input').removeClass('is-invalid').addClass('');
               $('.invalid-feedback').remove();
               //$('#rowActive').addClass('invisible');
-              //$('#modal-subject').modal('show');
+              //$('#modal-Librarian').modal('show');
           },
 
       data: function () {
         return {
           LibrarianId: $('#LibrarianId').val(),
-          LibrarianRoleId: $('#LibrarianRoleId').val(),
+          LibrarianRoleId: $('#LibrarianRoleId').selectpicker('val'),
           FirstName: $('#FirstName').val(),
           LastName: $('#LastName').val(),
           Username: $('#Username').val(),
@@ -154,9 +154,9 @@
         var message;
           console.log(Librarian_Add.data());
           if ($('#LibrarianId').val() == 0) {
-                      message = "Great Job! New Subject has been created";
+                      message = "Great Job! New Librarian has been created";
                   } else {
-                      message = "Nice! Subject has been updated";
+                      message = "Nice! Librarian has been updated";
                   }
 
           swal({

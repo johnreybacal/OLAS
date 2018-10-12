@@ -39,3 +39,5 @@
 		</div>
 	</div>
 </div>
+
+<?php echo base_url('/Member/Edit'); ?>

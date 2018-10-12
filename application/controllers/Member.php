@@ -25,6 +25,13 @@ class Member extends _BaseController {
         $this->load->view('Member/View', $data);
         $this->footer();
     }
+
+    public function Edit($id){
+        $data['id'] = $this->convert($this->member->_get($id));
+        $this->header();
+        $this->load->view('Member/Edit', $data);
+        $this->footer();
+    }
     
     public function Authenticate(){
         // print_r($this->input->post('login')['Username']);
@@ -43,13 +50,18 @@ class Member extends _BaseController {
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Username.'",'
                 .'"'.$data->MemberTypeId.'",'
-                .'"<a href = \"'.base_url("Member/edit/".$data->MemberId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<button onclick = \"Member_Edit_Modal.edit('.$data->MemberId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // .'"<a href = \"'.base_url("Member/edit/".$data->MemberId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';            
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function Get($id){
+        echo $this->convert($this->member->_get($id));
     }
 
     public function Save(){        

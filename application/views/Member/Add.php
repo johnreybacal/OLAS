@@ -21,7 +21,7 @@
 
 <div class="main-content">
 	<form id="member-add-form">
-		<input id="MemberId" value="0" hidden/>
+		<input id="MemberId" hidden/>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
