@@ -43,7 +43,7 @@ class Member extends _BaseController {
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Username.'",'
                 .'"'.$data->MemberTypeId.'",'
-                .'"<button onclick = \"Member.edit('.$data->MemberId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                .'"<a href = \"'.base_url("Member/edit/".$data->MemberId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';            
             $json .= ',';
         }

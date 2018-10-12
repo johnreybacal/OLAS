@@ -141,7 +141,7 @@
 		data: function () {
 			return {
 				MemberId: $('#MemberId').val(),
-				MemberTypeId: $('#MemberTypeid').val(),
+				MemberTypeId: $('#MemberTypeId').selectpicker('val'),
 				FirstName: $('#FirstName').val(),
 				LastName: $('#Lastname').val(),
 				Username: $('#Username').val(),
