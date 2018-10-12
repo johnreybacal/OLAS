@@ -18,30 +18,14 @@ class Genre extends _BaseController {
         $this->header();
         $this->load->view('Genre/View', $data);
         $this->footer();
-    }
-    
-    // public function Add(){
-    //     $this->header();
-    //     $this->load->view('Genre/Add');
-    //     $this->footer();
-    // }
-    
-    // public function MarcUpload(){
-    //     $this->header();
-    //     $this->load->view('Book/MarcUpload');
-    //     $this->footer();
-    // }
+    }       
 
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->genre->_list() as $data){
             $json .= '['
-                .'"<a href = \''.base_url('Book/Genre/'.$data->GenreId).'\'>'.$data->Name.'</a>",'
                 .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'",'
-                .'"'.$data->Name.'"'
+                .'"<button onclick=\"Genre_Modal.edit('.$data->GenreId.')\">Edit</button>"'
             .']';            
             $json .= ',';
         }

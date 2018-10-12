@@ -33,8 +33,7 @@ class Subject extends _BaseController {
             }
             $json = $this->removeExcessComma($json).'",'
                 .'"'.$this->loopAll($this->college->getDistinct($courses)).'",'
-                .'"<button onclick = \"Subject_Modal.edit('.$subject->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
-                // class = 'btn btn-md btn-flat btn-info'><span class = 'fa fa-edit fa-2x'></span>
+                .'"<button onclick = \"Subject_Modal.edit('.$subject->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
             .'],';
         }
         $json = $this->removeExcessComma($json);
