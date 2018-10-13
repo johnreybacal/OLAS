@@ -12,8 +12,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();"
-	data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Author_Modal.new();"
+	data-toggle="modal" data-target="#modal-author" data-provide="tooltip" data-original-title="Add Author">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -25,7 +25,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Author/GenerateTable") ?>">
+				<table id = "author-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Author/GenerateTable") ?>">
 					<thead>
 						<tr>
 							<th>Name</th>			
@@ -37,3 +37,23 @@
 		</div>
 	</div>
 </div>
+<?php include("_Author_Modal.php"); ?>
+<script>
+	$(document).ready(function () {
+		Author.init();
+	});
+
+	var Author = {
+		init: function () {
+			$('.modal').on('hidden.bs.modal', function () {
+				Author.reset();
+			});
+
+			Author.reset();
+		},
+
+		reset: function () {
+			$('#author-table').DataTable().ajax.reload();
+		}
+	}
+</script>
