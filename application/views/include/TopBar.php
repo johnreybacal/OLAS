@@ -7,7 +7,7 @@
         <i class="material-icons fullscreen-active">fullscreen_exit</i>
     </a>
 
-    <div class="dropdown d-none d-md-block">
+    <!-- <div class="dropdown d-none d-md-block">
         <span class="topbar-btn" data-toggle="dropdown"><i class="ti-layout-grid3-alt"></i></span>
         <div class="dropdown-menu dropdown-grid">
         <a class="dropdown-item" href="Dashboard.html">
@@ -47,7 +47,7 @@
             <span class="title">Profile</span>
         </a>
         </div>
-    </div>
+    </div> -->
 
     <div class="topbar-divider d-none d-md-block"></div>
     <div class="lookup d-none d-md-block ">
