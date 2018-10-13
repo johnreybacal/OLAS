@@ -34,8 +34,17 @@ class Series extends _BaseController {
         echo $json;        
     }
     
-    public function Save(){        
-        $this->book->save($this->input->post('series'));
+    public function GetAll(){        
+        echo $this->convert($this->series->_list());
     }
+
+    public function Get($id){        
+        echo $this->convert($this->series->_get($id));
+    }
+    
+    public function Save(){        
+        $this->series->save($this->input->post('series'));
+    }
+    
     
 }

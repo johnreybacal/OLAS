@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2018 at 12:37 PM
+-- Generation Time: Oct 13, 2018 at 03:42 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -28,6 +28,7 @@ USE `olas`;
 -- Table structure for table `admission`
 --
 
+DROP TABLE IF EXISTS `admission`;
 CREATE TABLE `admission` (
   `AdmissionId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -49,9 +50,11 @@ TRUNCATE TABLE `admission`;
 -- Table structure for table `author`
 --
 
+DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `AuthorId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -63,9 +66,10 @@ TRUNCATE TABLE `author`;
 -- Dumping data for table `author`
 --
 
-INSERT INTO `author` (`AuthorId`, `Name`) VALUES
-(1, 'Johnrey Bacal'),
-(2, 'Judel');
+INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
+(1, 'Johnrey Bacal', 1),
+(2, 'Judel Bacal', 1),
+(3, 'Ning', 1);
 
 -- --------------------------------------------------------
 
@@ -73,6 +77,7 @@ INSERT INTO `author` (`AuthorId`, `Name`) VALUES
 -- Table structure for table `book`
 --
 
+DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `ISBN` varchar(13) NOT NULL,
   `Title` varchar(100) NOT NULL,
@@ -92,8 +97,8 @@ TRUNCATE TABLE `book`;
 --
 
 INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'Libro', 1, 1, NULL, '2018-09-24'),
-('', '', 0, 0, '', '0000-00-00');
+('1', 'Libro ni Kobi', 1, 1, '2', '2018-09-24'),
+('2', 'Ikalawa2', 1, 1, '1', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -101,6 +106,7 @@ INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `Date
 -- Table structure for table `bookauthor`
 --
 
+DROP TABLE IF EXISTS `bookauthor`;
 CREATE TABLE `bookauthor` (
   `ISBN` int(11) NOT NULL,
   `AuthorId` int(11) NOT NULL
@@ -117,7 +123,8 @@ TRUNCATE TABLE `bookauthor`;
 
 INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 (1, 1),
-(1, 2);
+(2, 2),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -125,6 +132,7 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 -- Table structure for table `bookcatalogue`
 --
 
+DROP TABLE IF EXISTS `bookcatalogue`;
 CREATE TABLE `bookcatalogue` (
   `AccessionNumber` int(11) NOT NULL,
   `CallNumber` varchar(20) NOT NULL,
@@ -144,7 +152,11 @@ TRUNCATE TABLE `bookcatalogue`;
 --
 
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `Status`, `DateAcquired`, `AcquiredFrom`) VALUES
-(1, '1', '1', 'In', '2018-09-04', 'Johnrey');
+(1, '1', '1', 'In', '2018-09-04', 'Johnrey'),
+(2, '', '2', 'In', '0000-00-00', 'jb'),
+(8, '', '1', 'In', '0000-00-00', 'asdsfdg'),
+(7, '', '1', 'In', '0000-00-00', 'J'),
+(6, '', '2', 'In', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -152,6 +164,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `Status`, 
 -- Table structure for table `bookgenre`
 --
 
+DROP TABLE IF EXISTS `bookgenre`;
 CREATE TABLE `bookgenre` (
   `ISBN` int(11) NOT NULL,
   `GenreId` int(11) NOT NULL
@@ -167,7 +180,8 @@ TRUNCATE TABLE `bookgenre`;
 --
 
 INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
-(1, 1);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -175,6 +189,7 @@ INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
 -- Table structure for table `booksubject`
 --
 
+DROP TABLE IF EXISTS `booksubject`;
 CREATE TABLE `booksubject` (
   `ISBN` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
@@ -190,7 +205,10 @@ TRUNCATE TABLE `booksubject`;
 --
 
 INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
-(1, 1);
+(1, 1),
+(2, 11),
+(2, 1),
+(1, 11);
 
 -- --------------------------------------------------------
 
@@ -198,9 +216,11 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 -- Table structure for table `college`
 --
 
+DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college` (
   `CollegeId` int(11) NOT NULL,
-  `Name` varchar(20) NOT NULL
+  `Name` varchar(20) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -212,9 +232,10 @@ TRUNCATE TABLE `college`;
 -- Dumping data for table `college`
 --
 
-INSERT INTO `college` (`CollegeId`, `Name`) VALUES
-(1, 'COS'),
-(2, 'CIT');
+INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
+(1, 'COS', 1),
+(2, 'CIT', 1),
+(3, 'CAFA', 1);
 
 -- --------------------------------------------------------
 
@@ -222,10 +243,12 @@ INSERT INTO `college` (`CollegeId`, `Name`) VALUES
 -- Table structure for table `course`
 --
 
+DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `CourseId` int(11) NOT NULL,
   `CollegeId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -237,10 +260,10 @@ TRUNCATE TABLE `course`;
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`) VALUES
-(1, 1, 'BSIT'),
-(2, 1, 'BSCS'),
-(5, 2, 'BTIT');
+INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
+(1, 1, 'BSIT', 1),
+(2, 1, 'BSCS', 1),
+(5, 2, 'BTIT', 1);
 
 -- --------------------------------------------------------
 
@@ -248,9 +271,11 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`) VALUES
 -- Table structure for table `genre`
 --
 
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE `genre` (
   `GenreId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -262,8 +287,9 @@ TRUNCATE TABLE `genre`;
 -- Dumping data for table `genre`
 --
 
-INSERT INTO `genre` (`GenreId`, `Name`) VALUES
-(1, 'Science');
+INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
+(1, 'Science', 1),
+(2, 'Mathematics', 1);
 
 -- --------------------------------------------------------
 
@@ -271,6 +297,7 @@ INSERT INTO `genre` (`GenreId`, `Name`) VALUES
 -- Table structure for table `librarian`
 --
 
+DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
   `LibrarianRoleId` int(11) NOT NULL,
@@ -298,9 +325,11 @@ INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `FirstName`, `LastNam
 -- Table structure for table `librarianrole`
 --
 
+DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL
+  `Name` varchar(50) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -312,8 +341,8 @@ TRUNCATE TABLE `librarianrole`;
 -- Dumping data for table `librarianrole`
 --
 
-INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`) VALUES
-(1, 'Admin');
+INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `IsActive`) VALUES
+(1, 'Admin', 1);
 
 -- --------------------------------------------------------
 
@@ -321,6 +350,7 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`) VALUES
 -- Table structure for table `loan`
 --
 
+DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL,
   `MemberId` int(11) NOT NULL,
@@ -341,6 +371,7 @@ TRUNCATE TABLE `loan`;
 -- Table structure for table `loanhistory`
 --
 
+DROP TABLE IF EXISTS `loanhistory`;
 CREATE TABLE `loanhistory` (
   `LoanHistoryId` int(11) NOT NULL,
   `LoanId` int(11) NOT NULL,
@@ -359,6 +390,7 @@ TRUNCATE TABLE `loanhistory`;
 -- Table structure for table `member`
 --
 
+DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `MemberId` int(11) NOT NULL,
   `MemberTypeId` int(11) NOT NULL,
@@ -375,17 +407,26 @@ CREATE TABLE `member` (
 --
 
 TRUNCATE TABLE `member`;
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`MemberId`, `MemberTypeId`, `FirstName`, `LastName`, `Username`, `Password`, `ContactNumber`, `Email`) VALUES
+(1, 0, 'Johnrey', 'Bacal', 'jb', '123', '123456', 'johnrey@yahoo.com');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `membertype`
 --
 
+DROP TABLE IF EXISTS `membertype`;
 CREATE TABLE `membertype` (
   `MemberTypeId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `NumberOfBooks` int(11) NOT NULL,
-  `NumberOfDays` int(11) NOT NULL
+  `NumberOfDays` int(11) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -393,15 +434,24 @@ CREATE TABLE `membertype` (
 --
 
 TRUNCATE TABLE `membertype`;
+--
+-- Dumping data for table `membertype`
+--
+
+INSERT INTO `membertype` (`MemberTypeId`, `Name`, `NumberOfBooks`, `NumberOfDays`, `IsActive`) VALUES
+(1, 'Student', 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `publisher`
 --
 
+DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE `publisher` (
   `PublisherId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -413,8 +463,9 @@ TRUNCATE TABLE `publisher`;
 -- Dumping data for table `publisher`
 --
 
-INSERT INTO `publisher` (`PublisherId`, `Name`) VALUES
-(1, 'JBP');
+INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
+(1, 'JB Publishing', 1),
+(2, 'Abbie qt <3', 1);
 
 -- --------------------------------------------------------
 
@@ -422,6 +473,7 @@ INSERT INTO `publisher` (`PublisherId`, `Name`) VALUES
 -- Table structure for table `reservation`
 --
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `ReservationId` int(11) NOT NULL,
   `MemberId` int(11) NOT NULL,
@@ -441,9 +493,11 @@ TRUNCATE TABLE `reservation`;
 -- Table structure for table `series`
 --
 
+DROP TABLE IF EXISTS `series`;
 CREATE TABLE `series` (
   `SeriesId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -455,8 +509,9 @@ TRUNCATE TABLE `series`;
 -- Dumping data for table `series`
 --
 
-INSERT INTO `series` (`SeriesId`, `Name`) VALUES
-(1, 'Thesis Series');
+INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
+(1, 'Abbiebebe Series', 1),
+(2, 'Harry Potter Series', 1);
 
 -- --------------------------------------------------------
 
@@ -464,9 +519,11 @@ INSERT INTO `series` (`SeriesId`, `Name`) VALUES
 -- Table structure for table `subject`
 --
 
+DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `SubjectId` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
+  `Name` varchar(255) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -478,9 +535,9 @@ TRUNCATE TABLE `subject`;
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`SubjectId`, `Name`) VALUES
-(1, 'Web Development'),
-(11, 'Mathematics');
+INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
+(1, 'Web Development', 1),
+(11, 'Mathematics', 1);
 
 -- --------------------------------------------------------
 
@@ -488,6 +545,7 @@ INSERT INTO `subject` (`SubjectId`, `Name`) VALUES
 -- Table structure for table `subjectcourse`
 --
 
+DROP TABLE IF EXISTS `subjectcourse`;
 CREATE TABLE `subjectcourse` (
   `SubjectId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL
@@ -627,17 +685,17 @@ ALTER TABLE `admission`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -647,7 +705,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `librarian`
 --
@@ -672,17 +730,17 @@ ALTER TABLE `loanhistory`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `MemberId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MemberId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `membertype`
 --
 ALTER TABLE `membertype`
-  MODIFY `MemberTypeId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MemberTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
-  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
@@ -692,7 +750,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `series`
 --
 ALTER TABLE `series`
-  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `subject`
 --

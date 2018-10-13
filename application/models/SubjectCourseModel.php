@@ -18,5 +18,6 @@ class SubjectCourseModel extends CI_Model{
 	public function _list($id){
 		return $this->db->query("SELECT * FROM subjectcourse WHERE SubjectId = '".$id."'")->result();
 	}
-    
+
+	
 }

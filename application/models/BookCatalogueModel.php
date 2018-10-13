@@ -14,7 +14,7 @@ class BookCatalogueModel extends _BaseModel{
 
 	public function save($book){
 		if($book['AccessionNumber'] == 0){//insert			
-			$this->db->query("INSERT into book "
+			$this->db->query("INSERT into bookcatalogue "
 				."(CallNumber, ISBN, Status, DateAcquired, AcquiredFrom) VALUES ("
 					."'".$book['CallNumber']."', "
 					."'".$book['ISBN']."', "
@@ -25,7 +25,7 @@ class BookCatalogueModel extends _BaseModel{
 			);
 		}
 		else{//update
-			$this->db->query("UPDATE book SET "
+			$this->db->query("UPDATE bookcatalogue SET "
 				."CallNumber = '".$book['CallNumber']."', "
 				."ISBN = '".$book['ISBN']."', "				
 				."Status = '".$book['Status']."', "

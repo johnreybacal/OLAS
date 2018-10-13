@@ -34,8 +34,17 @@ class Publisher extends _BaseController {
         echo $json;        
     }
     
-    public function Save(){        
-        $this->book->save($this->input->post('publisher'));
+    public function GetAll(){        
+        echo $this->convert($this->publisher->_list());
     }
+
+    public function Get($id){        
+        echo $this->convert($this->publisher->_get($id));
+    }
+    
+    public function Save(){        
+        $this->publisher->save($this->input->post('publisher'));
+    }
+
     
 }

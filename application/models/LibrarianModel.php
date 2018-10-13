@@ -30,7 +30,7 @@ class LibrarianModel extends _BaseModel{
 				."FirstName = '".$librarian['FirstName']."', "				
 				."LastName = '".$librarian['LastName']."', "				
 				."Username = '".$librarian['Username']."', "
-				."Password = '".$librarian['Password']."', "				
+				."Password = '".$librarian['Password']."' "				
 				."WHERE LibrarianId = '".$librarian['LibrarianId']."'"
 			);			
 		}

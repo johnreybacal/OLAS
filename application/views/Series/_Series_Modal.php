@@ -10,40 +10,23 @@
             <div class="modal-body">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-series-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="SeriesId"/>
-                        
-                          
-                                <div class="row mb-2">
-                                    <div class="col-md-2">
-                                        <label>Series Data</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="Data" name="Data" type="text" class="form-control" placeholder="Series Data" />
-                                    </div>
-                                </div>
-                           
-                            <!-- <div class="row" id="rowActive">
-                                <div class="col-sm-2 col-md-2">
-                                    <label>Status:</label>
-                                </div>
-                                <div class="col-sm-8 col-md-8">
-                                    <div class="form-group">
-                                        <label class="switch switch-info">
-                                            <input type="checkbox" id="IsActive" name="IsActive" checked />
-                                            <span class="switch-indicator"></span>
-                                            <label>Active</label>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> -->
-                      
+                        <input type="hidden" id="SeriesId"/>          
+                        <div class="row mb-2">
+                            <div class="col-md-4">
+                                <label>Series Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Series Name" />
+                            </div>
+                        </div>                          
+                
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Series_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Series_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -53,29 +36,67 @@
     var Series_Modal = {
         data: function () {
             return {
-                SeriesId: $('#SeriesId').val(),
-                Data: $('#Data').val(),
-                //s: $('#s').find(":selected").text(),
-                //Active: $('#IsActive').prop("checked")
+                SeriesId: $('#SeriesId').val(),                
+                Name: $('#Name').val(),                
             }
         },
 
-        init: function () {
+        init: function () {            
             $('#modal-series-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
+            $('#rowActive').addClass('invisible');
+            $('#modal-series').modal('show');
         },
 
         new: function () {
             $('#SeriesId').val('0');
-            $('.modal-title').text('Update');
-            $('#rowActive').addClass('invisible');
-            $('#modal-series').modal('show');
+            $('.modal-title').text('Add Series');            
             Series_Modal.init();
         },
 
-        validate: function () {
-            
+        edit: function (id) {            
+            $('.modal-title').text('Edit Series');            
+            Series_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('Series/Get/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    $('#SeriesId').val(i.SeriesId);
+                    $('#Name').val(i.Name);
+                }
+            });           
+        },
+
+        save: function () {
+            var message;
+                console.log(Series_Modal.data());
+                if ($('#SeriesId').val() == 0) {
+                    message = "Great Job! New Series has been created";
+                } else {
+                    message = "Nice! Series has been updated";
+                }
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Series',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Series/Save'); ?>',{
+                        series: Series_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+        					$('#modal-series').modal('hide');
+                            console.log(i);
+                        });	
+                    }
+                })
         }
     }
 

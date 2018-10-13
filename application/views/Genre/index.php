@@ -13,7 +13,7 @@
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
 		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Genre_Modal.new();"
-	data-toggle="modal" data-target="#modal-genre" data-provide="tooltip" data-original-title="Add Book">
+	data-toggle="modal" data-target="#modal-genre" data-provide="tooltip" data-original-title="Add Genre">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -25,7 +25,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Genre/GenerateTable") ?>">
+				<table id = "genre-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Genre/GenerateTable") ?>">
 					<thead>
 						<tr>							
 							<th>Name</th>			
@@ -55,7 +55,7 @@
         },
 
         reset: function () {
-            //$('#utilities-pantype-table').DataTable().ajax.reload();
+            $('#genre-table').DataTable().ajax.reload();
         }
     }
 </script>

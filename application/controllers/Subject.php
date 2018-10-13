@@ -41,6 +41,10 @@ class Subject extends _BaseController {
         echo $json;        
     }
 
+    public function GetAll(){        
+        echo $this->convert($this->subject->_list());
+    }
+
     public function Get($id){
         echo $this->convert($this->subject->_get($id));
     }
@@ -58,5 +62,6 @@ class Subject extends _BaseController {
         $c = $this->input->post('subject')['CourseId'];
         $this->subjectCourse->save($s, $c);
     }
+
     
 }
