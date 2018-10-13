@@ -1,24 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BookGenreModel extends _BaseModel{
+class BookGenreModel extends CI_Model{
 
-	public function __construct(){		
-		parent::_setDai(
-			array(
-				"bookgenre",
-				"BookGenreId",
-			)
-		);
+	public function save($isbn, $genres){
+		$this->db->query("DELETE FROM bookgenre WHERE ISBN = '".$isbn."'");
+		foreach($genres as $genre){
+			$this->db->query("INSERT into bookgenre "
+				."(ISBN, GenreId) VALUES ("                   
+					."'".$isbn."',"
+					."'".$genre."'"
+				.")"
+			);
+		}
+	}	
+	
+	public function _list($id){
+		return $this->db->query("SELECT * FROM bookgenre WHERE ISBN = '".$id."'")->result();
 	}
-
-	public function save($bookgenre){		
-		$this->db->query("INSERT into bookgenre "
-			."(ISBN, GenreId) VALUES ("                   
-				."'".$bookgenre['ISBN']."'"
-				."'".$bookgenre['GenreId']."'"
-			.")"
-		);	
-    }	
     
 }

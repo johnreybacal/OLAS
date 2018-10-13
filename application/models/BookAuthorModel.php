@@ -1,24 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BookAuthorModel extends _BaseModel{
+class BookAuthorModel extends CI_Model{
 
-	public function __construct(){		
-		parent::_setDai(
-			array(
-				"bookauthor",
-				"BookAuthorId",
-			)
-		);
+	public function save($isbn, $authors){
+		$this->db->query("DELETE FROM bookauthor WHERE ISBN = '".$isbn."'");
+		foreach($authors as $author){
+			$this->db->query("INSERT into bookauthor "
+				."(ISBN, AuthorId) VALUES ("                   
+					."'".$isbn."',"
+					."'".$author."'"
+				.")"
+			);
+		}
+	}	
+	
+	public function _list($id){
+		return $this->db->query("SELECT * FROM bookauthor WHERE ISBN = '".$id."'")->result();
 	}
-
-	public function save($bookauthor){		
-		$this->db->query("INSERT into bookauthor "
-			."(ISBN, AuthodId) VALUES ("                   
-				."'".$bookauthor['ISBN']."'"
-				."'".$bookauthor['AuthorId']."'"
-			.")"
-		);	
-    }	
     
 }

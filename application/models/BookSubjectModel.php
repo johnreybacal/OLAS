@@ -1,24 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BookSubjectModel extends _BaseModel{
+class BookSubjectModel extends CI_Model{
 
-	public function __construct(){		
-		parent::_setDai(
-			array(
-				"booksubject",
-				"BookSubjectId",
-			)
-		);
+	public function save($isbn, $subjects){
+		$this->db->query("DELETE FROM booksubject WHERE ISBN = '".$isbn."'");
+		foreach($subjects as $subject){
+			$this->db->query("INSERT into booksubject "
+				."(ISBN, SubjectId) VALUES ("                   
+					."'".$isbn."',"
+					."'".$subject."'"
+				.")"
+			);
+		}
+	}	
+	
+	public function _list($id){
+		return $this->db->query("SELECT * FROM booksubject WHERE ISBN = '".$id."'")->result();
 	}
-
-	public function save($booksubject){		
-		$this->db->query("INSERT into booksubject "
-			."(ISBN, SubjectId) VALUES ("                   
-				."'".$booksubject['ISBN']."'"
-				."'".$booksubject['SubjectId']."'"
-			.")"
-		);	
-    }	
     
 }

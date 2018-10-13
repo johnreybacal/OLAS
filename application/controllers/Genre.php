@@ -33,9 +33,17 @@ class Genre extends _BaseController {
         $json .= ']}';
         echo $json;        
     }
+
+    public function GetAll(){        
+        echo $this->convert($this->genre->_list());
+    }
+
+    public function Get($id){        
+        echo $this->convert($this->genre->_get($id));
+    }
     
     public function Save(){        
-        $this->book->save($this->input->post('genre'));
+        $this->genre->save($this->input->post('genre'));
     }
     
 }

@@ -75,9 +75,35 @@ class Book extends _BaseController {
         $json .= ']}';
         echo $json;        
     }
-    
-    public function Save(){        
-        $this->book->save($this->input->post('book'));
+
+    public function Get($isbn){        
+        $book = $this->book->_get($isbn);
+        if($book != null){
+            echo '{"book":';
+            echo $this->convert($book);
+            echo ', "author":';
+            echo $this->convert($this->bookAuthor->_list($isbn));
+            echo ', "genre":';
+            echo $this->convert($this->bookGenre->_list($isbn));
+            echo ', "subject":';
+            echo $this->convert($this->bookSubject->_list($isbn));
+            echo '}';        
+        }else{
+            echo '0';
+        }
     }
     
+    public function Save(){  
+        // print_r($this->input->post('book'));
+        $book = $this->input->post('book');        
+        $isbn = $book['ISBN'];
+        $author = $book['AuthorId'];
+        $genre = $book['GenreId'];
+        $subject = $book['SubjectId'];
+        $this->bookCatalogue->save($book);
+        $this->book->save($book);        
+        $this->bookAuthor->save($isbn, $author);
+        $this->bookGenre->save($isbn, $genre);
+        $this->bookSubject->save($isbn, $subject);                
+    }
 }

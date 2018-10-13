@@ -41,6 +41,10 @@ class Subject extends _BaseController {
         echo $json;        
     }
 
+    public function GetAll(){        
+        echo $this->convert($this->subject->_list());
+    }
+
     public function Get($id){
         echo $this->convert($this->subject->_get($id));
     }

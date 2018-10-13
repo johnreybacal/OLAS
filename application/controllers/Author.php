@@ -33,5 +33,17 @@ class Author extends _BaseController {
         $json .= ']}';
         echo $json;        
     }
+    
+    public function GetAll(){        
+        echo $this->convert($this->author->_list());
+    }
+
+    public function Get($id){        
+        echo $this->convert($this->author->_get($id));
+    }
+    
+    public function Save(){        
+        $this->author->save($this->input->post('author'));
+    }
 
 }

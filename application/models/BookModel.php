@@ -13,7 +13,7 @@ class BookModel extends _BaseModel{
 	}
 
 	public function save($book){
-		if($book['ISBN'] == 0){//insert			
+		if(!$this->bookExist($book['ISBN'])){//insert			
 			$this->db->query("INSERT into book "
 				."(ISBN, Title, PublisherId, SeriesId, Edition, DatePublished) VALUES ("
                     ."'".$book['ISBN']."', "
@@ -23,19 +23,24 @@ class BookModel extends _BaseModel{
 					."'".$book['Edition']."', "
 					."'".$book['DatePublished']."'"
 				.")"
-			);
+			);			
 		}
 		else{//update
-			$this->db->query("UPDATE book SET "
-                ."ISBN = '".$book['ISBN']."', "
+			$this->db->query("UPDATE book SET "                
                 ."Title = '".$book['Title']."', "                
                 ."PublisherId = '".$book['PublisherId']."', "
                 ."SeriesId = '".$book['SeriesId']."', "                
                 ."Edition = '".$book['Edition']."', "
-                ."DatePublished = '".$book['DatePublished']."'"
-			);			
+				."DatePublished = '".$book['DatePublished']."' "
+				."WHERE ISBN = '".$book['ISBN']."'"
+			);						
 		}
 	}	
+
+	public function bookExist($isbn){
+		return ($this->db->query("SELECT * FROM book WHERE ISBN = '".$isbn."'")
+			->num_rows() != 0);
+	}
 	
 	public function getAuthor($isbn){
 		$dbList = $this->db->query("select * from author WHERE AuthorID IN "
