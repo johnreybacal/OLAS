@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-member-edit-form">
-                        <input id="EMemberId" hidden/>
+                        <input id="MemberId" hidden/>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card card-shadowed">
@@ -27,21 +27,21 @@
                                                 <div class="form-row gap-1">
                                                     <div class="form-group col-md-6" style="margin: auto;">
                                                             <label>Member Type</label>
-                                                            <select id="EMemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+                                                            <select id="MemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
                                                     </div>
                                                 </div>
                                                 <div class="form-row gap-1">
                                                     <div class="form-group col-md-4">
                                                         <label>First Name</label>
-                                                        <input  id="EFirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
+                                                        <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Middle Name</label>
-                                                        <input  id="EMiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
+                                                        <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Last Name</label>
-                                                        <input  id="ELastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
+                                                        <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                             <label>Sex</label>
@@ -52,19 +52,19 @@
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Email</label>
-                                                        <input  id="EEmail" class="form-control" type="email" name="Email" placeholder="Email">
+                                                        <input  id="Email" class="form-control" type="email" name="Email" placeholder="Email">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Contact Number</label>
-                                                        <input  id="EContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
+                                                        <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Username</label>
-                                                        <input  id="EUsername" class="form-control" type="text" name="Username" placeholder="Username">
+                                                        <input  id="Username" class="form-control" type="text" name="Username" placeholder="Username">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Password</label>
-                                                        <input  id="EPassword" class="form-control" type="password" name="Password" placeholder="Password">
+                                                        <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password">
                                                     </div>
                                                     <div class="form-group col-md-4">
                                                         <label>Confirm Password</label>
@@ -93,14 +93,14 @@
     var Member_Modal_Edit = {
         data: function () {
             return {
-                MemberId: $('#EMemberId').val(),
-                MemberTypeId: $('#EMemberTypeId').selectpicker('val'),
-                FirstName: $('#EFirstName').val(),
-                LastName: $('#ELastName').val(),
-                Username: $('#EUsername').val(),
-                Password: $('#EPassword').val(),
-                ContactNumber: $('#EContactNumber').val(),
-                Email: $('#EEmail').val(),
+                MemberId: $('#MemberId').val(),
+                MemberTypeId: $('#MemberTypeId').selectpicker('val'),
+                FirstName: $('#FirstName').val(),
+                LastName: $('#LastName').val(),
+                Username: $('#Username').val(),
+                Password: $('#Password').val(),
+                ContactNumber: $('#ContactNumber').val(),
+                Email: $('#Email').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
             }
@@ -108,6 +108,18 @@
         },
 
         init: function () {
+            $.ajax({
+                url: "<?php echo base_url('MemberType/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    $.each(i, function(index, data){                        
+                        $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+                    })
+                    $('#MemberTypeId').selectpicker('refresh');
+                }
+            })
+
             $('#modal-member-edit-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
@@ -128,16 +140,17 @@
                 url: "<?php echo base_url('Member/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
+                    console.log("edit");
                     console.log(i);
-                    $('#EMemberId').val(i.MemeberId),
+                    $('#MemberId').val(i.MemberId),
 
-                    $('#EMemberTypeId').val(i.MemberTypeId),
-                    $('#EFirstName').val(i.FirstName),
-                    $('#ELastName').val(i.LastName),
-                    $('#EUsername').val(i.Username),
-                    $('#EPassword').val(i.Password),
-                    $('#EContactNumber').val(i.ContactNumber),
-                    $('#EEmail').val(i.Email)
+                    $('#FirstName').val(i.FirstName);
+                    $('#MemberTypeId').selectpicker('val', i.MemberTypeId);
+                    $('#LastName').val(i.LastName);
+                    $('#Username').val(i.Username);
+                    $('#Password').val(i.Password);
+                    $('#ContactNumber').val(i.ContactNumber);
+                    $('#Email').val(i.Email);
                 }
             })
         },

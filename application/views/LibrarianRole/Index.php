@@ -23,7 +23,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("LibrarianRole/GenerateTable") ?>">
+				<table id="librarianrole-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("LibrarianRole/GenerateTable") ?>">
 					<thead>
 						<tr>
 							<th>LibrarianRole ID</th>
@@ -54,7 +54,7 @@
         },
 
         reset: function () {
-            //$('#utilities-pantype-table').DataTable().ajax.reload();
+            $('#librarianrole-table').DataTable().ajax.reload();
         }
     }
 </script>

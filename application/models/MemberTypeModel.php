@@ -24,11 +24,11 @@ class MemberTypeModel extends _BaseModel{
 			);
 		}
 		else{//update
-			$this->db->query("UPDATE member SET "
+			$this->db->query("UPDATE membertype SET "
 				."MemberTypeId = '".$memberType['MemberTypeId']."', "
 				."Name = '".$memberType['Name']."', "				
 				."NumberOfBooks = '".$memberType['NumberOfBooks']."', "
-				."NumberOfDays = '".$memberType['NumberOfDays']."', "
+				."NumberOfDays = '".$memberType['NumberOfDays']."'"
 				."WHERE MemberTypeId = '".$memberType['MemberTypeId']."'"
 			);			
 		}

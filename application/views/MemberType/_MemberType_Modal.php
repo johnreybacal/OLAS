@@ -86,6 +86,7 @@
                 url: "<?php echo base_url('MemberType/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
+                    console.log(i);
                     $('#MemberTypeId').val(i.MemberTypeId);
                     $('#Name').val(i.Name);
                     $('#NumberOfBooks').val(i.NumberOfBooks);

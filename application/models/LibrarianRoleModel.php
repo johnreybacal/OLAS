@@ -24,7 +24,7 @@ class LibrarianRoleModel extends _BaseModel{
 		else{//update
 			$this->db->query("UPDATE librarianrole SET "
 				."LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."', "
-				."Name = '".$librarianrole['Name']."', "				
+				."Name = '".$librarianrole['Name']."' "				
 				."WHERE LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."'"
 			);			
 		}

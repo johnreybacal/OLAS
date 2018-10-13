@@ -64,14 +64,27 @@
             $('#modal-librarianrole-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
+            $('#modal-librarianrole').modal('show');
         },
 
         new: function () {
             $('#LibrarianRoleId').val('0');
             $('.modal-title').text('Update');
             $('#rowActive').addClass('invisible');
-            $('#modal-librarianrole').modal('show');
             LibrarianRole_Modal.init();
+        },
+
+        edit: function (id) {
+            $('.modal-title').text('Edit Librarian Role');            
+            LibrarianRole_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('LibrarianRole/Get/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    $('#LibrarianRoleId').val(i.LibrarianRoleId);
+                    $('#Name').val(i.Name);
+                }
+            })
         },
 
         validate: function () {

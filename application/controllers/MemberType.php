@@ -42,8 +42,8 @@ class MemberType extends _BaseController {
         echo $json;        
     }
     
-    public function Get(){
-        echo $this->convert($this->membertype->_get(id));
+    public function Get($id){
+        echo $this->convert($this->membertype->_get($id));
     }
 
     public function GetAll(){
