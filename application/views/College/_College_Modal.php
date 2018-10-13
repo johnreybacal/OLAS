@@ -23,7 +23,7 @@
                         </div>   
 
                         <div class="row" id="rowActive">
-                            <div class="col-sm-2 col-md-2">
+                            <div class="col-sm-4 col-md-4">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-8 col-md-8">
@@ -55,12 +55,11 @@
             return {
                 CollegeId: $('#CollegeId').val(),
                 Name: $('#Name').val(),                 
-                IsActive: $('#IsActive').prop("checked")
+                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
             }
         },
 
-        init: function () {
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+        init: function () {            
             $('#modal-college').modal('show');
             $('#modal-college-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
@@ -84,7 +83,7 @@
                     i = JSON.parse(i);
                     $('#CollegeId').val(i.CollegeId);
                     $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", i.IsActive);
+                    $('#IsActive').prop("checked", (i.IsActive == 1));
                 }
             })
         },

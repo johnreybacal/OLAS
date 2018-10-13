@@ -6,16 +6,6 @@
 				<h2 class="header-title"><strong>Books</strong> <small class="subtitle">List of all books are available in this page.</small></h2>
 			</div>
 		</div>
-
-<!-- 	<div class="header-action">
-			<div class="buttons">
-				<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a>
-				<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();"
-			data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book">
-				<i class="ti-plus"></i>
-				</a>
-			</div>
-		</div> -->
 	</div>
 </header><!--/.header -->
 
@@ -37,11 +27,15 @@
 								<div class="form-row gap-1">					
 									<div class="form-group col-md-6">
 										<label>ISBN</label>
-										<input  id="ISBN" class="form-control" type="text" name="" placeholder="">
+										<input  id="ISBN" class="form-control" type="text" name="" placeholder="ISBN">
 									</div>
 									<div class="form-group col-md-6">
+										<label>Call Number</label>
+										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
+									</div>	
+									<div class="form-group col-md-6">
 										<label>Title</label>
-										<input id="Title" class="form-control" type="text" name="" placeholder="">
+										<input id="Title" class="form-control" type="text" name="" placeholder="Title">
 									</div>					
 									<div class="form-group col-md-6">
 										<label>Author</label>
@@ -69,11 +63,11 @@
 									</div>	
 									<div class="form-group col-md-6">
 										<label>Date Published</label>
-										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" name="" placeholder="">
+										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="">
 									</div>				
 									<div class="form-group col-md-6">
 										<label>Date Acquired</label>
-										<input  id="DateAcquired" class="form-control" type="text" data-provide="datepicker" name="" placeholder="">
+										<input  id="DateAcquired" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="">
 									</div>
 									<div class="form-group col-md-6">
 										<label>Acquired from</label>
@@ -170,7 +164,7 @@
 			$('#ISBN').val(val);
 		},
 
-		init: function(){
+		init: function(){			
 			$('#ISBN').bind('input', function(){				
 				var val = $(this).val()
 				if(val != ''){
@@ -227,7 +221,7 @@
 				"DatePublished": $('#DatePublished').val(),
 
 				"AccessionNumber": 0,
-				"CallNumber": "",
+				"CallNumber": $('#CallNumber').val(),
 				"DateAcquired": $('#DateAcquired').val(),
 				"Status": "In",
 				"AcquiredFrom": $('#AcquiredFrom').val(), 

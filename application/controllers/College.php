@@ -25,7 +25,7 @@ class College extends _BaseController {
         foreach($this->college->_list() as $data){
             $json .= '['                
                 .'"'.$data->Name.'",'
-                .'"'.$data->IsActive.'",'
+                .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"<button onclick = \"College_Modal.edit('.$data->CollegeId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
