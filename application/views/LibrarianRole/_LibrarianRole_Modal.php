@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-librarianrole" tabindex="-1">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add LibrarianRole</h5>
@@ -7,28 +7,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="col-md-12 col-sm-12">
+            <div class="modal-body form-type-line">
+                <div class="col-12">
                     <form id="modal-librarianrole-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="LibrarianRoleId"/>
                         
-                          
                             <div class="row mb-2">
-                                <div class="col-md-2">
+                                <div class="col-12">
                                     <label>Name</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="LibrarianRole Data" />
+                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
                                 </div>
                             </div>
                            
                             <div class="row" id="rowActive">
-                                <div class="col-sm-2 col-md-2">
+                                <div class="col-sm-12 col-md-12">
                                     <label>Status:</label>
                                 </div>
-                                <div class="col-sm-8 col-md-8">
+                                <div class="col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label class="switch switch-info">
+                                        <label class="switch switch-lg switch-info">
                                             <input type="checkbox" id="IsActive" name="IsActive" checked />
                                             <span class="switch-indicator"></span>
                                             <label>Active</label>
@@ -41,7 +38,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-info" onclick="LibrarianRole_Modal.save()">Save</button>
             </div>
@@ -56,7 +52,7 @@
                 LibrarianRoleId: $('#LibrarianRoleId').val(),
                 Name: $('#Name').val(),
                 //s: $('#s').find(":selected").text(),
-                IsActive: $('#IsActive').prop("checked")
+                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -69,13 +65,14 @@
 
         new: function () {
             $('#LibrarianRoleId').val('0');
-            $('.modal-title').text('Update');
+            $('.modal-title').text('Add Librarian Role');
             $('#rowActive').addClass('invisible');
             LibrarianRole_Modal.init();
         },
 
         edit: function (id) {
             $('.modal-title').text('Edit Librarian Role');            
+            $('#rowActive').removeClass('invisible');
             LibrarianRole_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('LibrarianRole/Get/'); ?>" + id,
@@ -83,7 +80,7 @@
                     i = JSON.parse(i);
                     $('#LibrarianRoleId').val(i.LibrarianRoleId);
                     $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", i.IsActive);
+                    $('#IsActive').prop("checked", i.IsActive == 1);
                 }
             })
         },

@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-member-edit" tabindex="-1">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog modal-sm ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Member</h5>
@@ -7,81 +7,63 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-member-edit-form">
                         <input id="MemberId" hidden/>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card card-shadowed">
-                                    <div class="card-title">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4><strong>Book</strong> Information</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-row gap-1">
-                                                    <div class="form-group col-md-6" style="margin: auto;">
-                                                            <label>Member Type</label>
-                                                            <select id="MemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row gap-1">
-                                                    <div class="form-group col-md-4">
-                                                        <label>First Name</label>
-                                                        <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Middle Name</label>
-                                                        <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Last Name</label>
-                                                        <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                            <label>Sex</label>
-                                                            <select class="form-control" title="Sex" data-provide="selectpicker" tabindex="-98" name="Gender" id="Gender">
-                                                                    <option value="FEMALE">Female</option>
-                                                                    <option value="MALE">Male</option>
-                                                            </select>
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Email</label>
-                                                        <input  id="Email" class="form-control" type="email" name="Email" placeholder="Email">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Contact Number</label>
-                                                        <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Username</label>
-                                                        <input  id="Username" class="form-control" type="text" name="Username" placeholder="Username">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Password</label>
-                                                        <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>Confirm Password</label>
-                                                        <input  id="ConfirmPassword" class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- row -->
-                                    </div> <!-- card-body -->
-                                </div> <!-- card -->
-                            </div> <!-- col-lg-12 -->
-                        </div> <!-- row -->
-                    </form> <!-- row -->
+                        
+                        <div class="row mb-2">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
+                                <label>Member Type</label>
+                                <select id="MemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control show-tick"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                <label>First Name</label>
+                                <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
+                            </div>
+                            <!-- <div class="form-group col-12">
+                                <label>Middle Name</label>
+                                <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
+                            </div> -->
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                <label>Last Name</label>
+                                <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
+                            </div>
+                            <!-- <div class="form-group col-12">
+                                    <label>Sex</label>
+                                    <select class="form-control" title="Sex" data-provide="selectpicker" tabindex="-98" name="Gender" id="Gender">
+                                            <option value="FEMALE">Female</option>
+                                            <option value="MALE">Male</option>
+                                    </select>
+                            </div> -->
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12"> <!-- has-form-text" -->
+                                <label>Email</label>
+                                <input  id="Email" class="form-control" type="email" name="Email" placeholder="Email">
+                                <!-- <small class="form-text">We'll never share your email with anyone else.</small> -->
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-122">
+                                <label>Contact Number</label>
+                                <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Username</label>
+                                <input  id="Username" class="form-control" type="text" name="Username" placeholder="Username">
+                            </div>
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Password</label>
+                                <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password">
+                            </div>
+                            <!-- <div class="form-group col-12">
+                                <label>Confirm Password</label>
+                                <input  id="ConfirmPassword" class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Password">
+                            </div> -->
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-info" onclick="Member_Modal.save()">Save</button>
             </div>
@@ -112,7 +94,8 @@
                 url: "<?php echo base_url('MemberType/GetAll'); ?>",
                 async: false,
                 success: function(i){
-                    i = JSON.parse(i);                    
+                    i = JSON.parse(i);          
+                    $('#MemberTypeId').empty();          
                     $.each(i, function(index, data){                        
                         $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
                     })
@@ -128,7 +111,7 @@
 
         new: function () {
             $('#MemberId').val('0');
-            $('.modal-title').text('Update');
+            $('.modal-title').text('Add Member');
             $('#rowActive').addClass('invisible');
             Member_Modal.init();
         },

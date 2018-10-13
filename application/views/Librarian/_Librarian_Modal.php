@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-librarian" tabindex="-1">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Librarian</h5>
@@ -7,48 +7,31 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-librarian-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="LibrarianId"/>
                         
                         <div class="row mb-2">
-                            <div class="col-md-2 col-sm-2">
+                            <div class="col-12">
                                 <label>Librarian Role</label>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
                                 <select id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Librarian Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                            <div class="col-12">
                                 <label>Librarian FirstName</label>
-                            </div>
-                            <div class="col-md-9">
                                 <input id="FirstName" name="Name" type="text" class="form-control" placeholder="Name" />
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                            <div class="col-12">
                                 <label>Librarian LastName</label>
-                            </div>
-                            <div class="col-md-9">
                                 <input id="LastName" name="Name" type="text" class="form-control" placeholder="Name" />
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                       
+                            <div class="col-12">
                                 <label>Username</label>
-                            </div>
-                            <div class="col-md-9">
                                 <input id="Username" name="Username" type="text" class="form-control" placeholder="Username" />
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                            <div class="col-12">
                                 <label>Password</label>
-                            </div>
-                            <div class="col-md-9">
                                 <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
                             </div>
                         </div>
@@ -99,7 +82,8 @@
                 url: "<?php echo base_url('LibrarianRole/GetAll'); ?>",
                 async: false,
                 success: function(i){
-                    i = JSON.parse(i);                    
+                    i = JSON.parse(i);
+                    $('#LibrarianRoleId').empty();          
                     $.each(i, function(index, data){                        
                         $('#LibrarianRoleId').append('<option value = "' + data.LibrarianRoleId + '">' + data.Name + '</option>');
                     })
@@ -115,7 +99,7 @@
 
         new: function () {
             $('#LibrarianId').val('0');
-            $('.modal-title').text('Update');
+            $('.modal-title').text('Add Librarian');
             $('#rowActive').addClass('invisible');
             Librarian_Modal.init();
         },

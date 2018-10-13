@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-genre" tabindex="-1">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Genre</h5>
@@ -7,26 +7,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-genre-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="GenreId"/>          
+                        
                         <div class="row mb-2">
-                            <div class="col-md-4">
+                            <div class="col-12">
                                 <label>Genre Name</label>
-                            </div>
-                            <div class="col-md-8">
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Genre Name" />
                             </div>
                         </div>   
 
                         <div class="row" id="rowActive">
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
-                            <div class="col-sm-8 col-md-8">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="switch switch-info">
+                                    <label class="switch switch-lg switch-info">
                                         <input type="checkbox" id="IsActive" name="IsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
@@ -39,7 +38,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-info" onclick="Genre_Modal.save()">Save</button>
             </div>

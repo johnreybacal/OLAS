@@ -46,10 +46,11 @@ class Member extends _BaseController {
         foreach($this->member->_list() as $data){
             $json .= '['
 				.'"<a href = \''.base_url('Member/View/'.$data->MemberId).'\'>'.$data->MemberId.'</a>",'
-                .'"'.$data->FirstName.'",'
-                .'"'.$data->ContactNumber.'",'
+                .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$data->Username.'",'
-                .'"'.$data->MemberTypeId.'",'
+                .'"'.$this->membertype->_get($data->MemberTypeId)->Name.'",'
+                .'"'.$data->ContactNumber.'",'
+                .'"'.$data->Email.'",'
                 .'"<button onclick = \"Member_Modal.edit('.$data->MemberId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
                 // .'"<a href = \"'.base_url("Member/edit/".$data->MemberId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';            

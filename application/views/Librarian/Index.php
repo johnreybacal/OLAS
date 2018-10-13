@@ -27,10 +27,10 @@
 					<thead>
 						<tr>
 							<th>Librarian ID</th>
-							<th>LibrarianRole ID</th>
-							<th>First Name</th>
-							<th>Last Name</th>
+							<th>Name</th>
 							<th>Username</th>
+							<th>Librarian Role</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 				</table>            			

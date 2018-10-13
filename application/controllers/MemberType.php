@@ -32,7 +32,7 @@ class MemberType extends _BaseController {
                 .'"'.$data->Name.'",'
                 .'"'.$data->NumberOfBooks.'",'
                 .'"'.$data->NumberOfDays.'",'
-                .'"'.$data->IsActive.'",'
+                .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 // .'"'.($data->IsActive == true ? '<span class = \"badge badge-success"\>Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"<button onclick = \"MemberType_Modal.edit('.$data->MemberTypeId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            

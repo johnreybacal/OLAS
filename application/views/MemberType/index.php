@@ -29,7 +29,7 @@
 					<thead>
 						<tr>
 						<th>MemberType ID</th>			
-						<th>Data</th>
+						<th>Name</th>
 						<th>Number of Books</th>
 						<th>Number of Days</th>
 						<th>Status</th>

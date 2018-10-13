@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-subject" tabindex="-1">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Subject</h5>
@@ -7,34 +7,29 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-subject-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="SubjectId"/>                                    
+                        <input type="hidden" id="SubjectId"/>  
+
                         <div class="row mb-2">
-                            <div class="col-md-4">
+                            <div class="col-12">
                                 <label>Courses associated with subject</label>
+                                <select id="CourseId" name="CourseId" data-provide="selectpicker" title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
                             </div>
-                            <div class="col-md-8">
-                                <select id="CourseId" data-provide="selectpicker" multiple></select>
-                            </div>
-                        </div>  
-                        <div class="row mb-2">
-                            <div class="col-md-4">
+                            <div class="col-12">
                                 <label>Subject Name</label>
-                            </div>
-                            <div class="col-md-8">
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Subject Name" />
                             </div>
                         </div>    
 
                         <div class="row" id="rowActive">
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
-                            <div class="col-sm-8 col-md-8">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="switch switch-info">
+                                    <label class="switch switch-lg switch-info">
                                         <input type="checkbox" id="IsActive" name="IsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>

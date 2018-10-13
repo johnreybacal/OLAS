@@ -21,7 +21,7 @@
 						</div>
 						</div>
 					</div>
-					<div class="card-body">
+					<div class="card-body form-type-line">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-row gap-1">					
@@ -39,7 +39,7 @@
 									</div>					
 									<div class="form-group col-md-6">
 										<label>Author</label>
-										<select id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick" data-actions-box="true"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Genre</label>

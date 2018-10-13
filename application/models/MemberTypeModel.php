@@ -29,7 +29,8 @@ class MemberTypeModel extends _BaseModel{
 				."MemberTypeId = '".$memberType['MemberTypeId']."', "
 				."Name = '".$memberType['Name']."', "				
 				."NumberOfBooks = '".$memberType['NumberOfBooks']."', "
-				."NumberOfDays = '".$memberType['NumberOfDays']."'"
+				."NumberOfDays = '".$memberType['NumberOfDays']."', "
+                ."IsActive = '".$memberType['IsActive']."' "
 				."WHERE MemberTypeId = '".$memberType['MemberTypeId']."'"
 			);			
 		}
