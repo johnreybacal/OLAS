@@ -15,14 +15,16 @@ class AuthorModel extends _BaseModel{
 	public function save($author){
 		if($author['AuthorId'] == 0){//insert			
 			$this->db->query("INSERT into author "
-				."(Name) VALUES ("                   
-					."'".$author['Name']."'"
+				."(Name, IsActive) VALUES ("                   
+					."'".$author['Name']."',"
+					."'1'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE author SET "
-                ."Name = '".$author['Name']."'"
+                ."Name = '".$author['Name']."',"
+                ."IsActive = '".$author['IsActive']."' "
                 ."WHERE AuthorId = '".$author['AuthorId']."'"
 			);			
 		}

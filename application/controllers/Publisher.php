@@ -45,5 +45,6 @@ class Publisher extends _BaseController {
     public function Save(){        
         $this->publisher->save($this->input->post('publisher'));
     }
+
     
 }

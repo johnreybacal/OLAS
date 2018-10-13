@@ -15,14 +15,16 @@ class PublisherModel extends _BaseModel{
 	public function save($publisher){
 		if($publisher['PublisherId'] == 0){//insert			
 			$this->db->query("INSERT into publisher "
-				."(Name) VALUES ("                   
-					."'".$publisher['Name']."'"
+				."(Name, IsActive) VALUES ("                   
+					."'".$publisher['Name']."',"
+					."'1'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE publisher SET "
-                ."Name = '".$publisher['Name']."'"
+                ."Name = '".$publisher['Name']."',"
+                ."IsActive = '".$publisher['IsActive']."' "
                 ."WHERE PublisherId = '".$publisher['PublisherId']."'"
 			);			
 		}

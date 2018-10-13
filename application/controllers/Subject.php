@@ -62,5 +62,6 @@ class Subject extends _BaseController {
         $c = $this->input->post('subject')['CourseId'];
         $this->subjectCourse->save($s, $c);
     }
+
     
 }

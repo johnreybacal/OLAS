@@ -15,9 +15,10 @@ class LibrarianRoleModel extends _BaseModel{
 	public function save($librarianrole){
 		if($librarianrole['LibrarianRoleId'] == 0){//insert			
 			$this->db->query("INSERT into librarianrole "
-				."(LibrarianRoleId, Name) VALUES ("
+				."(LibrarianRoleId, Name, IsActive) VALUES ("
 					."'".$librarianrole['LibrarianRoleId']."', "
-					."'".$librarianrole['Name']."'"
+					."'".$librarianrole['Name']."',"
+					."'1'"
 				.")"
 			);
 		}
@@ -25,6 +26,7 @@ class LibrarianRoleModel extends _BaseModel{
 			$this->db->query("UPDATE librarianrole SET "
 				."LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."', "
 				."Name = '".$librarianrole['Name']."', "				
+				."IsActive = '".$librarianrole['IsActive']."' "				
 				."WHERE LibrarianRoleId = '".$librarianrole['LibrarianRoleId']."'"
 			);			
 		}

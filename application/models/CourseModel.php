@@ -15,16 +15,18 @@ class CourseModel extends _BaseModel{
 	public function save($course){
 		if($course['CourseId'] == 0){//insert			
 			$this->db->query("INSERT into course "
-				."(CollegeId, Name) VALUES ("                   
+				."(CollegeId, Name, IsActive) VALUES ("                   
 					."'".$course['CollegeId']."',"
-					."'".$course['Name']."'"
+					."'".$course['Name']."',"
+					."'1'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE course SET "
                 ."CollegeId = '".$course['CollegeId']."',"
-                ."Name = '".$course['Name']."'"
+                ."Name = '".$course['Name']."',"
+                ."IsActive = '".$course['IsActive']."' "
                 ."WHERE CourseId = '".$course['CourseId']."'"
 			);			
 		}

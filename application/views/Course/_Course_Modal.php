@@ -55,7 +55,8 @@
                 url: "<?php echo base_url('College/GetAll'); ?>",
                 async: false,
                 success: function(i){
-                    i = JSON.parse(i);                    
+                    i = JSON.parse(i);   
+                    $('#CollegeId').empty();                 
                     $.each(i, function(index, data){                        
                         $('#CollegeId').append('<option value = "' + data.CollegeId + '">' + data.Name + '</option>');
                     })

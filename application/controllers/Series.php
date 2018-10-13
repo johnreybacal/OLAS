@@ -46,4 +46,5 @@ class Series extends _BaseController {
         $this->series->save($this->input->post('series'));
     }
     
+    
 }

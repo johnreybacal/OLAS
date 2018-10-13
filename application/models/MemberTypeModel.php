@@ -15,11 +15,12 @@ class MemberTypeModel extends _BaseModel{
 	public function save($memberType){
 		if($memberType['MemberTypeId'] == 0){//insert			
 			$this->db->query("INSERT into membertype "
-				."(MemberTypeId, Name, NumberOfBooks, NumberOfDays) VALUES ("
+				."(MemberTypeId, Name, NumberOfBooks, NumberOfDays, IsActive) VALUES ("
 					."'".$memberType['MemberTypeId']."', "
 					."'".$memberType['Name']."', "
 					."'".$memberType['NumberOfBooks']."', "
-					."'".$memberType['NumberOfDays']."'"
+					."'".$memberType['NumberOfDays']."',"
+					."'1'"
 				.")"
 			);
 		}

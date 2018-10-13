@@ -15,15 +15,17 @@ class SubjectModel extends _BaseModel{
 	public function save($subject){
 		if($subject['SubjectId'] == 0){//insert						
 			$this->db->query("INSERT into Subject "
-				."(Name) VALUES ("                   
-					."'".$subject['Name']."'"
+				."(Name, IsActive) VALUES ("                   
+					."'".$subject['Name']."',"
+					."'1'"
 				.")"
 			);
 			return $this->db->query("SELECT MAX(SubjectId) as SubjectId FROM subject")->row()->SubjectId;
 		}
 		else{//update
 			$this->db->query("UPDATE Subject SET "
-                ."Name = '".$subject['Name']."'"
+                ."Name = '".$subject['Name']."',"
+                ."IsActive = '".$subject['IsActive']."' "
                 ."WHERE SubjectId = '".$subject['SubjectId']."'"
 			);
 			return $subject['SubjectId'];

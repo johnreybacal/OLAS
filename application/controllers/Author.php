@@ -46,4 +46,5 @@ class Author extends _BaseController {
         $this->author->save($this->input->post('author'));
     }
 
+    
 }

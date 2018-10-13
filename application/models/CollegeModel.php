@@ -15,14 +15,16 @@ class CollegeModel extends _BaseModel{
 	public function save($college){
 		if($college['CollegeId'] == 0){//insert			
 			$this->db->query("INSERT into college "
-				."(Name) VALUES ("                   
-					."'".$college['Name']."'"
+				."(Name, IsActive) VALUES ("                   
+					."'".$college['Name']."',"
+					."'1'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE college SET "
-                ."Name = '".$college['Name']."'"
+                ."Name = '".$college['Name']."',"
+                ."IsActive = '".$college['IsActive']."' "
                 ."WHERE CollegeId = '".$college['CollegeId']."'"
 			);			
 		}

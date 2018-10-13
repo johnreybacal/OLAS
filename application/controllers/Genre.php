@@ -45,5 +45,6 @@ class Genre extends _BaseController {
     public function Save(){        
         $this->genre->save($this->input->post('genre'));
     }
+
     
 }
