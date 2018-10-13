@@ -26,7 +26,7 @@ class Course extends _BaseController {
             $json .= '['
                 .'"'.$this->college->_get($data->CollegeId)->Name.'", '
                 .'"'.$data->Name.'", '
-                .'"'.$data->IsActive.'",'
+                .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"<button onclick = \"Course_Modal.edit('.$data->CourseId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';

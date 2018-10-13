@@ -16,40 +16,57 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>        
-                
-            <li class="menu-category">Librarian</li>
-
+            
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon fa fa-plus-circle"></span>
-                    <span class="title">Acquisition</span>
+                    <span class="icon ti-layout"></span>
+                    <span class="title">Library</span>
                     <span class="arrow"></span>
                 </a>
 
                 <ul class="menu-submenu">
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Book/Acquire'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Book/'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Add Book</span>
+                            <span class="title">Book</span>
                         </a>
-                    </li>                    
-                </ul>
-            </li>
+                    </li>                            
 
-            <li class="menu-item">
-                <a class="menu-link" href="#">
-                    <span class="icon fa fa-plus-circle"></span>
-                    <span class="title">Cataloguing</span>
-                    <span class="arrow"></span>
-                </a>
-
-                <ul class="menu-submenu">
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Book/Catalogue'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Catalogue Book</span>
+                            <span class="title">Author</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Genre</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Publisher/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Publisher</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Series/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Series</span>
+                        </a>
+                    </li>  
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Subject/'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Subject</span>
                         </a>
                     </li>                    
+
                 </ul>
             </li>
             
@@ -134,55 +151,8 @@
                     <span class="icon fa fa-home"></span>
                     <span class="title">Admission</span>
                 </a>
-            </li>
+            </li>            
 
-            <li class="menu-category">Admin</li>
-
-            <li class="menu-item">
-                <a class="menu-link" href="#">
-                    <span class="icon ti-layout"></span>
-                    <span class="title">Library Content</span>
-                    <span class="arrow"></span>
-                </a>
-
-                <ul class="menu-submenu">
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Book/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Book</span>
-                        </a>
-                    </li>                            
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Author</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Genre</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Publisher/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Publisher</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Series/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Series</span>
-                        </a>
-                    </li>                    
-
-                </ul>
-            </li>
 
             <li class="menu-item">
                 <a class="menu-link" href="#">

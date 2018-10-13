@@ -19,7 +19,20 @@
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Author Name" />
                             </div>
                         </div>                          
-                
+                        <div class="row" id="rowActive">
+                            <div class="col-sm-4 col-md-4">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    <label class="switch switch-info">
+                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <span class="switch-indicator"></span>
+                                        <label>Active</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>      
                     </form>
                 </div>
             </div>
@@ -37,7 +50,8 @@
         data: function () {
             return {
                 AuthorId: $('#AuthorId').val(),                
-                Name: $('#Name').val(),                
+                Name: $('#Name').val(),        
+                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)        
             }
         },
 
@@ -45,12 +59,11 @@
             $('#modal-author-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-author').modal('show');
         },
 
         new: function () {
-            $('#AuthorId').val('0');
+            $('#AuthorId').val('0');            
             $('.modal-title').text('Add Author');            
             $('#rowActive').addClass('invisible');
             Author_Modal.init();
@@ -66,6 +79,7 @@
                     i = JSON.parse(i);
                     $('#AuthorId').val(i.AuthorId);
                     $('#Name').val(i.Name);
+                    $('#IsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },

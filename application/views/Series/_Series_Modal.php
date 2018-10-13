@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="row" id="rowActive">
-                            <div class="col-sm-2 col-md-2">
+                            <div class="col-sm-4 col-md-4">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-8 col-md-8">
@@ -53,7 +53,7 @@
             return {
                 SeriesId: $('#SeriesId').val(),                
                 Name: $('#Name').val(),                
-                IsActive: $('#IsActive').prop("checked")                
+                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -82,7 +82,7 @@
                     i = JSON.parse(i);
                     $('#SeriesId').val(i.SeriesId);
                     $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", i.IsActive);
+                    $('#IsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },

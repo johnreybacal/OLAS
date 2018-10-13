@@ -29,7 +29,7 @@
                         </div>    
 
                         <div class="row" id="rowActive">
-                            <div class="col-sm-2 col-md-2">
+                            <div class="col-sm-4 col-md-4">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-8 col-md-8">
@@ -62,7 +62,7 @@
                 SubjectId: $('#SubjectId').val(),
                 CourseId: $('#CourseId').val(),
                 Name: $('#Name').val(),                
-                IsActive: $('#IsActive').prop("checked")
+                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -104,7 +104,7 @@
                     console.log(i);
                     $('#SubjectId').val(i.SubjectId);
                     $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", i.Name);
+                    $('#IsActive').prop("checked", (i.IsActive == 1));
                 }
             });
             $.ajax({
