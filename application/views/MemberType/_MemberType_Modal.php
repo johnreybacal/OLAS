@@ -69,14 +69,29 @@
             $('#modal-membertype-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
+            $('#modal-membertype').modal('show');
         },
 
         new: function () {
             $('#MemberTypeId').val('0');
             $('.modal-title').text('Update');
             $('#rowActive').addClass('invisible');
-            $('#modal-membertype').modal('show');
             MemberType_Modal.init();
+        },
+
+        edit: function (id) {
+            $('.modal-title').text('Edit MemberType');            
+            MemberType_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('MemberType/Get/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    $('#MemberTypeId').val(i.MemberTypeId);
+                    $('#Name').val(i.Name);
+                    $('#NumberOfBooks').val(i.NumberOfBooks);
+                    $('#NumberOfDays').val(i.NumberOfDays);
+                }
+            })
         },
 
         validate: function () {
