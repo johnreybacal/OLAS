@@ -13,18 +13,18 @@
                         <input type="hidden" id="MemberTypeId"/>
                         
                           
-                                <div class="row mb-2">
-                                    <div class="col-md-2">
-                                        <label>MemberType Data</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="Name" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
-                                        <input id="NumberOfBooks" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
-                                        <input id="NumberOfDays" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
-                                    </div>
+                            <div class="row mb-2">
+                                <div class="col-md-2">
+                                    <label>MemberType Data</label>
                                 </div>
+                                <div class="col-md-9">
+                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
+                                    <input id="NumberOfBooks" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
+                                    <input id="NumberOfDays" name="Name" type="text" class="form-control" placeholder="MemberType Data" />
+                                </div>
+                            </div>
                            
-                            <!-- <div class="row" id="rowActive">
+                            <div class="row" id="rowActive">
                                 <div class="col-sm-2 col-md-2">
                                     <label>Status:</label>
                                 </div>
@@ -37,7 +37,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                       
                     </form>
                 </div>
@@ -58,9 +58,9 @@
                 MemberTypeId: $('#MemberTypeId').val(),
                 Name: $('#Name').val(),
                 NumberOfBooks: $('#NumberOfBooks').val(),
-                NumberOfDays: $('#NumberOfDays').val()
+                NumberOfDays: $('#NumberOfDays').val(),
                 //s: $('#s').find(":selected").text(),
-                //Active: $('#IsActive').prop("checked")
+                IsActive: $('#IsActive').prop("checked")
             }
             console.log(MemberType_Modal.data.val());
         },
@@ -91,6 +91,7 @@
                     $('#Name').val(i.Name);
                     $('#NumberOfBooks').val(i.NumberOfBooks);
                     $('#NumberOfDays').val(i.NumberOfDays);
+                    $('#IsActive').prop("checked", i.IsActive);
                 }
             })
         },
@@ -124,10 +125,6 @@
                     }
                 }
             });
-        },
-
-        sad: function(){
-
         },
 
         save: function () {

@@ -45,18 +45,20 @@
             $('#modal-author-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            $('#rowActive').addClass('invisible');
+            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-author').modal('show');
         },
 
         new: function () {
             $('#AuthorId').val('0');
             $('.modal-title').text('Add Author');            
+            $('#rowActive').addClass('invisible');
             Author_Modal.init();
         },
 
         edit: function (id) {            
-            $('.modal-title').text('Edit Author');            
+            $('.modal-title').text('Edit Author');  
+            $('#rowActive').removeClass('invisible');          
             Author_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Author/Get/'); ?>" + id,

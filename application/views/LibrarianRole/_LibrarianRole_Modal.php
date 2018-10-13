@@ -13,16 +13,16 @@
                         <input type="hidden" id="LibrarianRoleId"/>
                         
                           
-                                <div class="row mb-2">
-                                    <div class="col-md-2">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="Name" name="Name" type="text" class="form-control" placeholder="LibrarianRole Data" />
-                                    </div>
+                            <div class="row mb-2">
+                                <div class="col-md-2">
+                                    <label>Name</label>
                                 </div>
+                                <div class="col-md-9">
+                                    <input id="Name" name="Name" type="text" class="form-control" placeholder="LibrarianRole Data" />
+                                </div>
+                            </div>
                            
-                            <!-- <div class="row" id="rowActive">
+                            <div class="row" id="rowActive">
                                 <div class="col-sm-2 col-md-2">
                                     <label>Status:</label>
                                 </div>
@@ -35,7 +35,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                       
                     </form>
                 </div>
@@ -56,7 +56,7 @@
                 LibrarianRoleId: $('#LibrarianRoleId').val(),
                 Name: $('#Name').val(),
                 //s: $('#s').find(":selected").text(),
-                //Active: $('#IsActive').prop("checked")
+                IsActive: $('#IsActive').prop("checked")
             }
         },
 
@@ -83,6 +83,7 @@
                     i = JSON.parse(i);
                     $('#LibrarianRoleId').val(i.LibrarianRoleId);
                     $('#Name').val(i.Name);
+                    $('#IsActive').prop("checked", i.IsActive);
                 }
             })
         },

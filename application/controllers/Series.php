@@ -25,7 +25,8 @@ class Series extends _BaseController {
         foreach($this->series->_list() as $data){
             $json .= '['                
                 .'"'.$data->Name.'",'
-                .'"<button onclick=\"Series_Modal.edit('.$data->SeriesId.')\">Edit</button>"'
+                .'"'.$data->IsActive.'",'
+                .'"<button onclick = \"Series_Modal.edit('.$data->SeriesId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

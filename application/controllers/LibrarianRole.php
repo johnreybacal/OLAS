@@ -27,6 +27,7 @@ class LibrarianRole extends _BaseController {
             $json .= '['
                 .'"<a href = \''.base_url('LibrarianRole/View/'.$data->LibrarianRoleId).'\'>'.$data->LibrarianRoleId.'</a>",'
                 .'"'.$data->Name.'",'
+                .'"'.$data->IsActive.'",'
                 .'"<button onclick = \"LibrarianRole_Modal.edit('.$data->LibrarianRoleId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';

@@ -25,7 +25,8 @@ class Genre extends _BaseController {
         foreach($this->genre->_list() as $data){
             $json .= '['
                 .'"'.$data->Name.'",'
-                .'"<button onclick=\"Genre_Modal.edit('.$data->GenreId.')\">Edit</button>"'
+                .'"'.$data->IsActive.'",'
+                .'"<button onclick = \"Genre_Modal.edit('.$data->GenreId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

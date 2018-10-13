@@ -1,5 +1,3 @@
-
-
 <header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
 <div class="container">
 	<div class="header-info">
@@ -31,6 +29,7 @@
 							<th>Subject</th>
 							<th>Course</th>
 							<th>College</th>
+							<th>Status</th>
 							<th></th>
 						</tr>
 					</thead>

@@ -29,7 +29,8 @@
 					<thead>
 						<tr>
 							<th>College name</th>	
-							<th></th>									
+							<th>Status</th>									
+							<th></th>
 						</tr>
 					</thead>
 				</table>            			

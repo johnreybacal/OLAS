@@ -26,6 +26,21 @@
                             <div class="col-md-8">
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Course Name" />
                             </div>
+                        </div>
+
+                        <div class="row" id="rowActive">
+                            <div class="col-sm-2 col-md-2">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    <label class="switch switch-info">
+                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <span class="switch-indicator"></span>
+                                        <label>Active</label>
+                                    </label>
+                                </div>
+                            </div>
                         </div>                                                   
                       
                     </form>
@@ -47,6 +62,7 @@
                 CourseId: $('#CourseId').val(),
                 CollegeId: $('#CollegeId').selectpicker('val'),
                 Name: $('#Name').val(),                
+                IsActive: $('#IsActive').prop("checked"),                
             }
         },
 
@@ -63,7 +79,7 @@
                     $('#CollegeId').selectpicker('refresh');
                 }
             })
-            $('#rowActive').addClass('invisible');
+            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-course').modal('show');
             $('#modal-course-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
@@ -73,11 +89,13 @@
         new: function () {
             $('#CourseId').val('0');
             $('.modal-title').text('Add Course');            
+            $('#rowActive').addClass('invisible');
             Course_Modal.init();
         },
 
         edit: function (id) {
             $('.modal-title').text('Edit Course');            
+            $('#rowActive').removeClass('invisible');          
             Course_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Course/Get/'); ?>" + id,
@@ -86,6 +104,7 @@
                     $('#CourseId').val(i.CourseId);
                     $('#CollegeId').selectpicker('val', i.CollegeId);
                     $('#Name').val(i.Name);
+                    $('#IsActive').prop("checked", i.IsActive);
                 }
             })
         },

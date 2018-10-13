@@ -18,7 +18,22 @@
                             <div class="col-md-8">
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Genre Name" />
                             </div>
-                        </div>                          
+                        </div>   
+
+                        <div class="row" id="rowActive">
+                            <div class="col-sm-2 col-md-2">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    <label class="switch switch-info">
+                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <span class="switch-indicator"></span>
+                                        <label>Active</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>                       
                 
                     </form>
                 </div>
@@ -38,6 +53,7 @@
             return {
                 GenreId: $('#GenreId').val(),                
                 Name: $('#Name').val(),                
+                IsActive: $('#IsActive').prop("checked"),                
             }
         },
 
@@ -45,18 +61,20 @@
             $('#modal-genre-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            $('#rowActive').addClass('invisible');
+            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-genre').modal('show');
         },
 
         new: function () {
             $('#GenreId').val('0');
             $('.modal-title').text('Add Genre');            
+            $('#rowActive').addClass('invisible');
             Genre_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Genre');            
+            $('#rowActive').removeClass('invisible');          
             Genre_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Genre/Get/'); ?>" + id,
@@ -64,6 +82,7 @@
                     i = JSON.parse(i);
                     $('#GenreId').val(i.GenreId);
                     $('#Name').val(i.Name);
+                    $('#IsActive').prop("checked", i.IsActive);
                 }
             });           
         },

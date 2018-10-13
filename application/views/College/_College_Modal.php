@@ -10,7 +10,9 @@
             <div class="modal-body">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-college-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="CollegeId"/>                                                
+                        <input type="hidden" id="CollegeId"/>
+
+
                         <div class="row mb-2">
                             <div class="col-md-4">
                                 <label>College Name</label>
@@ -18,7 +20,22 @@
                             <div class="col-md-8">
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="College Name" />
                             </div>
-                        </div>                    
+                        </div>   
+
+                        <div class="row" id="rowActive">
+                            <div class="col-sm-2 col-md-2">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8">
+                                <div class="form-group">
+                                    <label class="switch switch-info">
+                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <span class="switch-indicator"></span>
+                                        <label>Active</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>                 
                       
                     </form>
                 </div>
@@ -37,12 +54,13 @@
         data: function () {
             return {
                 CollegeId: $('#CollegeId').val(),
-                Name: $('#Name').val(),                
+                Name: $('#Name').val(),                 
+                IsActive: $('#IsActive').prop("checked")
             }
         },
 
         init: function () {
-            $('#rowActive').addClass('invisible');
+            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-college').modal('show');
             $('#modal-college-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
@@ -52,11 +70,13 @@
         new: function () {
             $('#CollegeId').val('0');
             $('.modal-title').text('Add College');    
+            $('#rowActive').addClass('invisible');
             College_Modal.init();
         },
 
         edit: function (id) {
             $('.modal-title').text('Edit College');            
+            $('#rowActive').removeClass('invisible');          
             College_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('College/Get/'); ?>" + id,
@@ -64,6 +84,7 @@
                     i = JSON.parse(i);
                     $('#CollegeId').val(i.CollegeId);
                     $('#Name').val(i.Name);
+                    $('#IsActive').prop("checked", i.IsActive);
                 }
             })
         },

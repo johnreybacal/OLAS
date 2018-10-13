@@ -30,6 +30,7 @@
 						<tr>
 							<th>College</th>			
 							<th>Course</th>
+							<th>Status</th>
 							<th></th>
 						</tr>
 					</thead>

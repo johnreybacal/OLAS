@@ -29,10 +29,11 @@ class MemberType extends _BaseController {
         foreach($this->membertype->_list() as $data){
             $json .= '['
                 .'"<a href = \''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->MemberTypeId.'</a>",'
-                // .'"<button onclick = var.method()\''.base_url('MemberType/View/'.$data->MemberTypeId).'\'>'.$data->Name.'</a>",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->NumberOfBooks.'",'
                 .'"'.$data->NumberOfDays.'",'
+                .'"'.$data->IsActive.'",'
+                // .'"'.($data->IsActive == true ? '<span class = \"badge badge-success"\>Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"<button onclick = \"MemberType_Modal.edit('.$data->MemberTypeId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';

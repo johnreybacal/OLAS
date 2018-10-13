@@ -25,7 +25,8 @@ class Publisher extends _BaseController {
         foreach($this->publisher->_list() as $data){
             $json .= '['
                 .'"'.$data->Name.'",'
-                .'"<button onclick=\"Publisher_Modal.edit('.$data->PublisherId.')\">Edit</button>"'
+                .'"'.$data->IsActive.'",'
+                .'"<button onclick = \"Publisher_Modal.edit('.$data->PublisherId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

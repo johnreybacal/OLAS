@@ -28,6 +28,7 @@
 						<tr>
 							<th>LibrarianRole ID</th>
 							<th>Name</th>
+							<th>Status</th>
 							<th>Reload Reload Action Action</th>
 						</tr>
 					</thead>

@@ -72,7 +72,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-info" onclick="Librarian_Modal.save()">Save</button>
             </div>
@@ -91,7 +90,7 @@
                 LastName: $('#LastName').val(),
                 Username: $('#Username').val(),
                 Password: $('#Password').val(),
-                //Active: $('#IsActive').prop("checked")
+                // Active: $('#IsActive').prop("checked")
             }
         },
 
@@ -185,6 +184,4 @@
             
         }
     };
-
-
 </script>

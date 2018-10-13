@@ -25,7 +25,12 @@ class Author extends _BaseController {
         foreach($this->author->_list() as $data){
             $json .= '['
                 .'"'.$data->Name.'",'
-                .'"<button onclick=\"Author_Modal.edit('.$data->AuthorId.')\">Edit</button>"'
+                .'"'.$data->IsActive.'",'
+                // .'"<button onclick = \"College_Modal.edit('.$data->CollegeId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // .'"'.$data->IsActive == true ?.'"<span class =\"badge badge-success"\>Active</span>"'. : .'"<span class = \"badge badge-danger\">Inactive</span>"'.'",'
+                // x.Active == true ? "<span class ='badge badge-success'>Active</span>" : "<span class = 'badge badge-danger'>Inactive</span>",
+                .'"<button onclick = \"Author_Modal.edit('.$data->AuthorId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // "<button onclick='Utilities_PANType_Modal.edit("+ x.PANTypeId +")' class = 'btn btn-md btn-flat btn-info'><span class = 'fa fa-edit fa-2x'></span></button>"
             .']';            
             $json .= ',';
         }

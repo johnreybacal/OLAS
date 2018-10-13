@@ -22,18 +22,19 @@ class Subject extends _BaseController {
     
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->subject->_list() as $subject){            
+        foreach($this->subject->_list() as $data){            
             $courses = [];
             $json .= '['                
-                .'"'.$subject->Name.'","';
-            foreach($this->subjectCourse->_list($subject->SubjectId) as $c){
+                .'"'.$data->Name.'","';
+            foreach($this->subjectCourse->_list($data->SubjectId) as $c){
                 $courses[] = $c->CourseId;
                 $course = $this->course->_get($c->CourseId);                    
                 $json .= ' '.$course->Name.',';
             }
             $json = $this->removeExcessComma($json).'",'
                 .'"'.$this->loopAll($this->college->getDistinct($courses)).'",'
-                .'"<button onclick = \"Subject_Modal.edit('.$subject->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
+                .'"'.$data->IsActive.'",'
+                .'"<button onclick = \"Subject_Modal.edit('.$data->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
             .'],';
         }
         $json = $this->removeExcessComma($json);
