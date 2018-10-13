@@ -75,13 +75,22 @@ class Librarian extends _BaseController {
                 .'"'.$data->LibrarianRoleId.'",'
                 .'"'.$data->FirstName.'",'
                 .'"'.$data->LastName.'",'
-                .'"'.$data->Username.'"'
+                .'"<button onclick = \"Librarian_Modal.edit('.$data->LibrarianId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // .'"'.$data->Username.'"'
             .']';            
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function GetAll(){
+        echo $this->convert($this->librarian->_list());
+    }
+    
+    public function Get($id){
+        echo $this->convert($this->librarian->_get($id));
     }
 
     public function Save(){        

@@ -17,16 +17,23 @@
                                 <label>Librarian Role</label>
                             </div>
                             <div class="col-md-3 col-sm-3">
-                                <select id="LibraryRoleid" name="LibrarianId" class="form-control align-center">
-                                </select>
+                                <select id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Librarian Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-2">
-                                <label>Librarian Name</label>
+                                <label>Librarian FirstName</label>
                             </div>
                             <div class="col-md-9">
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
+                                <input id="FirstName" name="Name" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <label>Librarian LastName</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input id="LastName" name="Name" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -67,7 +74,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Librarian_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Librarian_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -78,30 +85,106 @@
         data: function () {
             return {
                 LibrarianId: $('#LibrarianId').val(),
-                Name: $('#Name').val(),
-                LibraryRoleid: $('#LibraryRoleid').find(":selected").text(),
+                // LibraryRoleId: $('#LibraryRoleId').find(":selected").text(),
+                LibrarianRoleId: $('#LibrarianRoleId').selectpicker('val'),
+                FirstName: $('#FirstName').val(),
+                LastName: $('#LastName').val(),
+                Username: $('#Username').val(),
+                Password: $('#Password').val(),
                 //Active: $('#IsActive').prop("checked")
             }
         },
 
         init: function () {
+            $.ajax({
+                url: "<?php echo base_url('LibrarianRole/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    $.each(i, function(index, data){                        
+                        $('#LibrarianRoleId').append('<option value = "' + data.LibrarianRoleId + '">' + data.Name + '</option>');
+                    })
+                    $('#LibrarianRoleId').selectpicker('refresh');
+                }
+            })
+
             $('#modal-librarian-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
+            $('#modal-librarian').modal('show');
         },
 
         new: function () {
             $('#LibrarianId').val('0');
             $('.modal-title').text('Update');
             $('#rowActive').addClass('invisible');
-            $('#modal-librarian').modal('show');
             Librarian_Modal.init();
         },
 
         validate: function () {
             
+        },
+
+        edit: function (id) {
+            $('.modal-title').text('Edit Librarian');            
+            Librarian_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('Librarian/Get/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    console.log("edit");
+                    console.log(i);
+                    $('#LibrarianId').val(i.LibrarianId),
+
+                    $('#LibrarianRoleId').selectpicker('val', i.LibrarianRoleId);
+                    $('#FirstName').val(i.FirstName);
+                    $('#LastName').val(i.LastName);
+                    $('#Username').val(i.Username);
+                    $('#Password').val(i.Password);
+                        //optional 
+                    // $('#ContactNumber').val(i.ContactNumber);
+                    // $('#Email').val(i.Email); 
+                }
+            })
+        },
+
+        save: function() {
+            var message;
+                console.log(Librarian_Modal.data());
+                console.log($('#LibrarianId').val());
+                if ($('#LibrarianId').val() == 0) {
+                    message = "Great Job! New Librarian has been created";
+                } else {
+                    message = "Nice! Librarian has been updated";
+                }
+                console.log($('#LibrarianId').val());
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Librarian',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Librarian/Save'); ?>',{
+                        librarian: Librarian_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+                            $('#modal-librarian').modal('hide');
+
+                                console.log(i);
+                                //$('table').DataTable().ajax.reload();
+                            }
+                        );	
+                    }
+                })
+            
         }
-    }
+    };
 
 
 </script>

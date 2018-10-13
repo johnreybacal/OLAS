@@ -10,8 +10,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" href="<?php echo base_url('/Member/Add'); ?>"
-		 data-provide="tooltip" data-original-title="Add Book">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Member_Modal.new();"
+	data-toggle="modal" data-target="#modal-member" data-provide="tooltip" data-original-title="Add Member">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -42,7 +42,7 @@
 
 <?php //include('/Member/Edit'); ?>
 
-<?php include("_Member_Modal_Edit.php"); ?>
+<?php include("_Member_Modal.php"); ?>
 
 <script>
     $(document).ready(function () {

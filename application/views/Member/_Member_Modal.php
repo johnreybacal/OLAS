@@ -83,14 +83,14 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Member_Modal_Edit.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Member_Modal.save()">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var Member_Modal_Edit = {
+    var Member_Modal = {
         data: function () {
             return {
                 MemberId: $('#MemberId').val(),
@@ -104,7 +104,7 @@
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
             }
-            console.log(Member_Modal_Edit.data.val());
+            console.log(Member_Modal.data.val());
         },
 
         init: function () {
@@ -130,12 +130,12 @@
             $('#MemberId').val('0');
             $('.modal-title').text('Update');
             $('#rowActive').addClass('invisible');
-            Member_Modal_Edit.init();
+            Member_Modal.init();
         },
 
         edit: function (id) {
             $('.modal-title').text('Edit Member');            
-            Member_Modal_Edit.init();
+            Member_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Member/Get/'); ?>" + id,
                 success: function(i){
@@ -163,7 +163,7 @@
                 url: $('#siteUrl').val() + "member/validate",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ "member": Member_Modal_Edit.data() }),
+                data: JSON.stringify({ "member": Member_Modal.data() }),
                 success: function (i) {
                     if (i.status == false) {
                         $.each(i.data, function (key, value) {
@@ -180,7 +180,7 @@
                             element.after(value.message);
                         });
                     } else {
-                        Member_Modal_Edit.save();
+                        Member_Modal.save();
                     }
                 }
             });
@@ -192,7 +192,7 @@
 
         save: function () {
             var message;
-                console.log(Member_Modal_Edit.data());
+                console.log(Member_Modal.data());
                 console.log($('#MemberId').val());
                 if ($('#MemberId').val() == 0) {
                     message = "Great Job! New Member has been created";
@@ -213,7 +213,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.post('<?php echo base_url('Member/Save'); ?>',{
-                        member: Member_Modal_Edit.data()
+                        member: Member_Modal.data()
                         }, function(i){
                             swal('Good Job!', message, 'success');
                             $('#modal-member-edit').modal('hide');
