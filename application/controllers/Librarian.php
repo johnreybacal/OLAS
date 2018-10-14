@@ -80,4 +80,22 @@ class Librarian extends _BaseController {
         $this->librarian->save($this->input->post('librarian'));
     }
 
+    public function Email(){
+        $this->load->library('email');
+
+        $this->email->from('johnmarksena@gmail.com', 'Your Name');
+        $this->email->to('srphfthnd@gmail.com');
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing');
+
+        if($this->email->send()){
+           echo "Good";
+        }
+        else{
+            echo "Bad";
+        }
+
+    }
+
 }
