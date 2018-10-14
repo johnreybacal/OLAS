@@ -1,14 +1,3 @@
-<header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
-	<div class="container">
-		<div class="header-info">
-			<div class="left">
-				<br>
-				<h2 class="header-title"><strong>Books</strong> <small class="subtitle">List of all books are available in this page.</small></h2>
-			</div>
-		</div>
-	</div>
-</header><!--/.header -->
-
 <div class="main-content">
 	<form id="book-form">
 		<div class="row">
@@ -229,12 +218,40 @@
 		},
 
 		save: function(){			
-			$.post('<?php echo base_url('Book/Save'); ?>',{
-				book: Book.data()
-				}, function(i){				
-					console.log(i);					
+			swal({
+				title: 'Confirm Submission',
+				text: 'Save changes for Book',
+				type: 'warning',
+				showCancelButton: true,
+				cancelButtonText: 'No! Cancel',
+				cancelButtonClass: 'btn btn-default',
+				confirmButtonText: 'Yes! Go for it',
+				confirmButtonClass: 'btn btn-info'
+			}).then((result) => {
+				if (result.value) {                        
+					$.post('<?php echo base_url('Book/Save'); ?>',{
+						book: Book.data()
+						}, function(i){											
+							swal({
+								title: 'Book saved succesfully',
+								text: 'Would you like to add another book?',
+								type: 'success',
+								showCancelButton: true,
+								cancelButtonText: 'No',
+								cancelButtonClass: 'btn btn-default',
+								confirmButtonText: 'Yes',
+								confirmButtonClass: 'btn btn-info'
+							}).then((result) => {
+								if (result.value) {
+									Book.reset();
+								}else{
+									window.location.href = "<?php echo base_url('Book'); ?>"
+								}
+							})
+						}
+					);			
 				}
-			);			
+			})
 		}
 	};
 </script>

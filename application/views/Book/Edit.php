@@ -228,12 +228,39 @@
 		},
 
 		save: function(){			
-			$.post('<?php echo base_url('Book/Save'); ?>',{
-				book: Book.data()
-				}, function(i){				
-					console.log(i);					
+			swal({
+				title: 'Confirm Submission',
+				text: 'Save changes for Book',
+				type: 'warning',
+				showCancelButton: true,
+				cancelButtonText: 'No! Cancel',
+				cancelButtonClass: 'btn btn-default',
+				confirmButtonText: 'Yes! Go for it',
+				confirmButtonClass: 'btn btn-info'
+			}).then((result) => {
+				if (result.value) {                        
+					$.post('<?php echo base_url('Book/Save'); ?>',{
+						book: Book.data()
+						}, function(i){											
+							swal({
+								title: 'Book saved succesfully',
+								text: 'Would you like to make some more changes?',
+								type: 'success',
+								showCancelButton: true,
+								cancelButtonText: 'No',
+								cancelButtonClass: 'btn btn-default',
+								confirmButtonText: 'Yes',
+								confirmButtonClass: 'btn btn-info'
+							}).then((result) => {
+								if (result.value) {									
+								}else{
+									window.location.href = "<?php echo base_url('Book'); ?>"
+								}
+							})
+						}
+					);			
 				}
-			);			
+			})		
 		}
 	};
 </script>
