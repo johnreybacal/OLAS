@@ -7,19 +7,10 @@ class Author extends _BaseController {
 		parent::__construct();		
     }
     
-    public function index(){		          		              	
-		$this->header();
-		$this->load->view('Author/index');
-		$this->footer();
-	}
-
-	public function View($id){
-        $data['author'] = $this->convert($this->author->_get($id));
-        $this->header();
-        $this->load->view('Author/View', $data);
-        $this->footer();
+    public function index(){
+        $this->librarianView('Author/index', '');
     }
-	
+    
 	public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->author->_list() as $data){

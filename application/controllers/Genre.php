@@ -8,18 +8,9 @@ class Genre extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Genre/index');
-		$this->footer();
+        $this->librarianView('Genre/index', '');
     }
     
-    public function View($id){
-        $data['genre'] = $this->convert($this->genre->_get($id));
-        $this->header();
-        $this->load->view('Genre/View', $data);
-        $this->footer();
-    }       
-
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->genre->_list() as $data){

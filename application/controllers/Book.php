@@ -8,28 +8,20 @@ class Book extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Book/index');
-		$this->footer();
+		$this->librarianView('Book/index', '');
     }
         
     public function Add(){
-        $this->header();
-        $this->load->view('Book/Add');
-        $this->footer();
+        $this->librarianView('Book/add', '');
     }
     
     public function Edit($id){
         $data['book'] = $this->bookCatalogue->_get($id);
-        $this->header();
-        $this->load->view('Book/Edit', $data);
-        $this->footer();
+        $this->librarianView('Book/Edit', $data);
     }
 
     public function MarcUpload(){
-        $this->header();
-        $this->load->view('Book/MarcUpload');
-        $this->footer();
+        $this->librarianView('Book/MarcUpload', '');
     }
 
     public function GenerateTable(){

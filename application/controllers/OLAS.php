@@ -13,8 +13,7 @@ class OLAS extends _BaseController {
 	{		          		              	
 		$this->header();
 		$this->load->view('OLAS/index');
-		$this->footer();
-		// redirect(base_url('Librarian/Dashboard'));
+		$this->footer();		
 	}
 
 	public function Login(){

@@ -8,16 +8,7 @@ class College extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('College/index');
-		$this->footer();
-    }
-    
-    public function View($id){
-        $data['college'] = $this->convert($this->college->_get($id));
-        $this->header();
-        $this->load->view('College/View', $data);
-        $this->footer();
+		$this->librarianView('College/index', '');
     }
     
     public function GenerateTable(){

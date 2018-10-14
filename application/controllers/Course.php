@@ -8,16 +8,7 @@ class Course extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Course/index');
-		$this->footer();
-    }
-    
-    public function View($id){
-        $data['course'] = $this->convert($this->course->_get($id));
-        $this->header();
-        $this->load->view('Course/View', $data);
-        $this->footer();
+        $this->librarianView('Course/index', '');
     }
     
     public function GenerateTable(){

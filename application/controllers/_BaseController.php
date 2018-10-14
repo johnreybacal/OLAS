@@ -22,9 +22,14 @@ class _BaseController extends CI_Controller {
 		return true;
 	}
 
-	public function isLibrarian(){
+	public function librarianView($url, $data){
 		$this->isLoggedIn();
-		if(!$this->session->has_userdata('isLibrarian')){
+		if($this->session->has_userdata('isLibrarian')){
+			$this->header();
+			$this->load->view($url, $data);
+			$this->footer();
+		}
+		else{
 			echo "403: Access Denied";
 		}
 		return true;
@@ -84,6 +89,14 @@ class _BaseController extends CI_Controller {
             $str = substr($str, 0, strlen($str) - 1);
 		}
 		return $str;
+	}
+
+	//html helpers hehe
+
+	public function IsActive($url){		
+		if($url == uri_string()){
+			echo "active";
+		}
 	}
 
 }

@@ -8,16 +8,7 @@ class Series extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Series/index');
-		$this->footer();
-    }
-    
-    public function View($id){
-        $data['series'] = $this->convert($this->series->_get($id));
-        $this->header();
-        $this->load->view('Series/View', $data);
-        $this->footer();
+		$this->librarianView('Series/index', '');
     }
 
     public function GenerateTable(){

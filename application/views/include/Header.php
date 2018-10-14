@@ -20,7 +20,12 @@
 </head>
 
 <body>
-<?php include("MenuLibrarian.php"); ?>
+
+<?php
+	if($this->session->has_userdata('isLibrarian')){
+		include("MenuLibrarian.php");
+	}
+?>
 <?php include("TopBar.php"); ?>
 
 <main class="main-container">

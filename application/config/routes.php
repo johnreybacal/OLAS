@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['Login'] = 'OLAS/Login';
 $route['validate'] = 'OLAS/validate';
+$route['IsActive/(:any)'] = 'OLAS/IsActive/$1';

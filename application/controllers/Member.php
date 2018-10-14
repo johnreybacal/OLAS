@@ -8,33 +8,10 @@ class Member extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Member/index');
-		$this->footer();
+		$this->librarianView('Member/index', '');
     }
     
-    public function Add(){
-		$this->header();
-		$this->load->view('Member/Add');
-		$this->footer();
-	}
-	
-	public function View($id){
-        $data['member'] = $this->convert($this->member->_get($id));
-        $this->header();
-        $this->load->view('Member/View', $data);
-        $this->footer();
-    }
-
-    public function Edit($id){
-        $data['id'] = $this->convert($this->member->_get($id));
-        $this->header();
-        $this->load->view('Member/Edit', $data);
-        $this->footer();
-    }
-    
-    public function Authenticate(){
-        // print_r($this->input->post('login')['Username']);
+    public function Authenticate(){        
 		print_r($this->member->authenticate(
             $this->input->post('login')['Username'],
             $this->input->post('login')['Password']

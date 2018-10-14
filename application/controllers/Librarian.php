@@ -7,21 +7,9 @@ class Librarian extends _BaseController {
 		parent::__construct();
     }
     
-    // public function index(){		          		              	
-        //$this->Login();		
-    // }
-
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('Librarian/index');
-		$this->footer();
-    }
-
-    public function Add(){		          		              	
-		$this->header();
-		$this->load->view('Librarian/Add');
-		$this->footer();
-    }
+        $this->Login();		
+    }   
 
     public function Login(){        
         if($this->session->has_userdata('isLoggedIn')){
@@ -32,13 +20,9 @@ class Librarian extends _BaseController {
 		$this->footer();
     }
     
-    // public function Dashboard(){
-    //     if($this->isLibrarian()){
-    //         $this->header();
-    //         $this->load->view('Librarian/Dashboard');
-    //         $this->footer();            
-    //     }
-	// }
+    public function Dashboard(){
+        $this->librarianView('Librarian/Dashboard', '');
+	}
 	
 	public function Profile($id){
         $data['librarian'] = $this->convert($this->librarian->_get($id));

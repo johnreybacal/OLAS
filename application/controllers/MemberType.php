@@ -8,20 +8,7 @@ class MemberType extends _BaseController {
     }
     
     public function index(){		          		              	
-		$this->header();
-		$this->load->view('MemberType/index');
-		$this->footer();
-    }
-    
-    public function View($id){
-        $data['membertype'] = $this->convert($this->membertype->_get($id));
-        $this->header();
-        $this->load->view('MemberType/View', $data);
-        $this->footer();
-    }
-
-    public function Validate(){
-        
+        $this->librarianView('MemberType/index', '');
     }
     
     public function GenerateTable(){
