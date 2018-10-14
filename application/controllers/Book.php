@@ -12,20 +12,20 @@ class Book extends _BaseController {
 		$this->load->view('Book/index');
 		$this->footer();
     }
-    
-    public function View($id){
-        $data['book'] = $this->convert($this->book->_get($id));
-        $this->header();
-        $this->load->view('Book/View', $data);
-        $this->footer();
-    }
-    
+        
     public function Add(){
         $this->header();
         $this->load->view('Book/Add');
         $this->footer();
     }
     
+    public function Edit($id){
+        $data['book'] = $this->bookCatalogue->_get($id);
+        $this->header();
+        $this->load->view('Book/Edit', $data);
+        $this->footer();
+    }
+
     public function MarcUpload(){
         $this->header();
         $this->load->view('Book/MarcUpload');
@@ -54,7 +54,7 @@ class Book extends _BaseController {
         foreach($this->bookCatalogue->_list() as $data){   
             $x = $this->book->_get($data->ISBN);                
             $json .= '['
-                .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$data->AccessionNumber.'</a>",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$x->Title.'",'                
@@ -67,7 +67,8 @@ class Book extends _BaseController {
                 .'"'.$this->loopAll($this->book->getCourse($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCollege($data->ISBN)).'",'
                 .'"'.$data->DateAcquired.'",'
-                .'"'.$data->AcquiredFrom.'"'
+                .'"'.$data->AcquiredFrom.'",'
+                .'"<a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }

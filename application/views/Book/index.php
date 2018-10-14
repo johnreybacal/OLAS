@@ -40,6 +40,7 @@
 							<th>College</th>
 							<th>Date Acquired</th>
 							<th>Acquired From</th>
+							<th></th>
 						</tr>
 					</thead>
 				</table>            			

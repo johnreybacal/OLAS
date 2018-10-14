@@ -30,6 +30,13 @@
                             <span class="dot"></span>
                             <span class="title">Book</span>
                         </a>
+                    </li>   
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Book/Add'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Add Book</span>
+                        </a>
                     </li>                            
 
                     <li class="menu-item">
@@ -113,13 +120,6 @@
                         <a class="menu-link" href="<?php echo base_url('Member'); ?>">
                             <span class="dot"></span>
                             <span class="title">Member</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Member/Add'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Add Member</span>
                         </a>
                     </li>
                     
