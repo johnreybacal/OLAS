@@ -106,14 +106,19 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('College/Save'); ?>',{
-				            college: College_Modal.data()
-				            }, function(i){				
-                            swal('Good Job!', message, 'success');
-					        $('#modal-college').modal('hide');
-                            console.log(i);
+                        $.ajax({
+                            url:'<?php echo base_url('College/Save'); ?>',
+                            type: "POST",
+                            data: {"college": College_Modal.data()},
+                            success: function(i){
+                                swal('Good Job!', message, 'success');
+                                $('#modal-college').modal('hide');
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
                             }
-                        );	
+                        })                           	
                     }
                 })
            

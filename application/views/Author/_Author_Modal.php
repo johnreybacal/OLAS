@@ -84,34 +84,39 @@
         },
 
         save: function () {
-            var message;
-                console.log(Author_Modal.data());
-                if ($('#AuthorId').val() == 0) {
-                    message = "Great Job! New Author has been created";
-                } else {
-                    message = "Nice! Author has been updated";
-                }
+            var message;            
+            if ($('#AuthorId').val() == 0) {
+                message = "Great Job! New Author has been created";
+            } else {
+                message = "Nice! Author has been updated";
+            }
 
-                swal({
-                    title: 'Confirm Submission',
-                    text: 'Save changes for Author',
-                    type: 'warning',
-                    showCancelButton: true,
-                    cancelButtonText: 'No! Cancel',
-                    cancelButtonClass: 'btn btn-default',
-                    confirmButtonText: 'Yes! Go for it',
-                    confirmButtonClass: 'btn btn-info'
-                }).then((result) => {
-                    if (result.value) {
-                        $.post('<?php echo base_url('Author/Save'); ?>',{
-                        author: Author_Modal.data()
-                        }, function(i){
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Author',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:'<?php echo base_url('Author/Save'); ?>',
+                        type: "POST",
+                        data: {"author": Author_Modal.data()},
+                        success: function(i){
                             swal('Good Job!', message, 'success');
-        					$('#modal-author').modal('hide');
+                            $('#modal-author').modal('hide');
                             console.log(i);
-                        });	
-                    }
-                })
+                        }, 
+                        error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
+                        }
+                    })                                     
+                }
+            })
         }
     }
 

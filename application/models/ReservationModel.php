@@ -19,7 +19,7 @@ class ReservationModel extends _BaseModel{
 					."'".$reservation['MemberId']."'"
 					."'".$reservation['AccessionNumber']."'"
 					."'".$reservation['DateReserved']."'"
-					."'false'"
+					."'0'"
 				.")"
 			);
 		}

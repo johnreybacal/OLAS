@@ -105,13 +105,19 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('Series/Save'); ?>',{
-                        series: Series_Modal.data()
-                        }, function(i){
-                            swal('Good Job!', message, 'success');
-        					$('#modal-series').modal('hide');
-                            console.log(i);
-                        });	
+                        $.ajax({
+                            url:'<?php echo base_url('Series/Save'); ?>',
+                            type: "POST",
+                            data: {"series": Series_Modal.data()},
+                            success: function(i){
+                                swal('Good Job!', message, 'success');
+                                $('#modal-series').modal('hide');
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                        })    
                     }
                 })
         }

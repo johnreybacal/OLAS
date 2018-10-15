@@ -105,13 +105,19 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('Publisher/Save'); ?>',{
-                        publisher: Publisher_Modal.data()
-                        }, function(i){
-                            swal('Good Job!', message, 'success');
-        					$('#modal-publisher').modal('hide');
-                            console.log(i);
-                        });	
+                        $.ajax({
+                            url:'<?php echo base_url('Publisher/Save'); ?>',
+                            type: "POST",
+                            data: {"publisher": Publisher_Modal.data()},
+                            success: function(i){
+                                swal('Good Job!', message, 'success');
+                                $('#modal-publisher').modal('hide');
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                        })    
                     }
                 })
         }

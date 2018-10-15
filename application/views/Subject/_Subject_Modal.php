@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Courses associated with subject</label>
-                                <select id="CourseId" name="CourseId" data-provide="selectpicker" title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
+                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
                             </div>
                             <div class="col-12">
                                 <label>Subject Name</label>
@@ -131,14 +131,19 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('Subject/Save'); ?>',{
-                        subject: Subject_Modal.data()
-                        }, function(i){
-                            swal('Good Job!', message, 'success');
-        					$('#modal-subject').modal('hide');
-                            console.log(i);
+                        $.ajax({
+                            url:'<?php echo base_url('Subject/Save'); ?>',
+                            type: "POST",
+                            data: {"subject": Subject_Modal.data()},
+                            success: function(i){
+                                swal('Good Job!', message, 'success');
+                                $('#modal-subject').modal('hide');
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
                             }
-                        );	
+                        })    
                     }
                 })
         }

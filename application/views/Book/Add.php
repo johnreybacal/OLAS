@@ -212,8 +212,9 @@
 				"AccessionNumber": 0,
 				"CallNumber": $('#CallNumber').val(),
 				"DateAcquired": $('#DateAcquired').val(),
-				"Status": "In",
 				"AcquiredFrom": $('#AcquiredFrom').val(), 
+				"IsAvailable": 1,
+				"IsActive": 1,
 			}
 		},
 
@@ -228,10 +229,12 @@
 				confirmButtonText: 'Yes! Go for it',
 				confirmButtonClass: 'btn btn-info'
 			}).then((result) => {
-				if (result.value) {                        
-					$.post('<?php echo base_url('Book/Save'); ?>',{
-						book: Book.data()
-						}, function(i){											
+				if (result.value) {        
+					$.ajax({
+						url:'<?php echo base_url('Book/Save'); ?>',
+						type: "POST",
+						data: {"book": Book.data()},
+						success: function(i){
 							swal({
 								title: 'Book saved succesfully',
 								text: 'Would you like to add another book?',
@@ -248,8 +251,11 @@
 									window.location.href = "<?php echo base_url('Book'); ?>"
 								}
 							})
+						}, 
+						error: function(i){
+							swal('Oops!', "Something went wrong", 'error');
 						}
-					);			
+					})                    					
 				}
 			})
 		}

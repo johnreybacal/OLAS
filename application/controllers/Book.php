@@ -12,12 +12,17 @@ class Book extends _BaseController {
     }
         
     public function Add(){
-        $this->librarianView('Book/add', '');
+        $this->librarianView('Book/Add', '');
     }
     
     public function Edit($id){
         $data['book'] = $this->bookCatalogue->_get($id);
         $this->librarianView('Book/Edit', $data);
+    }
+
+    public function View($id){
+        $data['book'] = $this->bookCatalogue->_get($id);
+        $this->librarianView('Book/View', $data);
     }
 
     public function MarcUpload(){
@@ -26,14 +31,16 @@ class Book extends _BaseController {
 
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->bookCatalogue->_list() as $data){
-            $json .= '['
-                .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$data->AccessionNumber.'</a>",'
+        foreach($this->bookCatalogue->_list() as $data){   
+            $x = $this->book->_get($data->ISBN);                
+            $json .= '['                
                 .'"'.$data->CallNumber.'",'
-                .'"'.$data->ISBN.'",'
+                .'"'.$data->ISBN.'",'                
+                .'"'.$x->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
-                .'"'.$data->AcquiredFrom.'"'
-            .']';            
+                .'"'.$data->AcquiredFrom.'",'
+                .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+            .']';             
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);

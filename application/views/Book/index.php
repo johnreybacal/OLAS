@@ -23,21 +23,21 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableComplete") ?>">
+				<table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
 					<thead>
 						<tr>
-							<th>Accession Number</th>
+							<!-- <th>Accession Number</th> -->
 							<th>Call Number</th>
 							<th>ISBN</th>
 							<th>Title</th>
-							<th>Author</th>			
+							<!-- <th>Author</th>			
 							<th>Genre</th>
 							<th>Publisher</th>
 							<th>Series</th>
 							<th>Edition</th>
 							<th>Subject</th>
 							<th>Course</th>
-							<th>College</th>
+							<th>College</th> -->
 							<th>Date Acquired</th>
 							<th>Acquired From</th>
 							<th></th>
