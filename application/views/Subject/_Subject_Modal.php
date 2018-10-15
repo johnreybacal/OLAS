@@ -44,7 +44,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Subject_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Subject_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -109,6 +109,31 @@
                     $('#CourseId').selectpicker('val', i);                    
                 }
             })
+        },
+
+        validate: function(){
+            $('.invalid-feedback').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $.ajax({
+                url:'<?php echo base_url('Subject/Validate'); ?>',
+                type: "POST",
+                data: {"subject": Subject_Modal.data()},
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Subject_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
         },
 
         save: function () {

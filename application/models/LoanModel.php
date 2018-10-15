@@ -38,6 +38,6 @@ class LoanModel extends _BaseModel{
                 ."WHERE LoanId = '".$loan['LoanId']."'"
 			);			
 		}
-    }	
+	}
     
 }

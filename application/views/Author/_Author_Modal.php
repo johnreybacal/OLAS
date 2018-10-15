@@ -38,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Author_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Author_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -81,6 +81,31 @@
                     $('#IsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
+        },
+
+        validate: function(){
+            $('.invalid-feedback').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $.ajax({
+                url:'<?php echo base_url('Author/Validate'); ?>',
+                type: "POST",
+                data: {"author": Author_Modal.data()},
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Author_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
         },
 
         save: function () {

@@ -83,6 +83,8 @@ class _BaseController extends CI_Controller {
 		return $this->removeExcessComma($str);
 	}
 
+
+
 	//removes excess comma at the end for generating tables
 	public function removeExcessComma($str){
 		if($str != '{ "data": ['){
@@ -91,8 +93,12 @@ class _BaseController extends CI_Controller {
 		return $str;
 	}
 
-	//html helpers hehe
+	//invalid
+	public function invalid($str){
+		return '<div class=\"invalid-feedback\" style=\"display:block\">'.$str.'</div>';
+	}
 
+	//html helpers hehe
 	public function IsActive($url){		
 		if($url == uri_string()){
 			echo "active";

@@ -1,15 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Author extends _BaseController {
-
+    
     public function __construct(){
-		parent::__construct();		
+        parent::__construct();		
     }
     
     public function index(){
         $this->librarianView('Author/index', '');
-    }
+    }        
     
 	public function GenerateTable(){
         $json = '{ "data": [';
@@ -34,6 +35,18 @@ class Author extends _BaseController {
         echo $this->convert($this->author->_get($id));
     }
     
+    public function Validate(){
+        $author = $this->input->post('author');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($author['Name'])){
+            $str .= '"Name":"'.$this->invalid('Name can\'t be null').'",';
+            $valid = false;
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }
+
     public function Save(){        
         $this->author->save($this->input->post('author'));
     }
