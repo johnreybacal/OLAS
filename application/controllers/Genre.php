@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Genre extends _BaseController {
 
     public function __construct(){
@@ -34,6 +35,22 @@ class Genre extends _BaseController {
         echo $this->convert($this->genre->_get($id));
     }
     
+    public function Validate(){
+        $genre = $this->input->post('genre');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($genre['Name'])){
+            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $valid = false;
+        }
+        else if($this->genre->_exist('Name', $genre['Name'])->GenreId != $genre['GenreId']){
+            $str .= '"Name":"'.$this->invalid('Genre already exist').'",';
+            $valid = false;
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }
+
     public function Save(){        
         $this->genre->save($this->input->post('genre'));
     }

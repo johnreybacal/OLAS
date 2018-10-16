@@ -51,12 +51,15 @@ class Subject extends _BaseController {
     }
     
     public function Validate(){
-        $subject = $this->input->post('subject');
-        // print_r($subject);
+        $subject = $this->input->post('subject');        
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($subject['Name'])){
-            $str .= '"Name":"'.$this->invalid('Name can\'t be null').'",';
+            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $valid = false;
+        }
+        else if($this->subject->_exist('Name', $subject['Name'])->SubjectId != $subject['SubjectId']){
+            $str .= '"Name":"'.$this->invalid('Subject already exist').'",';
             $valid = false;
         }
         if(array_key_exists('CourseId', $subject)){

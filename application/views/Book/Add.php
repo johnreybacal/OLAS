@@ -67,7 +67,7 @@
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
-						<button type="button" class="btn btn-info" onclick="Book.save()">Save</button>
+						<button type="button" class="btn btn-info" onclick="Book.validate()">Save</button>
 					</div>
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
@@ -217,6 +217,31 @@
 				"IsActive": 1,
 			}
 		},
+
+		validate: function(){
+            $('.invalid-feedback').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $.ajax({
+                url:'<?php echo base_url('Book/Validate'); ?>',
+                type: "POST",
+                data: {"book": Book.data()},
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Book.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
+        },
 
 		save: function(){			
 			swal({

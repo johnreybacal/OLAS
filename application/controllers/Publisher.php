@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Publisher extends _BaseController {
 
     public function __construct(){
@@ -34,6 +35,22 @@ class Publisher extends _BaseController {
         echo $this->convert($this->publisher->_get($id));
     }
     
+    public function Validate(){
+        $publisher = $this->input->post('publisher');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($publisher['Name'])){
+            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $valid = false;
+        }
+        else if($this->publisher->_exist('Name', $publisher['Name'])->PublisherId != $publisher['PublisherId']){
+            $str .= '"Name":"'.$this->invalid('Publisher already exist').'",';
+            $valid = false;
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }
+
     public function Save(){        
         $this->publisher->save($this->input->post('publisher'));
     }
