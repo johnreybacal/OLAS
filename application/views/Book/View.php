@@ -65,14 +65,22 @@
 									<div class="form-group col-md-6">
 										<label>Acquired from</label>
 										<input readonly  id="AcquiredFrom" value = "<?php echo $book->AcquiredFrom; ?>" class="form-control" type="text" name="" placeholder="">
-									</div>													
+									</div>					
+									<div class="form-group col-md-6">
+										<label>Price</label>
+										<input readonly id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
+									</div>				
+									<div class="form-group col-md-6">										
+										<label class="switch switch-lg switch-info">
+											<input readonly type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
+											<span class="switch-indicator"></span>
+											<label>Room Use Only</label>
+										</label>
+									</div>									
 								</div> <!-- form-row gap-1 -->
 							</div> <!-- col-md-12 -->
 						</div> <!-- row -->
-					</div> <!-- card-body -->
-					<div class="card-footer text-right">
-						<button type="button" class="btn btn-info" onclick="Book.save()">Save</button>
-					</div>
+					</div> <!-- card-body -->					
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
 		</div> <!-- row -->
