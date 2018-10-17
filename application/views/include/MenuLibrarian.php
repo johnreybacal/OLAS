@@ -100,7 +100,7 @@
                     </li>  
 
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url(''); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Reservation'); ?>">
                             <span class="dot"></span>
                             <span class="title">Reservations</span>
                         </a>
