@@ -24,6 +24,8 @@
 <?php
 	if($this->session->has_userdata('isLibrarian')){
 		include("MenuLibrarian.php");
+	}else{
+		include("Menu.php");
 	}
 ?>
 <?php include("TopBar.php"); ?>

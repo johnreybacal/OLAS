@@ -33,11 +33,11 @@ class Book extends _BaseController {
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list() as $data){   
-            $x = $this->book->_get($data->ISBN);                
+            $book = $this->book->_get($data->ISBN);                
             $json .= '['                
                 .'"'.$data->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
-                .'"'.$x->Title.'",'                                
+                .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
                 .'"'.$data->AcquiredFrom.'",'
                 .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
@@ -49,20 +49,41 @@ class Book extends _BaseController {
         echo $json;        
     }
 
+    public function GenerateOPAC(){        
+        $json = '{ "data": [';
+        foreach($this->bookCatalogue->_list() as $data){   
+            $book = $this->book->_get($data->ISBN);                
+            $json .= '['                
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
+                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
+                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$book->Edition.'",'
+                .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
+                .'"'.$data->CallNumber.'",'
+                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
+            .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;  
+    }
+
     public function GenerateTableComplete(){
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list() as $data){   
-            $x = $this->book->_get($data->ISBN);                
+            $book = $this->book->_get($data->ISBN);                
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
-                .'"'.$x->Title.'",'                
+                .'"'.$book->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                
-                .'"'.$this->publisher->_get($x->PublisherId)->Name.'",'
-                .'"'.$this->series->_get($x->SeriesId)->Name.'",'
-                .'"'.$x->Edition.'",'
+                .'"'.$this->publisher->_get($book->PublisherId)->Name.'",'
+                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCourse($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCollege($data->ISBN)).'",'
