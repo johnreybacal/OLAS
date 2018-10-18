@@ -147,7 +147,18 @@ class Book extends _BaseController {
                     $valid = false;
                 }
             }
+        }
+        //price
+        if(!v::intVal()->notEmpty()->validate($book['Price'])){
+            $str .= '"Price":"'.$this->invalid('Please input a value').'",';
+            $valid = false;
         } 
+        else{
+            if(!v::intVal()->min(0)->validate($book['Price'])){
+                $str .= '"Price":"'.$this->invalid('Invalid Price').'",';
+                $valid = false;
+            } 
+        }
         //multiple selectpickers
         if(array_key_exists('AuthorId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['AuthorId'])){

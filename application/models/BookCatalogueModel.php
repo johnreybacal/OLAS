@@ -15,11 +15,13 @@ class BookCatalogueModel extends _BaseModel{
 	public function save($book){
 		if($book['AccessionNumber'] == 0){//insert			
 			$this->db->query("INSERT into bookcatalogue "
-				."(CallNumber, ISBN, DateAcquired, AcquiredFrom, IsAvailable, IsActive) VALUES ("
+				."(CallNumber, ISBN, DateAcquired, AcquiredFrom, Price, IsRoomUseOnly, IsAvailable, IsActive) VALUES ("
 					."'".$book['CallNumber']."', "
 					."'".$book['ISBN']."', "					
 					."'".$book['DateAcquired']."', "
 					."'".$book['AcquiredFrom']."',"
+					."'".$book['Price']."',"
+					."'".$book['IsRoomUseOnly']."',"
 					."'1',"
 					."'1'"
 				.")"
@@ -31,6 +33,8 @@ class BookCatalogueModel extends _BaseModel{
 				."ISBN = '".$book['ISBN']."', "								
 				."DateAcquired = '".$book['DateAcquired']."', "
 				."AcquiredFrom = '".$book['AcquiredFrom']."', "
+				."Price = '".$book['Price']."', "
+				."IsRoomUseOnly = '".$book['IsRoomUseOnly']."', "
 				."IsAvailable = '".$book['IsAvailable']."', "
 				."IsActive = '".$book['IsActive']."' "
 				."WHERE AccessionNumber = '".$book['AccessionNumber']."'"
