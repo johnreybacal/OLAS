@@ -15,9 +15,9 @@ class Circulation extends _BaseController {
         $json = '{ "data": [';
         foreach($this->loan->_list() as $data){            
             $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
-            $member = $this->member->_get($data->MemberId);            
+            $patron = $this->patron->_get($data->MemberId);            
             $json .= '['                
-                .'"'.$member->LastName.', '.$member->FirstName.'",'
+                .'"'.$patron->LastName.', '.$patron->FirstName.'",'
                 .'"'.$isbn.'",'
                 .'"'.$this->book->_get($isbn)->Title.'",'
                 .'"'.$data->DateBorrowed.'",'

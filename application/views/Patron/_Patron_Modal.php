@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-patron-edit" tabindex="-1">
-    <div class="modal-dialog modal-sm ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Patron</h5>
@@ -23,13 +23,17 @@
                                 <label>First Name</label>
                                 <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
                             </div>
-                            <!-- <div class="form-group col-12">
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Middle Name</label>
                                 <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
-                            </div> -->
+                            </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Last Name</label>
                                 <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                <label>Extension Name</label>
+                                <input  id="ExtensionName" class="form-control" type="text" name="ExtensionName" placeholder="Extension Name">
                             </div>
                             <!-- <div class="form-group col-12">
                                     <label>Sex</label>
@@ -38,14 +42,22 @@
                                             <option value="MALE">Male</option>
                                     </select>
                             </div> -->
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12"> <!-- has-form-text" -->
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12"> <!-- has-form-text" -->
                                 <label>Email</label>
                                 <input  id="Email" class="form-control" type="email" name="Email" placeholder="Email">
                                 <!-- <small class="form-text">We'll never share your email with anyone else.</small> -->
                             </div>
-                            <div class="form-group col-lg-12 col-md-12 col-sm-122">
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Contact Number</label>
                                 <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                <label>Id Number</label>
+                                <input  id="Id Number" class="form-control" type="number" name="Id Number" placeholder="Id Number">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                <label>RFID Number</label>
+                                <input  id="RFIDNumber" class="form-control" type="number" name="RFIDNumber" placeholder="RFID Number">
                             </div>
                             <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Email</label>
@@ -78,10 +90,15 @@
                 PatronId: $('#PatronId').val(),
                 PatronTypeId: $('#PatronTypeId').selectpicker('val'),
                 FirstName: $('#FirstName').val(),
+                MiddleName: $('#MiddleName').val(),
                 LastName: $('#LastName').val(),
+                ExtensionName: $('#ExtensionName').val(),
                 Email: $('#Email').val(),
                 Password: $('#Password').val(),
                 ContactNumber: $('#ContactNumber').val(),
+                //
+                IdNumber: $('#IdNumber').val(),
+                RFIDNo: $('#RFIDNumber').val(),
                 // Email: $('#Email').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
@@ -127,12 +144,16 @@
                     console.log(i);
                     $('#PatronId').val(i.PatronId),
 
-                    $('#FirstName').val(i.FirstName);
                     $('#PatronTypeId').selectpicker('val', i.PatronTypeId);
+                    $('#FirstName').val(i.FirstName);
+                    $('#MiddleName').val(i.MiddleName);
                     $('#LastName').val(i.LastName);
                     $('#Email').val(i.Email);
                     $('#Password').val(i.Password);
                     $('#ContactNumber').val(i.ContactNumber);
+                    //
+                    $('#IdNumber').val(i.IdNumber);
+                    $('#RFIDNumber').val(i.RFIDNo);
                     // $('#Email').val(i.Email);
                 }
             })
