@@ -1,21 +1,21 @@
-<div class="modal modal-center fade" id="modal-member-edit" tabindex="-1">
+<div class="modal modal-center fade" id="modal-patron-edit" tabindex="-1">
     <div class="modal-dialog modal-sm ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Member</h5>
+                <h5 class="modal-title">Add Patron</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-member-edit-form">
-                        <input id="MemberId" hidden/>
+                    <form id="modal-patron-edit-form">
+                        <input id="PatronId" hidden/>
                         
                         <div class="row mb-2">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
-                                <label>Member Type</label>
-                                <select id="MemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control show-tick"></select>
+                                <label>Patron Type</label>
+                                <select id="PatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control show-tick"></select>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -47,10 +47,10 @@
                                 <label>Contact Number</label>
                                 <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
                             </div>
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <label>Username</label>
-                                <input  id="Username" class="form-control" type="text" name="Username" placeholder="Username">
-                            </div>
+                            <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                <label>Email</label>
+                                <input  id="Email" class="form-control" type="text" name="Email" placeholder="Email">
+                            </div> -->
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Password</label>
                                 <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password">
@@ -65,75 +65,75 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Member_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Patron_Modal.save()">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var Member_Modal = {
+    var Patron_Modal = {
         data: function () {
             return {
-                MemberId: $('#MemberId').val(),
-                MemberTypeId: $('#MemberTypeId').selectpicker('val'),
+                PatronId: $('#PatronId').val(),
+                PatronTypeId: $('#PatronTypeId').selectpicker('val'),
                 FirstName: $('#FirstName').val(),
                 LastName: $('#LastName').val(),
-                Username: $('#Username').val(),
+                Email: $('#Email').val(),
                 Password: $('#Password').val(),
                 ContactNumber: $('#ContactNumber').val(),
-                Email: $('#Email').val(),
+                // Email: $('#Email').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
             }
-            console.log(Member_Modal.data.val());
+            console.log(Patron_Modal.data.val());
         },
 
         init: function () {
             $.ajax({
-                url: "<?php echo base_url('MemberType/GetAll'); ?>",
+                url: "<?php echo base_url('PatronType/GetAll'); ?>",
                 async: false,
                 success: function(i){
                     i = JSON.parse(i);          
-                    $('#MemberTypeId').empty();          
+                    $('#PatronTypeId').empty();          
                     $.each(i, function(index, data){                        
-                        $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+                        $('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
                     })
-                    $('#MemberTypeId').selectpicker('refresh');
+                    $('#PatronTypeId').selectpicker('refresh');
                 }
             })
 
-            $('#modal-member-edit-form')[0].reset();
+            $('#modal-patron-edit-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            $('#modal-member-edit').modal('show');
+            $('#modal-patron-edit').modal('show');
         },
 
         new: function () {
-            $('#MemberId').val('0');
-            $('.modal-title').text('Add Member');
+            $('#PatronId').val('0');
+            $('.modal-title').text('Add Patron');
             $('#rowActive').addClass('invisible');
-            Member_Modal.init();
+            Patron_Modal.init();
         },
 
         edit: function (id) {
-            $('.modal-title').text('Edit Member');            
-            Member_Modal.init();
+            $('.modal-title').text('Edit Patron');            
+            Patron_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Member/Get/'); ?>" + id,
+                url: "<?php echo base_url('Patron/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log("edit");
                     console.log(i);
-                    $('#MemberId').val(i.MemberId),
+                    $('#PatronId').val(i.PatronId),
 
                     $('#FirstName').val(i.FirstName);
-                    $('#MemberTypeId').selectpicker('val', i.MemberTypeId);
+                    $('#PatronTypeId').selectpicker('val', i.PatronTypeId);
                     $('#LastName').val(i.LastName);
-                    $('#Username').val(i.Username);
+                    $('#Email').val(i.Email);
                     $('#Password').val(i.Password);
                     $('#ContactNumber').val(i.ContactNumber);
-                    $('#Email').val(i.Email);
+                    // $('#Email').val(i.Email);
                 }
             })
         },
@@ -143,10 +143,10 @@
             $('.invalid-feedback').remove();
 
             $.ajax({
-                url: $('#siteUrl').val() + "member/validate",
+                url: $('#siteUrl').val() + "patron/validate",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ "member": Member_Modal.data() }),
+                data: JSON.stringify({ "patron": Patron_Modal.data() }),
                 success: function (i) {
                     if (i.status == false) {
                         $.each(i.data, function (key, value) {
@@ -163,7 +163,7 @@
                             element.after(value.message);
                         });
                     } else {
-                        Member_Modal.save();
+                        Patron_Modal.save();
                     }
                 }
             });
@@ -175,18 +175,18 @@
 
         save: function () {
             var message;
-                console.log(Member_Modal.data());
-                console.log($('#MemberId').val());
-                if ($('#MemberId').val() == 0) {
-                    message = "Great Job! New Member has been created";
+                console.log(Patron_Modal.data());
+                console.log($('#PatronId').val());
+                if ($('#PatronId').val() == 0) {
+                    message = "Great Job! New Patron has been created";
                 } else {
-                    message = "Nice! Member has been updated";
+                    message = "Nice! Patron has been updated";
                 }
-                console.log($('#MemberId').val());
+                console.log($('#PatronId').val());
 
                 swal({
                     title: 'Confirm Submission',
-                    text: 'Save changes for Member Type',
+                    text: 'Save changes for Patron Type',
                     type: 'warning',
                     showCancelButton: true,
                     cancelButtonText: 'No! Cancel',
@@ -195,11 +195,11 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('Member/Save'); ?>',{
-                        member: Member_Modal.data()
+                        $.post('<?php echo base_url('Patron/Save'); ?>',{
+                        patron: Patron_Modal.data()
                         }, function(i){
                             swal('Good Job!', message, 'success');
-                            $('#modal-member-edit').modal('hide');
+                            $('#modal-patron-edit').modal('hide');
 
                                 console.log(i);
                                 //$('table').DataTable().ajax.reload();

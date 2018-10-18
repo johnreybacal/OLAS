@@ -10,8 +10,8 @@
 
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Member_Modal.new();"
-	data-toggle="modal" data-target="#modal-member" data-provide="tooltip" data-original-title="Add Member">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Patron_Modal.new();"
+	data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Add Patron">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -33,17 +33,16 @@
 <div class="main-content">
 	<div class="card">
 		<div class="card-title bl-3 border-info">
-			<h4>Member</h4>
+			<h4>Patron</h4>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Member/GenerateTable") ?>">
+				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
 					<thead>
 						<tr>
-							<th>Member ID</th>
+							<th>Patron ID</th>
 							<th>Name</th>
-							<th>Username</th>
-							<th>Member Type </th>
+							<th>Patron Type </th>
 							<th>Contact Number</th>
 							<th>Email</th>
 							<th>Action</th>
@@ -57,28 +56,28 @@
 
 <div class="fab fab-fixed">
     <button class="btn btn-float btn-lg btn-info float-md-right" id="fab-button" 
-            onclick="Member_Modal.new();" data-toggle="modal" 
-            data-target="#modal-" data-provide="tooltip" data-original-title="Add Member">
+            onclick="Patron_Modal.new();" data-toggle="modal" 
+            data-target="#modal-" data-provide="tooltip" data-original-title="Add Patron">
     <i class="ti-plus"></i>
     </button>
 </div>
 
-<?php //include('/Member/Edit'); ?>
+<?php //include('/Patron/Edit'); ?>
 
-<?php include("_Member_Modal.php"); ?>
+<?php include("_Patron_Modal.php"); ?>
 
 <script>
     $(document).ready(function () {
-        Member.init();
+        Patron.init();
     });
 
-    var Member = {
+    var Patron = {
         init: function () {
             $('.modal').on('hidden.bs.modal', function () {
-                Member.reset();
+                Patron.reset();
             });
 
-            Member.reset();
+            Patron.reset();
         },
 
         reset: function () {

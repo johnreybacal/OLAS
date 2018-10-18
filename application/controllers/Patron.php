@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-class Member extends _BaseController {
+class Patron extends _BaseController {
 
     public function __construct(){
 		parent::__construct();
     }
     
     public function index(){		          		              	
-		$this->librarianView('Member/index', '');
+		$this->librarianView('Patron/index', '');
     }
     
     public function Authenticate(){        
-		print_r($this->member->authenticate(
+		print_r($this->patron->authenticate(
             $this->input->post('login')['Username'],
             $this->input->post('login')['Password']
         ));
@@ -20,16 +20,15 @@ class Member extends _BaseController {
 	
 	public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->member->_list() as $data){
+        foreach($this->patron->_list() as $data){
             $json .= '['
-				.'"<a href = \''.base_url('Member/View/'.$data->MemberId).'\'>'.$data->MemberId.'</a>",'
+				.'"<a href = \''.base_url('Patron/View/'.$data->PatronId).'\'>'.$data->PatronId.'</a>",'
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
-                .'"'.$data->Username.'",'
-                .'"'.$this->membertype->_get($data->MemberTypeId)->Name.'",'
+                .'"'.$this->patrontype->_get($data->PatronTypeId)->Name.'",'
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Email.'",'
-                .'"<button onclick = \"Member_Modal.edit('.$data->MemberId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
-                // .'"<a href = \"'.base_url("Member/edit/".$data->MemberId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<button onclick = \"Patron_Modal.edit('.$data->PatronId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // .'"<a href = \"'.base_url("Patron/edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';            
             $json .= ',';
         }
@@ -39,10 +38,10 @@ class Member extends _BaseController {
     }
 
     public function Get($id){
-        echo $this->convert($this->member->_get($id));
+        echo $this->convert($this->patron->_get($id));
     }
 
     public function Save(){        
-        $this->member->save($this->input->post('member'));
+        $this->patron->save($this->input->post('patron'));
     }
 }

@@ -117,16 +117,16 @@
 
                 <ul class="menu-submenu">
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Member'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Patron'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Member</span>
+                            <span class="title">Patron</span>
                         </a>
                     </li>
                     
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('MemberType'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('PatronType'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Member Type</span>
+                            <span class="title">Patron Type</span>
                         </a>
                     </li>
 

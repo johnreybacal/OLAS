@@ -1,16 +1,16 @@
-<div class="modal modal-center fade" id="modal-membertype" tabindex="-1">
+<div class="modal modal-center fade" id="modal-patrontype" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add MemberType</h5>
+                <h5 class="modal-title">Add PatronType</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-membertype-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="MemberTypeId"/>
+                    <form id="modal-patrontype-form" action="#" class="form-group mt-2">
+                        <input type="hidden" id="PatronTypeId"/>
                         
                           
                             <div class="row mb-2">
@@ -54,17 +54,17 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="MemberType_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="PatronType_Modal.save()">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var MemberType_Modal = {
+    var PatronType_Modal = {
         data: function () {
             return {
-                MemberTypeId: $('#MemberTypeId').val(),
+                PatronTypeId: $('#PatronTypeId').val(),
                 Name: $('#Name').val(),
                 NumberOfBooks: $('#NumberOfBooks').val(),
                 NumberOfDays: $('#NumberOfDays').val(),
@@ -74,29 +74,29 @@
         },
 
         init: function () {
-            $('#modal-membertype-form')[0].reset();
+            $('#modal-patrontype-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            $('#modal-membertype').modal('show');
+            $('#modal-patrontype').modal('show');
         },
 
         new: function () {
-            $('#MemberTypeId').val('0');
-            $('.modal-title').text('Add Member Type');
+            $('#PatronTypeId').val('0');
+            $('.modal-title').text('Add Patron Type');
             $('#rowActive').addClass('invisible');
-            MemberType_Modal.init();
+            PatronType_Modal.init();
         },
 
         edit: function (id) {
-            $('.modal-title').text('Edit MemberType');   
+            $('.modal-title').text('Edit PatronType');   
             $('#rowActive').removeClass('invisible');
-            MemberType_Modal.init();
+            PatronType_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('MemberType/Get/'); ?>" + id,
+                url: "<?php echo base_url('PatronType/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log(i);
-                    $('#MemberTypeId').val(i.MemberTypeId);
+                    $('#PatronTypeId').val(i.PatronTypeId);
                     $('#Name').val(i.Name);
                     $('#NumberOfBooks').val(i.NumberOfBooks);
                     $('#NumberOfDays').val(i.NumberOfDays);
@@ -110,10 +110,10 @@
             $('.invalid-feedback').remove();
 
             $.ajax({
-                url: $('#siteUrl').val() + "membertype/validate",
+                url: $('#siteUrl').val() + "patrontype/validate",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ "membertype": MemberType_Modal.data() }),
+                data: JSON.stringify({ "patrontype": PatronType_Modal.data() }),
                 success: function (i) {
                     if (i.status == false) {
                         $.each(i.data, function (key, value) {
@@ -130,7 +130,7 @@
                             element.after(value.message);
                         });
                     } else {
-                        MemberType_Modal.save();
+                        PatronType_Modal.save();
                     }
                 }
             });
@@ -138,16 +138,16 @@
 
         save: function () {
             var message;
-                console.log(MemberType_Modal.data());
-                if ($('#MemberTypeId').val() == 0) {
-                    message = "Great Job! New MemberType has been created";
+                console.log(PatronType_Modal.data());
+                if ($('#PatronTypeId').val() == 0) {
+                    message = "Great Job! New PatronType has been created";
                 } else {
-                    message = "Nice! MemberType has been updated";
+                    message = "Nice! PatronType has been updated";
                 }
 
                 swal({
                     title: 'Confirm Submission',
-                    text: 'Save changes for Member Type',
+                    text: 'Save changes for Patron Type',
                     type: 'warning',
                     showCancelButton: true,
                     cancelButtonText: 'No! Cancel',
@@ -156,11 +156,11 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.post('<?php echo base_url('MemberType/Save'); ?>',{
-                        membertype: MemberType_Modal.data()
+                        $.post('<?php echo base_url('PatronType/Save'); ?>',{
+                        patrontype: PatronType_Modal.data()
                         }, function(i){
                             swal('Good Job!', message, 'success');
-                            $('#modal-membertype').modal('hide');
+                            $('#modal-patrontype').modal('hide');
                                 console.log(i);
                                 //$('table').DataTable().ajax.reload();
                             }
