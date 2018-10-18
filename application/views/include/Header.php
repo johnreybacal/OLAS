@@ -22,12 +22,15 @@
 <body>
 
 <?php
-	if($this->session->has_userdata('isLibrarian')){
-		include("MenuLibrarian.php");
-	}else{
-		include("Menu.php");
+	if($this->session->has_userdata('isLoggedIn')){
+		if($this->session->has_userdata('isLibrarian')){
+			include("MenuLibrarian.php");
+		}else{
+			include("Menu.php");
+		}
+	}
+	if(strToLower(uri_string()) != 'librarian/login'){
+		include("TopBar.php");
 	}
 ?>
-<?php include("TopBar.php"); ?>
-
 <main class="main-container">

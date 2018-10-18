@@ -7,17 +7,22 @@ class Librarian extends _BaseController {
 		parent::__construct();
     }
     
-    public function index(){		          		              	
-        $this->Login();		
+    public function index(){
+        if($this->session->has_userdata('isLoggedIn')){
+            redirect(base_url('Librarian/Dashboard'));
+        }else{
+            redirect(base_url('Librarian/Login'));
+        }
     }   
 
     public function Login(){        
         if($this->session->has_userdata('isLoggedIn')){
             redirect(base_url('Librarian/Dashboard'));
         }
+        $data['loginPage'] = true;
         $this->header();
-        $this->load->view('Librarian/Login');
-		$this->footer();
+        $this->load->view('Librarian/Login', $data);
+        $this->footer();		
     }
     
     public function Dashboard(){
@@ -43,7 +48,7 @@ class Librarian extends _BaseController {
                 )
             );
         }        
-        echo $result;        
+        echo $result;
     }
     
     public function LogOut(){
