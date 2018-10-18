@@ -40,12 +40,17 @@ class Publisher extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($publisher['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');;
             $valid = false;
         }
-        else if($this->publisher->_exist('Name', $publisher['Name'])->PublisherId != $publisher['PublisherId']){
-            $str .= '"Name":"'.$this->invalid('Publisher already exist').'",';
-            $valid = false;
+        else{
+            $ifExist = $this->publisher->_exist('Name', $publisher['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->PublisherId != $publisher['PublisherId']){
+                    $str .= $this->invalid('Name', 'Publisher already exist');
+                    $valid = false;
+                }
+            }
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;

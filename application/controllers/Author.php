@@ -40,12 +40,17 @@ class Author extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($author['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');;
             $valid = false;
         }
-        else if($this->author->_exist('Name', $author['Name'])->AuthorId != $author['AuthorId']){
-            $str .= '"Name":"'.$this->invalid('Author already exist').'",';
-            $valid = false;
+        else{
+            $ifExist = $this->author->_exist('Name', $author['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->AuthorId != $author['AuthorId']){
+                    $str .= $this->invalid('Name', 'Author already exist');
+                    $valid = false;
+                }
+            }
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;

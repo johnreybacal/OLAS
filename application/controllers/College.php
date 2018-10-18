@@ -32,12 +32,17 @@ class College extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($college['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');
             $valid = false;
         }
-        else if($this->college->_exist('Name', $college['Name'])->CollegeId != $college['CollegeId']){
-            $str .= '"Name":"'.$this->invalid('College already exist').'",';
-            $valid = false;
+        else {
+            $ifExist = $this->college->_exist('Name', $college['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->CollegeId != $college['CollegeId']){
+                    $str .= $this->invalid('Name', 'College already exist');
+                    $valid = false;
+                }
+            }
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;

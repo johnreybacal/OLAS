@@ -55,20 +55,25 @@ class Subject extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($subject['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');
             $valid = false;
         }
-        else if($this->subject->_exist('Name', $subject['Name'])->SubjectId != $subject['SubjectId']){
-            $str .= '"Name":"'.$this->invalid('Subject already exist').'",';
-            $valid = false;
+        else{
+            $ifExist = $this->subject->_exist('Name', $subject['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->SubjectId != $subject['SubjectId']){
+                    $str .= $this->invalid('Name', 'Subject already exist');
+                    $valid = false;
+                }
+            }
         }
         if(array_key_exists('CourseId', $subject)){
             if(!v::arrayVal()->notEmpty()->validate($subject['CourseId'])){
-                $str .= '"CourseId":"'.$this->invalid('Please select a course').'",';
+                $str .= $this->invalid('CourseId', 'Please select at least one course');
                 $valid = false;
             }
         }else{
-            $str .= '"CourseId":"'.$this->invalid('Please select a course').'",';
+            $str .= $this->invalid('CourseId', 'Please select at least one course');
             $valid = false;
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';

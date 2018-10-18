@@ -93,8 +93,8 @@ class _BaseController extends CI_Controller {
 	}
 
 	//invalid
-	public function invalid($str){
-		return '<div class=\"invalid-feedback\" style=\"display:block\">'.$str.'</div>';
+	public function invalid($name, $message){
+		return '"'.$name.'":"<div class=\"invalid-feedback\" style=\"display:block\">'.$message.'</div>",';
 	}
 
 	//html helpers hehe

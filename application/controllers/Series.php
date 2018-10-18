@@ -40,13 +40,18 @@ class Series extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($series['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');
             $valid = false;
         }
-        else if($this->series->_exist('Name', $series['Name'])->SeriesId != $series['SeriesId']){
-            $str .= '"Name":"'.$this->invalid('Series already exist').'",';
-            $valid = false;
-        }
+        else{
+            $ifExist = $this->series->_exist('Name', $series['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->SeriesId != $series['SeriesId']){
+                    $str .= $this->invalid('Name', 'Series already exist');
+                    $valid = false;
+                }
+            }
+        }        
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;
     }

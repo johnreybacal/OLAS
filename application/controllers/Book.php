@@ -121,88 +121,88 @@ class Book extends _BaseController {
         $valid = true;
         //isbn
         if(!v::notEmpty()->validate($book['ISBN'])){
-            $str .= '"ISBN":"'.$this->invalid('ISBN is required').'",';
+            $str .= $this->invalid('ISBN', 'ISBN is required');
             $valid = false;
         }
         //title
         if(!v::notEmpty()->validate($book['Title'])){
-            $str .= '"Title":"'.$this->invalid('Title is required').'",';
+            $str .= $this->invalid('Title', 'Title is required');
             $valid = false;
         }
         //acquired from
         if(!v::notEmpty()->validate($book['AcquiredFrom'])){
-            $str .= '"AcquiredFrom":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('AcquiredFrom', 'Please input the name of the supplier');
             $valid = false;
         }
         //call number
         if(!v::notEmpty()->validate($book['CallNumber'])){
-            $str .= '"CallNumber":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('CallNumber', 'Please add a Call Number');
             $valid = false;
         }
         else{
-            $bookCatalogue = $this->bookCatalogue->_exist('CallNumber', $book['CallNumber']);            
-            if(is_object($bookCatalogue)){
-                if($bookCatalogue->AccessionNumber != $book['AccessionNumber']){
-                    $str .= '"CallNumber":"'.$this->invalid('Call Number already exist').'",';
+            $ifExist = $this->bookCatalogue->_exist('CallNumber', $book['CallNumber']);            
+            if(is_object($ifExist)){
+                if($ifExist->AccessionNumber != $book['AccessionNumber']){
+                    $str .= $this->invalid('CallNumber', 'Call Number already exist');
                     $valid = false;
                 }
             }
         }
         //price
         if(!v::intVal()->notEmpty()->validate($book['Price'])){
-            $str .= '"Price":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Price', 'Please input the cost of the book');
             $valid = false;
         } 
         else{
             if(!v::intVal()->min(0)->validate($book['Price'])){
-                $str .= '"Price":"'.$this->invalid('Invalid Price').'",';
+                $str .= $this->invalid('Price', 'Price is invalid');
                 $valid = false;
             } 
         }
         //multiple selectpickers
         if(array_key_exists('AuthorId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['AuthorId'])){
-                $str .= '"AuthorId":"'.$this->invalid('Please select an author').'",';
+                $str .= $this->invalid('AuthorId', 'Please select at least one author');
                 $valid = false;
             }
         }else{
-            $str .= '"AuthorId":"'.$this->invalid('Please select an author').'",';
+            $str .= $this->invalid('AuthorId', 'Please select at least one author');
             $valid = false;
         }
         if(array_key_exists('GenreId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['GenreId'])){
-                $str .= '"GenreId":"'.$this->invalid('Please select a genre').'",';
+                $str .= $this->invalid('GenreId', 'Please select at least one genre');
                 $valid = false;
             }
         }else{
-            $str .= '"GenreId":"'.$this->invalid('Please select a genre').'",';
+            $str .= $this->invalid('GenreId', 'Please select at least one genre');
             $valid = false;
         }
         if(array_key_exists('SubjectId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['SubjectId'])){
-                $str .= '"SubjectId":"'.$this->invalid('Please select a subject').'",';
+                $str .= $this->invalid('SubjectId', 'Please select at least one subject');
                 $valid = false;
             }
         }else{
-            $str .= '"SubjectId":"'.$this->invalid('Please select a subject').'",';
+            $str .= $this->invalid('SubjectId', 'Please select at least one subject');
             $valid = false;
         }
         //selectpickers
         if(!v::intVal()->notEmpty()->validate($book['PublisherId'])){
-            $str .= '"PublisherId":"'.$this->invalid('Please select a publisher').'",';
+            $str .= $this->invalid('PublisherId', 'Please select a publisher');
             $valid = false;
         }  
         if(!v::intVal()->notEmpty()->validate($book['SeriesId'])){
-            $str .= '"SeriesId":"'.$this->invalid('Please select a series').'",';
+            $str .= $this->invalid('SeriesId', 'Please select a series');
             $valid = false;
         }  
         //dates
         if(!v::date()->validate($book['DatePublished'])){            
-            $str .= '"DatePublished":"'.$this->invalid('Please input a date').'",';
+            $str .= $this->invalid('DatePublished', 'Please input a date');
             $valid = false;
         }
         if(!v::date()->validate($book['DateAcquired'])){            
-            $str .= '"DateAcquired":"'.$this->invalid('Please input a date').'",';
+            $str .= $this->invalid('DateAcquired', 'Please input a date');
             $valid = false;
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';

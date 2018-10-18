@@ -40,12 +40,17 @@ class Genre extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($genre['Name'])){
-            $str .= '"Name":"'.$this->invalid('Please input a value').'",';
+            $str .= $this->invalid('Name', 'Please input a value');;
             $valid = false;
         }
-        else if($this->genre->_exist('Name', $genre['Name'])->GenreId != $genre['GenreId']){
-            $str .= '"Name":"'.$this->invalid('Genre already exist').'",';
-            $valid = false;
+        else{
+            $ifExist = $this->genre->_exist('Name', $genre['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->GenreId != $genre['GenreId']){
+                    $str .= $this->invalid('Name', 'Genre already exist');
+                    $valid = false;
+                }
+            }
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;
