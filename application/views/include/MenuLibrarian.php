@@ -10,7 +10,7 @@
     <nav class="sidebar-navigation">
         <ul class="menu">            
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Librarian/Dashboard'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Dashboard</span>
@@ -147,11 +147,11 @@
             </li>
 
             <li class="menu-item">
-                <a class="menu-link" href="Settings.html">
+                <a class="menu-link" href="<?php echo base_url('OutsideResearcher/'); ?>">
                     <span class="icon fa fa-home"></span>
-                    <span class="title">Admission</span>
+                    <span class="title">Outside Researcher</span>
                 </a>
-            </li>            
+            </li>        
 
 
             <li class="menu-item">
@@ -199,3 +199,14 @@
     </nav>
 
 </aside>
+<script>
+    // console.log(window.location.href);
+    $(document).ready(function(){
+        $.each($('.menu-item'), function(){
+            if($(this).children('.menu-link').attr('href') == window.location.href){
+                $(this).addClass('active');
+                $(this).parent().parent().addClass('active');
+            }
+        });
+    });
+</script>

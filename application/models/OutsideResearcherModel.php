@@ -15,27 +15,29 @@ class OutsideResearcherModel extends _BaseModel{
 	public function save($outsideresearcher){
 		if($outsideresearcher['OutsideResearcherId'] == 0){//insert			
 			$this->db->query("INSERT into outsideresearcher "
-				."(Name, DateTime, IsOutsider, School, Course, AmountPayed) VALUES ("                   
+				."(Name, DateTime, AmountPayed) VALUES ("                   
 					."'".$outsideresearcher['Name']."',"
-					."'".$outsideresearcher['DateTime']."',"
-					."'".$outsideresearcher['IsOutsider']."',"
-					."'".$outsideresearcher['School']."',"
-					."'".$outsideresearcher['Course']."',"
+					."'".$outsideresearcher['DateTime']."',"					
 					."'".$outsideresearcher['AmountPayed']."'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(OutsideResearcherId) as OutsideResearcherId FROM outsideresearcher")->row()->OutsideResearcherId;
 		}
 		else{//update
 			$this->db->query("UPDATE outsideresearcher SET "
                 ."Name = '".$outsideresearcher['Name']."',"
                 ."DateTime = '".$outsideresearcher['DateTime']."',"
-                ."IsOutsider = '".$outsideresearcher['IsOutsider']."',"
-                ."School = '".$outsideresearcher['School']."',"
-                ."Course = '".$outsideresearcher['Course']."',"
                 ."AmountPayed = '".$outsideresearcher['AmountPayed']."' "
                 ."WHERE OutsideResearcherId = '".$outsideresearcher['OutsideResearcherId']."'"
-			);			
+			);		
+			return $outsideresearcher['OutsideResearcherId'];	
 		}
-    }	
+	}	
+	
+	public function getSubject($id){
+		$dbList = $this->db->query("select * from subject WHERE SubjectId IN "
+			."(select SubjectId from outsideresearchersubject WHERE OutsideResearcherId = '".$id."')")->result();
+		return $dbList;
+	}
     
 }

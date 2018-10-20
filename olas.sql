@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2018 at 12:48 PM
+-- Generation Time: Oct 20, 2018 at 12:53 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -47,7 +47,8 @@ TRUNCATE TABLE `author`;
 INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (1, 'Johnrey', 1),
 (2, 'Judel Bacal', 1),
-(3, 'Ning', 1);
+(3, 'Ning', 1),
+(4, 'Abbie', 1);
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,8 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 (12, 'sdg', '3', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
 (13, '34', '1', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
 (14, '1', '2', '2018-11-01', 'q', 200, 0, 1, 1),
-(15, '12343', '1', '2018-10-02', 'q', 3, 0, 1, 1);
+(15, '12343', '1', '2018-10-02', 'q', 3, 0, 1, 1),
+(16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -252,7 +254,8 @@ TRUNCATE TABLE `college`;
 INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 (1, 'COS', 1),
 (2, 'CIT', 1),
-(3, 'CAFA', 1);
+(3, 'CAFA', 1),
+(4, 'CLA', 1);
 
 -- --------------------------------------------------------
 
@@ -280,7 +283,8 @@ TRUNCATE TABLE `course`;
 INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 (1, 1, 'BSIT', 1),
 (2, 1, 'BSCS', 1),
-(5, 3, 'BTIT', 1);
+(5, 3, 'BTIT', 1),
+(6, 4, 'BSIE', 1);
 
 -- --------------------------------------------------------
 
@@ -307,7 +311,8 @@ TRUNCATE TABLE `genre`;
 INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
 (1, 'Science', 1),
 (2, 'Mathematics', 1),
-(3, 'Fiction', 1);
+(3, 'Fiction', 1),
+(4, 'Sci Fi', 1);
 
 -- --------------------------------------------------------
 
@@ -404,8 +409,6 @@ CREATE TABLE `outsideresearcher` (
   `OutsideResearcherId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `DateTime` datetime NOT NULL,
-  `School` varchar(100) DEFAULT NULL,
-  `Course` varchar(100) DEFAULT NULL,
   `AmountPayed` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -414,6 +417,40 @@ CREATE TABLE `outsideresearcher` (
 --
 
 TRUNCATE TABLE `outsideresearcher`;
+--
+-- Dumping data for table `outsideresearcher`
+--
+
+INSERT INTO `outsideresearcher` (`OutsideResearcherId`, `Name`, `DateTime`, `AmountPayed`) VALUES
+(3, 'Johnrey', '2018-10-30 00:00:00', 100),
+(2, 'Johnrey', '2018-10-29 00:00:00', 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outsideresearchersubject`
+--
+
+DROP TABLE IF EXISTS `outsideresearchersubject`;
+CREATE TABLE `outsideresearchersubject` (
+  `OutsideResearcherId` int(11) NOT NULL,
+  `SubjectId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `outsideresearchersubject`
+--
+
+TRUNCATE TABLE `outsideresearchersubject`;
+--
+-- Dumping data for table `outsideresearchersubject`
+--
+
+INSERT INTO `outsideresearchersubject` (`OutsideResearcherId`, `SubjectId`) VALUES
+(2, 15),
+(2, 1),
+(3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -445,7 +482,7 @@ TRUNCATE TABLE `patron`;
 --
 
 INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`) VALUES
-(1, 2, 'Johnrey', '', 'Bacal', NULL, 'jb', 0, '12333', '12345', 'jaosj');
+(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj');
 
 -- --------------------------------------------------------
 
@@ -499,7 +536,8 @@ TRUNCATE TABLE `publisher`;
 
 INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 (1, 'JB Publishing', 1),
-(2, 'Abbie qt <3', 1);
+(2, 'Abbie qt <3', 1),
+(4, 'Publisher', 1);
 
 -- --------------------------------------------------------
 
@@ -553,7 +591,8 @@ TRUNCATE TABLE `series`;
 
 INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 (1, 'Abbiebebe Series', 1),
-(2, 'Harry Potter Series', 1);
+(2, 'Harry Potter Series', 1),
+(3, 'Series', 1);
 
 -- --------------------------------------------------------
 
@@ -580,7 +619,8 @@ TRUNCATE TABLE `subject`;
 INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 (1, 'Web Development', 1),
 (11, 'Mathematics', 1),
-(14, 'Economics', 1);
+(14, 'Economics', 1),
+(15, 'Retorika', 1);
 
 -- --------------------------------------------------------
 
@@ -606,6 +646,7 @@ TRUNCATE TABLE `subjectcourse`;
 INSERT INTO `subjectcourse` (`SubjectId`, `CourseId`) VALUES
 (1, 1),
 (1, 2),
+(15, 6),
 (14, 2),
 (11, 5);
 
@@ -723,12 +764,12 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -738,17 +779,17 @@ ALTER TABLE `bookstatus`
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `librarian`
 --
@@ -768,7 +809,7 @@ ALTER TABLE `loan`
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
 ALTER TABLE `outsideresearcher`
-  MODIFY `OutsideResearcherId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OutsideResearcherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `patron`
 --
@@ -783,7 +824,7 @@ ALTER TABLE `patrontype`
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
-  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
@@ -793,12 +834,12 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `series`
 --
 ALTER TABLE `series`
-  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
