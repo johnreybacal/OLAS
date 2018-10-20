@@ -10,8 +10,16 @@ class OLAS extends _BaseController {
 	}
 
 	public function index()
-	{		          
-		$data['book'] = $this->convert($this->bookCatalogue->_list());
+	{		          		
+		foreach($this->bookCatalogue->_list() as $b){						
+			$data['books'][] = array(
+				'book' => $this->book->_get($b->ISBN),
+				'author' => $this->book->getAuthor($b->ISBN),
+				'genre' => $this->book->getGenre($b->ISBN),
+				'subject' => $this->book->getSubject($b->ISBN)
+			);
+		}
+		$data['authors'] = $this->author->_list();
 		$this->header();
 		$this->load->view('OLAS/index', $data);
 		$this->footer();		
