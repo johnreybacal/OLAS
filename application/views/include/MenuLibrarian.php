@@ -66,14 +66,7 @@
                             <span class="title">Series</span>
                         </a>
                     </li>  
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Subject/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Subject</span>
-                        </a>
-                    </li>                    
-
+                
                 </ul>
             </li>
             
@@ -91,13 +84,6 @@
                             <span class="title">Book Circulations</span>
                         </a>
                     </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url(''); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Issued books</span>
-                        </a>
-                    </li>  
 
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Reservation'); ?>">

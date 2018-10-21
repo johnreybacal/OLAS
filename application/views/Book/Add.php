@@ -90,6 +90,7 @@
 	$(document).ready(function(){
 		initializeSelectpicker();
 		Book.init();
+		$('#DateAcquired').val(new  Date().toISOString().slice(0, 10));
 	});
 
 	var Book = {

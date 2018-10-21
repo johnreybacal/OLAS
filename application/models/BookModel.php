@@ -73,7 +73,7 @@ class BookModel extends _BaseModel{
 				."(select CourseId from subjectcourse WHERE SubjectId IN "
 					."(select SubjectId from booksubject WHERE ISBN = '".$isbn."')))")->result();
 		return $dbList;
-	}
+	}	
 
 	/*queries to use in the future
 		unique books

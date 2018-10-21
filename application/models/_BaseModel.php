@@ -15,13 +15,13 @@ class _BaseModel extends CI_Model{
 		$this->identifier = $param[1];
 	}	
 
-	public function _get($id){
-		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."'")->row();
+	public function _get($id, $query = null){
+		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."' ".$query)->row();
 		return $dbList;		
 	}
 
-	public function _list(){
-		$dbList = $this->db->query("SELECT * from ".$this->table)->result();
+	public function _list($query = null){
+		$dbList = $this->db->query("SELECT * from ".$this->table." ".$query)->result();
 		return $dbList;
 	}
 

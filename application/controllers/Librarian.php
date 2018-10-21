@@ -26,7 +26,11 @@ class Librarian extends _BaseController {
     }
     
     public function Dashboard(){
-        $this->librarianView('Librarian/Dashboard', '');
+        $data['totalBooks'] = $this->report->totalBooks();
+        $data['totalBookCirculations'] = $this->report->totalBookCirculations();
+        $data['totalPatrons'] = $this->report->totalPatrons();
+        $data['totalOutsideResearchers'] = $this->report->totalOutsideResearchers();
+        $this->librarianView('Librarian/Dashboard', $data);
 	}
 	
 	public function Profile($id){

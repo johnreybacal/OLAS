@@ -1,7 +1,7 @@
 <div class="main-content">
 	<div class="card">
         <div class="card-body">
-            <h1>Welcome to OLAS!</h1>
+            <h1 id = "welcome">Welcome to OAS!</h1>
             <a href = "<?php echo base_url('Librarian'); ?>">Librarian</a>
             <div id = "book-container"></div>
         </div>
@@ -51,3 +51,12 @@
 		</div>
     </div>	
 </div>
+<script>
+	$(document).ready(function(){
+		$('#welcome').fadeOut({
+			complete: function(){
+				$(this).html("Welcome to OLAS!").fadeIn("slow");
+			}
+		});
+	});
+</script>

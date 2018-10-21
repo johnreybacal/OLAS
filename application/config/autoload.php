@@ -157,7 +157,9 @@ $autoload['model'] = array(
 	'OutsideResearcherSubjectModel' => 'outsideResearcherSubject',
 	'PublisherModel' => 'publisher',
 	'ReservationModel' => 'reservation',
+	'ReportModel' => 'report',
 	'SeriesModel' => 'series',
 	'SubjectCourseModel' => 'subjectCourse',
 	'SubjectModel' => 'subject',
+
 );
