@@ -1,6 +1,6 @@
 <header class="topbar">
     <div class="topbar-left">
-    <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
+    <!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->
 
     <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
         <i class="material-icons fullscreen-default">fullscreen</i>
