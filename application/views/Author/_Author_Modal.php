@@ -84,13 +84,13 @@
         },
 
         validate: function(){
-            $('.invalid-feedback').remove();
-            $('.is-invalid').removeClass('is-invalid');
             $.ajax({
                 url:'<?php echo base_url('Author/Validate'); ?>',
                 type: "POST",
                 data: {"author": Author_Modal.data()},
                 success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
                     i = JSON.parse(i);                    
                     if(i.status == 1){
                         Author_Modal.save();

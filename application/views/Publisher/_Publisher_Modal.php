@@ -86,13 +86,13 @@
         },
 
         validate: function(){
-            $('.invalid-feedback').remove();
-            $('.is-invalid').removeClass('is-invalid');
             $.ajax({
                 url:'<?php echo base_url('Publisher/Validate'); ?>',
                 type: "POST",
                 data: {"publisher": Publisher_Modal.data()},
                 success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
                     i = JSON.parse(i);                    
                     if(i.status == 1){
                         Publisher_Modal.save();

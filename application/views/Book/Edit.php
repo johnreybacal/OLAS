@@ -174,20 +174,20 @@
 				DateAcquired: $('#DateAcquired').val(),				
 				AcquiredFrom: $('#AcquiredFrom').val(),
 				Price: $('#Price').val(),
-				IsRoomUseOnly: ($('#IsActive').prop("checked") ? 1 : 0),
+				IsRoomUseOnly: ($('#IsRoomUseOnly').prop("checked") ? 1 : 0),
 				IsAvailable: <?php echo $book->IsAvailable; ?>,
 				IsActive: <?php echo $book->IsActive; ?>, 
 			}
 		},
 
 		validate: function(){
-			$('.invalid-feedback').remove();
-			$('.is-invalid').removeClass('is-invalid');
 			$.ajax({
 				url:'<?php echo base_url('Book/Validate'); ?>',
 				type: "POST",
 				data: {"book": Book.data()},
 				success: function(i){
+					$('.invalid-feedback').remove();
+					$('.is-invalid').removeClass('is-invalid');
 					i = JSON.parse(i);                    
 					if(i.status == 1){
 						Book.save();

@@ -24,6 +24,10 @@ class Librarian extends _BaseController {
         $this->load->view('Librarian/Login', $data);
         $this->footer();		
     }
+
+    public function Manage(){
+        $this->librarianView('Librarian/index', '');
+    }
     
     public function Dashboard(){
         $data['totalBooks'] = $this->report->totalBooks();

@@ -97,7 +97,7 @@
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon fa fa-pie-chart"></span>
-                    <span class="title">Users</span>
+                    <span class="title">Patron Management</span>
                     <span class="arrow"></span>
                 </a>
 
@@ -113,20 +113,6 @@
                         <a class="menu-link" href="<?php echo base_url('PatronType'); ?>">
                             <span class="dot"></span>
                             <span class="title">Patron Type</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Librarian'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian Role</span>
                         </a>
                     </li>
                 </ul>
@@ -169,6 +155,30 @@
                         </a>
                     </li>
 
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="#">
+                    <span class="icon fa fa-pie-chart"></span>
+                    <span class="title">Staff Management</span>
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="menu-submenu">                   
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Librarian/Manage'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian Role</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

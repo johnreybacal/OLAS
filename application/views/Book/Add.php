@@ -98,6 +98,7 @@
 		reset: function(val){
 			$('#book-form')[0].reset();
 			$('select').selectpicker('val', []);
+			$('#DateAcquired').val(new  Date().toISOString().slice(0, 10));
 			$('#ISBN').val(val);
 		},
 
@@ -132,6 +133,15 @@
 									subject.push(data.SubjectId);
 								});
 								$('#SubjectId').selectpicker('val', subject);
+
+								$.ajax({
+									url: "<?php echo base_url('Book/LastAcquired/'); ?>" + val,
+									success: function(j){
+										j = JSON.parse(j);
+										$('#AcquiredFrom').val(j.AcquiredFrom);
+										$('#Price').val(j.Price);
+									}
+								})
 							}
 						}
 					})
@@ -162,20 +172,20 @@
 				DateAcquired: $('#DateAcquired').val(),
 				AcquiredFrom: $('#AcquiredFrom').val(), 
 				Price: $('#Price').val(),
-				IsRoomUseOnly: ($('#IsActive').prop("checked") ? 1 : 0),
+				IsRoomUseOnly: ($('#IsRoomUseOnly').prop("checked") ? 1 : 0),
 				IsAvailable: 1,
 				IsActive: 1,
 			}
 		},
 
 		validate: function(){
-			$('.invalid-feedback').remove();
-			$('.is-invalid').removeClass('is-invalid');
 			$.ajax({
 				url:'<?php echo base_url('Book/Validate'); ?>',
 				type: "POST",
 				data: {"book": Book.data()},
 				success: function(i){
+					$('.invalid-feedback').remove();
+					$('.is-invalid').removeClass('is-invalid');
 					i = JSON.parse(i);                    
 					if(i.status == 1){
 						Book.save();

@@ -1,4 +1,4 @@
-<div class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(../assetsOlas/img/login-bg.jpg);" data-overlay="7">
+<div class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(<?php echo base_url("assetsOLAS/img/login-bg.jpg"); ?>);" data-overlay="7">
 
 	<div class="card card-round card-shadowed px-50 py-30 w-400px mb-0" style="max-width: 100%">
 		<h5 class="text-uppercase">Sign in</h5>

@@ -113,6 +113,10 @@ class Book extends _BaseController {
             echo '0';
         }
     }
+
+    public function LastAcquired($isbn){
+        echo $this->convert($this->bookCatalogue->lastAcquired($isbn));        
+    }
     
     public function Validate(){
         $book = $this->input->post('book');        
