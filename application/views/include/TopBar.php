@@ -1,215 +1,96 @@
 <header class="topbar">
-    <div class="topbar-left">
-    <!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->
-
-    <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-        <i class="material-icons fullscreen-default">fullscreen</i>
-        <i class="material-icons fullscreen-active">fullscreen_exit</i>
-    </a>
-
-    <!-- <div class="dropdown d-none d-md-block">
-        <span class="topbar-btn" data-toggle="dropdown"><i class="ti-layout-grid3-alt"></i></span>
-        <div class="dropdown-menu dropdown-grid">
-        <a class="dropdown-item" href="Dashboard.html">
-            <span data-i8-icon="home"></span>
-            <span class="title">Dashboard</span>
-        </a>
-        <a class="dropdown-item" href="../page/gallery.html">
-            <span data-i8-icon="stack_of_photos"></span>
-            <span class="title">Gallery</span>
-        </a>
-        <a class="dropdown-item" href="../page/search.html">
-            <span data-i8-icon="search"></span>
-            <span class="title">Search</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/calendar.html">
-            <span data-i8-icon="calendar"></span>
-            <span class="title">Calendar</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/chat.html">
-            <span data-i8-icon="sms"></span>
-            <span class="title">Chat</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/mailbox.html">
-            <span data-i8-icon="invite"></span>
-            <span class="title">Emails</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/users.html">
-            <span data-i8-icon="contacts"></span>
-            <span class="title">Contacts</span>
-        </a>
-        <a class="dropdown-item" href="../widget/chart.html">
-            <span data-i8-icon="bar_chart"></span>
-            <span class="title">Charts</span>
-        </a>
-        <a class="dropdown-item" href="../page/profile.html">
-            <span data-i8-icon="businessman"></span>
-            <span class="title">Profile</span>
-        </a>
-        </div>
-    </div> -->
-
-    <div class="topbar-divider d-none d-md-block"></div>
-    <div class="lookup d-none d-md-block ">
-        <form class="lookup">
-        <input class="form-control" type="text" placeholder="Pick a Book" style="min-width: 200%;">
-        </form>
-    </div>
-    <!-- <div class="lookup d-none d-md-block topbar-search" id="theadmin-search">
-        <input class="form-control w-300px" type="text">
-        <div class="lookup-placeholder">
-        <i class="ti-search"></i>
-        <span><strong>Search</strong> for a book</span>
-        </div>
-    </div> -->
-    </div>
-
-    <div class="topbar-right">
-    <a class="topbar-btn" href="#qv-global" data-toggle="quickview" hidden> <i class="ti-align-right"></i></a>
-
-    <ul class="topbar-btns">
-        <li class="dropdown">
-        <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="<?php echo base_url('assets/img/avatar/1.jpg'); ?>" alt="..."></span>
-        <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-            <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url('Librarian/LogOut'); ?>"><i class="ti-power-off"></i> Logout</a>
-        </div>
-        </li>
-
-        <!-- Notifications -->
-        <li class="dropdown">
-        <span class="topbar-btn has-new" data-toggle="dropdown"><i class="ti-bell"></i></span>
-        <div class="dropdown-menu dropdown-menu-right">
-
-            <div class="media-list media-list-hover media-list-divided media-sm">
-            <a class="media media-new" href="#">
-                <span class="avatar bg-success"><i class="ti-user"></i></span>
-                <div class="media-body">
-                <p>New user registered</p>
-                <time datetime="2018-07-14 20:00">Just now</time>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar bg-info"><i class="ti-shopping-cart"></i></span>
-                <div class="media-body">
-                <p>New order received</p>
-                <time datetime="2018-07-14 20:00">2 min ago</time>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar bg-warning"><i class="ti-face-sad"></i></span>
-                <div class="media-body">
-                <p>Refund request from <b>Ashlyn Culotta</b></p>
-                <time datetime="2018-07-14 20:00">24 min ago</time>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar bg-primary"><i class="ti-money"></i></span>
-                <div class="media-body">
-                <p>New payment has made through PayPal</p>
-                <time datetime="2018-07-14 20:00">53 min ago</time>
-                </div>
-            </a>
-            </div>
-
-            <div class="dropdown-footer">
-            <div class="left">
-                <a href="#">Read all notifications</a>
-            </div>
-
-            <div class="right">
-                <a href="#" data-provide="tooltip" title="Mark all as read"><i class="fa fa-circle-o"></i></a>
-                <a href="#" data-provide="tooltip" title="Update"><i class="fa fa-repeat"></i></a>
-                <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
-            </div>
-            </div>
-
-        </div>
-        </li>
-        <!-- END Notifications -->
-
-        <!-- Messages -->
-        <li class="dropdown">
-        <span class="topbar-btn" data-toggle="dropdown"><i class="ti-email"></i></span>
-        <div class="dropdown-menu dropdown-menu-right">
-
-            <div class="media-list media-list-divided media-list-hover scrollable" style="height: 280px">
-            <a class="media media-new" href="#">
-                <span class="avatar status-success">
-                <img <?php echo base_url('../assets/img/avatar/1.jpg'); ?> alt="...">
-                </span>
-
-                <div class="media-body">
-                <p><strong>Maryam Amiri</strong> <time class="float-right" datetime="2018-07-14 20:00">23 min ago</time></p>
-                <p>Authoritatively exploit resource maximizing technologies before technically.</p>
-                </div>
-            </a>
-
-            <a class="media media-new" href="#">
-                <span class="avatar status-warning">
-                <img <?php echo base_url('../assets/img/avatar/2.jpg'); ?> alt="...">
-                </span>
-
-                <div class="media-body">
-                <p><strong>Hossein Shams</strong> <time class="float-right" datetime="2018-07-14 20:00">48 min ago</time></p>
-                <p>Continually plagiarize efficient interfaces after bricks-and-clicks niches.</p>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar status-dark">
-                <img <?php echo base_url('../assets/img/avatar/3.jpg'); ?> alt="...">
-                </span>
-
-                <div class="media-body">
-                <p><strong>Helen Bennett</strong> <time class="float-right" datetime="2018-07-14 20:00">3 hours ago</time></p>
-                <p>Objectively underwhelm cross-unit web-readiness before sticky outsourcing.</p>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar status-success bg-purple">FT</span>
-
-                <div class="media-body">
-                <p><strong>Fidel Tonn</strong> <time class="float-right" datetime="2018-07-14 20:00">21 hours ago</time></p>
-                <p>Interactively innovate transparent relationships with holistic infrastructures.</p>
-                </div>
-            </a>
-
-            <a class="media" href="#">
-                <span class="avatar status-danger">
-                <img <?php echo base_url('../assets/img/avatar/4.jpg'); ?> alt="...">
-                </span>
-
-                <div class="media-body">
-                <p><strong>Freddie Arends</strong> <time class="float-right" datetime="2018-07-14 20:00">Yesterday</time></p>
-                <p>Collaboratively visualize corporate initiatives for web-enabled value.</p>
-                </div>
-            </a>
-            </div>
-
-            <div class="dropdown-footer">
-            <div class="left">
-                <a href="#">Read all messages</a>
-            </div>
-
-            <div class="right">
-                <a href="#" data-provide="tooltip" title="Mark all as read"><i class="fa fa-circle-o"></i></a>
-                <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
-            </div>
-            </div>
-
-        </div>
-        </li>
-        <!-- END Messages -->
-    </ul>
+	      <div class="topbar-left">
+        <!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        
 
         
+		<h4>OLAS</h4>
+        <div class="topbar-divider d-none d-md-block"></div>
+
+        <div class="lookup d-none d-md-block topbar-search">
+          <input class="form-control w-300px" type="text">
+          <div class="lookup-placeholder">
+            <i class="ti-search"></i>
+            <span><strong>Search</strong> books, authors, genres, etc.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div>
+        <!-- <a class="topbar-btn" href="#qv-global" data-toggle="quickview"><i class="ti-align-right"></i></a> -->
+        <a class="btn btn-sm btn-primary border-light hover-shadow-2" style="color: white;" href="#qv-form-center" data-toggle="quickview">Login</a>
+        <a class="btn btn-sm btn-outline btn-primary border-light hover-shadow-2 " href="#qv-form" data-toggle="quickview">Register</a>
+        </div>
+      </div>
+<div id="qv-form" class="quickview">
+      <header class="quickview-header">
+        <p class="quickview-title lead">Create your account</p>
+        <span class="close"><i class="ti-close"></i></span>
+      </header>
+
+      <div class="quickview-body">
+        <form class="quickview-block form-type-line">
+
+          <br>
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Name">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Email">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Confirm Password ">
+          </div>
+          <br>
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input">
+            <label class="custom-control-label">I agree to <a class="text-primary" href="#"><strong>PikABook</strong> terms and conditions</a>.</label> 
+          </div>
+
+        </form>
+      </div>
+
+      <footer class="quickview-footer flex-row-reverse">
+        <a class="btn btn-primary" href="Dashboard.html" >Register</a>
+        <button class="btn btn-secondary" type="button">Cancel</button>
+      </footer>
     </div>
+
+    <!-- Form center -->
+    <div id="qv-form-center" class="quickview">
+      <header class="quickview-header">
+        <p class="quickview-title lead">Log in to PikABook</p>
+        <span class="close"><i class="ti-close"></i></span>
+      </header>
+
+      <div class="quickview-body center-v">
+        <form class="quickview-block form-type-line">
+          <h5 class="mb-20">Sign in</h5>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+
+          <a class="btn btn-primary" href="Dashboard.html"> Login</a>          
+        </form>
+      </div>
+    </div>
+
 </header>
+
+

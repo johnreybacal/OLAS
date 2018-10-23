@@ -23,15 +23,21 @@
 
 <?php
 	if($this->session->has_userdata('isLoggedIn')){
-		if($this->session->has_userdata('isLibrarian')){
+		if($this->session->has_userdata('isLibrarian')){//librarian
 			include("MenuLibrarian.php");
-		}else{
+			include("TopBarLibrarian.php");
+		}else{//patron
 			include("Menu.php");
 		}
-	}
-	if(strToLower(uri_string()) != 'librarian/login'){
-		include("TopBarpatron.php");
+	}else{// not logged in
+		if(strToLower(uri_string()) != 'librarian/login'){
+			include("TopBar.php");
+		}
 	}
 ?>
 <main class="main-container">
-<?php include("Breadcrumbs.php"); ?>
+<?php 
+	if(strToLower(uri_string()) != 'librarian/login'){
+		include("Breadcrumbs.php"); 
+	}
+?>
