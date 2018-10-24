@@ -1,7 +1,7 @@
 <header class="topbar">
 	<div class="topbar-left">
 		<!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        		
-		<h4>OLAS</h4>
+		<span class="logo"><img src="<?php echo base_url('assets/img/logo'); ?>" alt="logo-icon"></span>
 		<div class="topbar-divider d-none d-md-block"></div>
 
 		<div class="lookup d-none d-md-block topbar-search">

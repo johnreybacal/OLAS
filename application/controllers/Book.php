@@ -23,7 +23,9 @@ class Book extends _BaseController {
 
     public function View($id){
         $data['book'] = $this->bookCatalogue->_get($id);
-        $this->librarianView('Book/View', $data);
+        $this->header();
+        $this->load->view('Book/View', $data);
+        $this->footer();
     }
 
     public function MarcUpload(){
@@ -194,11 +196,7 @@ class Book extends _BaseController {
         if(!v::intVal()->notEmpty()->validate($book['PublisherId'])){
             $str .= $this->invalid('PublisherId', 'Please select a publisher');
             $valid = false;
-        }  
-        if(!v::intVal()->notEmpty()->validate($book['SeriesId'])){
-            $str .= $this->invalid('SeriesId', 'Please select a series');
-            $valid = false;
-        }  
+        }         
         //dates
         if(!v::date()->validate($book['DatePublished'])){            
             $str .= $this->invalid('DatePublished', 'Please input a date');

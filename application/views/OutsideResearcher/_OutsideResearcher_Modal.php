@@ -73,6 +73,7 @@
                 }
             });          
             $('#modal-outsideResearcher-form')[0].reset();
+            $('#DateTime').val(new  Date().toISOString().slice(0, 10));
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             $('#modal-outsideResearcher').modal('show');
@@ -80,13 +81,13 @@
 
         new: function () {
             $('#OutsideResearcherId').val('0');            
-            $('.modal-title').text('Add OutsideResearcher');            
+            $('.modal-title').text('Add Outside Researcher');            
             $('#rowActive').addClass('invisible');
             OutsideResearcher_Modal.init();
         },
 
         edit: function (id) {            
-            $('.modal-title').text('Edit OutsideResearcher');  
+            $('.modal-title').text('Edit Outside Researcher');  
             $('#rowActive').removeClass('invisible');          
             OutsideResearcher_Modal.init();
             $.ajax({
@@ -134,14 +135,14 @@
         save: function () {
             var message;            
             if ($('#OutsideResearcherId').val() == 0) {
-                message = "Great Job! New OutsideResearcher has been created";
+                message = "Great Job! New Outside Researcher has been created";
             } else {
-                message = "Nice! OutsideResearcher has been updated";
+                message = "Nice! Outside Researcher has been updated";
             }
 
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for OutsideResearcher',
+                text: 'Save changes for Outside Researcher',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',
