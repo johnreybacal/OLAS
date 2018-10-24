@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add OutsideResearcher</h5>
+                <h5 class="modal-title">Add Outside Researcher</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>OutsideResearcher Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="OutsideResearcher Name" />
+                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Outside Researcher Name" />
                             </div>
                         </div>           
                         <div class="row mb-2">

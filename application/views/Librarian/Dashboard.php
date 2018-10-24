@@ -45,9 +45,9 @@
 
             </div>
             <div class="table-responsive">                            
-                </table><table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableComplete") ?>">
+                </table><table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableComplete") ?>">
 					<thead>
-						<tr>
+						<tr class="bg-info">
 							<th>Accession Number</th>
 							<th>Call Number</th>
 							<th>ISBN</th>

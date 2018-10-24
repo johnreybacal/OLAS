@@ -1,4 +1,4 @@
-<ol class="breadcrumb">	
+<ol class="breadcrumb" style="font-size:25px; margin:30px 0 20px 40px;">	
 	<?php 
 		$url = explode('/', uri_string());//boom
 		$str = '';

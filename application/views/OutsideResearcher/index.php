@@ -5,7 +5,7 @@
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>OutsideResearcher</strong> <small class="subtitle">List of all OutsideResearchers are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Outside Researcher</strong> <small class="subtitle">List of all Outside Researchers are available in this page.</small></h2>
 	</div>
 	</div>
 
@@ -13,7 +13,7 @@
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
 		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="OutsideResearcher_Modal.new();"
-	data-toggle="modal" data-target="#modal-outsideResearcher" data-provide="tooltip" data-original-title="Add OutsideResearcher">
+	data-toggle="modal" data-target="#modal-outsideResearcher" data-provide="tooltip" data-original-title="Add Outside Researcher">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -27,7 +27,7 @@
 			<div class="table-responsive">
 				<table id = "outsideResearcher-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("OutsideResearcher/GenerateTable") ?>">
 					<thead>
-						<tr>
+						<tr class="bg-info">
 							<th>Name</th>
 							<th>Subject to Research</th>
 							<th>Date of admission</th>

@@ -30,9 +30,6 @@
 
     <div class="topbar-right">
 
-    <form class="lookup lookup-circle lookup-lg lookup-right" target="index.html">
-        <input type="text" name="s">
-    </form>
 
     <div class="topbar-divider d-none d-md-block"></div>
 
@@ -61,6 +58,9 @@
         <!-- END Messages -->
     </ul>
 
+    <form class="lookup lookup-circle lookup-lg lookup-right" target="index.html">
+        <input type="text" name="s">
+    </form>
     </div>
 </header>
 <!-- END Topbar -->

@@ -23,9 +23,9 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
+				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
 					<thead>
-						<tr>
+						<tr class="center bg-info">
 							<!-- <th>Accession Number</th> -->
 							<th>Call Number</th>
 							<th>ISBN</th>

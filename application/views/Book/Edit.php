@@ -3,13 +3,25 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
-					<div class="card-title">
+					<!-- <div class="card-title">
 						<div class="row">
 						<div class="col-md-6">
 							<h4><strong>Book</strong> Information</h4>
 						</div>
 						</div>
-					</div>
+					</div> -->
+					<header class="card-header">
+						<h4 class="card-title">Book <strong>Information</strong></h4>
+		                <ul class="card-controls">
+                  			<li>										
+								<label class="switch switch-lg switch-info">
+									<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
+									<span class="switch-indicator"></span>
+									<label>Room Use Only</label>
+								</label>
+							</li>
+						</ul>
+					</header>	
 					<div class="card-body form-type-line">
 						<div class="row">
 							<div class="col-md-12">
@@ -70,13 +82,13 @@
 										<label>Price</label>
 										<input  id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
 									</div>				
-									<div class="form-group col-md-6">										
+									<!-- <div class="form-group col-md-6">										
 										<label class="switch switch-lg switch-info">
 											<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
 											<span class="switch-indicator"></span>
 											<label>Room Use Only</label>
 										</label>
-									</div>											
+									</div> -->											
 								</div> <!-- form-row gap-1 -->
 							</div> <!-- col-md-12 -->
 						</div> <!-- row -->

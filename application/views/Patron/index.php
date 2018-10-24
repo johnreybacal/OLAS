@@ -19,27 +19,17 @@
 </div>
 </header> -->
 <!--/.header -->
-<header class="header header-transparent">
-	<div class="header-info">
-	<h4>Page title</h4>
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="#">Home</a></li>
-		<li class="breadcrumb-item"><a href="#">Layout</a></li>
-		<li class="breadcrumb-item active">Page headers</li>
-	</ol>
-	</div>
-</header>
-
 <div class="main-content">
 	<div class="card">
-		<div class="card-title bl-3 border-info">
+		<!-- <div class="card-title bl-3 border-info"> -->
+		<div class="card-title">
 			<h4>Patron</h4>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
 					<thead>
-						<tr>
+						<tr class="bg-info">
 							<th>Patron ID</th>
 							<th>Name</th>
 							<th>Patron Type </th>

@@ -25,6 +25,7 @@ class Circulation extends _BaseController {
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
                 .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'
+                .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"edit, return, recall"'
             .']';            
             $json .= ',';

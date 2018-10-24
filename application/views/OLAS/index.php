@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" style="margin-top: 30px;">
 	<div class="card">
         <div class="card-body">
             <h1 id = "welcome">Welcome to OAS!</h1>
@@ -11,9 +11,9 @@
 			<div class="card-body">
 				<h4>OPAC</h4>
 				<div class="table-responsive">
-					<table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateOPAC") ?>">
+					<table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateOPAC") ?>">
 						<thead>
-							<tr>														
+							<tr class="bg-info">													
 								<th>Title</th>
 								<th>Author</th>			
 								<th>Genre</th>							
