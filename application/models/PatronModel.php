@@ -15,14 +15,17 @@ class PatronModel extends _BaseModel{
 	public function save($patron){
 		if($patron['PatronId'] == 0){//insert			
 			$this->db->query("INSERT into patron "
-				."(PatronTypeId, FirstName, LastName, Username, Password, ContactNumber, Email) VALUES ("
+				."(PatronTypeId, FirstName, MiddleName, LastName, ExtensionName, Password, ContactNumber, Email, IdNumber, RFIDNo) VALUES ("
 					."'".$patron['PatronTypeId']."',"
 					."'".$patron['FirstName']."',"
+					."'".$patron['MiddleName']."',"
 					."'".$patron['LastName']."',"
-					."'".$patron['Username']."',"
+					."'".$patron['ExtensionName']."',"
 					."'".$patron['Password']."',"
 					."'".$patron['ContactNumber']."',"
-					."'".$patron['Email']."'"
+					."'".$patron['Email']."',"
+					."'".$patron['IdNumber']."',"
+					."'".$patron['RFIDNo']."'"
 				.")"
 			);
 		}
@@ -30,11 +33,14 @@ class PatronModel extends _BaseModel{
 			$this->db->query("UPDATE patron SET "
 				."PatronTypeId = '".$patron['PatronTypeId']."', "
 				."FirstName = '".$patron['FirstName']."', "				
+				."MiddleName = '".$patron['MiddleName']."', "				
 				."LastName = '".$patron['LastName']."', "				
-				."Username = '".$patron['Username']."', "
+				."ExtensionName = '".$patron['ExtensionName']."', "				
 				."Password = '".$patron['Password']."', "
 				."ContactNumber = '".$patron['ContactNumber']."', "
-				."Email = '".$patron['Email']."' "
+				."Email = '".$patron['Email']."', "
+				."IdNumber = '".$patron['IdNumber']."', "
+				."RFIDNo = '".$patron['RFIDNo']."' "
 				."WHERE PatronId = '".$patron['PatronId']."'"
 			);			
 		}

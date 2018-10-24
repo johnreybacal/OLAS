@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Id Number</label>
-                                <input  id="Id Number" class="form-control" type="number" name="Id Number" placeholder="Id Number">
+                                <input  id="IdNumber" class="form-control" type="number" name="Id Number" placeholder="Id Number">
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>RFID Number</label>
