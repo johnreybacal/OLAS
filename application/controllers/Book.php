@@ -61,7 +61,7 @@ class Book extends _BaseController {
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
-                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
+                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
             .']';             
             $json .= ',';
         }

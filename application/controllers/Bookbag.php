@@ -14,7 +14,7 @@ class Bookbag extends _BaseController {
         $this->footer();
     }
 
-    public function Add($id){
+    public function Add($id, $isbn){
         //id = accession number
         $ok = true;//chect if book is already in bookbag
         foreach($this->cart->contents() as $book){
@@ -24,7 +24,7 @@ class Bookbag extends _BaseController {
             }
         }
         if($ok){
-            $book = array('id' => $id, 'qty' => 1, 'price' => 1, 'name' => '1');
+            $book = array('id' => $id, 'qty' => 1, 'price' => 1, 'name' => '1', 'ISBN' => $isbn);
             $this->cart->insert($book);
             echo '1';
         }else{
@@ -43,7 +43,6 @@ class Bookbag extends _BaseController {
     public function Get(){
         echo $this->convert($this->cart->contents());
     }
-
 
     public function GenerateTable(){
         $json = '{ "data": [';

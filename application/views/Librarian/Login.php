@@ -14,6 +14,8 @@
 				<input type="password" class="form-control" id="Password">
 			</div>
 
+			<div id = "message"></div>
+
 			<div class="form-group flexbox flex-column flex-md-row">
 				<div class="custom-control custom-checkbox">
 					<input type="checkbox" class="custom-control-input" checked>
@@ -24,18 +26,36 @@
 			</div>
 
 			<div class="form-group">
-				<button class="btn btn-bold btn-block btn-primary"  onclick = "login.authenticate()" type="submit">Login</button>
+				<button class="btn btn-bold btn-block btn-primary"  onclick = "login.validate()" type="submit">Login</button>
 			</div>
 		</form>
 	</div>
 </div>
 <p id = "message"></p>
 <script>	
+	$(document).keypress(function(e){
+		if(e.which == 13){			
+			login.validate();
+		}
+	});
+	
 	var login = {
 		data: function(){
 			return {
 				"Username": $('#Username').val(),
 				"Password": $('#Password').val(),				
+			}
+		},
+
+		validate: function(){			
+			if($('#Username').val() == '' && $('#Password').val() == ''){
+				$('#message').html("<p class = 'text-danger'>Username and password is required</p>");
+			} else if($('#Password').val() == ''){
+				$('#message').html("<p class = 'text-danger'>Password is required</p>");			
+			} else if($('#Username').val() == ''){
+				$('#message').html("<p class = 'text-danger'>Username is required</p>");			
+			} else {
+				login.authenticate();
 			}
 		},
 

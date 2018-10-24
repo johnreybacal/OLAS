@@ -5,7 +5,30 @@
             <a href = "<?php echo base_url('Librarian'); ?>">Librarian</a>
             <div id = "book-container"></div>
         </div>
-    </div>
+	</div>
+	<?php if($this->session->has_userdata('isPatron')): ?>
+		<div class="card">
+			<div class="card-body">
+				<h4>OPAC</h4>
+				<div class="table-responsive">
+					<table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateOPAC") ?>">
+						<thead>
+							<tr>														
+								<th>Title</th>
+								<th>Author</th>			
+								<th>Genre</th>							
+								<th>Series</th>
+								<th>Edition</th>
+								<th>Subject</th>							
+								<th>Call Number</th>
+								<th></th>
+							</tr>
+						</thead>
+					</table>            			
+				</div>            
+			</div>
+		</div>
+	<?php endif; ?>
     <div class="row">
         <div class="col-8">
             <div class="card">
