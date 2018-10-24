@@ -27,7 +27,8 @@
 			include("MenuLibrarian.php");
 			include("TopBarLibrarian.php");
 		}else{//patron
-			include("Menu.php");
+			include("TopBarPatron.php");
+			// include("Menu.php");
 		}
 	}else{// not logged in
 		if(strToLower(uri_string()) != 'librarian/login'){

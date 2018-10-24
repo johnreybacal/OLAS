@@ -12,11 +12,24 @@ class Patron extends _BaseController {
     }
     
     public function Authenticate(){        
-		print_r($this->patron->authenticate(
-            $this->input->post('login')['Username'],
-            $this->input->post('login')['Password']
-        ));
-	}
+        $result = $this->patron->authenticate($this->input->post('login')['IdNumber'], $this->input->post('login')['Password']);                    
+		if($result != 0){
+            $patron = $this->patron->_get($result);
+            $this->session->set_userdata(
+                array(
+                    'name' => $patron->Name,
+                    'isLoggedIn' => true, 
+                    'isPatron' => true
+                )
+            );
+        }        
+        echo $result;
+    }
+    
+    public function LogOut(){
+        $this->session->unset_userdata(array('name', 'isLoggedIn', 'isPatron'));
+        redirect(base_url());
+    }
 	
 	public function GenerateTable(){
         $json = '{ "data": [';
