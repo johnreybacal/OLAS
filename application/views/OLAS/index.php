@@ -1,11 +1,7 @@
 <div class="main-content" style="margin: 30px 90px 0px 90px;">
 	<div class="card">
         <div class="card-body">
-            <h1 id = "welcome">Welcome to OAS!</h1>
-			<?php if(!$this->session->has_userdata('isLoggedIn')): ?>
-            	<a href = "<?php echo base_url('Librarian'); ?>">Librarian</a>
-			<?php endif; ?>
-            <div id = "book-container"></div>
+            <h1 id = "welcome">Welcome to OAS!</h1>            
         </div>
 	</div>
 	<!-- <?php if($this->session->has_userdata('isPatron')): ?>

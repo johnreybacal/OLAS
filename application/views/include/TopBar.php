@@ -7,25 +7,22 @@
         	<form class="lookup-placeholder">
         		<input class="form-control" type="text" placeholder="Search books, authors, genres, etc." style="min-width: 200%;">
     		</form>
-    	</div>
-		<!-- <div class="lookup d-none d-md-block topbar-search">			kay bacs to lol
-		<input class="form-control w-300px" type="text">
-			<div class="lookup-placeholder">
-				<i class="ti-search"></i>
-				<span><strong>Search</strong> books, authors, genres, etc.</span>
-			</div>
-		</div> -->
+    	</div>		
 	</div>
 
 	<div class="topbar-right">
 		<div>		
-			<a class="btn btn-sm btn-primary border-light hover-shadow-2" style="color: white;" href="#qv-form-center" data-toggle="quickview">Login</a>        
+			<a class="btn btn-sm border-light hover-shadow-2 hover-info" href="#qv-form-center" data-toggle="quickview">Login as patron</a>        
+		</div>
+		<div class="topbar-divider d-none d-md-block"></div>
+		<div>
+			<a href = "<?php echo base_url('Librarian'); ?>" class="btn btn-sm border-light hover-shadow-2  hover-info">Librarian portal</a>
 		</div>
 	</div>
 	<!-- Form center -->
 	<div id="qv-form-center" class="quickview">
 		<header class="quickview-header">
-			<p class="quickview-title lead">Log in to OLAS</p>
+			<p class="quickview-title lead">Log in</p>
 			<span class="close"><i class="ti-close"></i></span>
 		</header>
 
