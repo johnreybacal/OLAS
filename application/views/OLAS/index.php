@@ -38,18 +38,18 @@
 						<div class="media">
 							<img class="w-80px h-80px" src="<?php echo base_url("assetsOLAS/img/login-bg.jpg"); ?>" alt="...">						
 							<div class="media-body">
-								<p class="fs-14 semibold">
-									Title: <strong><?php echo $book['book']->Title; ?></strong>
-								</p>
+								<h3 class="fs-24 fw-500">
+									<?php echo $book['book']->Title; ?>
+								</h3>
 								<?php foreach($book['author'] as $author): ?>
-									<p class="fs-14 semibold">Author: <?php echo $author->Name; ?></p>
+									<h4 class="fs-18 fw-300">Author: <?php echo $author->Name; ?></h4>
 								<?php endforeach; ?>							
-								<?php foreach($book['genre'] as $genre): ?>
-									<p class="fs-14 semibold">Genre: <?php echo $genre->Name; ?></p>
+								<!-- <?php foreach($book['genre'] as $genre): ?>
+									<p class="fs-14 fw-100">Genre: <?php echo $genre->Name; ?></p>
 								<?php endforeach; ?>
 								<?php foreach($book['subject'] as $subject): ?>
-									<p class="fs-14 semibold">Subject: <?php echo $subject->Name; ?></p>
-								<?php endforeach; ?>
+									<p class="fs-14 fw-100">Subject: <?php echo $subject->Name; ?></p>
+								<?php endforeach; ?> -->
 							</div>
 							<a class="media-action hover-primary" href="#" data-provide="tooltip" title="Add to Book Bag"><i class="fa fa-plus fa-2x" style="color:#48b0f7"></i></a>
 							<!-- <a class="media-action hover-danger" href="#" data-provide="tooltip" title="Delete"><i class="ti-close"></i></a> -->
