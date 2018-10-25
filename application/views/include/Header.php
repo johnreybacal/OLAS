@@ -22,10 +22,23 @@
 <body>
 
 <?php
-	if($this->session->has_userdata('isLibrarian')){
-		include("MenuLibrarian.php");
+	if($this->session->has_userdata('isLoggedIn')){
+		if($this->session->has_userdata('isLibrarian')){//librarian
+			include("MenuLibrarian.php");
+			include("TopBarLibrarian.php");
+		}else{//patron
+			include("TopBarPatron.php");
+			// include("Menu.php");
+		}
+	}else{// not logged in
+		if(strToLower(uri_string()) != 'librarian/login'){
+			include("TopBar.php");
+		}
 	}
 ?>
-<?php include("TopBar.php"); ?>
-
 <main class="main-container">
+<!-- <?php 
+	if(strToLower(uri_string()) != 'librarian/login'){
+		include("Breadcrumbs.php"); 
+	}
+?> -->
