@@ -3,14 +3,18 @@
 		<!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        		
 		<span class="logo"><img src="<?php echo base_url('assets/img/logo'); ?>" alt="logo-icon"></span>
 		<div class="topbar-divider d-none d-md-block"></div>
-
-		<div class="lookup d-none d-md-block topbar-search">
+		<div class="lookup d-none d-md-block ">
+        	<form class="lookup-placeholder">
+        		<input class="form-control" type="text" placeholder="Search books, authors, genres, etc." style="min-width: 200%;">
+    		</form>
+    	</div>
+		<!-- <div class="lookup d-none d-md-block topbar-search">			kay bacs to lol
 		<input class="form-control w-300px" type="text">
 			<div class="lookup-placeholder">
 				<i class="ti-search"></i>
 				<span><strong>Search</strong> books, authors, genres, etc.</span>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="topbar-right">

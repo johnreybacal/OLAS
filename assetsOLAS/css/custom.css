@@ -9,8 +9,15 @@ a {
     background-image:
     linear-gradient(#48b0f7, #48b0f7),linear-gradient(#ebebeb, #ebebeb);
 }
-
 /* TABLES */
+table.table-bordered.dataTable td{
+	border: none;
+}
+thead {
+	text-align: center;
+	background-color: #48b0f7;
+	color: white;
+}
 .center{
 	text-align: center;
 }
