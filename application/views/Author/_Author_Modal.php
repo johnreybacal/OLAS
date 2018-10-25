@@ -38,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Author_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Author_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -83,65 +83,35 @@
             });           
         },
 
-        validate: function(){
-            $.ajax({
-                url:'<?php echo base_url('Author/Validate'); ?>',
-                type: "POST",
-                data: {"author": Author_Modal.data()},
-                success: function(i){
-                    $('.invalid-feedback').remove();
-                    $('.is-invalid').removeClass('is-invalid');
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Author_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },
-
         save: function () {
-            var message;            
-            if ($('#AuthorId').val() == 0) {
-                message = "Great Job! New Author has been created";
-            } else {
-                message = "Nice! Author has been updated";
-            }
-
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Author',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url:'<?php echo base_url('Author/Save'); ?>',
-                        type: "POST",
-                        data: {"author": Author_Modal.data()},
-                        success: function(i){
-                            swal('Good Job!', message, 'success');
-                            $('#modal-author').modal('hide');
-                            console.log(i);
-                        }, 
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-                        }
-                    })                                     
+            var message;
+                console.log(Author_Modal.data());
+                if ($('#AuthorId').val() == 0) {
+                    message = "Great Job! New Author has been created";
+                } else {
+                    message = "Nice! Author has been updated";
                 }
-            })
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Author',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Author/Save'); ?>',{
+                        author: Author_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+        					$('#modal-author').modal('hide');
+                            console.log(i);
+                        });	
+                    }
+                })
         }
     }
 
