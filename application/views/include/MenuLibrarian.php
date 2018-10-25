@@ -1,6 +1,5 @@
 <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
-    <header class="sidebar-header">
-        <!-- <a class="logo-icon" href="../index.html"><img src="<?php echo base_url('assets/img/logo-icon-light.png'); ?>" alt="logo icon"></a> -->
+    <header class="sidebar-header">        
         <span class="logo">
             <img src="<?php echo base_url('assets/img/logo-light.png'); ?>" alt="logo">
         </span>
