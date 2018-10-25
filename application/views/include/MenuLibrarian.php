@@ -1,16 +1,16 @@
 <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
-    <header class="sidebar-header">
-        <a class="logo-icon" href="../index.html"><img <?php echo base_url('../assets/img/logo-icon-light.png'); ?> alt="logo icon"></a>
-        <span class="logo">
-            <a href="../index.html"><img <?php echo base_url('../assets/img/logo-light.png'); ?> alt="logo"></a>
-        </span>
+    <header class="sidebar-header">        
+        <a href="<?php echo base_url('Librarian/Dashboard'); ?>" class="logo">
+            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">
+    
+        </a>
         <span class="sidebar-toggle-fold"></span>
     </header>
 
     <nav class="sidebar-navigation">
         <ul class="menu">            
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Librarian/Dashboard'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Dashboard</span>
@@ -66,14 +66,7 @@
                             <span class="title">Series</span>
                         </a>
                     </li>  
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Subject/'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Subject</span>
-                        </a>
-                    </li>                    
-
+                
                 </ul>
             </li>
             
@@ -93,14 +86,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url(''); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Issued books</span>
-                        </a>
-                    </li>  
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url(''); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Reservation'); ?>">
                             <span class="dot"></span>
                             <span class="title">Reservations</span>
                         </a>
@@ -111,47 +97,33 @@
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon fa fa-pie-chart"></span>
-                    <span class="title">Users</span>
+                    <span class="title">Patron Management</span>
                     <span class="arrow"></span>
                 </a>
 
                 <ul class="menu-submenu">
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Member'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Patron'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Member</span>
+                            <span class="title">Patron</span>
                         </a>
                     </li>
                     
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('MemberType'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('PatronType'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Member Type</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Librarian'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian Role</span>
+                            <span class="title">Patron Type</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
             <li class="menu-item">
-                <a class="menu-link" href="Settings.html">
+                <a class="menu-link" href="<?php echo base_url('OutsideResearcher/'); ?>">
                     <span class="icon fa fa-home"></span>
-                    <span class="title">Admission</span>
+                    <span class="title">Outside Researcher</span>
                 </a>
-            </li>            
+            </li>        
 
 
             <li class="menu-item">
@@ -186,10 +158,34 @@
                 </ul>
             </li>
 
+            <li class="menu-item">
+                <a class="menu-link" href="#">
+                    <span class="icon fa fa-pie-chart"></span>
+                    <span class="title">Staff Management</span>
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="menu-submenu">                   
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Librarian/Manage'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Librarian Role</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="menu-category">Settings</li>
 
             <li class="menu-item">
-                <a class="menu-link" href="Settings.html">
+                <a class="menu-link" href="<?php echo base_url('Librarian/Setting'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Settings</span>
                 </a>
@@ -199,3 +195,14 @@
     </nav>
 
 </aside>
+<script>
+    // console.log(window.location.href);
+    $(document).ready(function(){
+        $.each($('.menu-item'), function(){
+            if($(this).children('.menu-link').attr('href') == window.location.href){
+                $(this).addClass('active');
+                $(this).parent().parent().addClass('active');
+            }
+        });
+    });
+</script>

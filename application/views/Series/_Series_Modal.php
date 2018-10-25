@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Series_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Series_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -58,8 +58,7 @@
         init: function () {            
             $('#modal-series-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+            $('.invalid-feedback').remove();            
             $('#modal-series').modal('show');
         },
 
@@ -85,35 +84,66 @@
             });           
         },
 
+        validate: function(){
+            $.ajax({
+                url:'<?php echo base_url('Series/Validate'); ?>',
+                type: "POST",
+                data: {"series": Series_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Series_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
+        },
+
         save: function () {
             var message;
-                console.log(Series_Modal.data());
-                if ($('#SeriesId').val() == 0) {
-                    message = "Great Job! New Series has been created";
-                } else {
-                    message = "Nice! Series has been updated";
-                }
+            console.log(Series_Modal.data());
+            if ($('#SeriesId').val() == 0) {
+                message = "Great Job! New Series has been created";
+            } else {
+                message = "Nice! Series has been updated";
+            }
 
-                swal({
-                    title: 'Confirm Submission',
-                    text: 'Save changes for Series',
-                    type: 'warning',
-                    showCancelButton: true,
-                    cancelButtonText: 'No! Cancel',
-                    cancelButtonClass: 'btn btn-default',
-                    confirmButtonText: 'Yes! Go for it',
-                    confirmButtonClass: 'btn btn-info'
-                }).then((result) => {
-                    if (result.value) {
-                        $.post('<?php echo base_url('Series/Save'); ?>',{
-                        series: Series_Modal.data()
-                        }, function(i){
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Series',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:'<?php echo base_url('Series/Save'); ?>',
+                        type: "POST",
+                        data: {"series": Series_Modal.data()},
+                        success: function(i){
                             swal('Good Job!', message, 'success');
-        					$('#modal-series').modal('hide');
+                            $('#modal-series').modal('hide');
                             console.log(i);
-                        });	
-                    }
-                })
+                        }, 
+                        error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
+                        }
+                    })    
+                }
+            })
         }
     }
 
