@@ -56,7 +56,7 @@ class BookModel extends _BaseModel{
 
 	public function getSubject($isbn){
 		$dbList = $this->db->query("select * from subject WHERE SubjectID IN "
-			."(select SubjectId from booksubject WHERE ISBN = '".$isbn."')")->result();
+			."(select SubjectId from bookgenre WHERE ISBN = '".$isbn."')")->result();
 		return $dbList;
 	}
 
@@ -73,7 +73,7 @@ class BookModel extends _BaseModel{
 				."(select CourseId from subjectcourse WHERE SubjectId IN "
 					."(select SubjectId from booksubject WHERE ISBN = '".$isbn."')))")->result();
 		return $dbList;
-	}	
+	}
 
 	/*queries to use in the future
 		unique books

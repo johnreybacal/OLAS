@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Genre_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Genre_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -85,66 +85,35 @@
             });           
         },
 
-        validate: function(){
-            $.ajax({
-                url:'<?php echo base_url('Genre/Validate'); ?>',
-                type: "POST",
-                data: {"genre": Genre_Modal.data()},
-                success: function(i){
-                    $('.invalid-feedback').remove();
-                    $('.is-invalid').removeClass('is-invalid');
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Genre_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },
-
         save: function () {
             var message;
-            console.log(Genre_Modal.data());
-            if ($('#GenreId').val() == 0) {
-                message = "Great Job! New Genre has been created";
-            } else {
-                message = "Nice! Genre has been updated";
-            }
-
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Genre',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url:'<?php echo base_url('Genre/Save'); ?>',
-                        type: "POST",
-                        data: {"genre": Genre_Modal.data()},
-                        success: function(i){
-                            swal('Good Job!', message, 'success');
-                            $('#modal-genre').modal('hide');
-                            console.log(i);
-                        }, 
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-                        }
-                    })    
+                console.log(Genre_Modal.data());
+                if ($('#GenreId').val() == 0) {
+                    message = "Great Job! New Genre has been created";
+                } else {
+                    message = "Nice! Genre has been updated";
                 }
-            })
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Genre',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Genre/Save'); ?>',{
+                        genre: Genre_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+        					$('#modal-genre').modal('hide');
+                            console.log(i);
+                        });	
+                    }
+                })
         }
     }
 

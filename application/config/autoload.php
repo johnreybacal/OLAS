@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 $autoload['libraries'] = array(	
 	'session',
 	'database',
-	'cart',			
+	'cart',		
 );
 
 /*
@@ -138,28 +138,25 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
 	'_BaseModel',
+	'AdmissionModel' => 'admission',
 	'AuthorModel' => 'author',
 	'BookAuthorModel' => 'bookAuthor',
 	'BookCatalogueModel' => 'bookCatalogue',
 	'BookGenreModel' => 'bookGenre',
 	'BookModel' => 'book',
-	'BookStatusModel' => 'bookStatus',
 	'BookSubjectModel' => 'bookSubject',
 	'CollegeModel' => 'college',
 	'CourseModel' => 'course',
 	'GenreModel' => 'genre',
 	'LibrarianModel' => 'librarian',
 	'LibrarianRoleModel' => 'librarianrole',
+	'LoanHistoryModel' => 'loanHistory',
 	'LoanModel' => 'loan',
-	'PatronModel' => 'patron',
-	'PatronTypeModel' => 'patrontype',
-	'OutsideResearcherModel' => 'outsideResearcher',
-	'OutsideResearcherSubjectModel' => 'outsideResearcherSubject',
+	'MemberModel' => 'member',
+	'MemberTypeModel' => 'membertype',
 	'PublisherModel' => 'publisher',
-	'ReservationModel' => 'reservation',
-	'ReportModel' => 'report',
+	'ReservationModel' => 'Reservation',
 	'SeriesModel' => 'series',
 	'SubjectCourseModel' => 'subjectCourse',
 	'SubjectModel' => 'subject',
-
 );

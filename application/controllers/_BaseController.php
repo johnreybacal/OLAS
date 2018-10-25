@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class _BaseController extends CI_Controller {
 
 	public function __construct(){
@@ -33,14 +34,6 @@ class _BaseController extends CI_Controller {
 		}
 		return true;
 	}
-
-	public function UnsetSession(){
-		$this->session->unset_userdata(array('librarianId', 'patronId', 'name', 'isLoggedIn', 'isLibrarian', 'isPatron'));
-	}
-	public function LogOut($page){
-		$this->UnsetSession();
-        redirect(base_url($page));
-    }
 
 	//converts any query to json
 	public function convert($param){
@@ -90,8 +83,6 @@ class _BaseController extends CI_Controller {
 		return $this->removeExcessComma($str);
 	}
 
-
-
 	//removes excess comma at the end for generating tables
 	public function removeExcessComma($str){
 		if($str != '{ "data": ['){
@@ -100,12 +91,8 @@ class _BaseController extends CI_Controller {
 		return $str;
 	}
 
-	//invalid
-	public function invalid($name, $message){
-		return '"'.$name.'":"<div class=\"invalid-feedback\" style=\"display:block\">'.$message.'</div>",';
-	}
-
 	//html helpers hehe
+
 	public function IsActive($url){		
 		if($url == uri_string()){
 			echo "active";

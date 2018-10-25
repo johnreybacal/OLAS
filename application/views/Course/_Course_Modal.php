@@ -43,7 +43,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Course_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Course_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -72,7 +72,8 @@
                     })
                     $('#CollegeId').selectpicker('refresh');
                 }
-            })            
+            })
+            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-course').modal('show');
             $('#modal-course-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
@@ -102,67 +103,37 @@
             })
         },
 
-        validate: function(){
-            $.ajax({
-                url:'<?php echo base_url('Course/Validate'); ?>',
-                type: "POST",
-                data: {"course": Course_Modal.data()},
-                success: function(i){
-                    $('.invalid-feedback').remove();
-                    $('.is-invalid').removeClass('is-invalid');
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Course_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },
-
         save: function () {
 
             var message;
-            console.log(Course_Modal.data());
-            if ($('#CourseId').val() == 0) {
-                message = "Great Job! New Course has been created";
-            } else {
-                message = "Nice! Course has been updated";
-            }
-
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Course',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url:'<?php echo base_url('Course/Save'); ?>',
-                        type: "POST",
-                        data: {"course": Course_Modal.data()},
-                        success: function(i){
-                            swal('Good Job!', message, 'success');
-                            $('#modal-course').modal('hide');
-                            console.log(i);
-                        }, 
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-                        }
-                    })    
+                console.log(Course_Modal.data());
+                if ($('#CourseId').val() == 0) {
+                    message = "Great Job! New Course has been created";
+                } else {
+                    message = "Nice! Course has been updated";
                 }
-            })
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Course',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Course/Save'); ?>',{
+				            course: Course_Modal.data()
+		            		}, function(i){				
+                            swal('Good Job!', message, 'success');
+        					$('#modal-course').modal('hide');		
+                            console.log(i);
+                            }
+                        );	
+                    }
+                })
         }
 
     }

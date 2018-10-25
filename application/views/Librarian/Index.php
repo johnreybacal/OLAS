@@ -3,7 +3,7 @@
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>Librarian</strong> <small class="subtitle">List of all Librarian are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Author</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
 	</div>
 	</div>
 
@@ -25,7 +25,7 @@
 			<div class="table-responsive">
 				<table id="librarian-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Librarian/GenerateTable") ?>">
 					<thead>
-						<tr class="bg-info">
+						<tr>
 							<th>Librarian ID</th>
 							<th>Name</th>
 							<th>Username</th>
