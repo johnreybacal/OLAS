@@ -127,7 +127,9 @@
 								i = JSON.parse(i);
 								$('#Title').val(i.book.Title);
 								$('#PublisherId').selectpicker('val', i.book.PublisherId);
-								$('#SeriesId').selectpicker('val', i.book.SeriesId);
+								if(i.book.SeriesId != null){
+									$('#SeriesId').selectpicker('val', i.book.SeriesId);
+								}
 								$('#Edition').val(i.book.Edition);
 								$('#DatePublished').val(i.book.DatePublished);
 								var author = [];

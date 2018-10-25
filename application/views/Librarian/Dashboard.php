@@ -45,7 +45,7 @@
 
             </div>
             <div class="table-responsive">                            
-                </table><table class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableComplete") ?>">
+                <table class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableComplete") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Accession Number</th>
@@ -64,9 +64,7 @@
 							<th>Acquired From</th>							
 						</tr>
 					</thead>
-				</table>          
-                <text>Current Workforce: 359 Max. Workforce:1396</text>
-                <small style="line-height:10px">*The data shown here reflects current Employee status and not historical active manpower data</small>
+				</table>                          
             </div>
         </div>
 	</div>

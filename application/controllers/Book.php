@@ -54,12 +54,17 @@ class Book extends _BaseController {
     public function GenerateOPAC(){        
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list() as $data){   
-            $book = $this->book->_get($data->ISBN);                
+            $book = $this->book->_get($data->ISBN);      
+            $s = $this->series->_get($book->SeriesId);
+            $series = '';
+            if(is_object($s)){
+                $series = $s->Name;
+            }
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
-                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
@@ -75,7 +80,12 @@ class Book extends _BaseController {
     public function GenerateTableComplete(){
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list("ORDER BY DateAcquired DESC") as $data){   
-            $book = $this->book->_get($data->ISBN);                
+            $book = $this->book->_get($data->ISBN);   
+            $s = $this->series->_get($book->SeriesId);
+            $series = '';
+            if(is_object($s)){
+                $series = $s->Name;
+            }             
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->CallNumber.'",'
@@ -84,7 +94,7 @@ class Book extends _BaseController {
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                
                 .'"'.$this->publisher->_get($book->PublisherId)->Name.'",'
-                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCourse($data->ISBN)).'",'

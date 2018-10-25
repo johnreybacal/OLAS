@@ -2,7 +2,7 @@
     <header class="sidebar-header">
         <!-- <a class="logo-icon" href="../index.html"><img src="<?php echo base_url('assets/img/logo-icon-light.png'); ?>" alt="logo icon"></a> -->
         <span class="logo">
-            <a href="../index.html"><img src="<?php echo base_url('assets/img/logo-light.png'); ?>" alt="logo"></a>
+            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>" alt="logo">
         </span>
         <span class="sidebar-toggle-fold"></span>
     </header>

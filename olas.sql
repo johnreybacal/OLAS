@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2018 at 12:53 PM
+-- Generation Time: Oct 25, 2018 at 04:12 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -48,7 +48,7 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (1, 'Johnrey', 1),
 (2, 'Judel Bacal', 1),
 (3, 'Ning', 1),
-(4, 'Abbie', 1);
+(4, 'Ted Dekker', 1);
 
 -- --------------------------------------------------------
 
@@ -76,10 +76,10 @@ TRUNCATE TABLE `book`;
 --
 
 INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'Libro ni Kobi', 1, 1, '2', '2018-09-24'),
-('2', 'Ikalawa2', 1, 1, '1', '2018-08-26'),
-('3', 'asojas', 1, 1, '1', '2018-10-22'),
-('', '', 0, 0, '', '0000-00-00');
+('1', 'The house of us', 1, 1, '2', '2018-09-24'),
+('2', 'The book of knowledge', 1, 3, '1', '2018-08-26'),
+('3', 'The day you said goodnight', 1, 3, '1', '2018-10-22'),
+('4', 'Star Lord', 1, 0, '', '2018-10-02');
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,9 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 (1, 1),
 (2, 3),
 (2, 2),
-(2, 1);
+(2, 1),
+(4, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -139,14 +141,17 @@ TRUNCATE TABLE `bookcatalogue`;
 
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
 (1, '112', '2', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
-(11, '123', '3', '2018-10-26', 'dsfaa', 0, 1, 1, 1),
+(11, '123', '3', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
 (10, 'asduhaud', '2', '2018-11-01', 'Abbie', 0, 1, 1, 1),
 (9, 'os91', '1', '2018-10-27', '', 0, 1, 1, 1),
 (12, 'sdg', '3', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
 (13, '34', '1', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
 (14, '1', '2', '2018-11-01', 'q', 200, 0, 1, 1),
 (15, '12343', '1', '2018-10-02', 'q', 3, 0, 1, 1),
-(16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1);
+(16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
+(17, 'scsdvs', '1', '2018-10-23', 'wef', 12, 0, 1, 1),
+(18, 'xcb ', '1', '2018-10-23', 'wef', 12, 1, 1, 1),
+(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +177,8 @@ TRUNCATE TABLE `bookgenre`;
 INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
 (1, 1),
 (2, 1),
-(3, 1);
+(3, 3),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -227,7 +233,9 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 (2, 11),
 (2, 1),
 (1, 1),
-(3, 1);
+(3, 1),
+(4, 1),
+(4, 14);
 
 -- --------------------------------------------------------
 
@@ -422,7 +430,7 @@ TRUNCATE TABLE `outsideresearcher`;
 --
 
 INSERT INTO `outsideresearcher` (`OutsideResearcherId`, `Name`, `DateTime`, `AmountPayed`) VALUES
-(3, 'Johnrey', '2018-10-30 00:00:00', 100),
+(3, 'Johnrey', '2018-10-09 00:00:00', 100),
 (2, 'Johnrey', '2018-10-29 00:00:00', 100);
 
 -- --------------------------------------------------------
@@ -536,7 +544,7 @@ TRUNCATE TABLE `publisher`;
 
 INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 (1, 'JB Publishing', 1),
-(2, 'Abbie qt <3', 1),
+(2, 'BooksRUs', 1),
 (4, 'Publisher', 1);
 
 -- --------------------------------------------------------
@@ -590,7 +598,7 @@ TRUNCATE TABLE `series`;
 --
 
 INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
-(1, 'Abbiebebe Series', 1),
+(1, 'Star wars Series', 1),
 (2, 'Harry Potter Series', 1),
 (3, 'Series', 1);
 
@@ -769,7 +777,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
