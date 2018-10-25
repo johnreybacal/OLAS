@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Courses associated with subject</label>
-                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
+                                <select id="CourseId" name="CourseId" data-provide="selectpicker" title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
                             </div>
                             <div class="col-12">
                                 <label>Subject Name</label>
@@ -44,7 +44,7 @@
             <div class="modal-footer">
                 <!--  <button-- class="btn btn-label btn-primary"><label><i class="fa fa-edit"></i></label> Save Changes</button-->
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Subject_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Subject_Modal.save()">Save</button>
             </div>
         </div>
     </div>
@@ -111,31 +111,6 @@
             })
         },
 
-        validate: function(){
-            $.ajax({
-                url:'<?php echo base_url('Subject/Validate'); ?>',
-                type: "POST",
-                data: {"subject": Subject_Modal.data()},
-                success: function(i){
-                    $('.invalid-feedback').remove();
-                    $('.is-invalid').removeClass('is-invalid');
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Subject_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },
-
         save: function () {
             var message;
                 console.log(Subject_Modal.data());
@@ -156,19 +131,14 @@
                     confirmButtonClass: 'btn btn-info'
                 }).then((result) => {
                     if (result.value) {
-                        $.ajax({
-                            url:'<?php echo base_url('Subject/Save'); ?>',
-                            type: "POST",
-                            data: {"subject": Subject_Modal.data()},
-                            success: function(i){
-                                swal('Good Job!', message, 'success');
-                                $('#modal-subject').modal('hide');
-                                console.log(i);
-                            }, 
-                            error: function(i){
-                                swal('Oops!', "Something went wrong", 'error');
+                        $.post('<?php echo base_url('Subject/Save'); ?>',{
+                        subject: Subject_Modal.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+        					$('#modal-subject').modal('hide');
+                            console.log(i);
                             }
-                        })    
+                        );	
                     }
                 })
         }

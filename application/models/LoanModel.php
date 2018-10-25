@@ -15,29 +15,17 @@ class LoanModel extends _BaseModel{
 	public function save($loan){
 		if($loan['LoanId'] == 0){//insert			
 			$this->db->query("INSERT into loan "
-				."(MemberId, AccessionNumber, DateBorrowed, DateDue, DateReturned, AmountPayed, BookStatusId) VALUES ("                   
-					."'".$loan['MemberId']."',"
-					."'".$loan['AccessionNumber']."',"
-					."'".$loan['DateBorrowed']."',"
-					."'".$loan['DateDue']."',"
-					."NULL,"
-					."NULL,"
-					."'1',"
+				."(Data) VALUES ("                   
+					."'".$loan['Data']."'"
 				.")"
 			);
 		}
 		else{//update
 			$this->db->query("UPDATE loan SET "
-                ."MemberId = '".$loan['MemberId']."', "
-                ."AccessionNumber = '".$loan['AccessionNumber']."', "
-                ."DateBorrowed = '".$loan['DateBorrowed']."', "
-                ."DateDue = '".$loan['DateDue']."', "
-                ."DateReturned = '".$loan['DateReturned']."', "
-                ."AmountPayed = '".$loan['AmountPayed']."', "
-                ."BookStatusId = '".$loan['BookStatusId']."' "
+                ."Data = '".$loan['Data']."'"
                 ."WHERE LoanId = '".$loan['LoanId']."'"
 			);			
 		}
-	}
+    }	
     
 }
