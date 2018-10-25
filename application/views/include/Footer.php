@@ -1,19 +1,16 @@
 <footer class="site-footer">
     <div class="row">
         <div class="col-md-6">
-        <p class="text-center text-md-left">Copyright © 2018 <a href="#">PikABook</a>. All rights reserved.</p>
+        <p class="text-center text-md-left">Copyright © 2018 <a href="#">OLAS</a>. All rights reserved.</p>
         </div>
 
         <div class="col-md-6">
         <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
             <li class="nav-item">
-            <a class="nav-link" href="../help/articles.html">Documentation</a>
-            </li>
+                <a class="nav-link" href="#">About OLAS</a>
+            </li>            
             <li class="nav-item">
-            <a class="nav-link" href="../help/faq.html">FAQ</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="https://themeforest.net/item/theadmin-responsive-bootstrap-4-admin-dashboard-webapp-template/20475359?license=regular&amp;open_purchase_for_item_id=20475359&amp;purchasable=source&amp;ref=thethemeio">Purchase Now</a>
+                <a class="nav-link" href="#">About the developers</a>
             </li>
         </ul>
         </div>
@@ -34,6 +31,13 @@
 
 
 <!-- Scripts -->
+<script>
+    $(document).ready(function(){
+        $('form').submit(function(form){
+            form.preventDefault();
+        });
+    });
+</script>
 <script src = "<?php echo base_url('assets/js/core.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/js/app.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script>

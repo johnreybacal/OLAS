@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Series extends _BaseController {
 
     public function __construct(){
@@ -34,6 +35,27 @@ class Series extends _BaseController {
         echo $this->convert($this->series->_get($id));
     }
     
+    public function Validate(){
+        $series = $this->input->post('series');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($series['Name'])){
+            $str .= $this->invalid('Name', 'Please input a value');
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->series->_exist('Name', $series['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->SeriesId != $series['SeriesId']){
+                    $str .= $this->invalid('Name', 'Series already exist');
+                    $valid = false;
+                }
+            }
+        }        
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }
+
     public function Save(){        
         $this->series->save($this->input->post('series'));
     }
