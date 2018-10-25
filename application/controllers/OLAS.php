@@ -13,6 +13,7 @@ class OLAS extends _BaseController {
 	{		          		
 		foreach($this->bookCatalogue->_list() as $b){						
 			$data['books'][] = array(
+				$b,
 				'book' => $this->book->_get($b->ISBN),
 				'author' => $this->book->getAuthor($b->ISBN),
 				'genre' => $this->book->getGenre($b->ISBN),
