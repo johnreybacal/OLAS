@@ -71,15 +71,10 @@
         <li class="dropdown">
         <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="<?php echo base_url('assets/img/avatar/1.jpg'); ?>" alt="..."></span>
         <div class="dropdown-menu dropdown-menu-right">
-<<<<<<< HEAD
             <a class="dropdown-item" href="<?php echo base_url('Librarian/Setting'); ?>"><i class="ti-user"></i> Profile</a>
             <a class="dropdown-item" href="<?php echo base_url('Librarian/Setting'); ?>"><i class="ti-settings"></i> Settings</a>
             <a class="dropdown-item" href="<?php echo base_url('Librarian/Setting'); ?>"><i class="ti-help"></i> Help</a>
-=======
             <a class="dropdown-item" href="<?php echo base_url('Librarian/Profile/'.$this->session->userdata('librarianId')); ?>"><i class="ti-user"></i> <?php echo $this->session->userdata('username'); ?></a>
-            <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-            <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
->>>>>>> cdb62f543444b01704aef904bf9122d4711310ee
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo base_url('Librarian/LogOut'); ?>"><i class="ti-power-off"></i> Logout</a>
         </div>

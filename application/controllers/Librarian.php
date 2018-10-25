@@ -30,7 +30,7 @@ class Librarian extends _BaseController {
     }
 
     public function Setting(){
-        $this->load->view('Setting/index', '');
+        $this->librarianView('Setting/index', '');
     }
     
     public function Dashboard(){

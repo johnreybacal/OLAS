@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" style="margin-top: 5%;">
 	<form id="book-form">
 		<div class="row">
 			<div class="col-lg-12">
