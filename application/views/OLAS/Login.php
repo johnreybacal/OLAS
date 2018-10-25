@@ -13,7 +13,7 @@ Login
 		},
 
 		authenticate: function(){			
-			$.post('<?php echo base_url('Patron/Authenticate'); ?>',{
+			$.post('<?php echo base_url('Member/Authenticate'); ?>',{
 				login: login.data()
 				}, function(i){
 					$('#message').html((i == 1) ? "Login successful" : "Invalid username or password");
