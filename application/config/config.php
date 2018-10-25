@@ -521,3 +521,20 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+spl_autoload_extensions('.php');
+
+spl_autoload_register(function($classname){
+
+    if(strpos($classname,'\\') !== false){
+        $classfile = str_replace('\\', '\\', $classname);
+        if($classname[0] !== '\\'){
+            $classfile = APPPATH.'libraries\\'.$classfile.'.php';
+        }
+        require(strtolower($classfile));
+    }else if(strpos($classname, 'interface') !== false){
+        strtolower($classname);
+        require('application\\libraries\\'.$classname.'.php');
+    }
+});

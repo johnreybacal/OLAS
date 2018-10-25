@@ -3,7 +3,7 @@
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>Author</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Librarian Role</strong> <small class="subtitle">List of all Librarian Role are available in this page.</small></h2>
 	</div>
 	</div>
 
@@ -11,7 +11,7 @@
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
 		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="LibrarianRole_Modal.new();"
-	data-toggle="modal" data-target="#modal-librarianrole" data-provide="tooltip" data-original-title="Add Book">
+	data-toggle="modal" data-target="#modal-librarianrole" data-provide="tooltip" data-original-title="Add Librarian Role">
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -25,7 +25,7 @@
 			<div class="table-responsive">
 				<table id="librarianrole-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("LibrarianRole/GenerateTable") ?>">
 					<thead>
-						<tr>
+						<tr class="bg-info">
 							<th>LibrarianRole ID</th>
 							<th>Name</th>
 							<th>Status</th>

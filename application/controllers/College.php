@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class College extends _BaseController {
 
     public function __construct(){
@@ -24,6 +25,27 @@ class College extends _BaseController {
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function Validate(){
+        $college = $this->input->post('college');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($college['Name'])){
+            $str .= $this->invalid('Name', 'Please input a value');
+            $valid = false;
+        }
+        else {
+            $ifExist = $this->college->_exist('Name', $college['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->CollegeId != $college['CollegeId']){
+                    $str .= $this->invalid('Name', 'College already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
     }
 
     public function GetAll(){        
