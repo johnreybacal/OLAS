@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Subject extends _BaseController {
 
     public function __construct(){
@@ -47,6 +48,36 @@ class Subject extends _BaseController {
             $str .= $c->CourseId.',';
         }
         echo $this->removeExcessComma($str).']';    
+    }
+    
+    public function Validate(){
+        $subject = $this->input->post('subject');        
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($subject['Name'])){
+            $str .= $this->invalid('Name', 'Please input a value');
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->subject->_exist('Name', $subject['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->SubjectId != $subject['SubjectId']){
+                    $str .= $this->invalid('Name', 'Subject already exist');
+                    $valid = false;
+                }
+            }
+        }
+        if(array_key_exists('CourseId', $subject)){
+            if(!v::arrayVal()->notEmpty()->validate($subject['CourseId'])){
+                $str .= $this->invalid('CourseId', 'Please select at least one course');
+                $valid = false;
+            }
+        }else{
+            $str .= $this->invalid('CourseId', 'Please select at least one course');
+            $valid = false;
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
     }
     
     public function Save(){                                

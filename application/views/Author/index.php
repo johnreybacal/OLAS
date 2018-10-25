@@ -27,7 +27,7 @@
 			<div class="table-responsive">
 				<table id = "author-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Author/GenerateTable") ?>">
 					<thead>
-						<tr>
+						<tr class="bg-info">
 							<th>Name</th>			
 							<th>Status</th>
 							<th>Action</th>
