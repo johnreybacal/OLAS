@@ -52,7 +52,7 @@
     <div class="topbar-divider d-none d-md-block"></div>
     <div class="lookup d-none d-md-block ">
         <form class="lookup">
-        <input class="form-control" type="text" placeholder="Pick a Book" style="min-width: 200%;">
+        <input class="form-control" type="text" placeholder="Search books, patrons, etc..." style="min-width: 200%;">
         </form>
     </div>
     <!-- <div class="lookup d-none d-md-block topbar-search" id="theadmin-search">
@@ -71,7 +71,7 @@
         <li class="dropdown">
         <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="<?php echo base_url('assets/img/avatar/1.jpg'); ?>" alt="..."></span>
         <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
+            <a class="dropdown-item" href="<?php echo base_url('Librarian/Profile/'.$this->session->userdata('librarianId')); ?>"><i class="ti-user"></i> <?php echo $this->session->userdata('username'); ?></a>
             <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
             <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
             <div class="dropdown-divider"></div>

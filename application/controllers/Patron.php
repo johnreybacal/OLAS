@@ -14,10 +14,12 @@ class Patron extends _BaseController {
     public function Authenticate(){        
         $result = $this->patron->authenticate($this->input->post('login')['IdNumber'], $this->input->post('login')['Password']);                    
 		if($result != 0){
+            $this->UnsetSession();
             $patron = $this->patron->_get($result);
             $this->session->set_userdata(
                 array(
-                    'name' => $patron->Name,
+                    'patronId' => $patron->PatronId,
+                    'name' => $patron->FirstName,
                     'isLoggedIn' => true, 
                     'isPatron' => true
                 )
@@ -26,9 +28,8 @@ class Patron extends _BaseController {
         echo $result;
     }
     
-    public function LogOut(){
-        $this->session->unset_userdata(array('name', 'isLoggedIn', 'isPatron'));
-        redirect(base_url());
+    public function LogOut($page = null){//required pala talaga lol
+        parent::LogOut('');
     }
 	
 	public function GenerateTable(){

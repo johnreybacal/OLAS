@@ -160,11 +160,15 @@
             $.ajax({
                 url: "<?php echo base_url('Bookbag/Remove'); ?>/" + id,
                 success: function(i){
-                    Bookbag.refresh();
-                    swal('Unbookbagged!', "Book removed from bookbag", 'success');
+                    $('#' + id).fadeOut({
+                        complete: function(){
+                            $(this).remove();
+                        }
+                    })
+                    // swal('Unbookbagged!', "Book removed from bookbag", 'success');
                 },
                 error: function(){
-                    swal('Oops!', "Something went wrong", 'error');
+                    // swal('Oops!', "Something went wrong", 'error');
                 }
             })
         },       
@@ -185,7 +189,7 @@
                         url: "<?php echo base_url('Bookbag/RemoveAll'); ?>",
                         success: function(i){
                             Bookbag.refresh();
-                            swal('Unbookbagged!', "All book removed from bookbag", 'success');
+                            // swal('Unbookbagged!', "All book removed from bookbag", 'success');
                         }
                     });
                 }
@@ -225,7 +229,11 @@
             $.ajax({
                 url: "<?php echo base_url('Bookbag/Get'); ?>",
                 success: function(i){
-                    $('#bookbag').empty();
+                    $('#bookbag').children().fadeOut({
+                        complete: function(){
+                            $(this).remove();
+                        }
+                    });
                     if(i != 'No data'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){
@@ -235,7 +243,7 @@
                                 success: function(j){
                                     j = JSON.parse(j);
                                     $('#bookbag').append(
-                                        '<a class="media media-new" href="#">'
+                                        '<a id="' + data.rowid + '"class="media media-new" href="#">'
                                         + '<span class="avatar bg-success"><i class="ti-user"></i></span>'
                                         + '<div class="media-body">'
                                             + '<p>' + j.book.Title + '</p>'                                        
@@ -247,7 +255,7 @@
                             });
                         })
                     }else{
-                        $('#bookbag').append('<p class="media">Bookbag is empty</p>')
+                        $('#bookbag').append('<p class="media">Bookbag is empty<br />Books in bookbag will be displayed here</p>')
                     }
                 }
             });

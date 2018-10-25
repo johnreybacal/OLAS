@@ -34,6 +34,14 @@ class _BaseController extends CI_Controller {
 		return true;
 	}
 
+	public function UnsetSession(){
+		$this->session->unset_userdata(array('librarianId', 'patronId', 'name', 'isLoggedIn', 'isLibrarian', 'isPatron'));
+	}
+	public function LogOut($page){
+		$this->UnsetSession();
+        redirect(base_url($page));
+    }
+
 	//converts any query to json
 	public function convert($param){
 		$str = '{';		
