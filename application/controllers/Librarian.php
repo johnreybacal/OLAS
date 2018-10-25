@@ -97,5 +97,24 @@ class Librarian extends _BaseController {
         }
 
     }
+    
+    public function SMS(){
+        $number = "09966367165";
+        $message = "Balik mo na yung libro gago.";
+        $apicode = "TR-JOHNM367165_YV1W2";
+        $ch = curl_init();
+        $itexmo = array(
+            '1' => $number,
+            '2' => $message,
+            '3' => $apicode
+        );
+        curl_setopt($ch, CURLOPT_URL, "https://www.itexmo.com/php_api/api.php");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($itexmo));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        return curl_exec ($ch);
+                curl_close ($ch);
+    }
 
 }
