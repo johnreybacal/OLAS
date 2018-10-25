@@ -1,3 +1,8 @@
+<!-- <?php 
+    if(strToLower(uri_string()) != 'librarian/login'){
+        include(base_url('application/views/include/Breadcrumbs.php'));
+    }
+?> -->
 <div class="main-content">
 	<div class="card">
         <div class="card-body">

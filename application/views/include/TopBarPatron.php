@@ -70,10 +70,10 @@
 
 
 <!-- Notifications -->
-<div id="qv-bookbag" class="quickview">
-    <header class="quickview-header ">
+<div id="qv-bookbag" class="quickview" style="border-left: 1px solid #48b0f7;">
+    <header class="quickview-header bg-info">
     <p class="quickview-title">Bookbag</p>
-    <span class="close"><i class="ti-close"></i></span>
+    <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
     <div class="quickview-body">
@@ -84,10 +84,10 @@
 
     <footer class="quickview-footer flexbox">
     <div>
-        <a href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a>
+        <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a>
     </div>
     <div>
-        <button class="btn-pure" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-trash"></i></>        
+        <button class="btn btn-outline btn-danger" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
     </div>
     </footer>
 </div>
@@ -95,10 +95,10 @@
 
 
 <!-- Messages -->
-<div id="qv-messages" class="quickview">
-    <header class="quickview-header">
+<div id="qv-messages" class="quickview" style="border-left: 1px solid #48b0f7;">
+    <header class="quickview-header bg-info">
     <p class="quickview-title">Messages</p>
-    <span class="close"><i class="ti-close"></i></span>
+    <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
     <div class="quickview-body">

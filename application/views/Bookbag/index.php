@@ -3,7 +3,7 @@
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>Books</strong> <small class="subtitle">List of all books on BookBag are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Book Bag</strong> <small class="subtitle">List of all books on BookBag are available in this page.</small></h2>
 	</div>
 	</div>
 
@@ -18,7 +18,7 @@
 </div>
 </header><!--/.header -->
 
-<div class="main-content">
+<div class="main-content" style="margin: 30px 90px 0px 90px;">
 	<div class="card">
 		<div class="card-body">            
             <h4>Bookbag</h4>

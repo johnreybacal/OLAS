@@ -1,10 +1,10 @@
 	<!--header-inverse para madilim bg-ui-general-->
-<!-- <header class="header header-inverse bg-ui-general"> 
+<header class="header header-inverse bg-ui-general"> 
 <div class="container">
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>Author</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Patron</strong> <small class="subtitle">List of all Patrons are available in this page.</small></h2>
 	</div>
 	</div>
 
@@ -17,13 +17,13 @@
 	</div>
 	</div>
 </div>
-</header> -->
+</header>
 <!--/.header -->
 <div class="main-content">
 	<div class="card">
 		<!-- <div class="card-title bl-3 border-info"> -->
 		<div class="card-title">
-			<h4>Patron</h4>
+			<!-- <h4>Patron</h4> -->
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -44,13 +44,13 @@
 	</div>
 </div>
 
-<div class="fab fab-fixed">
+<!-- <div class="fab fab-fixed">
     <button class="btn btn-float btn-lg btn-info float-md-right" id="fab-button" 
             onclick="Patron_Modal.new();" data-toggle="modal" 
             data-target="#modal-" data-provide="tooltip" data-original-title="Add Patron">
     <i class="ti-plus"></i>
     </button>
-</div>
+</div> -->
 
 <?php //include('/Patron/Edit'); ?>
 

@@ -12,6 +12,7 @@ a {
 /* TABLES */
 table.table-bordered.dataTable td{
 	border: none;
+	text-align: center;
 }
 thead {
 	text-align: center;

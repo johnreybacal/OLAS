@@ -1,4 +1,4 @@
-<div class="main-content" style="margin: 30px 90px 0px 90px;">
+<div class="main-content" style="margin: 5% 8% 0px 8%;">
 	<div class="card">
         <div class="card-body">
             <h1 id = "welcome">Welcome to OAS!</h1>
@@ -30,7 +30,7 @@
 		</div>
 	<?php endif; ?>
     <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <div class="card">
                 <h4 class="card-title">Recent Books</h4>
                 <div class="media-list media-list-divided media-list-hover">
@@ -58,7 +58,7 @@
 				</div>				
             </div>
         </div>
-		<div class="col-4">
+		<div class="col-lg-4 col-md-4 col-sm-12">
 			<div class="card">
 				<h4 class="card-title">Popular Authors</h4>
 				<div class="media-list media-list-divided media-list-hover">

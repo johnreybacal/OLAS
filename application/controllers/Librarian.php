@@ -28,6 +28,10 @@ class Librarian extends _BaseController {
     public function Manage(){
         $this->librarianView('Librarian/index', '');
     }
+
+    public function Setting(){
+        $this->load->view('Setting/index', '');
+    }
     
     public function Dashboard(){
         $data['totalBooks'] = $this->report->totalBooks();

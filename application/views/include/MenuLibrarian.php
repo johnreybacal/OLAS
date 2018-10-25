@@ -1,8 +1,9 @@
 <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
     <header class="sidebar-header">        
-        <span class="logo">
-            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>" alt="logo">
-        </span>
+        <a href="<?php echo base_url('Librarian/Dashboard'); ?>" class="logo">
+            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">
+    
+        </a>
         <span class="sidebar-toggle-fold"></span>
     </header>
 
@@ -184,7 +185,7 @@
             <li class="menu-category">Settings</li>
 
             <li class="menu-item">
-                <a class="menu-link" href="Settings.html">
+                <a class="menu-link" href="<?php echo base_url('Librarian/Setting'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Settings</span>
                 </a>
