@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-use Respect\Validation\Validator as v;
 class Book extends _BaseController {
 
     public function __construct(){
@@ -13,19 +12,12 @@ class Book extends _BaseController {
     }
         
     public function Add(){
-        $this->librarianView('Book/Add', '');
+        $this->librarianView('Book/add', '');
     }
     
     public function Edit($id){
         $data['book'] = $this->bookCatalogue->_get($id);
         $this->librarianView('Book/Edit', $data);
-    }
-
-    public function View($id){
-        $data['book'] = $this->bookCatalogue->_get($id);
-        $this->header();
-        $this->load->view('Book/View', $data);
-        $this->footer();
     }
 
     public function MarcUpload(){
@@ -34,16 +26,14 @@ class Book extends _BaseController {
 
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->bookCatalogue->_list() as $data){   
-            $book = $this->book->_get($data->ISBN);                
-            $json .= '['                
+        foreach($this->bookCatalogue->_list() as $data){
+            $json .= '['
+                .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$data->AccessionNumber.'</a>",'
                 .'"'.$data->CallNumber.'",'
-                .'"'.$data->ISBN.'",'                
-                .'"'.$book->Title.'",'                                
+                .'"'.$data->ISBN.'",'
                 .'"'.$data->DateAcquired.'",'
-                .'"'.$data->AcquiredFrom.'",'
-                .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
-            .']';             
+                .'"'.$data->AcquiredFrom.'"'
+            .']';            
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
@@ -51,56 +41,26 @@ class Book extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateOPAC(){        
-        $json = '{ "data": [';
-        foreach($this->bookCatalogue->_list() as $data){   
-            $book = $this->book->_get($data->ISBN);      
-            $s = $this->series->_get($book->SeriesId);
-            $series = '';
-            if(is_object($s)){
-                $series = $s->Name;
-            }
-            $json .= '['                
-                .'"'.$book->Title.'",'
-                .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
-                .'"'.$series.'",'
-                .'"'.$book->Edition.'",'
-                .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
-                .'"'.$data->CallNumber.'",'
-                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
-            .']';             
-            $json .= ',';
-        }
-        $json = $this->removeExcessComma($json);
-        $json .= ']}';
-        echo $json;  
-    }
-
     public function GenerateTableComplete(){
         $json = '{ "data": [';
-        foreach($this->bookCatalogue->_list("ORDER BY DateAcquired DESC") as $data){   
-            $book = $this->book->_get($data->ISBN);   
-            $s = $this->series->_get($book->SeriesId);
-            $series = '';
-            if(is_object($s)){
-                $series = $s->Name;
-            }             
+        foreach($this->bookCatalogue->_list() as $data){   
+            $x = $this->book->_get($data->ISBN);                
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
-                .'"'.$book->Title.'",'                
+                .'"'.$x->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                
-                .'"'.$this->publisher->_get($book->PublisherId)->Name.'",'
-                .'"'.$series.'",'
-                .'"'.$book->Edition.'",'
+                .'"'.$this->publisher->_get($x->PublisherId)->Name.'",'
+                .'"'.$this->series->_get($x->SeriesId)->Name.'",'
+                .'"'.$x->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCourse($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getCollege($data->ISBN)).'",'
                 .'"'.$data->DateAcquired.'",'
-                .'"'.$data->AcquiredFrom.'"'
+                .'"'.$data->AcquiredFrom.'",'
+                .'"<a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }
@@ -125,102 +85,9 @@ class Book extends _BaseController {
             echo '0';
         }
     }
-
-    public function LastAcquired($isbn){
-        echo $this->convert($this->bookCatalogue->lastAcquired($isbn));        
-    }
     
-    public function Validate(){
-        $book = $this->input->post('book');        
-        $str = '{';
-        $valid = true;
-        //isbn
-        if(!v::notEmpty()->validate($book['ISBN'])){
-            $str .= $this->invalid('ISBN', 'ISBN is required');
-            $valid = false;
-        }
-        //title
-        if(!v::notEmpty()->validate($book['Title'])){
-            $str .= $this->invalid('Title', 'Title is required');
-            $valid = false;
-        }
-        //acquired from
-        if(!v::notEmpty()->validate($book['AcquiredFrom'])){
-            $str .= $this->invalid('AcquiredFrom', 'Please input the name of the supplier');
-            $valid = false;
-        }
-        //call number
-        if(!v::notEmpty()->validate($book['CallNumber'])){
-            $str .= $this->invalid('CallNumber', 'Please add a Call Number');
-            $valid = false;
-        }
-        else{
-            $ifExist = $this->bookCatalogue->_exist('CallNumber', $book['CallNumber']);            
-            if(is_object($ifExist)){
-                if($ifExist->AccessionNumber != $book['AccessionNumber']){
-                    $str .= $this->invalid('CallNumber', 'Call Number already exist');
-                    $valid = false;
-                }
-            }
-        }
-        //price
-        if(!v::intVal()->notEmpty()->validate($book['Price'])){
-            $str .= $this->invalid('Price', 'Please input the cost of the book');
-            $valid = false;
-        } 
-        else{
-            if(!v::intVal()->min(0)->validate($book['Price'])){
-                $str .= $this->invalid('Price', 'Price is invalid');
-                $valid = false;
-            } 
-        }
-        //multiple selectpickers
-        if(array_key_exists('AuthorId', $book)){
-            if(!v::arrayVal()->notEmpty()->validate($book['AuthorId'])){
-                $str .= $this->invalid('AuthorId', 'Please select at least one author');
-                $valid = false;
-            }
-        }else{
-            $str .= $this->invalid('AuthorId', 'Please select at least one author');
-            $valid = false;
-        }
-        if(array_key_exists('GenreId', $book)){
-            if(!v::arrayVal()->notEmpty()->validate($book['GenreId'])){
-                $str .= $this->invalid('GenreId', 'Please select at least one genre');
-                $valid = false;
-            }
-        }else{
-            $str .= $this->invalid('GenreId', 'Please select at least one genre');
-            $valid = false;
-        }
-        if(array_key_exists('SubjectId', $book)){
-            if(!v::arrayVal()->notEmpty()->validate($book['SubjectId'])){
-                $str .= $this->invalid('SubjectId', 'Please select at least one subject');
-                $valid = false;
-            }
-        }else{
-            $str .= $this->invalid('SubjectId', 'Please select at least one subject');
-            $valid = false;
-        }
-        //selectpickers
-        if(!v::intVal()->notEmpty()->validate($book['PublisherId'])){
-            $str .= $this->invalid('PublisherId', 'Please select a publisher');
-            $valid = false;
-        }         
-        //dates
-        if(!v::date()->validate($book['DatePublished'])){            
-            $str .= $this->invalid('DatePublished', 'Please input a date');
-            $valid = false;
-        }
-        if(!v::date()->validate($book['DateAcquired'])){            
-            $str .= $this->invalid('DateAcquired', 'Please input a date');
-            $valid = false;
-        }
-        $str .= '"status":"'.($valid ? '1' : '0').'"}';
-        echo $str;
-    }
-
-    public function Save(){          
+    public function Save(){  
+        // print_r($this->input->post('book'));
         $book = $this->input->post('book');        
         $isbn = $book['ISBN'];
         $author = $book['AuthorId'];

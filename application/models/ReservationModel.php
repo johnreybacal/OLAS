@@ -13,26 +13,25 @@ class ReservationModel extends _BaseModel{
 	}
 
 	public function save($reservation){
-		if($reservation['ReservationId'] == 0){
-			//current-timestamp ung date kaya di na need
+		if($reservation['ReservationId'] == 0){//insert			
 			$this->db->query("INSERT into reservation "
-				."(MemberId, AccessionNumber, IsDiscarded) VALUES ("                   
-					."'".$reservation['MemberId']."',"
-					."'".$reservation['AccessionNumber']."',"
-					."'0'"
+				."(MemberId, AccessionNumber, DateReserved, IsDiscarded) VALUES ("                   
+					."'".$reservation['MemberId']."'"
+					."'".$reservation['AccessionNumber']."'"
+					."'".$reservation['DateReserved']."'"
+					."'false'"
 				.")"
 			);
 		}
 		else{//update
-			//hindi nababago ang date reserved mga ulol
+			$this->db->query("UPDATE reservation SET "
+                ."MemberId = '".$reservation['MemberId']."'"
+                ."AccessionNumber = '".$reservation['AccessionNumber']."'"
+                ."DateReserved = '".$reservation['DateReserved']."'"
+                ."IsDiscarded = '".$reservation['IsDiscarded']."'"
+                ."WHERE ReservationId = '".$reservation['ReservationId']."'"
+			);			
 		}
-	}	
-	
-	public function discard($reservationId){	
-		$this->db->query("UPDATE reservation SET "			
-			."IsDiscarded = '1' " 
-			."WHERE ReservationId = '".$reservation['ReservationId']."'"
-		);			
-	}
+    }	
     
 }

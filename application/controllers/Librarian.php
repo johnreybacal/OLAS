@@ -7,65 +7,48 @@ class Librarian extends _BaseController {
 		parent::__construct();
     }
     
-    public function index(){
-        if($this->session->has_userdata('isLoggedIn') && $this->session->has_userdata('isLibrarian')){
-            redirect(base_url('Librarian/Dashboard'));
-        }else{
-            redirect(base_url('Librarian/Login'));
-        }
+    public function index(){		          		              	
+        $this->Login();		
     }   
 
     public function Login(){        
-        if($this->session->has_userdata('isLoggedIn') && $this->session->has_userdata('isLibrarian')){
+        if($this->session->has_userdata('isLoggedIn')){
             redirect(base_url('Librarian/Dashboard'));
         }
-        $data['loginPage'] = true;
         $this->header();
-        $this->load->view('Librarian/Login', $data);
-        $this->footer();		
-    }
-
-    public function Manage(){
-        $this->librarianView('Librarian/index', '');
-    }
-
-    public function Setting(){
-        $this->librarianView('Setting/index', '');
+        $this->load->view('Librarian/Login');
+		$this->footer();
     }
     
     public function Dashboard(){
-        $data['totalBooks'] = $this->report->totalBooks();
-        $data['totalBookCirculations'] = $this->report->totalBookCirculations();
-        $data['totalPatrons'] = $this->report->totalPatrons();
-        $data['totalOutsideResearchers'] = $this->report->totalOutsideResearchers();
-        $this->librarianView('Librarian/Dashboard', $data);
+        $this->librarianView('Librarian/Dashboard', '');
 	}
 	
 	public function Profile($id){
-        $data['librarian'] = $this->convert($this->librarian->_get($id));        
-        $this->librarianView('Librarian/Profile', $data);        
+        $data['librarian'] = $this->convert($this->librarian->_get($id));
+        $this->header();
+        $this->load->view('Librarian/View', $data);
+        $this->footer();
     }
     
     public function Authenticate(){        
         $result = $this->librarian->authenticate($this->input->post('login')['Username'], $this->input->post('login')['Password']);                    
 		if($result != 0){
-            $this->UnsetSession();
             $librarian = $this->librarian->_get($result);
             $this->session->set_userdata(
                 array(
-                    'librarianId' => $librarian->LibrarianId,
-                    'username' => $librarian->Username,
+                    'name' => $librarian->Name,
                     'isLoggedIn' => true, 
                     'isLibrarian' => true
                 )
             );
         }        
-        echo $result;
+        echo $result;        
     }
     
-    //i don't why it requires to be the same with the base while the Patron doesn't require it
-    public function LogOut($page = null){
-        parent::LogOut('Librarian/Login');
+    public function LogOut(){
+        $this->session->unset_userdata(array('name', 'isLoggedIn', 'isLibrarian'));
+        redirect(base_url('Librarian/Login'));
     }
 	
 	public function GenerateTable(){
