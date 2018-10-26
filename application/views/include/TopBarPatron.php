@@ -1,12 +1,45 @@
+<!-- Sidebar -->
+<aside class="sidebar sidebar-expand-lg sidebar-iconic" >
+  <header class="sidebar-header">
+    <a class="logo" href="<?php echo base_url(); ?>">
+      <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">    
+    </a>
+  </header>
+
+  <nav class="sidebar-navigation">
+    <ul class="menu">
+
+      <li class="menu-item">
+        <a class="menu-link" href="<?php echo base_url(); ?>">
+          <span class="icon fa fa-home"></span>
+          <span class="title">Home</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
+          <span class="icon fa fa-briefcase"></span>
+          <span class="title">BookBag</span>
+        </a>
+      </li>
+
+
+    </ul>
+  </nav>
+
+</aside>
+
+<!-- END Sidebar -->
+
 <!-- Topbar -->
 <header class="topbar topbar-expand-xl">
-    <div class="topbar-left">
-    <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
-    <span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span>
+    <div class="topbar-center">
+    <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
+    <!-- <span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span>
+ -->
+    <!-- <div class="topbar-divider d-none d-md-block"></div> -->
 
-    <div class="topbar-divider d-none d-md-block"></div>
-
-    <nav class="topbar-navigation">
+    <!-- <nav class="topbar-navigation">
         <ul class="menu">
 
             <li class="menu-item">
@@ -24,14 +57,14 @@
             </li>    
 
         </ul>
-    </nav>
+    </nav> -->
 
     </div>
 
     <div class="topbar-right">
 
 
-    <div class="topbar-divider d-none d-md-block"></div>
+    <!-- <div class="topbar-divider d-none d-md-block"></div> -->
 
     <ul class="topbar-btns">
         <li class="dropdown">
@@ -46,13 +79,13 @@
         </li>
 
         <!-- Notifications -->
-        <li class="d-none d-md-block">
+        <li class=" d-md-block">
         <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-bell"></i></span>
         </li>
         <!-- END Notifications -->
 
         <!-- Messages -->
-        <li class="d-none d-md-block">
+        <li class=" d-md-block">
         <span class="topbar-btn" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
         </li>
         <!-- END Messages -->
@@ -70,7 +103,7 @@
 
 
 <!-- Notifications -->
-<div id="qv-bookbag" class="quickview" style="border-left: 1px solid #48b0f7;">
+<div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
     <p class="quickview-title">Bookbag</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
@@ -95,7 +128,7 @@
 
 
 <!-- Messages -->
-<div id="qv-messages" class="quickview" style="border-left: 1px solid #48b0f7;">
+<div id="qv-messages" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
     <p class="quickview-title">Messages</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
