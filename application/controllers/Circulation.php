@@ -45,7 +45,7 @@ class Circulation extends _BaseController {
 
     public function ReturnBook(){
         $loan = $this->input->post('loan');
-        $this->loan->returnBook($this->loan->_get($loan['LoanId']), $loan['AmountPayed'], $loan['BookStatusId'])
+        $this->loan->returnBook($this->loan->_get($loan['LoanId']), $loan['AmountPayed'], $loan['BookStatusId']);
     }
 
    

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Patron extends _BaseController {
 
     public function __construct(){
@@ -32,6 +33,45 @@ class Patron extends _BaseController {
         parent::LogOut('');
     }
 	
+    public function Validate(){
+        $patron = $this->input->post('patron');
+        $str = '{';
+        $valid = true;
+        // fname mname lname email contact email idnumber rfidno pass
+        // 
+        if (!v::notEmpty()->validate($patron['FirstName'])){
+            $str .= $this->invalid('FirstName', 'First Name is required');
+            $valid = false;
+        }
+        if (!v::notEmpty()->validate($patron['LastName'])){
+            $str .= $this->invalid('LastName', 'Last Name is required');
+            $valid = false;
+        }
+        if (!v::filterVar(FILTER_VALIDATE_EMAIL)->validate($patron['Email'])){
+            $str .= $this->invalid('Email', 'Email is required');
+            $valid = false;
+        }
+        if (!v::notEmpty()->validate($patron['IdNumber'])){
+            $str .= $this->invalid('IdNumber', 'ID Number is required');
+            $valid = false;
+        }
+        if (!v::notEmpty()->validate($patron['ContactNumber'])){
+            $str .= $this->invalid('ContactNumber', 'Contact Number is required');
+            $valid = false;
+        }
+        if (!v::notEmpty()->validate($patron['RFIDNo'])){
+            $str .= $this->invalid('RFIDNo', 'RFID Number is required');
+            $valid = false;
+        }
+        if (!v::notEmpty()->validate($patron['Password'])){
+            $str .= $this->invalid('Password', 'Password is required');
+            $valid = false;
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+        //
+    }
+
 	public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->patron->_list() as $data){
