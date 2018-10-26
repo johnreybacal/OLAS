@@ -15,9 +15,10 @@ class Circulation extends _BaseController {
         $json = '{ "data": [';
         foreach($this->loan->_list() as $data){            
             $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
-            $patron = $this->patron->_get($data->MemberId);            
+            $patron = $this->patron->_get($data->PatronId);            
             $json .= '['                
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$isbn.'",'
                 .'"'.$this->book->_get($isbn)->Title.'",'
                 .'"'.$data->DateBorrowed.'",'
@@ -40,6 +41,11 @@ class Circulation extends _BaseController {
     
     public function Save(){        
         $this->loan->save($this->input->post('loan'));
+    }
+
+    public function ReturnBook(){
+        $loan = $this->input->post('loan');
+        $this->loan->returnBook($this->loan->_get($loan['LoanId']), $loan['AmountPayed'], $loan['BookStatusId'])
     }
 
    

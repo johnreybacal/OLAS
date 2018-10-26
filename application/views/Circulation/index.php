@@ -21,10 +21,11 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id = "college-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
+				<table id = "college-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Borrower</th>	
+							<th>Accession Number</th>
 							<th>ISBN</th>									
 							<th>Book Issued</th>									
 							<th>Date Issued</th>
@@ -40,3 +41,23 @@
 		</div>
 	</div>
 </div>
+<?php include("_Circulation_Modal.php"); ?>
+<script>
+	$(document).ready(function () {
+		Circulation.init();
+	});
+
+	var Circulation = {
+		init: function () {
+			$('.modal').on('hidden.bs.modal', function () {
+				Circulation.reset();
+			});
+
+			Circulation.reset();
+		},
+
+		reset: function () {
+			$('#author-table').DataTable().ajax.reload();
+		}
+	}
+</script>

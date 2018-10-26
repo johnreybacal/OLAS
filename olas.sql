@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2018 at 04:12 AM
+-- Generation Time: Oct 26, 2018 at 12:47 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -384,7 +384,7 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `IsActive`) VALUES
 DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL,
-  `MemberId` int(11) NOT NULL,
+  `PatronId` int(11) NOT NULL,
   `AccessionNumber` int(11) NOT NULL,
   `DateBorrowed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `DateDue` datetime NOT NULL,
@@ -402,9 +402,10 @@ TRUNCATE TABLE `loan`;
 -- Dumping data for table `loan`
 --
 
-INSERT INTO `loan` (`LoanId`, `MemberId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`) VALUES
-(2, 1, 1, '2018-10-15 21:04:59', '2018-10-03 00:00:00', NULL, NULL, 1),
-(3, 1, 1, '2018-10-15 21:40:19', '2018-10-16 00:00:00', NULL, NULL, 2);
+INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`) VALUES
+(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', NULL, NULL, 1),
+(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', NULL, NULL, 1),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -556,10 +557,11 @@ INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `ReservationId` int(11) NOT NULL,
-  `MemberId` int(11) NOT NULL,
+  `PatronId` int(11) NOT NULL,
   `AccessionNumber` int(11) NOT NULL,
   `DateReserved` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `IsDiscarded` tinyint(1) NOT NULL
+  `IsDiscarded` tinyint(1) NOT NULL,
+  `IsActive` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -571,9 +573,11 @@ TRUNCATE TABLE `reservation`;
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`ReservationId`, `MemberId`, `AccessionNumber`, `DateReserved`, `IsDiscarded`) VALUES
-(7, 1, 13, '2018-10-17 13:56:45', 0),
-(6, 1, 11, '2018-10-17 13:56:44', 0);
+INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `DateReserved`, `IsDiscarded`, `IsActive`) VALUES
+(11, 1, 10, '2018-10-26 19:21:47', 1, 0),
+(7, 1, 13, '2018-10-17 13:56:45', 0, 0),
+(6, 1, 11, '2018-10-17 13:56:44', 1, 0),
+(13, 1, 1, '2018-10-26 19:24:40', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -812,7 +816,7 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
@@ -837,7 +841,7 @@ ALTER TABLE `publisher`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `series`
 --

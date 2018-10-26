@@ -27,7 +27,8 @@
 							<th>Borrower</th>	
 							<th>ISBN</th>									
 							<th>Book Reserved</th>									
-							<th>Date Reserved</th>							
+							<th>Date Reserved</th>	
+							<th>Action</th>						
 						</tr>
 					</thead>
 				</table>            			
@@ -35,3 +36,33 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	var Reservation = {
+
+		refresh: function(){
+			$('#reservation-table').DataTable().ajax.reload();
+		},
+
+		issue: function(id){
+			$.ajax({
+				url: "<?php echo base_url('Reservation/Issue'); ?>/" + id,
+				success: function(){
+					Reservation.refresh();
+					swal("Book issued", "Data moved to circulation", "success");
+				}
+			});
+		},
+		
+		discard: function(id){
+			$.ajax({
+				url: "<?php echo base_url('Reservation/Discard'); ?>/" + id,
+				success: function(){
+					Reservation.refresh();
+					swal("Reservation discarded", "The system will notify the patron", "success");
+				}
+			});
+		}
+
+	};
+</script>
