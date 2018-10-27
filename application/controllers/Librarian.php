@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Librarian extends _BaseController {
 
     public function __construct(){
@@ -36,7 +37,7 @@ class Librarian extends _BaseController {
     public function Dashboard(){
         $data['totalBooks'] = $this->report->totalBooks();
         $data['totalBookCirculations'] = $this->report->totalBookCirculations();
-        $data['totalPatrons'] = $this->report->totalPatrons();
+        $data['totallibrarians'] = $this->report->totallibrarians();
         $data['totalOutsideResearchers'] = $this->report->totalOutsideResearchers();
         $this->librarianView('Librarian/Dashboard', $data);
 	}
@@ -63,7 +64,7 @@ class Librarian extends _BaseController {
         echo $result;
     }
     
-    //i don't why it requires to be the same with the base while the Patron doesn't require it
+    //i don't why it requires to be the same with the base while the librarian doesn't require it
     public function LogOut($page = null){
         parent::LogOut('Librarian/Login');
     }
@@ -83,6 +84,61 @@ class Librarian extends _BaseController {
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function Validate(){
+        $librarian = $this->input->post('librarian');
+        $str = '{';
+        $valid = true;
+        //role fname lname username password
+        //
+
+        //role
+        if(!v::intVal()->notEmpty()->validate($librarian['LibrarianRoleId'])){
+            $str .= $this->invalid('LibrarianRoleId', 'Please select a role');
+            $valid = false;
+        }
+
+        //fname
+        if (!v::notEmpty()->validate($librarian['FirstName'])){
+            $str .= $this->invalid('FirstName', 'First Name is required');
+            $valid = false;
+        }
+
+        //lname
+        if (!v::notEmpty()->validate($librarian['LastName'])){
+            $str .= $this->invalid('LastName', 'Last Name is required');
+            $valid = false;
+        }
+
+        //username
+        if (!v::notEmpty()->validate($librarian['Username'])){
+            $str .= $this->invalid('Username', 'Username is required');
+            $valid = false;
+        }
+        else{  
+            $ifExist = $this->librarian->_exist('Username', $librarian['Username']);  
+            if(is_object($ifExist)){
+                if($ifExist->LibrarianId != $librarian['LibrarianId']){
+                    $str .= $this->invalid('Username', 'Username is already taken');
+                    $valid = false;
+                }
+            }
+        }
+
+        //password
+        if (!v::notEmpty()->validate($librarian['Password'])){
+            $str .= $this->invalid('Password', 'Password is required');
+            $valid = false;
+        }
+        else  if (!v::length(8)->validate($librarian['Password'])){
+            $str .= $this->invalid('Password', 'Password must be of minimum 8 characters');
+            $valid = false;
+        }
+
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+        // end
     }
 
     public function GetAll(){

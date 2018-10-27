@@ -49,15 +49,15 @@
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Contact Number</label>
-                                <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
+                                <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" >
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Id Number</label>
-                                <input  id="IdNumber" class="form-control" type="number" name="Id Number" placeholder="Id Number">
+                                <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" >
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>RFID Number</label>
-                                <input  id="RFIDNumber" class="form-control" type="number" name="RFIDNumber" placeholder="RFID Number">
+                                <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" data-format="{{99}}-{{999}}-{{9999}}">
                             </div>
                             <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Email</label>
@@ -98,7 +98,7 @@
                 ContactNumber: $('#ContactNumber').val(),
                 //
                 IdNumber: $('#IdNumber').val(),
-                RFIDNo: $('#RFIDNumber').val(),
+                RFIDNo: $('#RFIDNo').val(),
                 // Email: $('#Email').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
@@ -153,7 +153,7 @@
                     $('#ContactNumber').val(i.ContactNumber);
                     //
                     $('#IdNumber').val(i.IdNumber);
-                    $('#RFIDNumber').val(i.RFIDNo);
+                    $('#RFIDNo').val(i.RFIDNo);
                     // $('#Email').val(i.Email);
                 }
             })

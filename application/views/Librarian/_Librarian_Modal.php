@@ -14,16 +14,16 @@
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Librarian Role</label>
-                                <select id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Librarian Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+                                <label>Role</label>
+                                <select id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
                             </div>
                             <div class="col-12">
-                                <label>Librarian FirstName</label>
-                                <input id="FirstName" name="Name" type="text" class="form-control" placeholder="Name" />
+                                <label>First Name</label>
+                                <input id="FirstName" name="Name" type="text" class="form-control" placeholder="First Name" />
                             </div>
                             <div class="col-12">
-                                <label>Librarian LastName</label>
-                                <input id="LastName" name="Name" type="text" class="form-control" placeholder="Name" />
+                                <label>Last Name</label>
+                                <input id="LastName" name="Name" type="text" class="form-control" placeholder="Last Name" />
                             </div>
                        
                             <div class="col-12">
@@ -56,7 +56,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Librarian_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Librarian_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -104,8 +104,30 @@
             Librarian_Modal.init();
         },
 
-        validate: function () {
-            
+        validate: function(){
+            $.ajax({
+                url:'<?php echo base_url('Librarian/Validate'); ?>',
+                type: "POST",
+                data: {"librarian": Librarian_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Librarian_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                    // Patron_Modal.save();
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
         },
 
         edit: function (id) {

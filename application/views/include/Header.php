@@ -14,6 +14,10 @@
 
 	<script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>	
 	<script src = "<?php echo base_url('assetsOLAS/js/marc-reader.js'); ?>"></script>
+	<!-- <script src = "<?php echo base_url('assets/js/core.min.js'); ?>"></script>
+	<script src = "<?php echo base_url('assets/js/apps.min.js'); ?>"></script>
+	<script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script> -->
+	<script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
 
 	<script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
 	
