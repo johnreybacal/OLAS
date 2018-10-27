@@ -27,14 +27,15 @@ class LoanModel extends _BaseModel{
 
 	public function insert($loan){
 		$this->db->query("INSERT into loan "
-			."(PatronId, AccessionNumber, DateBorrowed, DateDue, DateReturned, AmountPayed, BookStatusId) VALUES ("                   
+			."(PatronId, AccessionNumber, DateBorrowed, DateDue, DateReturned, AmountPayed, BookStatusId, IsRecalled) VALUES ("                   
 				."'".$loan['PatronId']."',"
 				."'".$loan['AccessionNumber']."',"
 				."CURRENT_TIMESTAMP,"
 				."date_add(CURRENT_TIMESTAMP, INTERVAL 3 DAY),"
 				."NULL,"
 				."NULL,"
-				."'1'"
+				."'1',"
+				."'0'"
 			.")"
 		);
 	}
@@ -53,9 +54,7 @@ class LoanModel extends _BaseModel{
 	}
 
 	public function returnBook($loan, $amountPayed, $bookStatusId){
-		$this->db->query("UPDATE loan SET "
-			."PatronId = '".$loan['PatronId']."', "
-			."AccessionNumber = '".$loan['AccessionNumber']."', "
+		$this->db->query("UPDATE loan SET "			
 			."DateBorrowed = '".$loan['DateBorrowed']."', "
 			."DateDue = '".$loan['DateDue']."', "
 			."DateReturned = CURRENT_TIMESTAMP, "
@@ -63,6 +62,14 @@ class LoanModel extends _BaseModel{
 			."BookStatusId = '".$bookStatusId."' "
 			."WHERE LoanId = '".$loan['LoanId']."'"
 		);	
+	}
+
+	public function recall($loanId){
+		$this->db->query("UPDATE loan SET IsRecalled = '1' WHERE LoanId = '".$loanId."'");
+	}
+
+	public function unrecall($loanId){
+		$this->db->query("UPDATE loan SET IsRecalled = '0' WHERE LoanId = '".$loanId."'");
 	}
     
 }

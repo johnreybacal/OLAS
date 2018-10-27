@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2018 at 12:47 PM
+-- Generation Time: Oct 27, 2018 at 02:05 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -390,7 +390,8 @@ CREATE TABLE `loan` (
   `DateDue` datetime NOT NULL,
   `DateReturned` datetime DEFAULT NULL,
   `AmountPayed` int(11) DEFAULT NULL,
-  `BookStatusId` int(11) NOT NULL
+  `BookStatusId` int(11) NOT NULL,
+  `IsRecalled` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -402,10 +403,10 @@ TRUNCATE TABLE `loan`;
 -- Dumping data for table `loan`
 --
 
-INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`) VALUES
-(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', NULL, NULL, 1),
-(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', NULL, NULL, 1),
-(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1);
+INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`, `IsRecalled`) VALUES
+(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', NULL, NULL, 1, 1),
+(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', NULL, NULL, 1, 0),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
