@@ -1,64 +1,26 @@
-<!-- Sidebar -->
-<aside class="sidebar sidebar-expand-lg sidebar-iconic" >
-  <header class="sidebar-header">
-    <a class="logo" href="<?php echo base_url(); ?>">
-      <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">    
-    </a>
-  </header>
-
-  <nav class="sidebar-navigation">
-    <ul class="menu">
-
-      <li class="menu-item">
-        <a class="menu-link" href="<?php echo base_url(); ?>">
-          <span class="icon fa fa-home"></span>
-          <span class="title">Home</span>
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
-          <span class="icon fa fa-briefcase"></span>
-          <span class="title">BookBag</span>
-        </a>
-      </li>
-
-
-    </ul>
-  </nav>
-
-</aside>
-
-<!-- END Sidebar -->
-
 <!-- Topbar -->
-<header class="topbar topbar-expand-xl">
-    <div class="topbar-center">
-    <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
-    <!-- <span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span>
- -->
-    <!-- <div class="topbar-divider d-none d-md-block"></div> -->
+<header class="topbar topbar-expand-xl">  
+    <div class="topbar-left">
+        <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
+        <span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span>
+        <div class="topbar-divider d-none d-md-block"></div>
+        <nav class="topbar-navigation">
+            <ul class="menu">
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url(); ?>">
+                        <span class="icon fa fa-home"></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>            
 
-    <!-- <nav class="topbar-navigation">
-        <ul class="menu">
-
-            <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url(); ?>">
-                    <span class="icon fa fa-home"></span>
-                    <span class="title">Home</span>
-                </a>
-            </li>            
-
-            <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
-                    <span class="icon fa fa-home"></span>
-                    <span class="title">Bookbag</span>
-                </a>
-            </li>    
-
-        </ul>
-    </nav> -->
-
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
+                        <span class="icon fa fa-briefcase"></span>
+                        <span class="title">Bookbag</span>
+                    </a>
+                </li>    
+            </ul>
+        </nav>        
     </div>
 
     <div class="topbar-right">
@@ -71,6 +33,7 @@
         <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
+            <a class="dropdown-item" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i> Messages</a>
             <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
             <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
             <div class="dropdown-divider"></div>
@@ -80,15 +43,9 @@
 
         <!-- Notifications -->
         <li class=" d-md-block">
-        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-bell"></i></span>
+        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
         </li>
         <!-- END Notifications -->
-
-        <!-- Messages -->
-        <li class=" d-md-block">
-        <span class="topbar-btn" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
-        </li>
-        <!-- END Messages -->
     </ul>
 
     <form class="lookup lookup-circle lookup-lg lookup-right" target="index.html">
