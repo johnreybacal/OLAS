@@ -1,7 +1,7 @@
 <header class="topbar">
 	<div class="topbar-left">
 		<!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        		
-		<span class="logo"><img src="<?php echo base_url('assets/img/logo'); ?>" alt="logo-icon"></span>
+		<a href="<?php echo base_url(); ?>"><span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span></a>
 		<div class="topbar-divider d-none d-md-block"></div>
 		<div class="lookup d-none d-md-block ">
         	<form class="lookup-placeholder">

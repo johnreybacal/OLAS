@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class LibrarianRole extends _BaseController {
 
     public function __construct(){
@@ -9,6 +10,27 @@ class LibrarianRole extends _BaseController {
     
     public function index(){		          		              	
 		$this->librarianView('LibrarianRole/index', '');
+    }
+
+    public function Validate(){
+        $librarianrole = $this->input->post('librarianrole');        
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($librarianrole['Name'])){
+            $str .= $this->invalid('Name', 'Name is required');
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->librarianrole->_exist('Name', $librarianrole['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->LibrarianRoleId != $librarianrole['LibrarianRoleId']){
+                    $str .= $this->invalid('Name', 'Role already exists');
+                    $valid = false;
+                }
+            }
+        }  
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
     }
     
     public function GenerateTable(){

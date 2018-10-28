@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="LibrarianRole_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="LibrarianRole_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -85,8 +85,30 @@
             })
         },
 
-        validate: function () {
-            
+       validate: function(){
+            $.ajax({
+                url:'<?php echo base_url('LibrarianRole/Validate'); ?>',
+                type: "POST",
+                data: {"librarianrole": LibrarianRole_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        LibrarianRole_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                    // Patron_Modal.save();
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
         },
 
         save: function () {

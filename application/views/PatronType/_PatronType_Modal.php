@@ -2,59 +2,38 @@
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add PatronType</h5>
+                <h5 class="modal-title">Add Patron Type</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-patrontype-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="PatronTypeId"/>
+                    <form id="modal-patrontype-form" class="form-group mt-2">
+                        <input id="PatronTypeId" hidden/>
                         
-                          
-                            <div class="row mb-2">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Number of Books</label>
-                                        <input id="NumberOfBooks" name="NumberOfBooks" type="text" class="form-control" placeholder="Number of Books" />
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Number of Days</label>
-                                        <input id="NumberOfDays" name="NumberOfDays" type="text" class="form-control" placeholder="Number of Days" />
-                                    </div>
-                                </div>
+                        <div class="row mb-2">
+                            <div class="form-group col-12">
+                                <label>Name</label>
+                                <input  id="Name" class="form-control" type="text" name="Name" placeholder="Name">
                             </div>
-                           
-                            <div class="row" id="rowActive">
-                                <div class="col-sm-12 col-md-12">
-                                    <label>Status:</label>
-                                </div>
-                                <div class="col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label class="switch switch-lg switch-info">
-                                            <input type="checkbox" id="IsActive" name="IsActive" checked />
-                                            <span class="switch-indicator"></span>
-                                            <label>Active</label>
-                                        </label>
-                                    </div>
-                                </div>
+
+                            <div class="form-group col-12">
+                                <label>Number of Books</label>
+                                <input  id="NumberOfBooks" class="form-control" type="text" name="NumberOfBooks" placeholder="Number of books" data-format="{{9999}}" >
                             </div>
-                      
+                            
+                            <div class="form-group col-12">
+                                <label>Number of Days</label>
+                                <input  id="NumberOfDays" class="form-control" type="text" name="NumberOfDays" placeholder="Number of days" data-format="{{9999}}">
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="PatronType_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="PatronType_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -105,35 +84,30 @@
             })
         },
 
-        validate: function () {
-            $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();
-
+        validate: function(){
             $.ajax({
-                url: $('#siteUrl').val() + "patrontype/validate",
+                url:'<?php echo base_url('PatronType/Validate'); ?>',
                 type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({ "patrontype": PatronType_Modal.data() }),
-                success: function (i) {
-                    if (i.status == false) {
-                        $.each(i.data, function (key, value) {
-                            var element = $('#' + value.key);
-
-                            element.closest('.form-control')
-                            .removeClass('.is-invalid')
-                            .addClass(value.message.length > 0 ? 'is-invalid' : '')
-
-                            element.closest('form-group')
-                            .find('invalid-feedback')
-                            .remove();
-
-                            element.after(value.message);
-                        });
-                    } else {
+                data: {"patrontype": PatronType_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
                         PatronType_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
                     }
+                    // Patron_Modal.save();
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
                 }
-            });
+            })      
         },
 
         save: function () {

@@ -49,15 +49,15 @@
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Contact Number</label>
-                                <input  id="ContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
+                                <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" >
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Id Number</label>
-                                <input  id="IdNumber" class="form-control" type="number" name="Id Number" placeholder="Id Number">
+                                <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" >
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>RFID Number</label>
-                                <input  id="RFIDNumber" class="form-control" type="number" name="RFIDNumber" placeholder="RFID Number">
+                                <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" data-format="{{99}}-{{999}}-{{9999}}">
                             </div>
                             <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Email</label>
@@ -77,7 +77,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Patron_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Patron_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
                 ContactNumber: $('#ContactNumber').val(),
                 //
                 IdNumber: $('#IdNumber').val(),
-                RFIDNo: $('#RFIDNumber').val(),
+                RFIDNo: $('#RFIDNo').val(),
                 // Email: $('#Email').val(),
                 //s: $('#s').find(":selected").text(),
                 //Active: $('#IsActive').prop("checked")
@@ -153,45 +153,67 @@
                     $('#ContactNumber').val(i.ContactNumber);
                     //
                     $('#IdNumber').val(i.IdNumber);
-                    $('#RFIDNumber').val(i.RFIDNo);
+                    $('#RFIDNo').val(i.RFIDNo);
                     // $('#Email').val(i.Email);
                 }
             })
         },
 
-        validate: function () {
-            $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();
+        // validate: function () {
+        //     $('input').removeClass('is-invalid').addClass('');
+        //     $('.invalid-feedback').remove();
 
+        //     $.ajax({
+        //         url: $('#siteUrl').val() + "patron/validate",
+        //         type: "POST",
+        //         contentType: "application/json",
+        //         data: JSON.stringify({ "patron": Patron_Modal.data() }),
+        //         success: function (i) {
+        //             if (i.status == false) {
+        //                 $.each(i.data, function (key, value) {
+        //                     var element = $('#' + value.key);
+
+        //                     element.closest('.form-control')
+        //                     .removeClass('.is-invalid')
+        //                     .addClass(value.message.length > 0 ? 'is-invalid' : '')
+
+        //                     element.closest('form-group')
+        //                     .find('invalid-feedback')
+        //                     .remove();
+
+        //                     element.after(value.message);
+        //                 });
+        //             } else {
+        //                 Patron_Modal.save();
+        //             }
+        //         }
+        //     });
+        // },
+
+        validate: function(){
             $.ajax({
-                url: $('#siteUrl').val() + "patron/validate",
+                url:'<?php echo base_url('Patron/Validate'); ?>',
                 type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({ "patron": Patron_Modal.data() }),
-                success: function (i) {
-                    if (i.status == false) {
-                        $.each(i.data, function (key, value) {
-                            var element = $('#' + value.key);
-
-                            element.closest('.form-control')
-                            .removeClass('.is-invalid')
-                            .addClass(value.message.length > 0 ? 'is-invalid' : '')
-
-                            element.closest('form-group')
-                            .find('invalid-feedback')
-                            .remove();
-
-                            element.after(value.message);
-                        });
-                    } else {
+                data: {"patron": Patron_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
                         Patron_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
                     }
+                    // Patron_Modal.save();
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
                 }
-            });
-        },
-
-        sad: function(){
-
+            })      
         },
 
         save: function () {

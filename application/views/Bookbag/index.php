@@ -1,4 +1,4 @@
-<header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
+<header class="header bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
 <div class="container">
 	<div class="header-info">
 	<div class="left">

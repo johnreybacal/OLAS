@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Patron extends _BaseController {
 
     public function __construct(){
@@ -32,6 +33,116 @@ class Patron extends _BaseController {
         parent::LogOut('');
     }
 	
+    public function Validate(){
+        $patron = $this->input->post('patron');
+        $str = '{';
+        $valid = true;
+        // fname mname lname email contact email idnumber rfidno pass
+        // 
+        //patron type
+        if(!v::intVal()->notEmpty()->validate($patron['PatronTypeId'])){
+            $str .= $this->invalid('PatronTypeId', 'Please select patron type');
+            $valid = false;
+        }
+
+        //fname
+        if (!v::notEmpty()->validate($patron['FirstName'])){
+            $str .= $this->invalid('FirstName', 'First Name is required');
+            $valid = false;
+        }
+
+        //lname
+        if (!v::notEmpty()->validate($patron['LastName'])){
+            $str .= $this->invalid('LastName', 'Last Name is required');
+            $valid = false;
+        }
+
+        //email
+        if (!v::notEmpty()->validate($patron['Email'])){
+            $str .= $this->invalid('Email', 'Email is required');
+            $valid = false;
+        }
+        else{
+            if (!v::filterVar(FILTER_VALIDATE_EMAIL)->validate($patron['Email'])){
+            $str .= $this->invalid('Email', 'Invalid email address');
+            $valid = false;
+            }
+        }
+
+        //id no
+        if (!v::notEmpty()->validate($patron['IdNumber'])){
+            $str .= $this->invalid('IdNumber', 'ID Number is required');
+            $valid = false;
+        }
+        // else  if (!v::digit()->validate($patron['IdNumber'])){
+        //     $str .= $this->invalid('IdNumber', 'Invalid ID number');
+        //     $valid = false;
+        // }
+        else  if (!v::length(10)->validate($patron['IdNumber'])){
+            $str .= $this->invalid('IdNumber', 'Not an ID number');
+            $valid = false;
+            //pag 11 error, pag 10 di nag-error kapag length < 15-037-000
+        }
+
+        //contact no
+        if (!v::notEmpty()->validate($patron['ContactNumber'])){
+            $str .= $this->invalid('ContactNumber', 'Contact Number is required');
+            $valid = false;
+        }
+        // else  if (!v::digit()->validate($patron['ContactNumber'])){
+        //     $str .= $this->invalid('ContactNumber', 'Invalid contact number');
+        //     $valid = false;
+        // }
+        else{  
+            $ifExist = $this->patron->_exist('ContactNumber', $patron['ContactNumber']);  
+            if(is_object($ifExist)){
+                if($ifExist->PatronId != $patron['PatronId']){
+                    $str .= $this->invalid('ContactNumber', 'Number is already taken');
+                    $valid = false;
+                }
+            }
+            if (!v::phone()->validate($patron['ContactNumber'])){
+            $str .= $this->invalid('ContactNumber', 'Not a phone number');
+            $valid = false;
+            //valid only when input is 7 9 11
+            }
+        }         
+                  
+        //rfid no
+        if (!v::notEmpty()->validate($patron['RFIDNo'])){
+            $str .= $this->invalid('RFIDNo', 'RFID Number is required');
+            $valid = false;
+        }
+        else{  
+            $ifExist = $this->patron->_exist('RFIDNo', $patron['RFIDNo']);  
+            if(is_object($ifExist)){
+                if($ifExist->PatronId != $patron['PatronId']){
+                    $str .= $this->invalid('RFIDNo', 'RFID is already taken');
+                    $valid = false;
+                }
+            }
+        }        
+        // else  if (!v::digit()->validate($patron['RFIDNo'])){
+        //     $str .= $this->invalid('RFIDNo', 'Invalid rfid number');
+        //     $valid = false;
+        // }
+
+        //password
+        if (!v::notEmpty()->validate($patron['Password'])){
+            $str .= $this->invalid('Password', 'Password is required');
+            $valid = false;
+        }
+        else  if (!v::length(8)->validate($patron['Password'])){
+            $str .= $this->invalid('Password', 'Password must be of minimum 8 characters');
+            $valid = false;
+        }
+
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+        //
+
+    }
+
 	public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->patron->_list() as $data){

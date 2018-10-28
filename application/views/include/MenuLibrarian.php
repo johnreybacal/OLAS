@@ -1,8 +1,7 @@
 <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
     <header class="sidebar-header">        
-        <a href="<?php echo base_url('Librarian/Dashboard'); ?>" class="logo">
-            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">
-    
+        <a class="logo">
+            <img src="<?php echo base_url('assets/img/logo-light.png'); ?>"  alt="logo">    
         </a>
         <span class="sidebar-toggle-fold"></span>
     </header>
