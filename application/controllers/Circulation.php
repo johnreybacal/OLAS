@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
+use Respect\Validation\Validator as v;
 class Circulation extends _BaseController {
 
     public function __construct(){
@@ -26,7 +27,12 @@ class Circulation extends _BaseController {
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
                 .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'                
-                .'"edit, return '.(($data->IsRecalled == 0) ? '<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn\">Recall</button>' : '<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn\">Unrecall</button>').'"'
+                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.')\" class=\"btn\">Edit</button>'
+                .'<button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn\">Return</button>'
+                .($data->BookStatusId == 1 ? ($data->IsRecalled == 0) 
+                    ? '<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn\">Recall</button>' : '<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn\">Unrecall</button>'
+                    : '')
+                .'"'
             .']';            
             $json .= ',';
         }
@@ -37,6 +43,53 @@ class Circulation extends _BaseController {
 
     public function Get($id){        
         echo $this->convert($this->loan->_get($id));
+    }
+
+    // book status selectpicker
+    public function BookStatusList(){
+        echo $this->convert($this->bookStatus->_list());
+    }
+
+    public function Validate(){
+        $loan = $this->input->post('loan');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($loan['AccessionNumber'])){
+            $str .= $this->invalid('AccessionNumber', 'Please input the Accession Number of the book');
+            $valid = false;
+        }
+        if(!v::date()->validate($loan['DateBorrowed'])){            
+            $str .= $this->invalid('DateBorrowed', 'Please input a date');
+            $valid = false;
+        }
+        if(!v::date()->validate($loan['DateDue'])){            
+            $str .= $this->invalid('DateDue', 'Please input a date');
+            $valid = false;
+        }
+        if(!v::notEmpty()->validate($loan['BookStatusId'])){
+            $str .= $this->invalid('BookStatusId', 'Please select the status of the issued book');
+            $valid = false;
+        }
+        else if($loan['BookStatusId'] != 1){//returned, lost, damaged validation
+            if(!v::date()->validate($loan['DateReturned'])){
+                $str .= $this->invalid('DateReturned', 'Please input a date');
+                $valid = false;
+            }
+            if($loan['BookStatusId'] != 2){//hindi returned, either damaged or lost
+                if(!v::intVal()->notEmpty()->validate($loan['AmountPayed'])){
+                    $str .= $this->invalid('AmountPayed', 'Please input the penalty cost');
+                    $valid = false;
+                } 
+                else{
+                    if(!v::intVal()->min(0)->validate($loan['AmountPayed'])){
+                        $str .= $this->invalid('AmountPayed', 'Penalty cost is invalid');
+                        $valid = false;
+                    } 
+                }
+            }
+        }   
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
     }
     
     public function Save(){        
