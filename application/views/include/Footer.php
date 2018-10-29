@@ -5,7 +5,7 @@
         </div>
 
         <div class="col-md-6">
-        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+        <ul class="nav nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
             <li class="nav-item">
                 <a class="nav-link" href="#">About OLAS</a>
             </li>            
