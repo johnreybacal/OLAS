@@ -21,7 +21,16 @@
 </head>
 
 <body>
-
+<div class="preloader">
+	<div class="spinner-dots">
+		<span class="dot1" style="background-color:#ff4e4e;"></span>
+		<span class="dot2" style="background-color:#000000;"></span>
+		<span class="dot3" style="background-color:#ff4e4e;"></span>
+		<span class="dot4" style="background-color:#ff4e4e;"></span>	
+		<h5><text style='color:#ff4e4e; font-family: Century Gothic; letter-spacing: 5px;'>O<text style='color:#000000; font-weight: bold;'>L</text>AS</text></h5>
+		<p>Page is loading</p>
+	</div>
+</div>
 <?php
 	if($this->session->has_userdata('isLoggedIn')){
 		if($this->session->has_userdata('isLibrarian')){//librarian

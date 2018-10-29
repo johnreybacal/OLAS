@@ -166,6 +166,10 @@ class Patron extends _BaseController {
         echo $this->convert($this->patron->_get($id));
     }
 
+    public function GetAll(){
+        echo $this->convert($this->patron->_list());
+    }
+
     public function Save(){        
         $this->patron->save($this->input->post('patron'));
     }

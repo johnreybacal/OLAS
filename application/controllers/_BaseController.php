@@ -50,7 +50,7 @@ class _BaseController extends CI_Controller {
 			if($counter != 0){
 				$str .= ',';
 			}
-			if(is_array($record) || is_object($record)){
+			if(is_array($record) || is_object($record)){//for multiple rows, example: _list()
 				$str .= '"'.$counter.'":{';							
 				$first = true;
 				foreach($record as $column => $value){
@@ -61,7 +61,7 @@ class _BaseController extends CI_Controller {
 					$first = false;
 				}
 				$str .= '}';				
-			}else{
+			}else{//for single row, example: _get()
 				$str .= '"'.$data .'":"'.$record.'"';
 			}
 			$counter++;			

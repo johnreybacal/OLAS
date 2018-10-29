@@ -109,6 +109,7 @@ class Book extends _BaseController {
         echo $json;        
     }
 
+    //get full details of book via isbn
     public function Get($isbn){        
         $book = $this->book->_get($isbn);
         if($book != null){
@@ -126,6 +127,17 @@ class Book extends _BaseController {
         }
     }
 
+    //get book via AccessionNumber
+    public function GetByAccessionNumber($accessionNumber){
+        echo $this->convert($this->book->_get($this->bookCatalogue->_get($accessionNumber)->ISBN));
+    }
+
+    //Get Catalogue of book
+    public function GetCatalogue($accessionNumber){
+        echo $this->convert($this->bookCatalogue->_get($accessionNumber));
+    }
+
+    //for same title so that the form will be automatically filled it same isbn is set
     public function LastAcquired($isbn){
         echo $this->convert($this->bookCatalogue->lastAcquired($isbn));        
     }

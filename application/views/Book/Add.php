@@ -102,7 +102,7 @@
 	$(document).ready(function(){
 		initializeSelectpicker();
 		Book.init();
-		$('#DateAcquired').val(new  Date().toISOString().slice(0, 10));
+		$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
 	});
 
 	var Book = {
@@ -110,7 +110,7 @@
 		reset: function(val){
 			$('#book-form')[0].reset();
 			$('select').selectpicker('val', []);
-			$('#DateAcquired').val(new  Date().toISOString().slice(0, 10));
+			$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
 			$('#ISBN').val(val);
 		},
 

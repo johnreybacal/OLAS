@@ -1,7 +1,7 @@
 <div class="main-content" style="margin: 5% 8% 0px 8%;">
 	<div class="card">
         <div class="card-body">
-            <h1 id = "welcome">Welcome to OAS!</h1>            
+            <h1 id = "welcome">Welcome to OLAS!</h1>            
         </div>
 	</div>
 	<!-- <?php if($this->session->has_userdata('isPatron')): ?>
@@ -79,7 +79,7 @@
 	$(document).ready(function(){
 		$('#welcome').fadeOut({			
 			complete: function(){
-				$(this).html("Welcome to OLAS!").fadeIn("slow");
+				$(this).html("Welcome to <text style='color:#ff4e4e; font-family: Century Gothic; letter-spacing: 5px;'>O<text style='color:#000000; font-weight: bold;'>L</text>AS</text>!").fadeIn("slow");
 			}
 		});
 	});
