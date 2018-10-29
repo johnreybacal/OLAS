@@ -23,7 +23,7 @@ a {
     transition: background 0.3s;
 }
 /* TABLES */
-table.table-responsive td{
+table, table.table-bordered.dataTable td{
 	border: none;
 	text-align: center;
 }

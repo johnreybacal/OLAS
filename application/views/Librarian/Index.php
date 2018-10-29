@@ -55,7 +55,7 @@
         },
 
         reset: function () {
-            // $('#librarian-table').DataTable().ajax.reload();
+            $('#librarian-table').DataTable().ajax.reload();
         }
     }
 </script>

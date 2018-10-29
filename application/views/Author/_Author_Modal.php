@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-author" tabindex="-1">
-    <div class="modal-dialog modal-md ">
+    <div class="modal-dialog modal-sm ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Author</h5>
@@ -8,6 +8,15 @@
                 </button>
             </div>
             <div class="modal-body form-type-line">
+                <div class="row" id="rowActive" style="margin-left: 73%;" >
+                    <div class="form-group">
+                        <label class="switch switch-lg switch-info">
+                            <input type="checkbox" id="IsActive" name="IsActive" checked />
+                            <span class="switch-indicator"></span>
+                            <label>Active</label>
+                        </label>
+                    </div>
+                </div> 
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-author-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="AuthorId"/>          
@@ -18,7 +27,7 @@
                                 <input id="Name" name="Name" type="text" class="form-control" placeholder="Author Name" />
                             </div>
                         </div>                          
-                        <div class="row" id="rowActive">
+                        <!-- <div class="row" id="rowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
@@ -31,14 +40,14 @@
                                     </label>
                                 </div>
                             </div>
-                        </div> 
+                        </div>  -->
 
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Author_Modal.validate()">Save</button>
+                <button id="Save" type="button" class="btn btn-info" onclick="Author_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
@@ -63,14 +72,18 @@
 
         new: function () {
             $('#AuthorId').val('0');            
-            $('.modal-title').text('Add Author');            
-            $('#rowActive').addClass('invisible');
+            $('.modal-title').text('Add Author');    
+            // $('#rowActive').addClass('invisible');        
+            $('#rowActive').attr('hidden', 'true');
+            $('#Save').html('Save');   
             Author_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Author');  
-            $('#rowActive').removeClass('invisible');          
+            // $('#rowActive').removeClass('invisible');        
+            $('#rowActive').removeAttr('hidden');   
+            $('#Save').html('Save Changes');   
             Author_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Author/Get/'); ?>" + id,
