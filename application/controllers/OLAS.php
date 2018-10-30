@@ -26,10 +26,17 @@ class OLAS extends _BaseController {
 		$this->footer();		
 	}
 
-	public function Login(){
+	public function About(){
 		$this->header();
-		$this->load->view('OLAS/Login');
+		$this->load->view('OLAS/About');
 		$this->footer();
-	}	
+	}
+
+	public function Developers(){
+		$this->header();
+		$this->load->view('OLAS/Developers');
+		$this->footer();
+	}
+	
 	
 }
