@@ -42,7 +42,8 @@ class _BaseController extends CI_Controller {
         redirect(base_url($page));
     }
 
-	//converts any query to json
+	//converts any query to json, even cart content sugoi
+	//for js
 	public function convert($param){
 		$str = '{';		
 		$counter = 0;				
@@ -72,6 +73,8 @@ class _BaseController extends CI_Controller {
 		return $str;
 	}
 
+	//--------------------------
+	//for generation tables
 	//loops through multivalued attributes
 	public function loopAll($param){
 		$str = '';
@@ -90,8 +93,6 @@ class _BaseController extends CI_Controller {
 		return $this->removeExcessComma($str);
 	}
 
-
-
 	//removes excess comma at the end for generating tables
 	public function removeExcessComma($str){
 		if($str != '{ "data": ['){
@@ -99,17 +100,27 @@ class _BaseController extends CI_Controller {
 		}
 		return $str;
 	}
+	//also useful in other things
+	//--------------------------
 
-	//invalid
+	//returns invalid element, for validation
 	public function invalid($name, $message){
 		return '"'.$name.'":"<div class=\"invalid-feedback\" style=\"display:block\">'.$message.'</div>",';
 	}
 
-	//html helpers hehe
-	public function IsActive($url){		
-		if($url == uri_string()){
-			echo "active";
-		}
+	//notifies the patron
+	public function NotifyPatron($patronId, $title, $message){
+		$this->message->save(array(
+			"PatronId" => $patronId,
+			"Title" => $title,
+			"Message" => $message
+		));
+		// sena, dito ilagay ang sms at email
+		// mga need mong data:
+		// uncomment the ff:
+		// $patron = $this->patron->_get($patronId);
+		// $patron->ContactNumber //contact number
+		// $patron->Email //Email
 	}
 
 }

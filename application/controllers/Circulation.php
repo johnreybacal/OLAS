@@ -100,27 +100,20 @@ class Circulation extends _BaseController {
         $loan = $this->input->post('loan');
         $this->loan->returnBook($this->loan->_get($loan['LoanId']), $loan['AmountPayed'], $loan['BookStatusId']);
     }
-
+    
     public function Recall($loanId){
         $this->loan->recall($loanId);
-        //sena, send email at sms sa patron na nirerecall ang libro
-        //ito ang mga need mong data :>
-        // $patron = $this->patron->_get($this->loan->_get($loanId)->PatronId);
-        // $patron->Email;
-        // $patrin->ContactNumber        
-        //wag mong sirain ang master pls
+        $loan = $this->loan->_get($loanId);
+        $this->NotifyPatron(
+            $loan->PatronId,
+            'Your book is being recalled by the library',
+            'Please immediately return the book: '.$this->book->_get($this->bookCatalogue->_get($loan->AccessionNumber)->ISBN)->Title.' to the library. Thank you.'
+        );        
     }
 
     public function Unrecall($loanId){
         $this->loan->unrecall($loanId);
-        //sena, send email at sms sa patron na hindi na pala nirerecall ang libro
-        //ito ang mga need mong data :>
-        // $patron = $this->patron->_get($this->loan->_get($loanId)->PatronId);
-        // $patron->Email;
-        // $patrin->ContactNumber        
-        //wag mong sirain ang master pls
+        $this->NotifyPatron($this->loan->_get($loanId)->PatronId, 'Recall cancelled', 'Please enjoy your book');
     }
 
-
-   
 }

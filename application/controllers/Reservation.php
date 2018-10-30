@@ -34,9 +34,9 @@ class Reservation extends _BaseController {
     public function Save(){ 
         foreach($this->cart->contents() as $book){
             $this->reservation->save(array(
-                'PatronId' => $this->session->userdata('PatronId'),
+                'PatronId' => $this->session->userdata('patronId'),
                 'AccessionNumber' => $book['id']
-            ));            
+            ));
         }
     }
 

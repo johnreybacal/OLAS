@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2018 at 02:05 PM
+-- Generation Time: Oct 30, 2018 at 05:01 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -404,9 +404,37 @@ TRUNCATE TABLE `loan`;
 --
 
 INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`, `IsRecalled`) VALUES
-(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', NULL, NULL, 1, 1),
-(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', NULL, NULL, 1, 0),
-(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 0);
+(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
+(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 0),
+(7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `MessageId` int(11) NOT NULL,
+  `PatronId` int(11) NOT NULL,
+  `Title` varchar(50) NOT NULL,
+  `Message` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `message`
+--
+
+TRUNCATE TABLE `message`;
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`) VALUES
+(10, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.'),
+(11, 1, 'Recall cancelled', 'Please enjoy your book');
 
 -- --------------------------------------------------------
 
@@ -575,10 +603,14 @@ TRUNCATE TABLE `reservation`;
 --
 
 INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `DateReserved`, `IsDiscarded`, `IsActive`) VALUES
+(14, 1, 1, '2018-10-28 22:04:15', 1, 0),
 (11, 1, 10, '2018-10-26 19:21:47', 1, 0),
 (7, 1, 13, '2018-10-17 13:56:45', 0, 0),
 (6, 1, 11, '2018-10-17 13:56:44', 1, 0),
-(13, 1, 1, '2018-10-26 19:24:40', 0, 0);
+(13, 1, 1, '2018-10-26 19:24:40', 0, 0),
+(15, 1, 11, '2018-10-28 22:04:16', 0, 0),
+(16, 1, 1, '2018-10-28 22:05:39', 1, 0),
+(17, 1, 1, '2018-10-30 11:21:01', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -728,6 +760,12 @@ ALTER TABLE `loan`
   ADD PRIMARY KEY (`LoanId`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`MessageId`);
+
+--
 -- Indexes for table `outsideresearcher`
 --
 ALTER TABLE `outsideresearcher`
@@ -817,7 +855,12 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
@@ -842,7 +885,7 @@ ALTER TABLE `publisher`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `series`
 --
