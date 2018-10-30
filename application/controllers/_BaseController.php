@@ -74,7 +74,7 @@ class _BaseController extends CI_Controller {
 	}
 
 	//--------------------------
-	//for generation tables
+	//for generating tables
 	//loops through multivalued attributes
 	public function loopAll($param){
 		$str = '';

@@ -14,10 +14,11 @@ class MessageModel extends _BaseModel{
 
     public function save($message){
         $this->db->query("INSERT into message "
-            ."(PatronId, Title, Message) VALUES ("                   
+            ."(PatronId, Title, Message, DateTime) VALUES ("                   
                 ."'".$message['PatronId']."',"
                 ."'".$message['Title']."',"
-                ."'".$message['Message']."'"
+                ."'".$message['Message']."',"
+                ."CURRENT_TIMESTAMP"
             .")"
         );		
 	}	

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2018 at 05:01 AM
+-- Generation Time: Oct 30, 2018 at 02:23 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -406,7 +406,7 @@ TRUNCATE TABLE `loan`;
 INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`, `IsRecalled`) VALUES
 (4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
 (5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
-(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 0),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 1),
 (7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0);
 
 -- --------------------------------------------------------
@@ -420,7 +420,8 @@ CREATE TABLE `message` (
   `MessageId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
-  `Message` text NOT NULL
+  `Message` text NOT NULL,
+  `DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -432,9 +433,10 @@ TRUNCATE TABLE `message`;
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`) VALUES
-(10, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.'),
-(11, 1, 'Recall cancelled', 'Please enjoy your book');
+INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) VALUES
+(10, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:05:56'),
+(11, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-30 22:05:56'),
+(12, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:10:47');
 
 -- --------------------------------------------------------
 
@@ -860,7 +862,7 @@ ALTER TABLE `loan`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --

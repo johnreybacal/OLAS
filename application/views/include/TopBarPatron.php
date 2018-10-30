@@ -135,6 +135,7 @@
                                     + '<div class="media-body">'
                                         + '<p>' + data.Title + '</p>'                                        
                                         + '<p>' + data.Message + '</p>'                                        
+                                        + '<p>' + data.DateTime + '</p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -174,6 +175,7 @@
                             $(this).remove();
                         }
                     })
+                    $('#bookbag-table').DataTable().ajax.reload();
                     // swal('Unbookbagged!', "Book removed from bookbag", 'success');
                 },
                 error: function(){
