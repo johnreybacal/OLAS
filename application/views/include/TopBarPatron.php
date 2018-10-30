@@ -238,30 +238,15 @@
             }).then((result) => {
                 if (result.value) {                                        
                     $.ajax({
-                        url: "<?php echo base_url('Bookbag/Get'); ?>",
-                        success: function(i){
-                            i = JSON.parse(i);
-                            var ok = true;
-                            $.each(i, function(index, data){
-                                $.ajax({
-                                    url: "<?php echo base_url('Reservation/Save'); ?>",
-                                    type: "POST",
-                                    data: {"reservation": {                                
-                                        PatronId: <?php echo $this->session->userdata('patronId'); ?>,
-                                        AccessionNumber: data.id
-                                    }},
-                                    error: function(){
-                                        ok = false
-                                    }
-                                })
-                            });
-                            if(ok){
-                                Bookbag.removeAllAjax();
-                                $('#bookbag-table').DataTable().ajax.reload();
-                                swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');
-                            }else{
-                                swal('Oops!', "Something went wrong", 'error');
-                            }
+                        url: "<?php echo base_url('Reservation/Save'); ?>",
+                        success: function(i){                        
+                            Bookbag.removeAllAjax();
+                            $('#bookbag-table').DataTable().ajax.reload();
+                            swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
+                        },
+                        error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');                            
+                            console.log(i);
                         }
                     });
                 }
