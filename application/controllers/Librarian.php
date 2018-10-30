@@ -76,7 +76,7 @@ class Librarian extends _BaseController {
 				.'"<a href = \''.base_url('Librarian/View/'.$data->LibrarianId).'\'>'.$data->LibrarianId.'</a>",'
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$data->Username.'",'
-                .'"'.$this->librarianrole->_get($data->LibrarianRoleId)->Name.'",'
+                .'"'.$this->librarianRole->_get($data->LibrarianRoleId)->Name.'",'
                 .'"<button onclick = \"Librarian_Modal.edit('.$data->LibrarianId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';

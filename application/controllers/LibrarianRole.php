@@ -13,17 +13,17 @@ class LibrarianRole extends _BaseController {
     }
 
     public function Validate(){
-        $librarianrole = $this->input->post('librarianrole');        
+        $librarianRole = $this->input->post('librarianRole');        
         $str = '{';
         $valid = true;
-        if(!v::notEmpty()->validate($librarianrole['Name'])){
+        if(!v::notEmpty()->validate($librarianRole['Name'])){
             $str .= $this->invalid('Name', 'Name is required');
             $valid = false;
         }
         else{
-            $ifExist = $this->librarianrole->_exist('Name', $librarianrole['Name']);            
+            $ifExist = $this->librarianRole->_exist('Name', $librarianRole['Name']);            
             if(is_object($ifExist)){
-                if($ifExist->LibrarianRoleId != $librarianrole['LibrarianRoleId']){
+                if($ifExist->LibrarianRoleId != $librarianRole['LibrarianRoleId']){
                     $str .= $this->invalid('Name', 'Role already exists');
                     $valid = false;
                 }
@@ -35,7 +35,7 @@ class LibrarianRole extends _BaseController {
     
     public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->librarianrole->_list() as $data){
+        foreach($this->librarianRole->_list() as $data){
             $json .= '['
                 .'"<a href = \''.base_url('LibrarianRole/View/'.$data->LibrarianRoleId).'\'>'.$data->LibrarianRoleId.'</a>",'
                 .'"'.$data->Name.'",'
@@ -50,15 +50,15 @@ class LibrarianRole extends _BaseController {
     }
     
     public function GetAll(){
-        echo $this->convert($this->librarianrole->_list());
+        echo $this->convert($this->librarianRole->_list());
     }
 
     public function Get($id){
-        echo $this->convert($this->librarianrole->_get($id));
+        echo $this->convert($this->librarianRole->_get($id));
     }
 
     public function Save(){        
-        $this->librarianrole->save($this->input->post('librarianrole'));
+        $this->librarianRole->save($this->input->post('librarianRole'));
     }
     
 }

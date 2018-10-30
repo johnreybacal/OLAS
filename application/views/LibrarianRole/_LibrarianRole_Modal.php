@@ -89,7 +89,7 @@
             $.ajax({
                 url:'<?php echo base_url('LibrarianRole/Validate'); ?>',
                 type: "POST",
-                data: {"librarianrole": LibrarianRole_Modal.data()},
+                data: {"librarianRole": LibrarianRole_Modal.data()},
                 success: function(i){
                     $('.invalid-feedback').remove();
                     $('.is-invalid').removeClass('is-invalid');
@@ -116,15 +116,15 @@
                 console.log(LibrarianRole_Modal.data());
                 console.log($('#LibrarianRoleId').val());
                 if ($('#LibrarianRoleId').val() == 0) {
-                    message = "Great Job! New LibrarianRole has been created";
+                    message = "Great Job! New Librarian Role has been created";
                 } else {
-                    message = "Nice! LibrarianRole has been updated";
+                    message = "Nice! Librarian Role has been updated";
                 }
                 console.log($('#LibrarianRoleId').val());
 
                 swal({
                     title: 'Confirm Submission',
-                    text: 'Save changes for Member Type',
+                    text: 'Save changes for Librarian Role',
                     type: 'warning',
                     showCancelButton: true,
                     cancelButtonText: 'No! Cancel',
@@ -134,7 +134,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.post('<?php echo base_url('LibrarianRole/Save'); ?>',{
-                        librarianrole: LibrarianRole_Modal.data()
+                        librarianRole: LibrarianRole_Modal.data()
                         }, function(i){
                             swal('Good Job!', message, 'success');
                             $('#modal-librarianrole').modal('hide');
