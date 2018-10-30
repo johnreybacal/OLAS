@@ -8,6 +8,22 @@ a {
     color: #48b0f7 !important;
     transition: .2s linear !important;
 }
+        /*Checkbox*/
+
+.custom-checkbox .custom-control-label::after {
+    content: "\e64c";
+    top: 0;
+    left: 2px;
+    font-family: themify;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    color: #48b0f7 !important;
+}
+::selection {
+    background: #48b0f7 !important;
+    color: #fff;
+}
 /* FORMS*/
 .form-type-line .form-control {
     background-image:

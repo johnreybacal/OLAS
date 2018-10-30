@@ -104,32 +104,6 @@
             Librarian_Modal.init();
         },
 
-        validate: function(){
-            $.ajax({
-                url:'<?php echo base_url('Librarian/Validate'); ?>',
-                type: "POST",
-                data: {"librarian": Librarian_Modal.data()},
-                success: function(i){
-                    $('.invalid-feedback').remove();
-                    $('.is-invalid').removeClass('is-invalid');
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Librarian_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                    // Patron_Modal.save();
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },
-
         edit: function (id) {
             $('.modal-title').text('Edit Librarian');            
             Librarian_Modal.init();
@@ -151,6 +125,31 @@
                     // $('#Email').val(i.Email); 
                 }
             })
+        },
+        
+        validate: function(){
+            $.ajax({
+                url:'<?php echo base_url('Librarian/Validate'); ?>',
+                type: "POST",
+                data: {"librarian": Librarian_Modal.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Librarian_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
         },
 
         save: function() {

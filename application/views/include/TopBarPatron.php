@@ -62,7 +62,7 @@
 <!-- Notifications -->
 <div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title">Bookbag</p>
+    <p class="quickview-title lead">Bookbag</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 

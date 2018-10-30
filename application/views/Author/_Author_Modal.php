@@ -1,5 +1,5 @@
 <div class="modal modal-center fade" id="modal-author" tabindex="-1">
-    <div class="modal-dialog modal-sm ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Author</h5>
@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body form-type-line">
-                <div class="row" id="rowActive" style="margin-left: 73%;" >
+                <div class="row" id="rowActive" style="margin-left: 74%;" >
                     <div class="form-group">
                         <label class="switch switch-lg switch-info">
                             <input type="checkbox" id="IsActive" name="IsActive" checked />

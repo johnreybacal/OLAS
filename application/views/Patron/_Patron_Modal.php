@@ -229,7 +229,7 @@
 
                 swal({
                     title: 'Confirm Submission',
-                    text: 'Save changes for Patron Type',
+                    text: 'Save changes for Patron',
                     type: 'warning',
                     showCancelButton: true,
                     cancelButtonText: 'No! Cancel',

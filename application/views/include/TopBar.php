@@ -11,16 +11,18 @@
 	</div>
 
 	<div class="topbar-right">
-		<div>		
-			<a class="btn btn-sm border-light hover-shadow-2 hover-info" href="#qv-form-center" data-toggle="quickview">Login as patron</a>        
-		</div>
+		<ul class="topbar-btns">
+			<li class="dropdown">
+			<a class="btn btn-sm btn-outline btn-info hover-shadow-2 ml-1" href="#qv-form-center" data-toggle="quickview">Patron</a>   
+			</li>     
 		<div class="topbar-divider d-none d-md-block"></div>
-		<div>
-			<a href = "<?php echo base_url('Librarian'); ?>" class="btn btn-sm border-light hover-shadow-2  hover-info">Librarian portal</a>
-		</div>
+		<li class="dropdown">
+			<a class="btn btn-sm btn-outline btn-info hover-shadow-2 mr-1" href = "<?php echo base_url('Librarian'); ?>" >Librarian</a>
+		</li>
+	</ul>
 	</div>
 	<!-- Form center -->
-	<div id="qv-form-center" class="quickview">
+	<div id="qv-form-center" class="quickview backdrop-dark">
 		<header class="quickview-header">
 			<p class="quickview-title lead">Log in</p>
 			<span class="close"><i class="ti-close"></i></span>
@@ -42,13 +44,13 @@
 
 				<div class="form-group flexbox flex-column flex-md-row">
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" checked>
+						<input type="checkbox" class="custom-control-input" style="color: #48b0f7 "checked>
 						<label class="custom-control-label">Remember me</label>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-bold btn-block btn-primary"  onclick = "login.validate()" type="submit">Login</button>
+					<button class="btn btn-bold btn-block btn-info"  onclick = "login.validate()" type="submit">Login</button>
 				</div>
 			</form>			
 		</div>
