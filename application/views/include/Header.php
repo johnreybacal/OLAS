@@ -47,8 +47,6 @@
 	}
 ?>
 <main class="main-container">
-<!-- <?php 
-	if(strToLower(uri_string()) != 'librarian/login'){
-		include("Breadcrumbs.php"); 
-	}
-?> -->
+<!-- <script>
+	console.log('"'+'<?php print_r($this->session->userdata('access')); ?>'+'"');
+</script> -->

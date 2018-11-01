@@ -52,12 +52,17 @@ class Librarian extends _BaseController {
 		if($result != 0){
             $this->UnsetSession();
             $librarian = $this->librarian->_get($result);
+            $access = [];
+            foreach($this->librarian->getRole($librarian->LibrarianId) as $role){
+                $access[] = $role->Name;
+            }
             $this->session->set_userdata(
                 array(
                     'librarianId' => $librarian->LibrarianId,
                     'username' => $librarian->Username,
                     'isLoggedIn' => true, 
-                    'isLibrarian' => true
+                    'isLibrarian' => true,
+                    'access' => $access
                 )
             );
         }        
@@ -65,6 +70,7 @@ class Librarian extends _BaseController {
     }
     
     //i don't why it requires to be the same with the base while the librarian doesn't require it
+    //now i know
     public function LogOut($page = null){
         parent::LogOut('Librarian/Login');
     }
@@ -76,7 +82,7 @@ class Librarian extends _BaseController {
 				.'"<a href = \''.base_url('Librarian/View/'.$data->LibrarianId).'\'>'.$data->LibrarianId.'</a>",'
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$data->Username.'",'
-                .'"'.$this->librarianRole->_get($data->LibrarianRoleId)->Name.'",'
+                .'"'.$this->loopAll($this->librarian->getRole($data->LibrarianId)).'",'
                 .'"<button onclick = \"Librarian_Modal.edit('.$data->LibrarianId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
@@ -94,10 +100,15 @@ class Librarian extends _BaseController {
         //
 
         //role
-        if(!v::intVal()->notEmpty()->validate($librarian['LibrarianRoleId'])){
-            $str .= $this->invalid('LibrarianRoleId', 'Please select a role');
+        if(array_key_exists('LibrarianRoleId', $librarian)){
+            if(!v::arrayVal()->notEmpty()->validate($librarian['LibrarianRoleId'])){
+                $str .= $this->invalid('LibrarianRoleId', 'Please select at least one role');
+                $valid = false;
+            }
+        }else{
+            $str .= $this->invalid('LibrarianRoleId', 'Please select at least one role');
             $valid = false;
-        }
+        }        
 
         //fname
         if (!v::notEmpty()->validate($librarian['FirstName'])){
@@ -145,12 +156,23 @@ class Librarian extends _BaseController {
         echo $this->convert($this->librarian->_list());
     }
     
-    public function Get($id){
-        echo $this->convert($this->librarian->_get($id));
+    public function Get($id){        
+        $librarian = $this->librarian->_get($id);
+        if($librarian != null){
+            echo '{"librarian":';
+            echo $this->convert($librarian);
+            echo ', "librarianAccess":';
+            echo $this->convert($this->librarianAccess->_list($id));            
+            echo '}';        
+        }else{
+            echo '0';
+        }
     }
 
     public function Save(){        
-        $this->librarian->save($this->input->post('librarian'));
+        $librarian = $this->input->post('librarian');
+        $librarianId = $this->librarian->save($librarian);
+        $this->librarianAccess->save($librarian['LibrarianId'], $librarian['LibrarianRoleId']);
     }
 
     public function Email(){

@@ -22,11 +22,54 @@ class _BaseController extends CI_Controller {
 	}
 
 	public function librarianView($url, $data){
+		$allowed = array(
+			'Library' => array('Book', 'Author', 'Genre', 'Series', 'Publisher'),
+			'Circulation' => array('Circulation', 'Reservation'),
+			'Patron Management' => array('Patron', 'PatronType'),
+			'Outside Researcher' => array('OutsideResearcher'),
+			'University' => array('Subject', 'Course', 'College'),
+			'Staff Management' => array('Librarian'),
+		);
 		$this->isLoggedIn();
 		if($this->session->has_userdata('isLibrarian')){
-			$this->header();
-			$this->load->view($url, $data);
-			$this->footer();
+			$access = true;
+			$controller = explode("/",$url)[0];
+			// echo $controller;
+			// echo '<br/>';
+			// print_r($this->session->userdata('access'));
+			// echo '<br/>';
+			// echo 'Loop';
+			// echo '<br/>';
+			if($url != 'Librarian/Dashboard'){
+				foreach($allowed as $key => $value){
+					// echo $key;
+					// echo '<br/>';
+					// print_r($value);
+					// echo '<br/>';
+					if(in_array($controller , $value)){
+						// echo '<br/>';
+						// echo 'controller found';
+						// echo '<br/>';
+						if(in_array($key , $this->session->userdata('access'))){
+							$access = true;
+							// echo 'user has access';
+							// echo '<br/>';
+						}else{
+							// echo 'user dont have access';
+							// echo '<br/>';
+							$access = false;
+						}
+						break;
+					}
+				}
+			}			
+			if($access == 1){
+				$this->header();
+				$this->load->view($url, $data);
+				$this->footer();
+			}else{
+				echo "403: Access Denied";
+			}
 		}
 		else{
 			echo "403: Access Denied";
@@ -35,7 +78,7 @@ class _BaseController extends CI_Controller {
 	}
 
 	public function UnsetSession(){
-		$this->session->unset_userdata(array('librarianId', 'patronId', 'name', 'isLoggedIn', 'isLibrarian', 'isPatron'));
+		$this->session->unset_userdata(array('librarianId', 'patronId', 'name', 'isLoggedIn', 'isLibrarian', 'isPatron', 'access'));
 	}
 	public function LogOut($page){
 		$this->UnsetSession();

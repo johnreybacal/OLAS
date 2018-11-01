@@ -16,6 +16,8 @@
                 </a>
             </li>        
             
+            <?php if(in_array("Library", $this->session->userdata('access'))): ?>
+
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon ti-layout"></span>
@@ -68,7 +70,11 @@
                 
                 </ul>
             </li>
+
+            <?php endif; ?>
             
+            <?php if(in_array("Circulation", $this->session->userdata('access'))): ?>
+
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon fa fa-pie-chart"></span>
@@ -92,6 +98,9 @@
                     </li>                                  
                 </ul>
             </li>
+
+            <?php endif; ?>
+            <?php if(in_array("Patron Management", $this->session->userdata('access'))): ?>
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
@@ -117,6 +126,9 @@
                 </ul>
             </li>
 
+            <?php endif; ?>
+            <?php if(in_array("Outside Researcher", $this->session->userdata('access'))): ?>
+
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('OutsideResearcher/'); ?>">
                     <span class="icon fa fa-home"></span>
@@ -124,6 +136,8 @@
                 </a>
             </li>        
 
+            <?php endif; ?>
+            <?php if(in_array("University", $this->session->userdata('access'))): ?>
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
@@ -157,6 +171,9 @@
                 </ul>
             </li>
 
+            <?php endif; ?>
+            <?php if(in_array("Staff Management", $this->session->userdata('access'))): ?>
+
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon fa fa-pie-chart"></span>
@@ -170,16 +187,11 @@
                             <span class="dot"></span>
                             <span class="title">Librarian</span>
                         </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('LibrarianRole'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian Role</span>
-                        </a>
-                    </li>
+                    </li>                    
                 </ul>
             </li>
+
+            <?php endif; ?>
 
             <li class="menu-category">Settings</li>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2018 at 10:29 AM
+-- Generation Time: Nov 01, 2018 at 12:22 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -331,7 +331,6 @@ INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
 DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
-  `LibrarianRoleId` int(11) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
   `Username` varchar(50) NOT NULL,
@@ -347,8 +346,40 @@ TRUNCATE TABLE `librarian`;
 -- Dumping data for table `librarian`
 --
 
-INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
-(1, 1, 'Johnrey', 'Bacal', 'admin', 'admin');
+INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
+(1, 'Johnrey', 'Bacal', 'admin', 'admin'),
+(2, 'Circu', 'Lation', 'circu', 'circulation');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `librarianaccess`
+--
+
+DROP TABLE IF EXISTS `librarianaccess`;
+CREATE TABLE `librarianaccess` (
+  `LibrarianId` int(11) NOT NULL,
+  `LibrarianRoleId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `librarianaccess`
+--
+
+TRUNCATE TABLE `librarianaccess`;
+--
+-- Dumping data for table `librarianaccess`
+--
+
+INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
+(1, 2),
+(1, 1),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(2, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -360,7 +391,7 @@ DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
+  `Description` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -372,8 +403,13 @@ TRUNCATE TABLE `librarianrole`;
 -- Dumping data for table `librarianrole`
 --
 
-INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `IsActive`) VALUES
-(1, 'Admin', 1);
+INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `Description`) VALUES
+(1, 'Library', 'Access to library content'),
+(2, 'Circulation', 'Access to library circulation'),
+(3, 'Patron Management', 'Access to patron management'),
+(4, 'Outside Researcher', 'Access to outside researcher'),
+(5, 'University', 'Access to university'),
+(6, 'Staff Management', 'Access to staff management');
 
 -- --------------------------------------------------------
 
@@ -852,12 +888,12 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `librarian`
 --
 ALTER TABLE `librarian`
-  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `librarianrole`
 --
 ALTER TABLE `librarianrole`
-  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `loan`
 --

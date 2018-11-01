@@ -149,6 +149,7 @@ $autoload['model'] = array(
 	'CourseModel' => 'course',
 	'GenreModel' => 'genre',
 	'LibrarianModel' => 'librarian',
+	'LibrarianAccessModel' => 'librarianAccess',
 	'LibrarianRoleModel' => 'librarianRole',
 	'LoanModel' => 'loan',
 	'PatronModel' => 'patron',
