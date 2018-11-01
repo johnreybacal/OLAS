@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2018 at 02:23 PM
+-- Generation Time: Nov 01, 2018 at 10:29 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -436,7 +436,9 @@ TRUNCATE TABLE `message`;
 INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) VALUES
 (10, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:05:56'),
 (11, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-30 22:05:56'),
-(12, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:10:47');
+(12, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:10:47'),
+(13, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-31 22:59:41'),
+(14, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-31 22:59:57');
 
 -- --------------------------------------------------------
 
@@ -522,7 +524,8 @@ TRUNCATE TABLE `patron`;
 --
 
 INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`) VALUES
-(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj');
+(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj'),
+(3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12, 'westsidenigga', '+63 999-999-9999', 'nigga@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -612,7 +615,9 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 (13, 1, 1, '2018-10-26 19:24:40', 0, 0),
 (15, 1, 11, '2018-10-28 22:04:16', 0, 0),
 (16, 1, 1, '2018-10-28 22:05:39', 1, 0),
-(17, 1, 1, '2018-10-30 11:21:01', 1, 0);
+(17, 1, 1, '2018-10-30 11:21:01', 1, 0),
+(18, 1, 1, '2018-10-31 22:47:44', 1, 0),
+(19, 1, 1, '2018-11-01 18:06:24', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -862,7 +867,7 @@ ALTER TABLE `loan`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
@@ -872,7 +877,7 @@ ALTER TABLE `outsideresearcher`
 -- AUTO_INCREMENT for table `patron`
 --
 ALTER TABLE `patron`
-  MODIFY `PatronId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PatronId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `patrontype`
 --
@@ -887,7 +892,7 @@ ALTER TABLE `publisher`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `series`
 --

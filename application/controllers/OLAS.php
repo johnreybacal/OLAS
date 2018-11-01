@@ -17,7 +17,8 @@ class OLAS extends _BaseController {
 				'book' => $this->book->_get($b->ISBN),
 				'author' => $this->book->getAuthor($b->ISBN),
 				'genre' => $this->book->getGenre($b->ISBN),
-				'subject' => $this->book->getSubject($b->ISBN)
+				'subject' => $this->book->getSubject($b->ISBN),
+				'reservation' => $this->reservation->isReserved($b->AccessionNumber)
 			);
 		}
 		$data['authors'] = $this->author->_list();
