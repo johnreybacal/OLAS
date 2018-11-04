@@ -106,11 +106,13 @@
     </div>	
 </div>
 <script>
-	$(document).ready(function(){
+	$(document).ready(function(){		
+		$('#search').val("<?php echo $search; ?>");		
 		$('#welcome').fadeOut({			
 			complete: function(){
 				$(this).html("Welcome to <text style='color:#ff4e4e; font-family: Century Gothic; letter-spacing: 5px;'>O<text style='color:#000000; font-weight: bold;'>L</text>AS</text>!").fadeIn("slow");
 			}
 		});
+		$('#filter').selectpicker('val', [<?php foreach($filter as $f){ echo '"'.$f.'",'; } ?>]);
 	});
 </script>
