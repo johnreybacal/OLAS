@@ -14,6 +14,7 @@ class _BaseController extends CI_Controller {
 		$this->load->view('include/Footer');
 	}
 
+	//check if librarian is logged in
 	public function isLoggedIn(){
 		if(!$this->session->has_userdata('isLoggedIn')){
 			redirect(base_url('Librarian/Login'));
@@ -21,6 +22,7 @@ class _BaseController extends CI_Controller {
 		return true;
 	}
 
+	//view for librarian, redirects to 403 if the librarian doesnt have access to url
 	public function librarianView($url, $data){
 		$allowed = array(
 			'Library' => array('Book', 'Author', 'Genre', 'Series', 'Publisher'),
@@ -33,30 +35,13 @@ class _BaseController extends CI_Controller {
 		$this->isLoggedIn();
 		if($this->session->has_userdata('isLibrarian')){
 			$access = true;
-			$controller = explode("/",$url)[0];
-			// echo $controller;
-			// echo '<br/>';
-			// print_r($this->session->userdata('access'));
-			// echo '<br/>';
-			// echo 'Loop';
-			// echo '<br/>';
+			$controller = explode("/",$url)[0];			
 			if($url != 'Librarian/Dashboard'){
-				foreach($allowed as $key => $value){
-					// echo $key;
-					// echo '<br/>';
-					// print_r($value);
-					// echo '<br/>';
-					if(in_array($controller , $value)){
-						// echo '<br/>';
-						// echo 'controller found';
-						// echo '<br/>';
+				foreach($allowed as $key => $value){					
+					if(in_array($controller , $value)){						
 						if(in_array($key , $this->session->userdata('access'))){
-							$access = true;
-							// echo 'user has access';
-							// echo '<br/>';
-						}else{
-							// echo 'user dont have access';
-							// echo '<br/>';
+							$access = true;							
+						}else{							
 							$access = false;
 						}
 						break;
@@ -89,7 +74,10 @@ class _BaseController extends CI_Controller {
 	//for js
 	public function convert($param){
 		$str = '{';		
-		$counter = 0;				
+		$counter = 0;			
+		if($param == null){
+			return '{}';
+		}
 		foreach($param as $data => $record){
 			if($counter != 0){
 				$str .= ',';
@@ -110,9 +98,7 @@ class _BaseController extends CI_Controller {
 			}
 			$counter++;			
 		}
-		$str .= '}';
-		if($str == '{}')
-			return "No data";
+		$str .= '}';		
 		return $str;
 	}
 
@@ -164,6 +150,64 @@ class _BaseController extends CI_Controller {
 		// $patron = $this->patron->_get($patronId);
 		// $patron->ContactNumber //contact number
 		// $patron->Email //Email
+	}
+
+	//returns full data of book searched
+	public function Search(){
+		$search = $this->input->post('search');
+		$accessionNumber = '';
+		$str = '{';
+		foreach($this->book->search($search) as $x){
+			$accessionNumber .= "'".$x->AccessionNumber."',";
+		}
+		$accessionNumber = $this->removeExcessComma($accessionNumber);						
+		foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
+			$book = $this->book->_get($x->ISBN);
+			$str .= '"'.$x->AccessionNumber.'":{';
+			$str .= '"catalogue":'.$this->convert($x).',';
+			$str .= '"book":'.$this->convert($book).',';
+			$str .= '"series":'.$this->convert($this->series->_get($book->SeriesId)).',';
+			$str .= '"publisher":'.$this->convert($this->publisher->_get($book->PublisherId)).',';
+			//author
+			$authorCounter = 0;
+			$str .= '"author":{';
+				foreach($this->bookAuthor->_list($x->ISBN) as $author){
+					if($authorCounter != 0){
+						$str .= ',';
+					}
+					$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
+					$authorCounter++;
+				}  				
+				$str .= '},';
+				
+			//genre
+			$genreCounter = 0;
+			$str .= '"genre":{';
+			foreach($this->bookGenre->_list($x->ISBN) as $genre){
+				if($genreCounter != 0){
+					$str .= ',';
+				}
+				$str .= '"'.$genreCounter.'":'.$this->convert($this->genre->_get($genre->GenreId));
+				$genreCounter++;
+			}  				
+			$str .= '},';
+
+			//subject
+			$subjectCounter = 0;
+			$str .= '"subject":{';
+			foreach($this->bookSubject->_list($x->ISBN) as $subject){
+				if($subjectCounter != 0){
+					$str .= ',';
+				}
+				$str .= '"'.$subjectCounter.'":'.$this->convert($this->subject->_get($subject->SubjectId));
+				$subjectCounter++;
+			}  				
+			$str .= '}';
+
+
+			$str .= '},';			
+		}
+		echo $this->removeExcessComma($str).'}';				
 	}
 
 }

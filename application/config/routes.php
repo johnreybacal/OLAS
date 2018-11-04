@@ -53,6 +53,7 @@ $route['default_controller'] = 'OLAS';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['Search'] = 'OLAS/Search';
 $route['MyReservations'] = 'OLAS/MyReservations';
 $route['GenerateTableMyReservations'] = 'OLAS/GenerateTableMyReservations';
 $route['MyBooks'] = 'OLAS/MyBooks';

@@ -141,7 +141,7 @@
                 url: "<?php echo base_url('Message/Get'); ?>",
                 success: function(i){
                     $('#message').empty();
-                    if(i != 'No data'){
+                    if(i != '{}'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){                            
                             $('#message').append(
@@ -233,7 +233,7 @@
                             $(this).remove();
                         }
                     });
-                    if(i != 'No data'){
+                    if(i != '{}'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){
                             console.log(data);

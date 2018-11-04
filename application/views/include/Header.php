@@ -47,6 +47,4 @@
 	}
 ?>
 <main class="main-container">
-<!-- <script>
-	console.log('"'+'<?php print_r($this->session->userdata('access')); ?>'+'"');
-</script> -->
+<?php include("Search.php"); ?>
