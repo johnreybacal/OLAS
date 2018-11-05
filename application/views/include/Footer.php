@@ -33,9 +33,9 @@
 <!-- Scripts -->
 <script>
     $(document).ready(function(){
-        // $('form').submit(function(form){
-        //     form.preventDefault();
-        // });
+        $('form').submit(function(form){
+            form.preventDefault();
+        });
     });       
 
 </script>

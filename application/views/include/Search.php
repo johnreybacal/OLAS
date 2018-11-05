@@ -1,4 +1,4 @@
-<div class="main-content" style="margin: 5% 8% 0px 8%;">
+<div id="search-container" class="main-content" style="margin: 5% 8% 0px 8%;">
     <div class="lookup d-none d-md-block ">
         <form class="lookup-placeholder">
             <input id="search" class="form-control" type="text" placeholder="Search" value="">
@@ -7,8 +7,8 @@
     </div>	
     <div class="form-group col-md-6">
         <label>Filter by</label>
-        <select id="filter" name="filter" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick">
-            <option value="Title" selected="true">Title (or ISBN)</option>
+        <select id="filter" name="filter" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
+            <option value="Title" selected="true">Book (Title or ISBN)</option>
             <option value="Author" selected="true">Author</option>
             <option value="Subject" selected="true">Subject</option>
             <option value="Genre" selected="true">Genre</option>
@@ -17,81 +17,44 @@
         </select>				
     </div>    
 </div>
-<script>    
-    var Search = {
 
-        search: function(){
-            $.ajax({
-                url: "<?php echo base_url('Search'); ?>",
-                type: "POST",
-                data: {"search": {
-                    "search": $('#search').val(),
-                    "filter": $('#filter').selectpicker('val')
-                }},
-                success: function(i){
-                    // $('#search-result').empty();
-                    // i = JSON.parse(i);
-                    // console.log(i);
-                    // $.each(i, function(index, data){
-                    // var element = "<div class='media'>"
-                    // + data.book.Title +
-                    // "</div>"
-
-                    // $('#search-result').append(element);
-                    // });
-                }
-            })
-        }
-
-    };
-</script>
-<!-- <div id="search-result-div" class="main-content" style="margin: 5% 8% 0px 8%;">
-	<button onclick="SearchResult.close()">close</button>
-    <div class="form-group col-md-6">
-        <label>Filter by</label>
-        <select id="filter" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick">
-            <option value="Title" selected="true">Title</option>
-            <option value="Author" selected="true">Author</option>
-            <option value="Subject" selected="true">Subject</option>
-            <option value="Genre" selected="true">Genre</option>
-            <option value="Series" selected="true">Series</option>
-            <option value="Publisher" selected="true">Publisher</option>
-        </select>				
-    </div>    
-	<div id="search-result" class="media-list media-list-divided media-list-hover">
+<div id="search-result-container" class="main-content">
+    <button onclick="SearchResult.close()">close</button>
+    <div id="search-result" class="media-list media-list-divided media-list-hover">
 
     </div>
 
 </div>
-
-<script>
+<script>    
 
     $(document).ready(function(){
-        $('#search-result-div').hide();
+        $('#search-result-container').hide();
         $('#filter').change(function(){
-            Search.search();
+            if($('#search').val() != ""){
+                Search.search();
+            }
         });
     });
 
     var SearchResult = {
 
         close: function(){
-            $('#search-result-div').hide();
-            $('#search-result-div').siblings().show();
+            $('#search-result-container').hide();
+            $('#search-result-container').siblings().show();
             $('script').hide();
         },
 
         display: function(){
-            $('#search-result-div').siblings().hide();
-            $('#search-result-div').show();
+            $('#search-result-container').siblings().hide();
+            $('#search-result-container').show();
+            $('#search-container').show();
             $('script').hide();
         }
     };
-
-    
     var Search = {
 
         search: function(){
+            SearchResult.display();
             $.ajax({
                 url: "<?php echo base_url('Search'); ?>",
                 type: "POST",
@@ -104,11 +67,44 @@
                     i = JSON.parse(i);
                     console.log(i);
                     $.each(i, function(index, data){
-                    var element = "<div class='media'>"
-                    + data.book.Title +
-                    "</div>"
+                        var author = '';
+                        $.each(data.author, function(x, y){
+                            author += '<h5 class="fs-18 fw-300">' + y.Name + '</h5>';
+                        })
 
-                    $('#search-result').append(element);
+                        var hover = '';
+                        if("<?php echo $this->session->has_userdata('patronId'); ?>" == 1){    
+                            if(data.catalogue.IsRoomUseOnly == 0){
+                                if(data.catalogue.IsAvailable == 1){
+                                    if(data.reservation.IsReserved == 1){
+                                        if(data.reservation.PatronId == "<?php echo $this->session->userdata('patronId'); ?>"){
+                                            //reserved by current patron
+                                            hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" 	title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a>';
+                                        }else{
+                                            //reserved by another patron
+                                            hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" 	title="This book is already reserved by someone else"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a>';
+                                        }
+                                    }else{
+                                        //book available for reservation
+                                        hover += '<a class="media-action hover-primary" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');" href="#" data-provide="tooltip" title="Add to Book Bag"><i class="fa fa-plus fa-2x" style="color:#48b0f7"></i></a>';
+                                    }
+                                }else{
+                                    //book unavailable
+                                    hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>';
+                                }
+                            }else{
+                                //book is room use only
+                                hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" title="This book is for room use only"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a>';
+                            }                                                      
+                        }
+                        hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
+                        var element = "<div class='media'><div class='media-body'>" +
+                            "<h3 class=\"fs-24 fw-500\">" + data.book.Title + "</h3>" +
+                            "<h3 class=\"fs-24 fw-500\">" + author + "</h3>" + 
+                            hover +
+                        "</div></div>";
+                        console.log(hover);
+                        $('#search-result').append(element);
                     });
                 }
             })
@@ -116,4 +112,3 @@
 
     };
 </script>
- -->
