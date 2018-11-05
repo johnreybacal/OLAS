@@ -120,8 +120,7 @@
                             "<h3 class=\"fs-24 fw-500\">" + author + "</h3>" + 
                             "<h3 class=\"fs-24 fw-500\">Date Published: " + data.book.DatePublished + "</h3>" + 
                             hover +
-                        "</div></div>";
-                        console.log(hover);
+                        "</div></div>";                        
                         $('#search-result').append(element);
                     });
                 }

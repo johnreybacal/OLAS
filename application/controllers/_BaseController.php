@@ -192,7 +192,7 @@ class _BaseController extends CI_Controller {
 			}			
 		}		
 		//date published range		
-		if($this->input->post('search')['filterByDatePublished'] == true){
+		if($this->input->post('search')['filterByDatePublished'] == 'true'){
 			$temp = '';
 			foreach($this->bookCatalogue->filterDateRange($this->removeExcessComma($accessionNumber), $this->input->post('search')['rangeFrom'], $this->input->post('search')['rangeTo']) as $x){
 				$temp .= "'".$x->AccessionNumber."',";
