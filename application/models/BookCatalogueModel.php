@@ -43,7 +43,11 @@ class BookCatalogueModel extends _BaseModel{
 	}		
 
 	public function lastAcquired($isbn){
-		 return $this->db->query("SELECT AcquiredFrom, Price FROM bookcatalogue WHERE ISBN = '".$isbn."'  and DateAcquired = CURRENT_DATE")->row();
+		return $this->db->query("SELECT AcquiredFrom, Price FROM bookcatalogue WHERE ISBN = '".$isbn."'  and DateAcquired = CURRENT_DATE")->row();
+	}
+
+	public function filterDateRange($accessionNumber, $from, $to){
+		return $this->db->query("SELECT AccessionNumber FROM bookcatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE DatePublished BETWEEN '".$from."' AND '".$to."' AND ISBN IN (SELECT ISBN FROM bookcatalogue WHERE AccessionNumber IN (".$accessionNumber.")))")->result();
 	}
 
 }

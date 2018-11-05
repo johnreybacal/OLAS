@@ -84,9 +84,16 @@
 
                 <ul class="menu-submenu">
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Circulation'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Circulation/Issued'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Book Circulations</span>
+                            <span class="title">Issued books</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Circulation/History'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Circulation History</span>
                         </a>
                     </li>
 

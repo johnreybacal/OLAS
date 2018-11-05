@@ -157,6 +157,7 @@ class _BaseController extends CI_Controller {
 		$search = $this->input->post('search')['search'];
 		$accessionNumber = '';
 		$str = '{';
+		//filter
 		if(array_key_exists('filter', $this->input->post('search'))){
 			$filter = $this->input->post('search')['filter'];		
 			if(in_array("Title" , $filter)){			
@@ -189,7 +190,15 @@ class _BaseController extends CI_Controller {
 					$accessionNumber .= "'".$x->AccessionNumber."',";
 				}
 			}			
-		}
+		}		
+		//date published range		
+		if($this->input->post('search')['filterByDatePublished'] == true){
+			$temp = '';
+			foreach($this->bookCatalogue->filterDateRange($this->removeExcessComma($accessionNumber), $this->input->post('search')['rangeFrom'], $this->input->post('search')['rangeTo']) as $x){
+				$temp .= "'".$x->AccessionNumber."',";
+			}			
+			$accessionNumber = $temp;
+		}		
 		$accessionNumber = $this->removeExcessComma($accessionNumber);				
 		if($accessionNumber != null){
 			foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
@@ -239,10 +248,12 @@ class _BaseController extends CI_Controller {
 	
 				$str .= '},';			
 			}
+			//throws to ajax success
+			echo $this->removeExcessComma($str).'}';				
 		}else{
-			$str .= '';
+			//no data
+			echo '{}';
 		}
-		echo $this->removeExcessComma($str).'}';				
 	}
 
 }

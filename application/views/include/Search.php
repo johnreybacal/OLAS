@@ -7,14 +7,25 @@
     </div>	
     <div class="form-group col-md-6">
         <label>Filter by</label>
-        <select id="filter" name="filter" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
+        <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
             <option value="Title" selected="true">Book (Title or ISBN)</option>
             <option value="Author" selected="true">Author</option>
             <option value="Subject" selected="true">Subject</option>
             <option value="Genre" selected="true">Genre</option>
             <option value="Series" selected="true">Series</option>
             <option value="Publisher" selected="true">Publisher</option>
-        </select>				
+        </select>		
+        <label>Published date range</label>
+        <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+            <div class="input-group-prepend">
+                <span class="input-group-text">From</span>
+            </div>
+            <input id="range-from" type="text" class="form-control">
+            <div class="input-group-prepend input-group-append">
+                <span class="input-group-text">To</span>
+            </div>
+            <input id="range-to" type="text" class="form-control">
+        </div>		
     </div>    
 </div>
 
@@ -54,13 +65,16 @@
     var Search = {
 
         search: function(){
-            SearchResult.display();
+            SearchResult.display();            
             $.ajax({
                 url: "<?php echo base_url('Search'); ?>",
                 type: "POST",
                 data: {"search": {
                     "search": $('#search').val(),
-                    "filter": $('#filter').selectpicker('val')
+                    "filter": $('#filter').selectpicker('val'),
+                    "filterByDatePublished": ($('#range-from').val() != ""),
+                    "rangeFrom": $('#range-from').val(),
+                    "rangeTo": $('#range-to').val(),
                 }},
                 success: function(i){
                     $('#search-result').empty();
@@ -96,11 +110,15 @@
                                 //book is room use only
                                 hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" title="This book is for room use only"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a>';
                             }                                                      
+                        }else if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
+                            hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7"></i></a>';    
                         }
                         hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
+                        
                         var element = "<div class='media'><div class='media-body'>" +
                             "<h3 class=\"fs-24 fw-500\">" + data.book.Title + "</h3>" +
                             "<h3 class=\"fs-24 fw-500\">" + author + "</h3>" + 
+                            "<h3 class=\"fs-24 fw-500\">Date Published: " + data.book.DatePublished + "</h3>" + 
                             hover +
                         "</div></div>";
                         console.log(hover);
