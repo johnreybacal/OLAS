@@ -28,11 +28,6 @@ class AuthorModel extends _BaseModel{
                 ."WHERE AuthorId = '".$author['AuthorId']."'"
 			);			
 		}
-	}	
-	
-	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM bookAuthor WHERE AuthorId IN (select AuthorId from author where LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
-		return $dbList;
-	}
+    }	
     
 }

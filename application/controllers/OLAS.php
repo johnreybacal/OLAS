@@ -10,17 +10,8 @@ class OLAS extends _BaseController {
 	}
 
 	public function index()
-	{
-		$search = '';
-		if($this->session->flashdata('search') != null){
-			$search = 'WHERE AccessionNumber IN ('.$this->session->flashdata('search').')';
-			$data['search'] = $this->session->flashdata('searchQuery');
-			$data['filter'] = $this->session->flashdata('searchFilter');
-		}else{			
-			$data['search'] = '';
-			$data['filter'] = '';
-		}
-		foreach($this->bookCatalogue->_list($search) as $b){						
+	{		          		
+		foreach($this->bookCatalogue->_list() as $b){						
 			$data['books'][] = array(
 				$b,
 				'book' => $this->book->_get($b->ISBN),
@@ -31,9 +22,9 @@ class OLAS extends _BaseController {
 			);
 		}
 		$data['authors'] = $this->author->_list();
-		$this->header();		
+		$this->header();
 		$this->load->view('OLAS/index', $data);
-		$this->footer();				
+		$this->footer();		
 	}
 
 	public function MyReservations(){

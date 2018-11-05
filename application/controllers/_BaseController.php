@@ -154,99 +154,60 @@ class _BaseController extends CI_Controller {
 
 	//returns full data of book searched
 	public function Search(){
-		$search = $this->input->post('search')['search'];
+		$search = $this->input->post('search');
 		$accessionNumber = '';
 		$str = '{';
-		if(array_key_exists('filter', $this->input->post('search'))){
-			$filter = $this->input->post('search')['filter'];		
-			if(in_array("Title" , $filter)){			
-				foreach($this->book->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";				
-				}
-			}
-			if(in_array("Author" , $filter)){
-				foreach($this->author->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";
-				}			
-			}
-			if(in_array("Subject" , $filter)){
-				foreach($this->subject->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";
-				}
-			}
-			if(in_array("Genre" , $filter)){
-				foreach($this->genre->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";
-				}
-			}		
-			if(in_array("Series" , $filter)){
-				foreach($this->series->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";
-				}
-			}			
-			if(in_array("Publisher" , $filter)){
-				foreach($this->publisher->search($search) as $x){
-					$accessionNumber .= "'".$x->AccessionNumber."',";
-				}
-			}			
+		foreach($this->book->search($search) as $x){
+			$accessionNumber .= "'".$x->AccessionNumber."',";
 		}
-		$accessionNumber = $this->removeExcessComma($accessionNumber);		
-		$this->session->set_flashdata('search', $accessionNumber);
-		$this->session->set_flashdata('searchQuery', $this->input->post('search')['search']);
-		$this->session->set_flashdata('searchFilter', $this->input->post('search')['filter']);
-		redirect(base_url());
-		// putangina buong tanghali ko to ginawa
-		// if($accessionNumber != null){
-		// 	foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
-		// 		$book = $this->book->_get($x->ISBN);
-		// 		$str .= '"'.$x->AccessionNumber.'":{';
-		// 		$str .= '"catalogue":'.$this->convert($x).',';
-		// 		$str .= '"book":'.$this->convert($book).',';
-		// 		$str .= '"series":'.$this->convert($this->series->_get($book->SeriesId)).',';
-		// 		$str .= '"publisher":'.$this->convert($this->publisher->_get($book->PublisherId)).',';
-		// 		//author
-		// 		$authorCounter = 0;
-		// 		$str .= '"author":{';
-		// 			foreach($this->bookAuthor->_list($x->ISBN) as $author){
-		// 				if($authorCounter != 0){
-		// 					$str .= ',';
-		// 				}
-		// 				$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
-		// 				$authorCounter++;
-		// 			}  				
-		// 			$str .= '},';
-					
-		// 		//genre
-		// 		$genreCounter = 0;
-		// 		$str .= '"genre":{';
-		// 		foreach($this->bookGenre->_list($x->ISBN) as $genre){
-		// 			if($genreCounter != 0){
-		// 				$str .= ',';
-		// 			}
-		// 			$str .= '"'.$genreCounter.'":'.$this->convert($this->genre->_get($genre->GenreId));
-		// 			$genreCounter++;
-		// 		}  				
-		// 		$str .= '},';
-	
-		// 		//subject
-		// 		$subjectCounter = 0;
-		// 		$str .= '"subject":{';
-		// 		foreach($this->bookSubject->_list($x->ISBN) as $subject){
-		// 			if($subjectCounter != 0){
-		// 				$str .= ',';
-		// 			}
-		// 			$str .= '"'.$subjectCounter.'":'.$this->convert($this->subject->_get($subject->SubjectId));
-		// 			$subjectCounter++;
-		// 		}  				
-		// 		$str .= '}';
-	
-	
-		// 		$str .= '},';			
-		// 	}
-		// }else{
-			
-		// }
-		// echo $this->removeExcessComma($str).'}';				
+		$accessionNumber = $this->removeExcessComma($accessionNumber);						
+		foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
+			$book = $this->book->_get($x->ISBN);
+			$str .= '"'.$x->AccessionNumber.'":{';
+			$str .= '"catalogue":'.$this->convert($x).',';
+			$str .= '"book":'.$this->convert($book).',';
+			$str .= '"series":'.$this->convert($this->series->_get($book->SeriesId)).',';
+			$str .= '"publisher":'.$this->convert($this->publisher->_get($book->PublisherId)).',';
+			//author
+			$authorCounter = 0;
+			$str .= '"author":{';
+				foreach($this->bookAuthor->_list($x->ISBN) as $author){
+					if($authorCounter != 0){
+						$str .= ',';
+					}
+					$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
+					$authorCounter++;
+				}  				
+				$str .= '},';
+				
+			//genre
+			$genreCounter = 0;
+			$str .= '"genre":{';
+			foreach($this->bookGenre->_list($x->ISBN) as $genre){
+				if($genreCounter != 0){
+					$str .= ',';
+				}
+				$str .= '"'.$genreCounter.'":'.$this->convert($this->genre->_get($genre->GenreId));
+				$genreCounter++;
+			}  				
+			$str .= '},';
+
+			//subject
+			$subjectCounter = 0;
+			$str .= '"subject":{';
+			foreach($this->bookSubject->_list($x->ISBN) as $subject){
+				if($subjectCounter != 0){
+					$str .= ',';
+				}
+				$str .= '"'.$subjectCounter.'":'.$this->convert($this->subject->_get($subject->SubjectId));
+				$subjectCounter++;
+			}  				
+			$str .= '}';
+
+
+			$str .= '},';			
+		}
+		echo $this->removeExcessComma($str).'}';				
 	}
 
 }

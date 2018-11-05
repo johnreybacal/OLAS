@@ -30,11 +30,6 @@ class SubjectModel extends _BaseModel{
 			);
 			return $subject['SubjectId'];
 		}
-	}	
-	
-	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM bookSubject WHERE SubjectId IN (SELECT SubjectId FROM subject WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
-		return $dbList;
-	}
+    }	
     
 }

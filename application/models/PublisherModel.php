@@ -28,11 +28,6 @@ class PublisherModel extends _BaseModel{
                 ."WHERE PublisherId = '".$publisher['PublisherId']."'"
 			);			
 		}
-	}	
-	
-	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE PublisherId IN (SELECT PublisherId FROM publisher WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
-		return $dbList;
-	}
+    }	
     
 }
