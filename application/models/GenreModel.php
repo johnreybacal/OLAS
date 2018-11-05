@@ -28,6 +28,11 @@ class GenreModel extends _BaseModel{
                 ."WHERE GenreId = '".$genre['GenreId']."'"
 			);			
 		}
-    }	
+	}	
+	
+	public function search($search){
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM bookGenre WHERE GenreId IN (SELECT GenreId FROM genre WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		return $dbList;
+	}
     
 }
