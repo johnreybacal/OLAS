@@ -256,4 +256,12 @@ class _BaseController extends CI_Controller {
 		}
 	}
 
+	public function SearchAuthor(){
+		echo $this->convert($this->author->searchAuthor($this->input->post('search')['search']));
+	}
+
+	public function SearchPatron(){		
+		echo $this->convert($this->patron->search($this->input->post('search')['search']));
+	}
+
 }

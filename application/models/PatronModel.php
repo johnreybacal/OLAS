@@ -55,4 +55,10 @@ class PatronModel extends _BaseModel{
 		}		
 	}
 
+	public function search($search){		
+		$dbList = $this->db->query("SELECT * FROM patron WHERE LOWER(FirstName) LIKE '%".$search."%' OR '%".$search."%' LIKE LOWER(FirstName) OR LOWER(MiddleName) LIKE '%".$search."%' OR '%".$search."%' LIKE LOWER(MiddleName) OR LOWER(LastName) LIKE '%".$search."%' OR '%".$search."%' LIKE LOWER(LastName) OR LOWER(ExtensionName) LIKE '%".$search."%' OR '%".$search."%' LIKE LOWER(ExtensionName) OR IdNumber = '".$search."'"
+		)->result();
+		return $dbList;
+	}
+
 }
