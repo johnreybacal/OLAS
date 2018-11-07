@@ -171,7 +171,7 @@ class Librarian extends _BaseController {
     public function Save(){        
         $librarian = $this->input->post('librarian');
         $librarianId = $this->librarian->save($librarian);
-        $this->librarianAccess->save($librarian['LibrarianId'], $librarian['LibrarianRoleId']);
+        $this->librarianAccess->save($librarianId, $librarian['LibrarianRoleId']);
     }
 
     public function Email(){

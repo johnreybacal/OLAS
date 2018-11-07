@@ -102,6 +102,8 @@ class _BaseController extends CI_Controller {
 		return $str;
 	}
 
+	//wow nagbabasa ng code, sipag ah tanginamo ah hahahahaha
+
 	//--------------------------
 	//for generating tables
 	//loops through multivalued attributes
