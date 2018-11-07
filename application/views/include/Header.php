@@ -47,4 +47,8 @@
 	}
 ?>
 <main class="main-container">
-<?php include("Search.php"); ?>
+<?php 
+	if(strToLower(uri_string()) != 'librarian/login'){
+		include("Search.php");
+	}
+?>

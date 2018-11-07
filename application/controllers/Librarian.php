@@ -78,8 +78,7 @@ class Librarian extends _BaseController {
 	public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->librarian->_list() as $data){
-            $json .= '['
-				.'"<a href = \''.base_url('Librarian/View/'.$data->LibrarianId).'\'>'.$data->LibrarianId.'</a>",'
+            $json .= '['				
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$data->Username.'",'
                 .'"'.$this->loopAll($this->librarian->getRole($data->LibrarianId)).'",'

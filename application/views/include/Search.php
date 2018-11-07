@@ -1,11 +1,13 @@
+<?php if(!$this->session->has_userdata('isLibrarian')): ?>
 <div id="search-container" class="main-content" style="margin: 5% 8% 0px 8%;">
     <div class="lookup d-none d-md-block ">
         <form class="lookup-placeholder">
             <input id="search" class="form-control" type="text" placeholder="Search" value="">
-            <button onclick="Search.search();" class="btn">Search</button>
+            <button onclick="Search.search();" class="form-control">Search</button>
         </form>
     </div>	    
 </div>
+<?php endif; ?>
 
 <div id="search-result-container" class="main-content card">
     <div class="card-title">
@@ -130,9 +132,8 @@
                 if(result == 'patron'){                
                     Search.searchPatron();
                 }
-
+                <?php endif; ?>
             }
-            <?php endif; ?>
         },
 
         searchBook: function(){
@@ -240,7 +241,7 @@
                     });
                 }
             });
-        },
+        }
 
     };
 </script>
