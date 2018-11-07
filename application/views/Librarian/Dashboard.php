@@ -7,6 +7,19 @@
 	<div class="card">
         <div class="card-body">
             <div class="row">
+                <label>Report date range</label>
+                <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">From</span>
+                    </div>
+                    <input id="range-dashboard-from" type="text" class="form-control date-dashboard-range">
+                    <div class="input-group-prepend input-group-append">
+                        <span class="input-group-text">To</span>
+                    </div>
+                    <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range">
+                </div>		                
+            </div>
+            <div class="row">
 
                 <div class="col-md-3 col-lg-3 col-xlg-3">
                     <div class="card">
