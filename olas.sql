@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2018 at 12:22 PM
+-- Generation Time: Nov 09, 2018 at 02:28 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -142,7 +142,7 @@ TRUNCATE TABLE `bookcatalogue`;
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
 (1, '112', '2', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
 (11, '123', '3', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
-(10, 'asduhaud', '2', '2018-11-01', 'Abbie', 0, 1, 1, 1),
+(10, 'asduhaud', '2', '2018-11-01', 'Jb', 0, 1, 1, 1),
 (9, 'os91', '1', '2018-10-27', '', 0, 1, 1, 1),
 (12, 'sdg', '3', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
 (13, '34', '1', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
@@ -348,7 +348,8 @@ TRUNCATE TABLE `librarian`;
 
 INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
 (1, 'Johnrey', 'Bacal', 'admin', 'admin'),
-(2, 'Circu', 'Lation', 'circu', 'circulation');
+(2, 'Circu', 'Lation', 'circu', 'circulation'),
+(4, 'Tao', 'Manager', 'hr', 'hrhrhrhr');
 
 -- --------------------------------------------------------
 
@@ -378,8 +379,12 @@ INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
 (1, 4),
 (1, 5),
 (1, 6),
+(2, 2),
 (2, 1),
-(2, 2);
+(2, 5),
+(4, 6),
+(4, 4),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -547,7 +552,8 @@ CREATE TABLE `patron` (
   `RFIDNo` int(11) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `ContactNumber` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL
+  `Email` varchar(50) NOT NULL,
+  `DateCreated` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -559,9 +565,9 @@ TRUNCATE TABLE `patron`;
 -- Dumping data for table `patron`
 --
 
-INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`) VALUES
-(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj'),
-(3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12, 'westsidenigga', '+63 999-999-9999', 'nigga@yahoo.com');
+INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`, `DateCreated`) VALUES
+(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj', '2018-11-08'),
+(3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12, 'westsidenigga', '+63 999-999-9999', 'nigga@yahoo.com', '2018-11-09');
 
 -- --------------------------------------------------------
 
@@ -888,7 +894,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT for table `librarian`
 --
 ALTER TABLE `librarian`
-  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `librarianrole`
 --

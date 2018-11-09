@@ -36,6 +36,7 @@ class Librarian extends _BaseController {
     
     public function Dashboard(){
         $data['totalBooks'] = $this->report->totalBooks();
+        $data['totalBooksAcquired'] = $this->report->totalBooks();
         $data['totalBookCirculations'] = $this->report->totalBookCirculations();
         $data['totalPatrons'] = $this->report->totalPatrons();
         $data['totalOutsideResearchers'] = $this->report->totalOutsideResearchers();

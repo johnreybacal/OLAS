@@ -15,7 +15,7 @@ class PatronModel extends _BaseModel{
 	public function save($patron){
 		if($patron['PatronId'] == 0){//insert			
 			$this->db->query("INSERT into patron "
-				."(PatronTypeId, FirstName, MiddleName, LastName, ExtensionName, Password, ContactNumber, Email, IdNumber, RFIDNo) VALUES ("
+				."(PatronTypeId, FirstName, MiddleName, LastName, ExtensionName, Password, ContactNumber, Email, IdNumber, RFIDNo, DateCreated) VALUES ("
 					."'".$patron['PatronTypeId']."',"
 					."'".$patron['FirstName']."',"
 					."'".$patron['MiddleName']."',"
@@ -25,7 +25,8 @@ class PatronModel extends _BaseModel{
 					."'".$patron['ContactNumber']."',"
 					."'".$patron['Email']."',"
 					."'".$patron['IdNumber']."',"
-					."'".$patron['RFIDNo']."'"
+					."'".$patron['RFIDNo']."',"
+					."CURRENT_DATE"
 				.")"
 			);
 		}
