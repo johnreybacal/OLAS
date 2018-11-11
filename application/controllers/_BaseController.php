@@ -23,7 +23,7 @@ class _BaseController extends CI_Controller {
 	}
 
 	//view for librarian, redirects to 403 if the librarian doesnt have access to url
-	public function librarianView($url, $data){
+	public function librarianView($url, $data, $loadModals = null){
 		$allowed = array(
 			'Library' => array('Book', 'Author', 'Genre', 'Series', 'Publisher'),
 			'Circulation' => array('Circulation', 'Reservation'),
@@ -51,6 +51,13 @@ class _BaseController extends CI_Controller {
 			if($access == 1){
 				$this->header();
 				$this->load->view($url, $data);
+				if($loadModals = 1){
+					$this->load->view('Author/_Author_Modal');
+					$this->load->view('Genre/_Genre_Modal');
+					$this->load->view('Publisher/_Publisher_Modal');
+					$this->load->view('Series/_Series_Modal');
+					$this->load->view('Subject/_Subject_Modal');
+				}
 				$this->footer();
 			}else{
 				echo "403: Access Denied";

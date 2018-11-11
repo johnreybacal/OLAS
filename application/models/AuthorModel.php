@@ -20,6 +20,7 @@ class AuthorModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(AuthorId) as AuthorId FROM author")->row()->AuthorId;
 		}
 		else{//update
 			$this->db->query("UPDATE author SET "
@@ -27,6 +28,7 @@ class AuthorModel extends _BaseModel{
                 ."IsActive = '".$author['IsActive']."' "
                 ."WHERE AuthorId = '".$author['AuthorId']."'"
 			);			
+			return $author['AuthorId'];
 		}
 	}	
 	

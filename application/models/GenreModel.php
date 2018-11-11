@@ -20,6 +20,7 @@ class GenreModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(GenreId) as GenreId FROM genre")->row()->GenreId;
 		}
 		else{//update
 			$this->db->query("UPDATE genre SET "
@@ -27,6 +28,7 @@ class GenreModel extends _BaseModel{
                 ."IsActive = '".$genre['IsActive']."' "
                 ."WHERE GenreId = '".$genre['GenreId']."'"
 			);			
+			return $genre['GenreId'];
 		}
 	}	
 	

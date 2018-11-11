@@ -129,10 +129,13 @@
 
         resetTable: function(filtered){
             var url = "<?php echo base_url("Report/GenerateTable") ?>";
+            var text = '';
             if(filtered){
+                text = '<h4>Books acquired in the time period</h4>';
                 url = "<?php echo base_url("Report/GenerateTableFiltered") ?>/" + $('#range-dashboard-from').val() + '/' + $('#range-dashboard-to').val();
             }
             $('#book-table-container').html(
+                text + 
                 '<div class="table-responsive">' + 
                     '<table id="book-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                         '<thead>' +

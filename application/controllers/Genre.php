@@ -40,14 +40,14 @@ class Genre extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($genre['Name'])){
-            $str .= $this->invalid('Name', 'Please input a value');;
+            $str .= $this->invalid('GenreName', 'Please input a value');;
             $valid = false;
         }
         else{
             $ifExist = $this->genre->_exist('Name', $genre['Name']);            
             if(is_object($ifExist)){
                 if($ifExist->GenreId != $genre['GenreId']){
-                    $str .= $this->invalid('Name', 'Genre already exist');
+                    $str .= $this->invalid('GenreName', 'Genre already exist');
                     $valid = false;
                 }
             }
@@ -57,7 +57,7 @@ class Genre extends _BaseController {
     }
 
     public function Save(){        
-        $this->genre->save($this->input->post('genre'));
+        echo $this->genre->save($this->input->post('genre'));
     }
 
     

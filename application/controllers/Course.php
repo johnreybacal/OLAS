@@ -62,7 +62,7 @@ class Course extends _BaseController {
     }
 
     public function Save(){        
-        $this->course->save($this->input->post('course'));
+        echo $this->course->save($this->input->post('course'));
     }
 
  

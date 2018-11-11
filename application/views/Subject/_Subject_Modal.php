@@ -19,18 +19,18 @@
                             </div>
                             <div class="col-12">
                                 <label>Subject Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Subject Name" />
+                                <input id="SubjectName" name="SubjectName" type="text" class="form-control" placeholder="Subject Name" />
                             </div>
                         </div>    
 
-                        <div class="row" id="rowActive">
+                        <div class="row" id="SubjectRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <input type="checkbox" id="SubjectIsActive" name="SubjectIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
@@ -56,8 +56,8 @@
             return {
                 SubjectId: $('#SubjectId').val(),
                 CourseId: $('#CourseId').val(),
-                Name: $('#Name').val(),                
-                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
+                Name: $('#SubjectName').val(),                
+                IsActive: ($('#SubjectIsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -77,20 +77,20 @@
             $('#modal-subject-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+            // $('#SubjectRowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-subject').modal('show');
         },
 
         new: function () {
             $('#SubjectId').val('0');
-            $('#rowActive').addClass('invisible'); // nukayayon 
+            $('#SubjectRowActive').addClass('invisible'); // nukayayon 
             $('.modal-title').text('Add Subject');            
             Subject_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Subject');  
-            $('#rowActive').removeClass('invisible');          
+            $('#SubjectRowActive').removeClass('invisible');          
             Subject_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Subject/Get/'); ?>" + id,
@@ -98,8 +98,8 @@
                     i = JSON.parse(i);
                     console.log(i);
                     $('#SubjectId').val(i.SubjectId);
-                    $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", (i.IsActive == 1));
+                    $('#SubjectName').val(i.Name);
+                    $('#SubjectIsActive').prop("checked", (i.IsActive == 1));
                 }
             });
             $.ajax({
@@ -164,6 +164,9 @@
                                 swal('Good Job!', message, 'success');
                                 $('#modal-subject').modal('hide');
                                 console.log(i);
+                                if(typeof Add !== 'undefined'){
+                                    Add.refreshSubject(i);
+                                }
                             }, 
                             error: function(i){
                                 swal('Oops!', "Something went wrong", 'error');

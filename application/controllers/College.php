@@ -57,7 +57,7 @@ class College extends _BaseController {
     }
     
     public function Save(){        
-        $this->college->save($this->input->post('college'));
+        echo $this->college->save($this->input->post('college'));
     }
 
    

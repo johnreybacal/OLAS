@@ -20,6 +20,18 @@
 									<label>Room Use Only</label>
 								</label>
 							</li>
+							<li>
+								<div class="btn-group">
+									<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Add new data</button>
+									<div class="dropdown-menu">
+										<a onclick="Add.author()"class="dropdown-item" href="#">Add Author</a>
+										<a onclick="Add.genre()"class="dropdown-item" href="#">Add Genre</a>
+										<a onclick="Add.subject()"class="dropdown-item" href="#">Add Subject</a>			
+										<a onclick="Add.publisher()"class="dropdown-item" href="#">Add Publisher</a>
+										<a onclick="Add.series()"class="dropdown-item" href="#">Add Series</a>
+									</div>
+								</div>
+							</li>
 		                </ul>
 	              	</header>
 					<div class="card-body form-type-line">
@@ -40,23 +52,23 @@
 									</div>					
 									<div class="form-group col-md-6">
 										<label>Author</label>
-										<select id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick" data-actions-box="true"></select>
+										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick" data-actions-box="true"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Genre</label>
-										<select id="GenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select id="SelectGenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Subject</label>
-										<select id="SubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
+										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
 									</div>
 									<div class="form-group col-md-6">
 										<label>Publisher</label>
-										<select id="PublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Series</label>
-										<select id="SeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Edition</label>
@@ -100,7 +112,7 @@
 
 <script>	
 	$(document).ready(function(){
-		initializeSelectpicker();
+		Select.init();		
 		Book.init();
 		$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
 	});
@@ -126,9 +138,9 @@
 							}else{
 								i = JSON.parse(i);
 								$('#Title').val(i.book.Title);
-								$('#PublisherId').selectpicker('val', i.book.PublisherId);
+								$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
 								if(i.book.SeriesId != null){
-									$('#SeriesId').selectpicker('val', i.book.SeriesId);
+									$('#SelectSeriesId').selectpicker('val', i.book.SeriesId);
 								}
 								$('#Edition').val(i.book.Edition);
 								$('#DatePublished').val(i.book.DatePublished);
@@ -136,17 +148,17 @@
 								$.each(i.author, function(index, data){
 									author.push(data.AuthorId);
 								});
-								$('#AuthorId').selectpicker('val', author);
+								$('#SelectAuthorId').selectpicker('val', author);
 								var genre = [];
 								$.each(i.genre, function(index, data){
 									genre.push(data.GenreId);
 								});
-								$('#GenreId').selectpicker('val', genre);
+								$('#SelectGenreId').selectpicker('val', genre);
 								var subject = [];
 								$.each(i.subject, function(index, data){
 									subject.push(data.SubjectId);
 								});
-								$('#SubjectId').selectpicker('val', subject);
+								$('#SelectSubjectId').selectpicker('val', subject);
 
 								$.ajax({
 									url: "<?php echo base_url('Book/LastAcquired/'); ?>" + val,
@@ -171,12 +183,12 @@
 				ISBN: $('#ISBN').val(),				
 				Title: $('#Title').val(),
 
-				AuthorId: $('#AuthorId').selectpicker('val'),
-				GenreId: $('#GenreId').selectpicker('val'),
-				SubjectId: $('#SubjectId').selectpicker('val'),
+				AuthorId: $('#SelectAuthorId').selectpicker('val'),
+				GenreId: $('#SelectGenreId').selectpicker('val'),
+				SubjectId: $('#SelectSubjectId').selectpicker('val'),
 
-				PublisherId: $('#PublisherId').selectpicker('val'),
-				SeriesId : $('#SeriesId').selectpicker('val'),
+				PublisherId: $('#SelectPublisherId').selectpicker('val'),
+				SeriesId : $('#SelectSeriesId').selectpicker('val'),
 
 				Edition: $('#Edition').val(),
 				DatePublished: $('#DatePublished').val(),
@@ -260,69 +272,146 @@
 		}
 	};
 
-	function initializeSelectpicker(){
-		$.ajax({
-			url: "<?php echo base_url('Author/GetAll'); ?>",
-			async: false,
-			success: function(i){
-				i = JSON.parse(i);                    
-				$('#AuthorId').empty();
-				$.each(i, function(index, data){                        
-					$('#AuthorId').append('<option value = "' + data.AuthorId + '">' + data.Name + '</option>');
-				})
-				$('#AuthorId').selectpicker('refresh');
-			}
-		});
-		$.ajax({
-			url: "<?php echo base_url('Genre/GetAll'); ?>",
-			async: false,
-			success: function(i){
-				i = JSON.parse(i);                    
-				$('#GenreId').empty();
-				$.each(i, function(index, data){                        
-					$('#GenreId').append('<option value = "' + data.GenreId + '">' + data.Name + '</option>');
-				})
-				$('#GenreId').selectpicker('refresh');
-			}
-		});
-		$.ajax({
-			url: "<?php echo base_url('Subject/GetAll'); ?>",
-			async: false,
-			success: function(i){
-				i = JSON.parse(i);                    
-				$('#SubjectId').empty();
-				$.each(i, function(index, data){                        
-					$('#SubjectId').append('<option value = "' + data.SubjectId + '">' + data.Name + '</option>');
-				})
-				$('#SubjectId').selectpicker('refresh');
-			}
-		});
-		$.ajax({
-			url: "<?php echo base_url('Publisher/GetAll'); ?>",
-			async: false,
-			success: function(i){
-				i = JSON.parse(i);                    
-				$('#PublisherId').empty();
-				$.each(i, function(index, data){                        
-					$('#PublisherId').append('<option value = "' + data.PublisherId + '">' + data.Name + '</option>');
-				})
-				$('#PublisherId').selectpicker('refresh');
-			}
-		});
-		$.ajax({
-			url: "<?php echo base_url('Series/GetAll'); ?>",
-			async: false,
-			success: function(i){
-				i = JSON.parse(i);                    
-				$('#SeriesId').empty();
-				$.each(i, function(index, data){                        
-					$('#SeriesId').append('<option value = "' + data.SeriesId + '">' + data.Name + '</option>');
-				})
-				$('#SeriesId').selectpicker('refresh');
-			}
-		});
+	var Add = {
+		
+		author: function(){
+			Author_Modal.new();
+		},
 
-	}
-	
+		refreshAuthor: function(id){
+			var sel = $('#SelectAuthorId').selectpicker('val');
+			sel.push(id);
+			Select.author();
+			$('#SelectAuthorId').selectpicker('val', sel);
+		},
+
+		genre: function(){
+			Genre_Modal.new();
+		},
+
+		refreshGenre: function(id){
+			var sel = $('#SelectGenreId').selectpicker('val');
+			sel.push(id);
+			Select.genre();
+			$('#SelectGenreId').selectpicker('val', sel);
+		},
+
+		subject: function(){
+			Subject_Modal.new();
+		},
+
+		refreshSubject: function(id){
+			var sel = $('#SelectSubjectId').selectpicker('val');
+			sel.push(id);
+			Select.subject();
+			$('#SelectSubjectId').selectpicker('val', sel);
+		},
+
+		publisher: function(){
+			Publisher_Modal.new();
+		},
+
+		refreshPublisher: function(id){			
+			Select.publisher();
+			$('#SelectPublisherId').selectpicker('val', id);
+		},
+
+		series: function(){
+			Series_Modal.new();
+		},
+
+		refreshSeries: function(id){			
+			Select.series();
+			$('#SelectSeriesId').selectpicker('val', id);
+		}
+
+	};
+
+	var Select = {
+
+		init: function(){
+			Select.author();
+			Select.genre();
+			Select.subject();
+			Select.publisher();
+			Select.series();
+		},
+
+		author: function(){
+			$.ajax({
+				url: "<?php echo base_url('Author/GetAll'); ?>",
+				async: false,
+				success: function(i){
+					i = JSON.parse(i);                    
+					$('#SelectAuthorId').empty();
+					$.each(i, function(index, data){                        
+						$('#SelectAuthorId').append('<option value = "' + data.AuthorId + '">' + data.Name + '</option>');
+					})
+					$('#SelectAuthorId').selectpicker('refresh');
+				}
+			});			
+		},
+
+		genre: function(){
+			$.ajax({
+				url: "<?php echo base_url('Genre/GetAll'); ?>",
+				async: false,
+				success: function(i){
+					i = JSON.parse(i);                    
+					$('#SelectGenreId').empty();
+					$.each(i, function(index, data){                        
+						$('#SelectGenreId').append('<option value = "' + data.GenreId + '">' + data.Name + '</option>');
+					})
+					$('#SelectGenreId').selectpicker('refresh');
+				}
+			});
+		},
+
+		subject: function(){
+			$.ajax({
+				url: "<?php echo base_url('Subject/GetAll'); ?>",
+				async: false,
+				success: function(i){
+					i = JSON.parse(i);                    
+					$('#SelectSubjectId').empty();
+					$.each(i, function(index, data){                        
+						$('#SelectSubjectId').append('<option value = "' + data.SubjectId + '">' + data.Name + '</option>');
+					})
+					$('#SelectSubjectId').selectpicker('refresh');
+				}
+			});
+		},
+
+		publisher: function(){
+			$.ajax({
+				url: "<?php echo base_url('Publisher/GetAll'); ?>",
+				async: false,
+				success: function(i){
+					i = JSON.parse(i);                    
+					$('#SelectPublisherId').empty();
+					$.each(i, function(index, data){                        
+						$('#SelectPublisherId').append('<option value = "' + data.PublisherId + '">' + data.Name + '</option>');
+					})
+					$('#SelectPublisherId').selectpicker('refresh');
+				}
+			});
+		},
+
+		series: function(){
+			$.ajax({
+				url: "<?php echo base_url('Series/GetAll'); ?>",
+				async: false,
+				success: function(i){
+					i = JSON.parse(i);                    
+					$('#SelectSeriesId').empty();
+					$.each(i, function(index, data){                        
+						$('#SelectSeriesId').append('<option value = "' + data.SeriesId + '">' + data.Name + '</option>');
+					})
+					$('#SelectSeriesId').selectpicker('refresh');
+				}
+			});
+		}
+
+	};
 
 </script>

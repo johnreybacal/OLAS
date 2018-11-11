@@ -20,13 +20,15 @@ class PublisherModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(PublisherId) as PublisherId FROM publisher")->row()->PublisherId;
 		}
 		else{//update
 			$this->db->query("UPDATE publisher SET "
                 ."Name = '".$publisher['Name']."',"
                 ."IsActive = '".$publisher['IsActive']."' "
                 ."WHERE PublisherId = '".$publisher['PublisherId']."'"
-			);			
+			);		
+			return $publisher['PublisherId'];	
 		}
 	}	
 	

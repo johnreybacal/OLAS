@@ -40,14 +40,14 @@ class Publisher extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($publisher['Name'])){
-            $str .= $this->invalid('Name', 'Please input a value');;
+            $str .= $this->invalid('PublisherName', 'Please input a value');;
             $valid = false;
         }
         else{
             $ifExist = $this->publisher->_exist('Name', $publisher['Name']);            
             if(is_object($ifExist)){
                 if($ifExist->PublisherId != $publisher['PublisherId']){
-                    $str .= $this->invalid('Name', 'Publisher already exist');
+                    $str .= $this->invalid('PublisherName', 'Publisher already exist');
                     $valid = false;
                 }
             }
@@ -57,7 +57,7 @@ class Publisher extends _BaseController {
     }
 
     public function Save(){        
-        $this->publisher->save($this->input->post('publisher'));
+        echo $this->publisher->save($this->input->post('publisher'));
     }
 
     

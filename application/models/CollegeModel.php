@@ -20,6 +20,7 @@ class CollegeModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(CollegeId) as CollegeId FROM college")->row()->CollegeId;
 		}
 		else{//update
 			$this->db->query("UPDATE college SET "
@@ -27,6 +28,7 @@ class CollegeModel extends _BaseModel{
                 ."IsActive = '".$college['IsActive']."' "
                 ."WHERE CollegeId = '".$college['CollegeId']."'"
 			);			
+			return $college['CollegeId'];
 		}
 	}	
 	

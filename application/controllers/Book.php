@@ -13,12 +13,12 @@ class Book extends _BaseController {
     }
         
     public function Add(){
-        $this->librarianView('Book/Add', '');
+        $this->librarianView('Book/Add', '', 1);       
     }
     
     public function Edit($id){
         $data['book'] = $this->bookCatalogue->_get($id);
-        $this->librarianView('Book/Edit', $data);
+        $this->librarianView('Book/Edit', $data, 1);
     }
 
     public function View($id){
@@ -189,34 +189,34 @@ class Book extends _BaseController {
         //multiple selectpickers
         if(array_key_exists('AuthorId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['AuthorId'])){
-                $str .= $this->invalid('AuthorId', 'Please select at least one author');
+                $str .= $this->invalid('SelectAuthorId', 'Please select at least one author');
                 $valid = false;
             }
         }else{
-            $str .= $this->invalid('AuthorId', 'Please select at least one author');
+            $str .= $this->invalid('SelectAuthorId', 'Please select at least one author');
             $valid = false;
         }
         if(array_key_exists('GenreId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['GenreId'])){
-                $str .= $this->invalid('GenreId', 'Please select at least one genre');
+                $str .= $this->invalid('SelectGenreId', 'Please select at least one genre');
                 $valid = false;
             }
         }else{
-            $str .= $this->invalid('GenreId', 'Please select at least one genre');
+            $str .= $this->invalid('SelectGenreId', 'Please select at least one genre');
             $valid = false;
         }
         if(array_key_exists('SubjectId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['SubjectId'])){
-                $str .= $this->invalid('SubjectId', 'Please select at least one subject');
+                $str .= $this->invalid('SelectSubjectId', 'Please select at least one subject');
                 $valid = false;
             }
         }else{
-            $str .= $this->invalid('SubjectId', 'Please select at least one subject');
+            $str .= $this->invalid('SelectSubjectId', 'Please select at least one subject');
             $valid = false;
         }
         //selectpickers
         if(!v::intVal()->notEmpty()->validate($book['PublisherId'])){
-            $str .= $this->invalid('PublisherId', 'Please select a publisher');
+            $str .= $this->invalid('SelectPublisherId', 'Please select a publisher');
             $valid = false;
         }         
         //dates

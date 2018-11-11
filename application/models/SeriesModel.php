@@ -20,6 +20,7 @@ class SeriesModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(SeriesId) as SeriesId FROM series")->row()->SeriesId;
 		}
 		else{//update
 			$this->db->query("UPDATE series SET "
@@ -27,6 +28,7 @@ class SeriesModel extends _BaseModel{
                 ."IsActive = '".$series['IsActive']."' "
                 ."WHERE SeriesId = '".$series['SeriesId']."'"
 			);			
+			return $series['SeriesId'];
 		}
 	}	
 

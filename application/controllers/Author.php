@@ -40,14 +40,14 @@ class Author extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($author['Name'])){
-            $str .= $this->invalid('Name', 'Please input a value');;
+            $str .= $this->invalid('AuthorName', 'Please input a value');;
             $valid = false;
         }
         else{
             $ifExist = $this->author->_exist('Name', $author['Name']);            
             if(is_object($ifExist)){
                 if($ifExist->AuthorId != $author['AuthorId']){
-                    $str .= $this->invalid('Name', 'Author already exist');
+                    $str .= $this->invalid('AuthorName', 'Author already exist');
                     $valid = false;
                 }
             }
@@ -57,7 +57,7 @@ class Author extends _BaseController {
     }
 
     public function Save(){        
-        $this->author->save($this->input->post('author'));
+        echo $this->author->save($this->input->post('author'));
     }
 
     

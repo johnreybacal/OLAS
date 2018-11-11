@@ -24,12 +24,19 @@ class Report extends _BaseController {
         $filter = $this->input->post('filter');
         $this->dateFrom = $filter['DateFrom'];
         $this->dateTo = $filter['DateTo'];
+        
         $str .= '"totalBooks":'.$this->report->totalBooks("AND ".$this->TotalToNow('DateAcquired'));
+        
         $str .= ',"totalBooksAcquired":'.$this->report->totalBooks("AND ".$this->DateRange('DateAcquired'));
+        
         $str .= ',"totalBookCirculations":'.$this->report->totalBookCirculations("WHERE ".$this->DateRange('DateBorrowed'));
+        
         $str .= ',"totalPatrons":'.$this->report->totalPatrons("WHERE ".$this->TotalToNow('DateCreated'));
+        
         $str .= ',"patronsRegistered":'.$this->report->totalPatrons("WHERE ".$this->DateRange('DateCreated'));
+        
         $str .= ',"totalOutsideResearchers":'.$this->report->totalOutsideResearchers("WHERE ".$this->DateRange('DateTime'));
+        
         $str .= '}';
         echo $str;
     }
