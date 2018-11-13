@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2018 at 02:28 PM
+-- Generation Time: Nov 13, 2018 at 02:00 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -48,7 +48,11 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (1, 'Johnrey', 1),
 (2, 'Judel Bacal', 1),
 (3, 'Ning', 1),
-(4, 'Ted Dekker', 1);
+(4, 'Ted Dekker', 0),
+(5, 'JK Rowlings', 1),
+(6, 'Teddy', 1),
+(7, 'Eddy', 1),
+(8, 'Mercury', 1);
 
 -- --------------------------------------------------------
 
@@ -63,7 +67,8 @@ CREATE TABLE `book` (
   `PublisherId` int(11) NOT NULL,
   `SeriesId` int(11) DEFAULT NULL,
   `Edition` varchar(30) DEFAULT NULL,
-  `DatePublished` date NOT NULL
+  `DatePublished` date NOT NULL,
+  `Image` varchar(255) NOT NULL DEFAULT 'default.png'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -75,11 +80,12 @@ TRUNCATE TABLE `book`;
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'The house of us', 1, 1, '2', '2018-09-24'),
-('2', 'The book of knowledge', 1, 3, '1', '2018-08-26'),
-('3', 'The day you said goodnight', 1, 3, '1', '2018-10-22'),
-('4', 'Star Lord', 1, 0, '', '2018-10-02');
+INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`, `Image`) VALUES
+('1', 'The house of us', 1, 1, '2', '2018-09-24', 'date.png'),
+('2', 'The book of knowledge', 1, 3, '1', '2018-08-26', 'mama-_gumamela.png'),
+('3', 'The day you said goodnight', 1, 3, '1', '2018-10-22', 'lee_3grd1.png'),
+('4', 'Star Lord', 1, 0, '', '2018-10-02', 'default.png'),
+('1103', 'Zuko x Todoroki', 7, 6, '', '2018-11-10', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -109,7 +115,8 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 (2, 2),
 (2, 1),
 (4, 2),
-(4, 3);
+(4, 3),
+(1103, 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +158,16 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 (16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
 (17, 'scsdvs', '1', '2018-10-23', 'wef', 12, 0, 1, 1),
 (18, 'xcb ', '1', '2018-10-23', 'wef', 12, 1, 1, 1),
-(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1);
+(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1),
+(20, '1234323', '1103', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
+(21, 'fdfgh', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(22, 'rock lee', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(23, '111ewfw', '3', '2018-11-13', '12', 121, 1, 1, 1),
+(24, 'safsdf', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(25, '12345tdffg', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(26, 'sdv ds fsfd ', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(27, 'asdfghjkhgfd', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(28, 'asdvc v vc', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +194,9 @@ INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
 (1, 1),
 (2, 1),
 (3, 3),
-(4, 4);
+(4, 4),
+(1103, 8),
+(1103, 7);
 
 -- --------------------------------------------------------
 
@@ -235,7 +253,8 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 (1, 1),
 (3, 1),
 (4, 1),
-(4, 14);
+(4, 14),
+(1103, 18);
 
 -- --------------------------------------------------------
 
@@ -263,7 +282,8 @@ INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 (1, 'COS', 1),
 (2, 'CIT', 1),
 (3, 'CAFA', 1),
-(4, 'CLA', 1);
+(4, 'CLA', 1),
+(5, 'CIE', 1);
 
 -- --------------------------------------------------------
 
@@ -292,7 +312,8 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 (1, 1, 'BSIT', 1),
 (2, 1, 'BSCS', 1),
 (5, 3, 'BTIT', 1),
-(6, 4, 'BSIE', 1);
+(6, 4, 'BSIE', 1),
+(7, 4, 'BSABM', 0);
 
 -- --------------------------------------------------------
 
@@ -320,7 +341,11 @@ INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
 (1, 'Science', 1),
 (2, 'Mathematics', 1),
 (3, 'Fiction', 1),
-(4, 'Sci Fi', 1);
+(4, 'Sci Fi', 0),
+(5, 'Fantasy', 1),
+(6, 'Folklore', 1),
+(7, 'Yaoi', 1),
+(8, 'Gay', 1);
 
 -- --------------------------------------------------------
 
@@ -622,7 +647,10 @@ TRUNCATE TABLE `publisher`;
 INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 (1, 'JB Publishing', 1),
 (2, 'BooksRUs', 1),
-(4, 'Publisher', 1);
+(4, 'Publisher', 1),
+(5, 'Piso print', 1),
+(6, 'Publiko', 1),
+(7, 'Yaoi pub', 1);
 
 -- --------------------------------------------------------
 
@@ -686,7 +714,10 @@ TRUNCATE TABLE `series`;
 INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 (1, 'Star wars Series', 1),
 (2, 'Harry Potter Series', 1),
-(3, 'Series', 1);
+(3, 'Series', 1),
+(4, 'Teleserye', 0),
+(5, 'Serye', 1),
+(6, 'ship series', 1);
 
 -- --------------------------------------------------------
 
@@ -713,8 +744,11 @@ TRUNCATE TABLE `subject`;
 INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 (1, 'Web Development', 1),
 (11, 'Mathematics', 1),
-(14, 'Economics', 1),
-(15, 'Retorika', 1);
+(14, 'Economics: Land Reform', 1),
+(15, 'Retorika', 1),
+(16, 'C++', 1),
+(17, 'C#', 1),
+(18, 'Anime', 1);
 
 -- --------------------------------------------------------
 
@@ -742,7 +776,10 @@ INSERT INTO `subjectcourse` (`SubjectId`, `CourseId`) VALUES
 (1, 2),
 (15, 6),
 (14, 2),
-(11, 5);
+(11, 5),
+(16, 1),
+(17, 1),
+(18, 1);
 
 --
 -- Indexes for dumped tables
@@ -864,12 +901,12 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -879,17 +916,17 @@ ALTER TABLE `bookstatus`
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `librarian`
 --
@@ -929,7 +966,7 @@ ALTER TABLE `patrontype`
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
-  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
@@ -939,12 +976,12 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `series`
 --
 ALTER TABLE `series`
-  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

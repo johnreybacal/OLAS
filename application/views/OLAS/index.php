@@ -35,7 +35,7 @@
 					<?php foreach($books as $book): ?>				
 						<!-- <?php print_r($book); ?>				 -->
 						<div class="media">
-							<img class="w-80px h-80px" src="<?php echo base_url("assetsOLAS/img/login-bg.jpg"); ?>" alt="...">						
+							<img class="w-80px h-80px" src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" alt="...">						
 							<div class="media-body">
 								<h3 class="fs-24 fw-500">
 									<?php echo $book['book']->Title; ?>

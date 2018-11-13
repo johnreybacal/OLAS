@@ -242,6 +242,25 @@ class Book extends _BaseController {
         $this->book->save($book);        
         $this->bookAuthor->save($isbn, $author);
         $this->bookGenre->save($isbn, $genre);
-        $this->bookSubject->save($isbn, $subject);                
+        $this->bookSubject->save($isbn, $subject);           
     }
+
+    public function UploadImage(){
+        if(isset($_FILES['image']) && !empty($_FILES['image'])){
+            if($_FILES['image']['error'] != 4){
+                $config['upload_path'] = './assetsOLAS/img/book';
+                $config['allowed_types'] = 'gif|jpeg|jpg|png';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image')){//lol imposibleng mag-error 'to
+                    $error = array('error' => $this->upload->display_errors());            
+                    print_r($error);
+                }else{
+                    $data = array('upload_data' => $this->upload->data());
+                    $this->book->saveImage($this->input->post('ISBN'), $data['upload_data']['file_name']);
+                    print_r($data);
+                }
+            }
+        }    
+    }
+   
 }

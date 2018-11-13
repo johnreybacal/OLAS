@@ -1,15 +1,8 @@
 <div class="main-content">
-	<form id="book-form">
+	<form id="book-form" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="card card-shadowed">
-					<!-- <div class="card-title">
-						<div class="row">
-						<div class="col-md-6">
-							<h4><strong>Book</strong> Information</h4>
-						</div>
-						</div>
-					</div> -->
+				<div class="card card-shadowed">				
 					<header class="card-header">
 						<h4 class="card-title">Book <strong>Information</strong></h4>
 		                <ul class="card-controls">
@@ -42,9 +35,14 @@
 										<label>Accession Number</label>
 										<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" readonly class="form-control" type="text" name="" placeholder="Accession Number">
 									</div>
+									<div class="form-group col-md-6">		
+										<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
+										<label>Select image</label>
+										<input id="image" name="image" type="file" accept="image/*" />
+									</div>
 									<div class="form-group col-md-6">
 										<label>ISBN</label>
-										<input  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="" placeholder="ISBN">
+										<input  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="ISBN" placeholder="ISBN">
 									</div>
 									<div class="form-group col-md-6">
 										<label>Call Number</label>
@@ -115,7 +113,19 @@
 </div>
 
 <script>	
+
+	var imageChanged = false;
+
 	$(document).ready(function(){
+		$("#image").change(function(event){						
+			var tgt = event.target || window.event.srcElement, files = tgt.files;		
+			var fr = new FileReader();
+			fr.onload = function(){
+				$("#imgDisplay").children('img').attr('src', fr.result);
+				imageChanged = true;
+			}
+			fr.readAsDataURL(files[0]);
+		});
 		Select.init();
 		Book.init();
 		console.log("price: <?php echo $book->Price; ?>");
@@ -175,6 +185,9 @@
 							subject.push(data.SubjectId);
 						});
 						$('#SelectSubjectId').selectpicker('val', subject);
+
+						$("#imgDisplay").children('img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
+						imageChanged = false;
 					}
 				}
 			});
@@ -231,6 +244,23 @@
 			})      
 		},
 
+		upload: function(){			
+			var formData = new FormData($('#book-form')[0]);			
+			$.ajax({
+				url: "<?php echo base_url("Book/UploadImage"); ?>",
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					console.log('upload: ' + data);					
+				},
+				error: function(data){
+					console.log('upload: ' + data);
+				}
+			});
+		},
+
 		save: function(){			
 			swal({
 				title: 'Confirm Submission',
@@ -248,6 +278,9 @@
 						type: "POST",
 						data: {"book": Book.data()},
 						success: function(i){
+							if(imageChanged){								
+								Book.upload();
+							}
 							swal({
 								title: 'Book saved succesfully',
 								text: 'Would you like to make some more changes?',

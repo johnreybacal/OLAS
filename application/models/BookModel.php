@@ -37,6 +37,13 @@ class BookModel extends _BaseModel{
 		}
 	}	
 
+	public function saveImage($isbn, $image){
+		$this->db->query("UPDATE book SET "                			
+			."Image = '".$image."' "
+			."WHERE ISBN = '".$isbn."'"
+		);	
+	}
+
 	public function bookExist($isbn){
 		return ($this->db->query("SELECT * FROM book WHERE ISBN = '".$isbn."'")
 			->num_rows() != 0);
