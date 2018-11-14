@@ -1,3 +1,49 @@
+<style>
+
+ /*ME\\----------------MEDIA QUERIES ********** RESPONSIVENESS*/
+ @media screen and (min-width: 1px) and (max-width: 320px){
+    .isactive{
+        margin-left: 74%;
+    }
+ }
+ @media screen and (min-width: 321px) and (max-width: 375px){
+    .isactive{
+        margin-left: 78%;
+    }
+ }
+ @media screen and (min-width: 376px) and (max-width: 425px){
+    .isactive{
+        margin-left: 81%;
+    }
+ }
+ /*@media screen and (max-width: 768px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }
+ @media screen and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }*/
+ @media screen and (min-width: 426px) and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+} 
+@media screen and (min-width: 1025px) and (max-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+@media screen and (min-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+ 
+
+</style>
 <div class="modal modal-center fade" id="modal-author" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
@@ -8,7 +54,7 @@
                 </button>
             </div>
             <div class="modal-body form-type-line">
-                <div class="row" id="AuthorRowActive" style="margin-left: 74%;" >
+                <div class="row isactive" id="AuthorRowActive">
                     <div class="form-group">
                         <label class="switch switch-lg switch-info">
                             <input type="checkbox" id="AuthorIsActive" name="AuthorIsActive" checked />
