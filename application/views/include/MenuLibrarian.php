@@ -18,10 +18,12 @@
             
             <?php if(in_array("Library", $this->session->userdata('access'))): ?>
 
+            <li class="menu-category">Library</li>
+
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon ti-layout"></span>
-                    <span class="title">Library</span>
+                    <span class="title">Book</span>
                     <span class="arrow"></span>
                 </a>
 
@@ -29,35 +31,28 @@
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Book/'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Book</span>
+                            <span class="title">Books</span>
                         </a>
-                    </li>   
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Book/Add'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Add Book</span>
-                        </a>
-                    </li>                            
+                    </li>                                                                               
 
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Author</span>
+                            <span class="title">Authors</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Genre</span>
+                            <span class="title">Genres</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Publisher/'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Publisher</span>
+                            <span class="title">Publishers</span>
                         </a>
                     </li>
 
@@ -68,6 +63,39 @@
                         </a>
                     </li>  
                 
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="#">
+                    <span class="icon ti-layout"></span>
+                    <span class="title">Catalogue</span>
+                    <span class="arrow"></span>
+                </a>
+
+                <ul class="menu-submenu">    
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Book/Add'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Add Book</span>
+                        </a>
+                    </li>   
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Book/MarcImport'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Import from MARC</span>
+                        </a>
+                    </li>          
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Book/Uncatalogued'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Uncatalogued Books</span>
+                        </a>
+                    </li>   
+
                 </ul>
             </li>
 

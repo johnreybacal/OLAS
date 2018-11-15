@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2018 at 02:00 PM
+-- Generation Time: Nov 15, 2018 at 01:41 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -478,6 +478,66 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `marcimport`
+--
+
+DROP TABLE IF EXISTS `marcimport`;
+CREATE TABLE `marcimport` (
+  `MarcImportId` int(11) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
+  `Title` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `marcimport`
+--
+
+TRUNCATE TABLE `marcimport`;
+--
+-- Dumping data for table `marcimport`
+--
+
+INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
+(113, '1595540059', 'Showdown /'),
+(149, '1', 'try'),
+(115, '0849944996', 'The martyr\'s song /'),
+(116, '0849943736', 'Obsessed /'),
+(117, '0849917921', 'White /'),
+(118, '0849917913', 'Red /'),
+(119, '0849917905', 'Black /'),
+(120, '0849943728', 'Thr3e /'),
+(121, '084994371X', 'Blink /'),
+(122, '0849943809', 'A man called Blessed /'),
+(123, '0849942926', 'Thunder of heaven /'),
+(124, '0849943124', 'Blessed child /'),
+(125, '0849942918', 'When heaven weeps /'),
+(126, '0849942411', 'Heaven\'s wager /'),
+(127, '9780979590023', 'White :'),
+(128, '0979590019', 'Red :'),
+(129, '1595541578', 'House'),
+(130, '1404102337', 'The promise :'),
+(131, '0849963672', 'Black'),
+(132, '1595541551', 'House /'),
+(133, '9781595544704', 'Kiss /'),
+(134, '9781595546036', 'Chosen /'),
+(135, '9781595546043', 'Infidel /'),
+(136, '1595540083', 'Sinner /'),
+(137, '9781602852068', 'Adam /'),
+(138, '1595543716', 'Renegade /'),
+(139, '1595543724', 'Chaos /'),
+(140, '0979590000', 'Black :'),
+(141, '9781602552173', 'Rojo :'),
+(142, '9781602552159', 'Negro :'),
+(143, '9781595544711', 'Burn /'),
+(144, '9781599951966', 'The bride collector /'),
+(145, '9780307588272', 'Tea with Hezbollah :'),
+(146, '9781599954189', 'A.D. 30 :'),
+(147, '9781599953588', 'Mortal /'),
+(148, '0824771567', 'Transformation groups on manifolds /');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `message`
 --
 
@@ -846,6 +906,12 @@ ALTER TABLE `loan`
   ADD PRIMARY KEY (`LoanId`);
 
 --
+-- Indexes for table `marcimport`
+--
+ALTER TABLE `marcimport`
+  ADD PRIMARY KEY (`MarcImportId`);
+
+--
 -- Indexes for table `message`
 --
 ALTER TABLE `message`
@@ -942,6 +1008,11 @@ ALTER TABLE `librarianrole`
 --
 ALTER TABLE `loan`
   MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `marcimport`
+--
+ALTER TABLE `marcimport`
+  MODIFY `MarcImportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 --
 -- AUTO_INCREMENT for table `message`
 --

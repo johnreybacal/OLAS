@@ -155,6 +155,7 @@ $autoload['model'] = array(
 	'PatronModel' => 'patron',
 	'PatronTypeModel' => 'patronType',
 	'MessageModel' => 'message',
+	'MarcImportModel' => 'marcImport',
 	'OutsideResearcherModel' => 'outsideResearcher',
 	'OutsideResearcherSubjectModel' => 'outsideResearcherSubject',
 	'PublisherModel' => 'publisher',

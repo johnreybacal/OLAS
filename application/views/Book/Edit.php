@@ -150,8 +150,7 @@
 				else{
 					Book.reset(val);
 				}
-			})
-			$.ajax
+			})			
 		},
 
 		get: function(val){
