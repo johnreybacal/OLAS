@@ -19,6 +19,20 @@
                         <span class="title">Bookbag</span>
                     </a>
                 </li>    
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('MyReservations'); ?>">
+                        <span class="icon fa fa-briefcase"></span>
+                        <span class="title">My Reservations</span>
+                    </a>
+                </li>    
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('MyBooks'); ?>">
+                        <span class="icon fa fa-briefcase"></span>
+                        <span class="title">My Books</span>
+                    </a>
+                </li>    
             </ul>
         </nav>        
     </div>
@@ -32,8 +46,7 @@
         <li class="dropdown">
         <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1.jpg'); ?>" alt="..."></span>
         <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
-            <a class="dropdown-item" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i> Messages</a>
+            <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
             <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
             <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
             <div class="dropdown-divider"></div>
@@ -44,6 +57,7 @@
         <!-- Notifications -->
         <li class=" d-md-block">
         <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
+        <span onclick="Message.refresh()" class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
         </li>
         <!-- END Notifications -->
     </ul>
@@ -62,7 +76,7 @@
 <!-- Notifications -->
 <div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title">Bookbag</p>
+    <p class="quickview-title lead">Bookbag</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
@@ -92,17 +106,8 @@
     </header>
 
     <div class="quickview-body">
-    <div class="media-list media-list-divided media-list-hover">
-        <a class="media media-new" href="#">
-        <span class="avatar status-success">
-            <img src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="...">
-        </span>
+    <div id="message" class="media-list media-list-divided media-list-hover">
 
-        <div class="media-body">
-            <p><strong>Maryam Amiri</strong> <time class="float-right" datetime="2018-07-14 20:00">23 min ago</time></p>
-            <p>Authoritatively exploit resource maximizing technologies before technically.</p>
-        </div>
-        </a>        
     </div>
     </div>
 
@@ -126,8 +131,37 @@
 <script>
     $(document).ready(function(){
         Bookbag.refresh();
+        Message.refresh();
     });
     
+    var Message = {
+        
+        refresh: function(){
+            $.ajax({
+                url: "<?php echo base_url('Message/Get'); ?>",
+                success: function(i){
+                    $('#message').empty();
+                    if(i != '{}'){
+                        i = JSON.parse(i);
+                        $.each(i, function(index, data){                            
+                            $('#message').append(
+                                '<a class="media media-new" href="#">'
+                                    + '<div class="media-body">'
+                                        + '<p>' + data.Title + '</p>'                                        
+                                        + '<p>' + data.Message + '</p>'                                        
+                                        + '<p>' + data.DateTime + '</p>'                                        
+                                    + '</div>'                                        
+                                + '</a>'
+                            );
+                        });
+                    }   
+                }
+            });
+                
+        }
+
+    }
+
     var Bookbag = {
         add: function(id, isbn){
             $.ajax({
@@ -155,6 +189,7 @@
                             $(this).remove();
                         }
                     })
+                    $('#bookbag-table').DataTable().ajax.reload();
                     // swal('Unbookbagged!', "Book removed from bookbag", 'success');
                 },
                 error: function(){
@@ -198,7 +233,7 @@
                             $(this).remove();
                         }
                     });
-                    if(i != 'No data'){
+                    if(i != '{}'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){
                             console.log(data);
@@ -238,30 +273,15 @@
             }).then((result) => {
                 if (result.value) {                                        
                     $.ajax({
-                        url: "<?php echo base_url('Bookbag/Get'); ?>",
-                        success: function(i){
-                            i = JSON.parse(i);
-                            var ok = true;
-                            $.each(i, function(index, data){
-                                $.ajax({
-                                    url: "<?php echo base_url('Reservation/Save'); ?>",
-                                    type: "POST",
-                                    data: {"reservation": {                                
-                                        PatronId: <?php echo $this->session->userdata('patronId'); ?>,
-                                        AccessionNumber: data.id
-                                    }},
-                                    error: function(){
-                                        ok = false
-                                    }
-                                })
-                            });
-                            if(ok){
-                                Bookbag.removeAllAjax();
-                                $('#bookbag-table').DataTable().ajax.reload();
-                                swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');
-                            }else{
-                                swal('Oops!', "Something went wrong", 'error');
-                            }
+                        url: "<?php echo base_url('Reservation/Save'); ?>",
+                        success: function(i){                        
+                            Bookbag.removeAllAjax();
+                            $('#bookbag-table').DataTable().ajax.reload();
+                            swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
+                        },
+                        error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');                            
+                            console.log(i);
                         }
                     });
                 }

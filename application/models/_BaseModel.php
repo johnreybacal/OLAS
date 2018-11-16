@@ -15,16 +15,19 @@ class _BaseModel extends CI_Model{
 		$this->identifier = $param[1];
 	}	
 
+	//get specific row with the respecive primary key of the table, parameter is extra query, example: WHERE
 	public function _get($id, $query = null){
 		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."' ".$query)->row();
 		return $dbList;		
 	}
 
-	public function _list($query = null){
+	//lists all data in a table, parameter is extra query, example: WHERE
+	public function _list($query = null){		
 		$dbList = $this->db->query("SELECT * from ".$this->table." ".$query)->result();
 		return $dbList;
 	}
 
+	//check if value already exist
 	public function _exist($column, $value){
 		$value = strtolower($value);
 		return $this->db->query("SELECT * FROM ".$this->table." WHERE LOWER(".$column.") = '".$value."'")->row();

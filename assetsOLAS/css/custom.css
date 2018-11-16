@@ -8,6 +8,22 @@ a {
     color: #48b0f7 !important;
     transition: .2s linear !important;
 }
+        /*Checkbox*/
+
+.custom-checkbox .custom-control-label::after {
+    content: "\e64c";
+    top: 0;
+    left: 2px;
+    font-family: themify;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    color: #48b0f7 !important;
+}
+::selection {
+    background: #48b0f7 !important;
+    color: #fff;
+}
 /* FORMS*/
 .form-type-line .form-control {
     background-image:
@@ -23,7 +39,7 @@ a {
     transition: background 0.3s;
 }
 /* TABLES */
-table.table-responsive td{
+table, table.table-bordered.dataTable td{
 	border: none;
 	text-align: center;
 }
@@ -47,7 +63,7 @@ table.table-responsive thead tr th{
 }
 .table-integer{
 	text-align: right;
-}
+}   
 .table-action{
 	text-align: justify;
 }
@@ -71,6 +87,10 @@ table.table-responsive thead tr th{
 	color: #4d5259;
     border-top-color: #48b0f7;
     border-bottom-color: #48b0f7;
+}
+.topbar-btn:hover {
+    /*color: #4d5259;*/
+    border-top-color: #48b0f7;
 }
 
 /*SIDEBAR*/
@@ -103,3 +123,44 @@ table.table-responsive thead tr th{
 .app-backdrop, .backdrop-topbar-menu{
     background-color: rgba(0, 0, 0, 0.5);
  }
+
+@media screen and (min-width: 1px) and (max-width: 320px){
+    .isactive{
+        margin-left: 74%;
+    }
+ }
+@media screen and (min-width: 321px) and (max-width: 375px){
+    .isactive{
+        margin-left: 78%;
+    }
+ }
+@media screen and (min-width: 376px) and (max-width: 425px){
+    .isactive{
+        margin-left: 81%;
+    }
+ }
+ /*@media screen and (max-width: 768px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }
+ @media screen and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }*/
+@media screen and (min-width: 426px) and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+} 
+@media screen and (min-width: 1025px) and (max-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+@media screen and (min-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}

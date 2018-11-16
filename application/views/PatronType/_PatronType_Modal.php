@@ -67,7 +67,7 @@
         },
 
         edit: function (id) {
-            $('.modal-title').text('Edit PatronType');   
+            $('.modal-title').text('Edit Patron Type');   
             $('#rowActive').removeClass('invisible');
             PatronType_Modal.init();
             $.ajax({
@@ -88,7 +88,7 @@
             $.ajax({
                 url:'<?php echo base_url('PatronType/Validate'); ?>',
                 type: "POST",
-                data: {"patrontype": PatronType_Modal.data()},
+                data: {"patronType": PatronType_Modal.data()},
                 success: function(i){
                     $('.invalid-feedback').remove();
                     $('.is-invalid').removeClass('is-invalid');
@@ -114,9 +114,9 @@
             var message;
                 console.log(PatronType_Modal.data());
                 if ($('#PatronTypeId').val() == 0) {
-                    message = "Great Job! New PatronType has been created";
+                    message = "Great Job! New Patron Type has been created";
                 } else {
-                    message = "Nice! PatronType has been updated";
+                    message = "Nice! Patron Type has been updated";
                 }
 
                 swal({
@@ -131,7 +131,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.post('<?php echo base_url('PatronType/Save'); ?>',{
-                        patrontype: PatronType_Modal.data()
+                        patronType: PatronType_Modal.data()
                         }, function(i){
                             swal('Good Job!', message, 'success');
                             $('#modal-patrontype').modal('hide');

@@ -20,6 +20,7 @@ class SeriesModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(SeriesId) as SeriesId FROM series")->row()->SeriesId;
 		}
 		else{//update
 			$this->db->query("UPDATE series SET "
@@ -27,7 +28,13 @@ class SeriesModel extends _BaseModel{
                 ."IsActive = '".$series['IsActive']."' "
                 ."WHERE SeriesId = '".$series['SeriesId']."'"
 			);			
+			return $series['SeriesId'];
 		}
-    }	
+	}	
+
+	public function search($search){
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE SeriesId IN (SELECT SeriesId FROM series WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		return $dbList;
+	}
     
 }

@@ -15,6 +15,7 @@
 				<table id = "circulation-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
 					<thead>
 						<tr class="bg-info">
+							<th>Issue no.</th>	
 							<th>Borrower</th>	
 							<th>Accession Number</th>
 							<th>ISBN</th>									

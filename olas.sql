@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2018 at 02:05 PM
+-- Generation Time: Nov 15, 2018 at 01:41 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -48,7 +48,11 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (1, 'Johnrey', 1),
 (2, 'Judel Bacal', 1),
 (3, 'Ning', 1),
-(4, 'Ted Dekker', 1);
+(4, 'Ted Dekker', 0),
+(5, 'JK Rowlings', 1),
+(6, 'Teddy', 1),
+(7, 'Eddy', 1),
+(8, 'Mercury', 1);
 
 -- --------------------------------------------------------
 
@@ -63,7 +67,8 @@ CREATE TABLE `book` (
   `PublisherId` int(11) NOT NULL,
   `SeriesId` int(11) DEFAULT NULL,
   `Edition` varchar(30) DEFAULT NULL,
-  `DatePublished` date NOT NULL
+  `DatePublished` date NOT NULL,
+  `Image` varchar(255) NOT NULL DEFAULT 'default.png'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -75,11 +80,12 @@ TRUNCATE TABLE `book`;
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`) VALUES
-('1', 'The house of us', 1, 1, '2', '2018-09-24'),
-('2', 'The book of knowledge', 1, 3, '1', '2018-08-26'),
-('3', 'The day you said goodnight', 1, 3, '1', '2018-10-22'),
-('4', 'Star Lord', 1, 0, '', '2018-10-02');
+INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SeriesId`, `Edition`, `DatePublished`, `Image`) VALUES
+('1', 'The house of us', 1, 1, '2', '2018-09-24', 'date.png'),
+('2', 'The book of knowledge', 1, 3, '1', '2018-08-26', 'mama-_gumamela.png'),
+('3', 'The day you said goodnight', 1, 3, '1', '2018-10-22', 'lee_3grd1.png'),
+('4', 'Star Lord', 1, 0, '', '2018-10-02', 'default.png'),
+('1103', 'Zuko x Todoroki', 7, 6, '', '2018-11-10', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -109,7 +115,8 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 (2, 2),
 (2, 1),
 (4, 2),
-(4, 3);
+(4, 3),
+(1103, 1);
 
 -- --------------------------------------------------------
 
@@ -142,7 +149,7 @@ TRUNCATE TABLE `bookcatalogue`;
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
 (1, '112', '2', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
 (11, '123', '3', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
-(10, 'asduhaud', '2', '2018-11-01', 'Abbie', 0, 1, 1, 1),
+(10, 'asduhaud', '2', '2018-11-01', 'Jb', 0, 1, 1, 1),
 (9, 'os91', '1', '2018-10-27', '', 0, 1, 1, 1),
 (12, 'sdg', '3', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
 (13, '34', '1', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
@@ -151,7 +158,16 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 (16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
 (17, 'scsdvs', '1', '2018-10-23', 'wef', 12, 0, 1, 1),
 (18, 'xcb ', '1', '2018-10-23', 'wef', 12, 1, 1, 1),
-(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1);
+(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1),
+(20, '1234323', '1103', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
+(21, 'fdfgh', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(22, 'rock lee', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(23, '111ewfw', '3', '2018-11-13', '12', 121, 1, 1, 1),
+(24, 'safsdf', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(25, '12345tdffg', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(26, 'sdv ds fsfd ', '1', '2018-11-13', '1', 1, 1, 1, 1),
+(27, 'asdfghjkhgfd', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(28, 'asdvc v vc', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +194,9 @@ INSERT INTO `bookgenre` (`ISBN`, `GenreId`) VALUES
 (1, 1),
 (2, 1),
 (3, 3),
-(4, 4);
+(4, 4),
+(1103, 8),
+(1103, 7);
 
 -- --------------------------------------------------------
 
@@ -235,7 +253,8 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 (1, 1),
 (3, 1),
 (4, 1),
-(4, 14);
+(4, 14),
+(1103, 18);
 
 -- --------------------------------------------------------
 
@@ -263,7 +282,8 @@ INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 (1, 'COS', 1),
 (2, 'CIT', 1),
 (3, 'CAFA', 1),
-(4, 'CLA', 1);
+(4, 'CLA', 1),
+(5, 'CIE', 1);
 
 -- --------------------------------------------------------
 
@@ -292,7 +312,8 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 (1, 1, 'BSIT', 1),
 (2, 1, 'BSCS', 1),
 (5, 3, 'BTIT', 1),
-(6, 4, 'BSIE', 1);
+(6, 4, 'BSIE', 1),
+(7, 4, 'BSABM', 0);
 
 -- --------------------------------------------------------
 
@@ -320,7 +341,11 @@ INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
 (1, 'Science', 1),
 (2, 'Mathematics', 1),
 (3, 'Fiction', 1),
-(4, 'Sci Fi', 1);
+(4, 'Sci Fi', 0),
+(5, 'Fantasy', 1),
+(6, 'Folklore', 1),
+(7, 'Yaoi', 1),
+(8, 'Gay', 1);
 
 -- --------------------------------------------------------
 
@@ -331,7 +356,6 @@ INSERT INTO `genre` (`GenreId`, `Name`, `IsActive`) VALUES
 DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
-  `LibrarianRoleId` int(11) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
   `Username` varchar(50) NOT NULL,
@@ -347,8 +371,45 @@ TRUNCATE TABLE `librarian`;
 -- Dumping data for table `librarian`
 --
 
-INSERT INTO `librarian` (`LibrarianId`, `LibrarianRoleId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
-(1, 1, 'Johnrey', 'Bacal', 'admin', 'admin');
+INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Password`) VALUES
+(1, 'Johnrey', 'Bacal', 'admin', 'admin'),
+(2, 'Circu', 'Lation', 'circu', 'circulation'),
+(4, 'Tao', 'Manager', 'hr', 'hrhrhrhr');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `librarianaccess`
+--
+
+DROP TABLE IF EXISTS `librarianaccess`;
+CREATE TABLE `librarianaccess` (
+  `LibrarianId` int(11) NOT NULL,
+  `LibrarianRoleId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `librarianaccess`
+--
+
+TRUNCATE TABLE `librarianaccess`;
+--
+-- Dumping data for table `librarianaccess`
+--
+
+INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
+(1, 2),
+(1, 1),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(2, 2),
+(2, 1),
+(2, 5),
+(4, 6),
+(4, 4),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -360,7 +421,7 @@ DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
+  `Description` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -372,8 +433,13 @@ TRUNCATE TABLE `librarianrole`;
 -- Dumping data for table `librarianrole`
 --
 
-INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `IsActive`) VALUES
-(1, 'Admin', 1);
+INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `Description`) VALUES
+(1, 'Library', 'Access to library content'),
+(2, 'Circulation', 'Access to library circulation'),
+(3, 'Patron Management', 'Access to patron management'),
+(4, 'Outside Researcher', 'Access to outside researcher'),
+(5, 'University', 'Access to university'),
+(6, 'Staff Management', 'Access to staff management');
 
 -- --------------------------------------------------------
 
@@ -404,9 +470,101 @@ TRUNCATE TABLE `loan`;
 --
 
 INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`, `IsRecalled`) VALUES
-(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', NULL, NULL, 1, 1),
-(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', NULL, NULL, 1, 0),
-(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 0);
+(4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
+(5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', NULL, NULL, 1, 1),
+(7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marcimport`
+--
+
+DROP TABLE IF EXISTS `marcimport`;
+CREATE TABLE `marcimport` (
+  `MarcImportId` int(11) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
+  `Title` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `marcimport`
+--
+
+TRUNCATE TABLE `marcimport`;
+--
+-- Dumping data for table `marcimport`
+--
+
+INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
+(113, '1595540059', 'Showdown /'),
+(149, '1', 'try'),
+(115, '0849944996', 'The martyr\'s song /'),
+(116, '0849943736', 'Obsessed /'),
+(117, '0849917921', 'White /'),
+(118, '0849917913', 'Red /'),
+(119, '0849917905', 'Black /'),
+(120, '0849943728', 'Thr3e /'),
+(121, '084994371X', 'Blink /'),
+(122, '0849943809', 'A man called Blessed /'),
+(123, '0849942926', 'Thunder of heaven /'),
+(124, '0849943124', 'Blessed child /'),
+(125, '0849942918', 'When heaven weeps /'),
+(126, '0849942411', 'Heaven\'s wager /'),
+(127, '9780979590023', 'White :'),
+(128, '0979590019', 'Red :'),
+(129, '1595541578', 'House'),
+(130, '1404102337', 'The promise :'),
+(131, '0849963672', 'Black'),
+(132, '1595541551', 'House /'),
+(133, '9781595544704', 'Kiss /'),
+(134, '9781595546036', 'Chosen /'),
+(135, '9781595546043', 'Infidel /'),
+(136, '1595540083', 'Sinner /'),
+(137, '9781602852068', 'Adam /'),
+(138, '1595543716', 'Renegade /'),
+(139, '1595543724', 'Chaos /'),
+(140, '0979590000', 'Black :'),
+(141, '9781602552173', 'Rojo :'),
+(142, '9781602552159', 'Negro :'),
+(143, '9781595544711', 'Burn /'),
+(144, '9781599951966', 'The bride collector /'),
+(145, '9780307588272', 'Tea with Hezbollah :'),
+(146, '9781599954189', 'A.D. 30 :'),
+(147, '9781599953588', 'Mortal /'),
+(148, '0824771567', 'Transformation groups on manifolds /');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+  `MessageId` int(11) NOT NULL,
+  `PatronId` int(11) NOT NULL,
+  `Title` varchar(50) NOT NULL,
+  `Message` text NOT NULL,
+  `DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `message`
+--
+
+TRUNCATE TABLE `message`;
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) VALUES
+(10, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:05:56'),
+(11, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-30 22:05:56'),
+(12, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:10:47'),
+(13, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-31 22:59:41'),
+(14, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-31 22:59:57');
 
 -- --------------------------------------------------------
 
@@ -479,7 +637,8 @@ CREATE TABLE `patron` (
   `RFIDNo` int(11) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `ContactNumber` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL
+  `Email` varchar(50) NOT NULL,
+  `DateCreated` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -491,8 +650,9 @@ TRUNCATE TABLE `patron`;
 -- Dumping data for table `patron`
 --
 
-INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`) VALUES
-(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj');
+INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`, `DateCreated`) VALUES
+(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj', '2018-11-08'),
+(3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12, 'westsidenigga', '+63 999-999-9999', 'nigga@yahoo.com', '2018-11-09');
 
 -- --------------------------------------------------------
 
@@ -547,7 +707,10 @@ TRUNCATE TABLE `publisher`;
 INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 (1, 'JB Publishing', 1),
 (2, 'BooksRUs', 1),
-(4, 'Publisher', 1);
+(4, 'Publisher', 1),
+(5, 'Piso print', 1),
+(6, 'Publiko', 1),
+(7, 'Yaoi pub', 1);
 
 -- --------------------------------------------------------
 
@@ -575,10 +738,16 @@ TRUNCATE TABLE `reservation`;
 --
 
 INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `DateReserved`, `IsDiscarded`, `IsActive`) VALUES
+(14, 1, 1, '2018-10-28 22:04:15', 1, 0),
 (11, 1, 10, '2018-10-26 19:21:47', 1, 0),
 (7, 1, 13, '2018-10-17 13:56:45', 0, 0),
 (6, 1, 11, '2018-10-17 13:56:44', 1, 0),
-(13, 1, 1, '2018-10-26 19:24:40', 0, 0);
+(13, 1, 1, '2018-10-26 19:24:40', 0, 0),
+(15, 1, 11, '2018-10-28 22:04:16', 0, 0),
+(16, 1, 1, '2018-10-28 22:05:39', 1, 0),
+(17, 1, 1, '2018-10-30 11:21:01', 1, 0),
+(18, 1, 1, '2018-10-31 22:47:44', 1, 0),
+(19, 1, 1, '2018-11-01 18:06:24', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -605,7 +774,10 @@ TRUNCATE TABLE `series`;
 INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 (1, 'Star wars Series', 1),
 (2, 'Harry Potter Series', 1),
-(3, 'Series', 1);
+(3, 'Series', 1),
+(4, 'Teleserye', 0),
+(5, 'Serye', 1),
+(6, 'ship series', 1);
 
 -- --------------------------------------------------------
 
@@ -632,8 +804,11 @@ TRUNCATE TABLE `subject`;
 INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 (1, 'Web Development', 1),
 (11, 'Mathematics', 1),
-(14, 'Economics', 1),
-(15, 'Retorika', 1);
+(14, 'Economics: Land Reform', 1),
+(15, 'Retorika', 1),
+(16, 'C++', 1),
+(17, 'C#', 1),
+(18, 'Anime', 1);
 
 -- --------------------------------------------------------
 
@@ -661,7 +836,10 @@ INSERT INTO `subjectcourse` (`SubjectId`, `CourseId`) VALUES
 (1, 2),
 (15, 6),
 (14, 2),
-(11, 5);
+(11, 5),
+(16, 1),
+(17, 1),
+(18, 1);
 
 --
 -- Indexes for dumped tables
@@ -728,6 +906,18 @@ ALTER TABLE `loan`
   ADD PRIMARY KEY (`LoanId`);
 
 --
+-- Indexes for table `marcimport`
+--
+ALTER TABLE `marcimport`
+  ADD PRIMARY KEY (`MarcImportId`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`MessageId`);
+
+--
 -- Indexes for table `outsideresearcher`
 --
 ALTER TABLE `outsideresearcher`
@@ -777,12 +967,12 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -792,32 +982,42 @@ ALTER TABLE `bookstatus`
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `GenreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `librarian`
 --
 ALTER TABLE `librarian`
-  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `librarianrole`
 --
 ALTER TABLE `librarianrole`
-  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `marcimport`
+--
+ALTER TABLE `marcimport`
+  MODIFY `MarcImportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
@@ -827,7 +1027,7 @@ ALTER TABLE `outsideresearcher`
 -- AUTO_INCREMENT for table `patron`
 --
 ALTER TABLE `patron`
-  MODIFY `PatronId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PatronId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `patrontype`
 --
@@ -837,22 +1037,22 @@ ALTER TABLE `patrontype`
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
-  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `series`
 --
 ALTER TABLE `series`
-  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

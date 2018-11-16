@@ -7,10 +7,10 @@
         <div class="col-md-6">
         <ul class="nav nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
             <li class="nav-item">
-                <a class="nav-link" href="#">About OLAS</a>
+                <a class="nav-link" href="<?php echo base_url('About'); ?>">About OLAS</a>
             </li>            
             <li class="nav-item">
-                <a class="nav-link" href="#">About the developers</a>
+                <a class="nav-link" href="<?php echo base_url('Developers'); ?>">About the developers</a>
             </li>
         </ul>
         </div>
@@ -36,7 +36,8 @@
         $('form').submit(function(form){
             form.preventDefault();
         });
-    });
+    });       
+
 </script>
 <script src = "<?php echo base_url('assets/js/core.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/js/app.min.js'); ?>"></script>

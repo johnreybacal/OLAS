@@ -15,18 +15,18 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Series Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Series Name" />
+                                <input id="SeriesName" name="SeriesName" type="text" class="form-control" placeholder="Series Name" />
                             </div>
                         </div>
 
-                        <div class="row" id="rowActive">
+                        <div class="row" id="SeriesRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <input type="checkbox" id="SeriesIsActive" name="SeriesIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
@@ -50,8 +50,8 @@
         data: function () {
             return {
                 SeriesId: $('#SeriesId').val(),                
-                Name: $('#Name').val(),                
-                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
+                Name: $('#SeriesName').val(),                
+                IsActive: ($('#SeriesIsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -65,21 +65,21 @@
         new: function () {
             $('#SeriesId').val('0');
             $('.modal-title').text('Add Series');            
-            $('#rowActive').addClass('invisible');
+            $('#SeriesRowActive').addClass('invisible');
             Series_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Series');            
-            $('#rowActive').removeClass('invisible');          
+            $('#SeriesRowActive').removeClass('invisible');          
             Series_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Series/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     $('#SeriesId').val(i.SeriesId);
-                    $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", (i.IsActive == 1));
+                    $('#SeriesName').val(i.Name);
+                    $('#SeriesIsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },
@@ -137,6 +137,9 @@
                             swal('Good Job!', message, 'success');
                             $('#modal-series').modal('hide');
                             console.log(i);
+                            if(typeof Add !== 'undefined'){
+                                Add.refreshSeries(i);
+                            }
                         }, 
                         error: function(i){
                             swal('Oops!', "Something went wrong", 'error');

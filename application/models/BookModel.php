@@ -37,6 +37,13 @@ class BookModel extends _BaseModel{
 		}
 	}	
 
+	public function saveImage($isbn, $image){
+		$this->db->query("UPDATE book SET "                			
+			."Image = '".$image."' "
+			."WHERE ISBN = '".$isbn."'"
+		);	
+	}
+
 	public function bookExist($isbn){
 		return ($this->db->query("SELECT * FROM book WHERE ISBN = '".$isbn."'")
 			->num_rows() != 0);
@@ -74,6 +81,11 @@ class BookModel extends _BaseModel{
 					."(select SubjectId from booksubject WHERE ISBN = '".$isbn."')))")->result();
 		return $dbList;
 	}	
+
+	public function search($search){
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT DISTINCT(ISBN) FROM book WHERE (LOWER(Title) LIKE "%'.$search.'%" OR LOWER(ISBN) LIKE "%'.$search.'%"))')->result();
+		return $dbList;
+	}
 
 	/*queries to use in the future
 		unique books

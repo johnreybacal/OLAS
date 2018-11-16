@@ -53,6 +53,12 @@ $route['default_controller'] = 'OLAS';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Login'] = 'OLAS/Login';
-$route['validate'] = 'OLAS/validate';
-$route['IsActive/(:any)'] = 'OLAS/IsActive/$1';
+$route['Search'] = 'OLAS/Search';
+$route['SearchAuthor'] = 'OLAS/SearchAuthor';
+$route['SearchPatron'] = 'OLAS/SearchPatron';
+$route['MyReservations'] = 'OLAS/MyReservations';
+$route['GenerateTableMyReservations'] = 'OLAS/GenerateTableMyReservations';
+$route['MyBooks'] = 'OLAS/MyBooks';
+$route['GenerateTableMyBooks/(:any)'] = 'OLAS/GenerateTableMyBooks/$1';
+$route['About'] = 'OLAS/About';
+$route['Developers'] = 'OLAS/Developers';

@@ -31,8 +31,13 @@ class Reservation extends _BaseController {
         echo $json;        
     }    
 
-    public function Save(){        
-        $this->reservation->save($this->input->post('reservation'));
+    public function Save(){ 
+        foreach($this->cart->contents() as $book){
+            $this->reservation->save(array(
+                'PatronId' => $this->session->userdata('patronId'),
+                'AccessionNumber' => $book['id']
+            ));
+        }
     }
 
     public function Issue($reservationId){

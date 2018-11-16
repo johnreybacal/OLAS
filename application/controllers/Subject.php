@@ -55,14 +55,14 @@ class Subject extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($subject['Name'])){
-            $str .= $this->invalid('Name', 'Please input a value');
+            $str .= $this->invalid('SubjectName', 'Please input a value');
             $valid = false;
         }
         else{
             $ifExist = $this->subject->_exist('Name', $subject['Name']);            
             if(is_object($ifExist)){
                 if($ifExist->SubjectId != $subject['SubjectId']){
-                    $str .= $this->invalid('Name', 'Subject already exist');
+                    $str .= $this->invalid('SubjectName', 'Subject already exist');
                     $valid = false;
                 }
             }
@@ -84,6 +84,7 @@ class Subject extends _BaseController {
         $s = $this->subject->save($this->input->post('subject'));
         $c = $this->input->post('subject')['CourseId'];
         $this->subjectCourse->save($s, $c);
+        echo $s;
     }
 
     

@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="form-group">
-				<button class="btn btn-bold btn-block btn-primary"  onclick = "login.validate()" type="submit">Login</button>
+				<button class="btn btn-bold btn-block btn-info"  onclick = "login.validate()" type="submit">Login</button>
 			</div>
 		</form>
 	</div>

@@ -147,9 +147,8 @@ class Patron extends _BaseController {
         $json = '{ "data": [';
         foreach($this->patron->_list() as $data){
             $json .= '['
-				.'"<a href = \''.base_url('Patron/View/'.$data->PatronId).'\'>'.$data->PatronId.'</a>",'
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
-                .'"'.$this->patrontype->_get($data->PatronTypeId)->Name.'",'
+                .'"'.$this->patronType->_get($data->PatronTypeId)->Name.'",'
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Email.'",'
                 .'"<button onclick = \"Patron_Modal.edit('.$data->PatronId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
