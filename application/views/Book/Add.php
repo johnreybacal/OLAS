@@ -148,6 +148,13 @@
 		});
 		Select.init();		
 		Book.init();
+		<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>
+		$('#ISBN').val('<?php echo $this->session->flashdata('uncatalogued')->ISBN ?>');
+		Book.get($('#ISBN').val());
+		if($('#Title').val() == ''){
+			$('#Title').val('<?php echo $this->session->flashdata('uncatalogued')->Title ?>');
+		}
+		<?php endif;?>
 		$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
 	});
 
@@ -165,56 +172,60 @@
 			$('#ISBN').bind('input', function(){				
 				var val = $(this).val()
 				if(val != ''){
-					$.ajax({
-						url: "<?php echo base_url('Book/Get/'); ?>" + val,
-						success: function(i){
-							if(i == 0){
-								Book.reset(val);
-							}else{
-								i = JSON.parse(i);
-								$('#Title').val(i.book.Title);
-								$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
-								if(i.book.SeriesId != null){
-									$('#SelectSeriesId').selectpicker('val', i.book.SeriesId);
-								}
-								$('#Edition').val(i.book.Edition);
-								$('#DatePublished').val(i.book.DatePublished);
-								var author = [];
-								$.each(i.author, function(index, data){
-									author.push(data.AuthorId);
-								});
-								$('#SelectAuthorId').selectpicker('val', author);
-								var genre = [];
-								$.each(i.genre, function(index, data){
-									genre.push(data.GenreId);
-								});
-								$('#SelectGenreId').selectpicker('val', genre);
-								var subject = [];
-								$.each(i.subject, function(index, data){
-									subject.push(data.SubjectId);
-								});
-								$('#SelectSubjectId').selectpicker('val', subject);
-
-								$.ajax({
-									url: "<?php echo base_url('Book/LastAcquired/'); ?>" + val,
-									success: function(j){
-										j = JSON.parse(j);
-										$('#AcquiredFrom').val(j.AcquiredFrom);
-										$('#Price').val(j.Price);
-									}
-								});
-
-								$("#imgDisplay").children('img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
-								imageChanged = false;
-							}
-						}
-					})
+					Book.get(val);
 				}
 				else{
 					Book.reset(val);
 				}
 			})
 		},		
+
+		get: function(val){
+			$.ajax({
+				url: "<?php echo base_url('Book/Get/'); ?>" + val,
+				success: function(i){
+					if(i == 0){
+						Book.reset(val);
+					}else{
+						i = JSON.parse(i);
+						$('#Title').val(i.book.Title);
+						$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
+						if(i.book.SeriesId != null){
+							$('#SelectSeriesId').selectpicker('val', i.book.SeriesId);
+						}
+						$('#Edition').val(i.book.Edition);
+						$('#DatePublished').val(i.book.DatePublished);
+						var author = [];
+						$.each(i.author, function(index, data){
+							author.push(data.AuthorId);
+						});
+						$('#SelectAuthorId').selectpicker('val', author);
+						var genre = [];
+						$.each(i.genre, function(index, data){
+							genre.push(data.GenreId);
+						});
+						$('#SelectGenreId').selectpicker('val', genre);
+						var subject = [];
+						$.each(i.subject, function(index, data){
+							subject.push(data.SubjectId);
+						});
+						$('#SelectSubjectId').selectpicker('val', subject);
+
+						$.ajax({
+							url: "<?php echo base_url('Book/LastAcquired/'); ?>" + val,
+							success: function(j){
+								j = JSON.parse(j);
+								$('#AcquiredFrom').val(j.AcquiredFrom);
+								$('#Price').val(j.Price);
+							}
+						});
+
+						$("#imgDisplay").children('img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
+						imageChanged = false;
+					}
+				}
+			})
+		},
 
 		data: function(){			
 			return {

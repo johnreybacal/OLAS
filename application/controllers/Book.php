@@ -28,8 +28,12 @@ class Book extends _BaseController {
         $this->footer();
     }
 
-    public function MarcUpload(){
-        $this->librarianView('Book/MarcUpload', '');
+    public function MarcImport(){
+        $this->librarianView('Book/MarcImport', '');
+    }
+
+    public function Uncatalogued(){
+        $this->librarianView('Book/UnCatalogued', '');
     }
 
     public function GenerateTable(){
@@ -101,6 +105,21 @@ class Book extends _BaseController {
                 .'"'.$this->loopAll($this->book->getCollege($data->ISBN)).'",'
                 .'"'.$data->DateAcquired.'",'
                 .'"'.$data->AcquiredFrom.'"'
+            .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateTableUncatalogued(){
+        $json = '{ "data": [';
+        foreach($this->marcImport->_list() as $data){               
+            $json .= '['                                
+                .'"'.$data->ISBN.'",'                
+                .'"'.$data->Title.'",'                                                
+                .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger\">Discard</button>"'
             .']';             
             $json .= ',';
         }
@@ -261,6 +280,27 @@ class Book extends _BaseController {
                 }
             }
         }    
+    }
+
+    public function ImportMarc(){
+        $isbn = $this->input->post('marc')['isbn'];
+        $title = $this->input->post('marc')['title'];
+        for($i = 0; $i < count($isbn); $i++){
+            $this->marcImport->save($isbn[$i], $title[$i]);
+        }
+        // print_r($this->input->post('marc'));
+    }
+
+    public function DiscardUncatalogued(){
+        $this->marcImport->delete($this->input->post('MarcImportId'));
+    }
+
+    public function SetFlashdata(){        
+        $this->session->set_flashdata(
+            'uncatalogued', 
+            $this->marcImport->_get($this->input->post('MarcImportId'))
+        );  
+        // print_r($this->marcImport->_get($this->input->post('MarcImportId')));
     }
    
 }
