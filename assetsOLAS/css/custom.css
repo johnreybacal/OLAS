@@ -73,6 +73,10 @@ table.table-responsive thead tr th{
     background-color: #48b0f7 !important;
     border-color: #48b0f7 !important;
 }
+.datepicker table tr td.range-start, .datepicker table tr td.range-end {
+    background-color: #48b0f7 !important;
+    border-color: #48b0f7 !important;
+}
 /*TOPBAR*/
 .topbar .dropdown.show .topbar-btn {
     color: #4d5259;
@@ -127,6 +131,9 @@ table.table-responsive thead tr th{
 @media screen and (min-width: 1px) and (max-width: 320px){
     .isactive{
         margin-left: 74%;
+    }
+    .fab-320{
+        margin-right: -10%;
     }
  }
 @media screen and (min-width: 321px) and (max-width: 375px){

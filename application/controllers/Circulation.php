@@ -94,7 +94,7 @@ class Circulation extends _BaseController {
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
                 .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'                
-                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info mx-2 btn-md btn-flat\"><span class=\"fa fa-edit fa-2x\"></span>Edit</button>"'                
+                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info mx-2 btn-md btn-flat\"><span class=\"fa fa-edit fa-2x\"></span></button>"'                
             .']';            
             $json .= ',';
         }

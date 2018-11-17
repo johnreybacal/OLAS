@@ -13,9 +13,9 @@
 									<label>Room Use Only</label>
 								</label>
 							</li>
-							<li>
+							<!-- <li>
 								<div class="btn-group">
-									<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Add new data</button>
+									<button class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">new</button>
 									<div class="dropdown-menu">
 										<a onclick="Add.author()"class="dropdown-item" href="#">Add Author</a>
 										<a onclick="Add.genre()"class="dropdown-item" href="#">Add Genre</a>
@@ -24,18 +24,23 @@
 										<a onclick="Add.series()"class="dropdown-item" href="#">Add Series</a>
 									</div>
 								</div>
-							</li>
+							</li> -->
 		                </ul>
 	              	</header>
 					<div class="card-body form-type-line">
 						<div class="row">
-							<div class="col-md-12">
-								<div class="form-row gap-1">
-									<div class="form-group col-md-6">		
+							<!-- <div class="col-md-12"> -->
+								<div class="col-md-3">
+									<!-- <div id="imgDisplay"> -->
+	                					<input id="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
+	                				<!-- </div> -->
+              					</div>
+								<div class="form-row gap-1 col-md-9 mt-3">									
+									<!-- <div class="form-group col-md-6">		
 										<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
 										<label>Select image</label>
 										<input id="image" name="image" type="file" accept="image/*" />
-									</div>
+									</div> -->
 									<div class="form-group col-md-6">
 										<label>ISBN</label>
 										<input  id="ISBN" class="form-control" type="text" name="ISBN" placeholder="ISBN">
@@ -96,7 +101,13 @@
 										</label>
 									</div>	 -->			
 								</div> <!-- form-row gap-1 -->
-							</div> <!-- col-md-12 -->
+								<!-- <div class="col-md-3">
+					                <div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
+										<label>Select image</label>
+										<input id="image" name="image" type="file" accept="image/*" />
+					                <input id="image" name="image" type="file" accept="image/*" data-provide="dropify" data-show-remove="false" data-default-file="../assets/img/gallery/1.jpg">
+				              	</div> -->
+							<!--/div> <!-- col-md-12 -->
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
@@ -107,7 +118,20 @@
 		</div> <!-- row -->
 	</form> <!-- form -->
 </div>
+<div class="fab fab-fixed fab-dir-left fab-320">
+  <button class="btn btn-float btn-info" data-toggle="button">
+    <i class="fab-icon-default ti-plus"></i>
+    <i class="fab-icon-active ti-close"></i>
+  </button>
 
+  <ul class="fab-buttons">
+    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
+    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
+  </ul>
+</div>
 <script>	
 
 	var imageChanged = false;

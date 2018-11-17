@@ -6,7 +6,25 @@
 <div class="main-content">
 	<div class="card">
         <div class="card-body">
-            <div class="row">
+            <label class="fs-18 fw-500">Reports</label>
+            <div class="form-row">
+                <!-- <label>Report date range</label> -->
+                <!-- <div data-provide="datepicker" data-date-format="yyyy-mm-dd"> -->
+                    <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                        <label>From</label>
+                        <input class="form-control" type="text" id="range-dashboard-from" name="range-dashboard-from" placeholder="">
+                    </div>
+                    <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                        <label>To</label>
+                        <input class="form-control" type="text" id="range-dashboard-to" name="range-dashboard-to" placeholder="">
+                    </div>
+                    <div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-block btn-info" onclick="Dashboard.filter()">Filter</button>
+                    </div>
+                <!-- </div> -->
+            </div>
+            <!-- <div class="row">
                 <label>Report date range</label>
                 <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <div class="input-group-prepend">
@@ -19,12 +37,12 @@
                     <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range">
                 </div>		
                 <button onclick="Dashboard.filter()" class="btn">Filter</button>                
-            </div>
+            </div> -->
             <div class="row">
 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
-                        <div class="small-box bg-info text-center">
+                        <div class="small-box bg-yellow text-center">
                             <h1 id="total-books" class="text-thin text-white"><?php echo $totalBooks; ?></h1>
                             <h6 class="text-white text-uppercase text-bold mb-0">Total Books</h6>
                             <span class="text-white text-thin text-uppercase text-sm">&nbsp;</span>
@@ -32,7 +50,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
                         <div class="small-box bg-info text-center">
                             <h1 id="total-books-acquired" class="text-thin text-white"><?php echo $totalBooksAcquired; ?></h1>
@@ -42,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
                         <div class="small-box bg-danger text-center">
                             <h1 id="total-book-circulations" class="text-thin text-white"><?php echo $totalBookCirculations; ?></h1>
@@ -52,7 +70,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
                         <div class="small-box bg-success text-center">
                             <h1 id="total-patrons" class="text-thin text-white"><?php echo $totalPatrons; ?></h1>
@@ -62,9 +80,9 @@
                     </div>
                 </div>
                 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
-                        <div class="small-box bg-success text-center">
+                        <div class="small-box bg-purple text-center">
                             <h1 id="total-patrons-registered" class="text-thin text-white"><?php echo $totalPatrons; ?></h1>
                             <h6 class="text-white text-uppercase text-bold mb-0">Patrons Registered</h6>
                             <span class="text-white text-thin text-uppercase text-sm">&nbsp;</span>
@@ -72,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-lg-3 col-xlg-3">
+                <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
                         <div class="small-box bg-warning text-center">
                             <h1 id="total-outside-researchers" class="text-thin text-white"><?php echo $totalOutsideResearchers; ?></h1>
