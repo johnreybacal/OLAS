@@ -29,8 +29,7 @@
 			<div class="table-responsive">
 				<table id="patron-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
 					<thead>
-						<tr class="bg-info">
-							<th>Patron ID</th>
+						<tr class="bg-info">							
 							<th>Name</th>
 							<th>Patron Type </th>
 							<th>Contact Number</th>

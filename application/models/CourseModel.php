@@ -21,6 +21,7 @@ class CourseModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(CourseId) as CourseId FROM course")->row()->CourseId;
 		}
 		else{//update
 			$this->db->query("UPDATE course SET "
@@ -29,6 +30,7 @@ class CourseModel extends _BaseModel{
                 ."IsActive = '".$course['IsActive']."' "
                 ."WHERE CourseId = '".$course['CourseId']."'"
 			);			
+			return $course['CourseId'];
 		}
     }	
     

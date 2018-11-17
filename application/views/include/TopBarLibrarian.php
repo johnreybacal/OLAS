@@ -5,54 +5,13 @@
     <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
         <i class="material-icons fullscreen-default">fullscreen</i>
         <i class="material-icons fullscreen-active">fullscreen_exit</i>
-    </a>
-
-    <!-- <div class="dropdown d-none d-md-block">
-        <span class="topbar-btn" data-toggle="dropdown"><i class="ti-layout-grid3-alt"></i></span>
-        <div class="dropdown-menu dropdown-grid">
-        <a class="dropdown-item" href="Dashboard.html">
-            <span data-i8-icon="home"></span>
-            <span class="title">Dashboard</span>
-        </a>
-        <a class="dropdown-item" href="../page/gallery.html">
-            <span data-i8-icon="stack_of_photos"></span>
-            <span class="title">Gallery</span>
-        </a>
-        <a class="dropdown-item" href="../page/search.html">
-            <span data-i8-icon="search"></span>
-            <span class="title">Search</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/calendar.html">
-            <span data-i8-icon="calendar"></span>
-            <span class="title">Calendar</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/chat.html">
-            <span data-i8-icon="sms"></span>
-            <span class="title">Chat</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/mailbox.html">
-            <span data-i8-icon="invite"></span>
-            <span class="title">Emails</span>
-        </a>
-        <a class="dropdown-item" href="../page-app/users.html">
-            <span data-i8-icon="contacts"></span>
-            <span class="title">Contacts</span>
-        </a>
-        <a class="dropdown-item" href="../widget/chart.html">
-            <span data-i8-icon="bar_chart"></span>
-            <span class="title">Charts</span>
-        </a>
-        <a class="dropdown-item" href="../page/profile.html">
-            <span data-i8-icon="businessman"></span>
-            <span class="title">Profile</span>
-        </a>
-        </div>
-    </div> -->
+    </a>    
 
     <div class="topbar-divider d-none d-md-block"></div>
     <div class="lookup d-none d-md-block ">
         <form class="lookup">
-        <input class="form-control" type="text" placeholder="Search books, patrons, etc..." style="min-width: 200%;">
+            <input id="search" class="form-control" type="text" placeholder="Search" value="">
+            <button onclick="Search.search();" class="btn">Search</button>
         </form>
     </div>
     <!-- <div class="lookup d-none d-md-block topbar-search" id="theadmin-search">

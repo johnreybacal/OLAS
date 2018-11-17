@@ -20,14 +20,21 @@ class PublisherModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(PublisherId) as PublisherId FROM publisher")->row()->PublisherId;
 		}
 		else{//update
 			$this->db->query("UPDATE publisher SET "
                 ."Name = '".$publisher['Name']."',"
                 ."IsActive = '".$publisher['IsActive']."' "
                 ."WHERE PublisherId = '".$publisher['PublisherId']."'"
-			);			
+			);		
+			return $publisher['PublisherId'];	
 		}
-    }	
+	}	
+	
+	public function search($search){
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE PublisherId IN (SELECT PublisherId FROM publisher WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		return $dbList;
+	}
     
 }

@@ -15,18 +15,18 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Publisher Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Publisher Name" />
+                                <input id="PublisherName" name="PublisherName" type="text" class="form-control" placeholder="Publisher Name" />
                             </div>
                         </div>    
 
-                        <div class="row" id="rowActive">
+                        <div class="row" id="PublisherRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <input type="checkbox" id="PublisherIsActive" name="PublisherIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
@@ -50,8 +50,8 @@
         data: function () {
             return {
                 PublisherId: $('#PublisherId').val(),                
-                Name: $('#Name').val(),    
-                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)
+                Name: $('#PublisherName').val(),    
+                IsActive: ($('#PublisherIsActive').prop("checked") ? 1 : 0)
             }
         },
 
@@ -59,28 +59,28 @@
             $('#modal-publisher-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+            // $('#PublisherRowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-publisher').modal('show');
         },
 
         new: function () {
             $('#PublisherId').val('0');
             $('.modal-title').text('Add Publisher');            
-            $('#rowActive').addClass('invisible');
+            $('#PublisherRowActive').addClass('invisible');
             Publisher_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Publisher');            
-            $('#rowActive').removeClass('invisible');          
+            $('#PublisherRowActive').removeClass('invisible');          
             Publisher_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Publisher/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     $('#PublisherId').val(i.PublisherId);
-                    $('#Name').val(i.Name);
-                    $('#IsActive').prop('checked', (i.IsActive == 1));
+                    $('#PublisherName').val(i.Name);
+                    $('#PublisherIsActive').prop('checked', (i.IsActive == 1));
                 }
             });           
         },
@@ -138,6 +138,9 @@
                             swal('Good Job!', message, 'success');
                             $('#modal-publisher').modal('hide');
                             console.log(i);
+                            if(typeof Add !== 'undefined'){
+                                Add.refreshPublisher(i);
+                            }
                         }, 
                         error: function(i){
                             swal('Oops!', "Something went wrong", 'error');

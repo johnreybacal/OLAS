@@ -1,3 +1,0 @@
-# OLAS
-
-Abbie Jannina OLAS

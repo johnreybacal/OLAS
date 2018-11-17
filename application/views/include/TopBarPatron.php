@@ -19,6 +19,20 @@
                         <span class="title">Bookbag</span>
                     </a>
                 </li>    
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('MyReservations'); ?>">
+                        <span class="icon fa fa-briefcase"></span>
+                        <span class="title">My Reservations</span>
+                    </a>
+                </li>    
+                
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('MyBooks'); ?>">
+                        <span class="icon fa fa-briefcase"></span>
+                        <span class="title">My Books</span>
+                    </a>
+                </li>    
             </ul>
         </nav>        
     </div>
@@ -127,7 +141,7 @@
                 url: "<?php echo base_url('Message/Get'); ?>",
                 success: function(i){
                     $('#message').empty();
-                    if(i != 'No data'){
+                    if(i != '{}'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){                            
                             $('#message').append(
@@ -135,6 +149,7 @@
                                     + '<div class="media-body">'
                                         + '<p>' + data.Title + '</p>'                                        
                                         + '<p>' + data.Message + '</p>'                                        
+                                        + '<p>' + data.DateTime + '</p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -174,6 +189,7 @@
                             $(this).remove();
                         }
                     })
+                    $('#bookbag-table').DataTable().ajax.reload();
                     // swal('Unbookbagged!', "Book removed from bookbag", 'success');
                 },
                 error: function(){
@@ -217,7 +233,7 @@
                             $(this).remove();
                         }
                     });
-                    if(i != 'No data'){
+                    if(i != '{}'){
                         i = JSON.parse(i);
                         $.each(i, function(index, data){
                             console.log(data);

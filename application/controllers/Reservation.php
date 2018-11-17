@@ -22,7 +22,7 @@ class Reservation extends _BaseController {
                 .'"'.$isbn.'",'
                 .'"'.$this->book->_get($isbn)->Title.'",'
                 .'"'.$data->DateReserved.'",'
-                .'"<button onclick = \"Reservation.issue('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-check fa-2x\"></span></button><button onclick = \"Reservation.discard('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-trash fa-2x\"></span></button>"'
+                .'"<button onclick = \"Reservation.issue('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-success\"><span class = \"fa fa-check fa-2x\"></span></button><button onclick = \"Reservation.discard('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-danger\"><span class = \"fa fa-trash fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

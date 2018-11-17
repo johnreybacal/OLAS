@@ -20,6 +20,7 @@ class GenreModel extends _BaseModel{
 					."'1'"
 				.")"
 			);
+			return $this->db->query("SELECT MAX(GenreId) as GenreId FROM genre")->row()->GenreId;
 		}
 		else{//update
 			$this->db->query("UPDATE genre SET "
@@ -27,7 +28,13 @@ class GenreModel extends _BaseModel{
                 ."IsActive = '".$genre['IsActive']."' "
                 ."WHERE GenreId = '".$genre['GenreId']."'"
 			);			
+			return $genre['GenreId'];
 		}
-    }	
+	}	
+	
+	public function search($search){
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM bookGenre WHERE GenreId IN (SELECT GenreId FROM genre WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		return $dbList;
+	}
     
 }

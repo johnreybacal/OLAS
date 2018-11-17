@@ -1,3 +1,49 @@
+<style>
+
+ /*ME\\----------------MEDIA QUERIES ********** RESPONSIVENESS*/
+ @media screen and (min-width: 1px) and (max-width: 320px){
+    .isactive{
+        margin-left: 74%;
+    }
+ }
+ @media screen and (min-width: 321px) and (max-width: 375px){
+    .isactive{
+        margin-left: 78%;
+    }
+ }
+ @media screen and (min-width: 376px) and (max-width: 425px){
+    .isactive{
+        margin-left: 81%;
+    }
+ }
+ /*@media screen and (max-width: 768px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }
+ @media screen and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }*/
+ @media screen and (min-width: 426px) and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+} 
+@media screen and (min-width: 1025px) and (max-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+@media screen and (min-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+ 
+
+</style>
 <div class="modal modal-center fade" id="modal-author" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
@@ -8,10 +54,10 @@
                 </button>
             </div>
             <div class="modal-body form-type-line">
-                <div class="row" id="rowActive" style="margin-left: 74%;" >
+                <div class="row isactive" id="AuthorRowActive">
                     <div class="form-group">
                         <label class="switch switch-lg switch-info">
-                            <input type="checkbox" id="IsActive" name="IsActive" checked />
+                            <input type="checkbox" id="AuthorIsActive" name="AuthorIsActive" checked />
                             <span class="switch-indicator"></span>
                             <label>Active</label>
                         </label>
@@ -24,10 +70,10 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Author Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Author Name" />
+                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Author Name" />
                             </div>
                         </div>                          
-                        <!-- <div class="row" id="rowActive">
+                        <!-- <div class="row" id="AuthorRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
@@ -58,8 +104,8 @@
         data: function () {
             return {
                 AuthorId: $('#AuthorId').val(),                
-                Name: $('#Name').val(),        
-                IsActive: ($('#IsActive').prop("checked") ? 1 : 0)        
+                Name: $('#AuthorName').val(),        
+                IsActive: ($('#AuthorIsActive').prop("checked") ? 1 : 0)        
             }
         },
 
@@ -73,16 +119,16 @@
         new: function () {
             $('#AuthorId').val('0');            
             $('.modal-title').text('Add Author');    
-            // $('#rowActive').addClass('invisible');        
-            $('#rowActive').attr('hidden', 'true');
+            // $('#AuthorRowActive').addClass('invisible');        
+            $('#AuthorRowActive').attr('hidden', 'true');
             $('#Save').html('Save');   
             Author_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Author');  
-            // $('#rowActive').removeClass('invisible');        
-            $('#rowActive').removeAttr('hidden');   
+            // $('#AuthorRowActive').removeClass('invisible');        
+            $('#AuthorRowActive').removeAttr('hidden');   
             $('#Save').html('Save Changes');   
             Author_Modal.init();
             $.ajax({
@@ -90,8 +136,8 @@
                 success: function(i){
                     i = JSON.parse(i);
                     $('#AuthorId').val(i.AuthorId);
-                    $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", (i.IsActive == 1));
+                    $('#AuthorName').val(i.Name);
+                    $('#AuthorIsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },
@@ -148,6 +194,9 @@
                             swal('Good Job!', message, 'success');
                             $('#modal-author').modal('hide');
                             console.log(i);
+                            if(typeof Add !== 'undefined'){
+                                Add.refreshAuthor(i);
+                            }
                         }, 
                         error: function(i){
                             swal('Oops!', "Something went wrong", 'error');

@@ -147,7 +147,6 @@ class Patron extends _BaseController {
         $json = '{ "data": [';
         foreach($this->patron->_list() as $data){
             $json .= '['
-				.'"<a href = \''.base_url('Patron/View/'.$data->PatronId).'\'>'.$data->PatronId.'</a>",'
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$this->patronType->_get($data->PatronTypeId)->Name.'",'
                 .'"'.$data->ContactNumber.'",'

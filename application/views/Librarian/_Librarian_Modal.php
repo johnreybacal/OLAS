@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Role</label>
-                                <select id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+                                <select multiple id="LibrarianRoleId" name="LibrarianRoleId" data-provide="selectpicker" title="Choose Role" data-live-search="true" class="form-control form-type-combine show-tick"></select>
                             </div>
                             <div class="col-12">
                                 <label>First Name</label>
@@ -113,13 +113,16 @@
                     i = JSON.parse(i);
                     console.log("edit");
                     console.log(i);
-                    $('#LibrarianId').val(i.LibrarianId),
-
-                    $('#LibrarianRoleId').selectpicker('val', i.LibrarianRoleId);
-                    $('#FirstName').val(i.FirstName);
-                    $('#LastName').val(i.LastName);
-                    $('#Username').val(i.Username);
-                    $('#Password').val(i.Password);
+                    $('#LibrarianId').val(i.librarian.LibrarianId);
+                    var librarianRole = [];
+                    $.each(i.librarianAccess, function(index, data){
+                        librarianRole.push(data.LibrarianRoleId);
+                    });
+                    $('#LibrarianRoleId').selectpicker('val', librarianRole);                    
+                    $('#FirstName').val(i.librarian.FirstName);
+                    $('#LastName').val(i.librarian.LastName);
+                    $('#Username').val(i.librarian.Username);
+                    $('#Password').val(i.librarian.Password);
                         //optional 
                     // $('#ContactNumber').val(i.ContactNumber);
                     // $('#Email').val(i.Email); 

@@ -63,13 +63,17 @@ table.table-responsive thead tr th{
 }
 .table-integer{
 	text-align: right;
-}
+}   
 .table-action{
 	text-align: justify;
 }
 /*DATE PICKER*/
 .datepicker table tr td span.active.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active:hover:active, .datepicker table tr td.active.active {
     color: #fff;
+    background-color: #48b0f7 !important;
+    border-color: #48b0f7 !important;
+}
+.datepicker table tr td.range-start, .datepicker table tr td.range-end {
     background-color: #48b0f7 !important;
     border-color: #48b0f7 !important;
 }
@@ -87,6 +91,10 @@ table.table-responsive thead tr th{
 	color: #4d5259;
     border-top-color: #48b0f7;
     border-bottom-color: #48b0f7;
+}
+.topbar-btn:hover {
+    /*color: #4d5259;*/
+    border-top-color: #48b0f7;
 }
 
 /*SIDEBAR*/
@@ -119,3 +127,47 @@ table.table-responsive thead tr th{
 .app-backdrop, .backdrop-topbar-menu{
     background-color: rgba(0, 0, 0, 0.5);
  }
+
+@media screen and (min-width: 1px) and (max-width: 320px){
+    .isactive{
+        margin-left: 74%;
+    }
+    .fab-320{
+        margin-right: -10%;
+    }
+ }
+@media screen and (min-width: 321px) and (max-width: 375px){
+    .isactive{
+        margin-left: 78%;
+    }
+ }
+@media screen and (min-width: 376px) and (max-width: 425px){
+    .isactive{
+        margin-left: 81%;
+    }
+ }
+ /*@media screen and (max-width: 768px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }
+ @media screen and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+ }*/
+@media screen and (min-width: 426px) and (max-width: 1024px){
+    div.isactive{
+        margin-left: 84%;
+    }
+} 
+@media screen and (min-width: 1025px) and (max-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}
+@media screen and (min-width: 1440px){
+    div.isactive{
+        margin-left: 83%;
+    }
+}

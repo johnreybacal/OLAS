@@ -22,7 +22,20 @@ class ReservationModel extends _BaseModel{
 				."'1'"
 			.")"
 		);		
-	}	
+	}
+	
+	public function isReserved($accessionNumber){
+		$isReserved = $this->db->query("SELECT * FROM reservation WHERE "			
+			."AccessionNumber = '".$accessionNumber."' AND " 
+			."IsActive = '1'"
+		)->row();
+		if(is_object($isReserved)){
+			return array('IsReserved' => 1, 'PatronId' => $isReserved->PatronId);	
+		}else{
+			return array('IsReserved' => 0);
+		}
+
+	}
 	
 	public function discard($reservationId){	
 		$this->db->query("UPDATE reservation SET "			

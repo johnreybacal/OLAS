@@ -15,18 +15,18 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Genre Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Genre Name" />
+                                <input id="GenreName" name="GenreName" type="text" class="form-control" placeholder="Genre Name" />
                             </div>
                         </div>   
 
-                        <div class="row" id="rowActive">
+                        <div class="row" id="GenreRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <input type="checkbox" id="GenreIsActive" name="GenreIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
@@ -50,8 +50,8 @@
         data: function () {
             return {
                 GenreId: $('#GenreId').val(),                
-                Name: $('#Name').val(),                
-                IsActive: ($('#IsActive').prop("checked") ? 1 : 0),
+                Name: $('#GenreName').val(),                
+                IsActive: ($('#GenreIsActive').prop("checked") ? 1 : 0),
             }
         },
 
@@ -59,28 +59,28 @@
             $('#modal-genre-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            // $('#rowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+            // $('#GenreRowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
             $('#modal-genre').modal('show');
         },
 
         new: function () {
             $('#GenreId').val('0');
             $('.modal-title').text('Add Genre');            
-            $('#rowActive').addClass('invisible');
+            $('#GenreRowActive').addClass('invisible');
             Genre_Modal.init();
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit Genre');            
-            $('#rowActive').removeClass('invisible');          
+            $('#GenreRowActive').removeClass('invisible');          
             Genre_Modal.init();
             $.ajax({
                 url: "<?php echo base_url('Genre/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     $('#GenreId').val(i.GenreId);
-                    $('#Name').val(i.Name);
-                    $('#IsActive').prop("checked", (i.IsActive == 1));
+                    $('#GenreName').val(i.Name);
+                    $('#GenreIsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },
@@ -138,6 +138,9 @@
                             swal('Good Job!', message, 'success');
                             $('#modal-genre').modal('hide');
                             console.log(i);
+                            if(typeof Add !== 'undefined'){
+                                Add.refreshGenre(i);
+                            }
                         }, 
                         error: function(i){
                             swal('Oops!', "Something went wrong", 'error');

@@ -25,8 +25,7 @@
 			<div class="table-responsive">
 				<table id="librarian-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Librarian/GenerateTable") ?>">
 					<thead>
-						<tr class="bg-info">
-							<th>Librarian ID</th>
+						<tr class="bg-info">		
 							<th>Name</th>
 							<th>Username</th>
 							<th>Librarian Role</th>

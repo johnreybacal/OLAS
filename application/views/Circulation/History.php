@@ -3,7 +3,7 @@
 		<div class="header-info">
 		<div class="left">
 			<br>
-			<h2 class="header-title"><strong>Circulation</strong> <small class="subtitle">List of all Book issuance are available in this page.</small></h2>
+			<h2 class="header-title"><strong>Circulation History</strong> <small class="subtitle">List of all Book issuance that are complete are available in this page.</small></h2>
 		</div>
 		</div>	
 	</div>
@@ -12,7 +12,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id = "circulation-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
+				<table id = "circulation-history-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableHistory") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Issue no.</th>	
@@ -77,7 +77,7 @@
 		},
 
 		reset: function () {
-			$('#circulation-table').DataTable().ajax.reload();
+			$('#circulation-history-table').DataTable().ajax.reload();
 		}
 	}
 </script>
