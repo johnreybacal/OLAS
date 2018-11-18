@@ -156,9 +156,39 @@ class _BaseController extends CI_Controller {
 		// sena, dito ilagay ang sms at email
 		// mga need mong data:
 		// uncomment the ff:
-		// $patron = $this->patron->_get($patronId);
-		// $patron->ContactNumber //contact number
-		// $patron->Email //Email
+		$patron = $this->patron->_get($patronId);
+
+		$number = $patron->ContactNumber;
+		$message = "Hi ".$user_name.", you borrowed a book. -OLAS";
+		$apicode = "TR-JOSHU647668_PGEE4";
+		$ch = curl_init();
+		$itexmo = array(
+			'1' => $number,
+			'2' => $message,
+			'3' => $apicode
+		);
+	
+		curl_setopt($ch, CURLOPT_URL, "https://www.itexmo.com/php_api/api.php");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($itexmo));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		
+		return curl_exec ($ch);
+		curl_close ($ch);
+
+		$this->email->from('johnmarksena@gmail.com', 'Your Name');
+        $this->email->to($patron->Email);
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing');
+
+        if($this->email->send()){
+           echo "Good";
+        }
+        else{
+            echo "Bad";
+            $this->session->set_flashdata("email_sent","Bad!");
+        }
 	}
 
 	//returns full data of book searched, with filter
