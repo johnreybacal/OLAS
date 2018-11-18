@@ -6,11 +6,11 @@
 <div class="main-content">
 	<div class="card">
         <div class="card-body">
-            <label class="fs-18 fw-500">Reports</label>
+            <!-- <label class="fs-18 fw-500">Reports</label> -->
             <div class="form-row">
                 <!-- <label>Report date range</label> -->
                 <!-- <div data-provide="datepicker" data-date-format="yyyy-mm-dd"> -->
-                    <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                    <!-- <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                         <label>From</label>
                         <input class="form-control" type="text" id="range-dashboard-from" name="range-dashboard-from" placeholder="">
                     </div>
@@ -21,23 +21,23 @@
                     <div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
                         <label>&nbsp;</label>
                         <button class="btn btn-block btn-info" onclick="Dashboard.filter()">Filter</button>
-                    </div>
+                    </div> -->
                 <!-- </div> -->
             </div>
-            <!-- <div class="row">
-                <label>Report date range</label>
+                <label class="fs-18 fw-500">Report date range</label>
+            <div class="form-row mb-3">
                 <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <div class="input-group-prepend">
                         <span class="input-group-text">From</span>
                     </div>
-                    <input id="range-dashboard-from" type="text" class="form-control date-dashboard-range">
+                    <input id="range-dashboard-from" type="text" class="form-control date-dashboard-range date-range">
                     <div class="input-group-prepend input-group-append">
                         <span class="input-group-text">To</span>
                     </div>
-                    <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range">
-                </div>		
-                <button onclick="Dashboard.filter()" class="btn">Filter</button>                
-            </div> -->
+                    <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range date-range">
+                    <button class="btn btn-info filter" onclick="Dashboard.filter()">Filter</button>                
+                </div>      
+            </div>
             <div class="row">
 
                 <div class="col-md-4 col-lg-4 col-xlg-4">
@@ -119,6 +119,22 @@
 	</div>
 </div>
 <script>
+    (function($) {
+        var $window = $(window);
+
+        $window.resize(function resize() {
+            if ($window.width() > 768) {
+                $('#book-table').removeClass('table-responsive');
+            }
+            else{
+                $('#book-table').addClass('table-responsive');  
+            }
+
+            //$html.addClass('mobile');
+            //$html.removeClass('mobile');
+        }).trigger('resize');
+    })(jQuery);
+
     var Dashboard = {
         filter: function(){
             if($('#range-dashboard-from').val() != null && $('#range-dashboard-to').val() != null){

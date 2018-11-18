@@ -141,33 +141,54 @@ table.table-responsive thead tr th{
         margin-left: 78%;
     }
  }
+
 @media screen and (min-width: 376px) and (max-width: 425px){
     .isactive{
         margin-left: 81%;
     }
  }
- /*@media screen and (max-width: 768px){
-    div.isactive{
+ @media screen and (min-width: 426px) and (max-width: 768px){
+    .isactive{
         margin-left: 84%;
+    }
+    .filter{
+        width: 18%;
+    }
+    .date-range{
+        margin-right: 8px !important;
     }
  }
- @media screen and (max-width: 1024px){
-    div.isactive{
+
+ @media screen and (min-width: 769px) and (max-width: 1024px){
+    .isactive{
         margin-left: 84%;
     }
- }*/
-@media screen and (min-width: 426px) and (max-width: 1024px){
-    div.isactive{
-        margin-left: 84%;
+    .filter{
+        width: 18%;
     }
-} 
+    .date-range{
+        margin-right: 8px !important;
+    }
+ }
 @media screen and (min-width: 1025px) and (max-width: 1440px){
     div.isactive{
         margin-left: 83%;
+    }
+    .filter{
+        width: 18%;
+    }
+    .date-range{
+        margin-right: 10px !important;
     }
 }
 @media screen and (min-width: 1440px){
     div.isactive{
         margin-left: 83%;
+    }
+    .filter{
+        width: 18%;
+    }
+    .date-range{
+        margin-right: 20px !important;
     }
 }
