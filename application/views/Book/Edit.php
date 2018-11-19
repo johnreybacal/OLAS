@@ -33,7 +33,7 @@
 								<div class="col-md-3">
 									<!-- <div id="imgDisplay">
 	                				</div> -->
-	                					<input id="image" type="file" data-provide="dropify" data-show-remove="true" data-default-file="<?php echo base_url("assetsOLAS/kung ano yung current pic.png"); ?>" style="border: solid black 1px;">
+	                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="true" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
               					</div>
 								<div class="form-row gap-1 col-md-9 mt-3">
 									<div class="form-group col-md-6 col-sm-12">
@@ -204,7 +204,7 @@
 						});
 						$('#SelectSubjectId').selectpicker('val', subject);
 
-						$("#imgDisplay").children('img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
+						$('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
 						imageChanged = false;
 					}
 				}
