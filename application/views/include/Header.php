@@ -13,10 +13,12 @@
 	
 	<link href="<?php echo base_url('assetsOLAS/css/custom.css'); ?>" rel="stylesheet">
 
+
 	<script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>	
 	<script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
 
 	<script src = "<?php echo base_url('assetsOLAS/js/marc-reader.js'); ?>"></script>	
+	<script src = "<?php echo base_url('assetsOLAS/js/custom.js'); ?>"></script>	
 	
 </head>
 
