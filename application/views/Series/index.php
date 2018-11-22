@@ -3,7 +3,7 @@
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>Series</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
+		<h2 class="header-title"><strong>Series</strong> <small class="subtitle">List of all Series are available in this page.</small></h2>
 	</div>
 	</div>
 

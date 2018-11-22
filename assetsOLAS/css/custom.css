@@ -38,34 +38,44 @@ a {
     background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#ebebeb, #ebebeb);
     transition: background 0.3s;
 }
+.form-control:focus {
+    border-color: #48b0f7;
+    color: #4d5259;
+    -webkit-box-shadow: 0 0 0 0.1rem rgba(51,202,187,0.15);
+    box-shadow: 0 0 0 0.1rem rgba(51,202,187,0.15);
+}
+.btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #926dde;
+    box-shadow: none;
+}
 /* TABLES */
 table, table.table-bordered.dataTable td{
-	border: none;
-	text-align: center;
+    border: none;
+    text-align: center;
 }
 table.table-responsive thead tr th{
-	text-align: center;
-	background-color: #48b0f7;
-	color: white;
+    text-align: center;
+    background-color: #48b0f7;
+    color: white;
     /*for th of datatables. (datepicker also has a table.)*/
 }
 .center{
-	text-align: center;
+    text-align: center;
 }
 .table-money{
-	text-align: left;
+    text-align: left;
 }
 .table-date{
-	text-align: center;
+    text-align: center;
 }
 .table-text{
-	text-align: center;
+    text-align: center;
 }
 .table-integer{
-	text-align: right;
+    text-align: right;
 }   
 .table-action{
-	text-align: justify;
+    text-align: justify;
 }
 /*DATE PICKER*/
 .datepicker table tr td span.active.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active:hover:active, .datepicker table tr td.active.active {
@@ -88,7 +98,7 @@ table.table-responsive thead tr th{
     border-bottom-color: #48b0f7;
 }
 .topbar .menu .menu-item .menu-link:hover{
-	color: #4d5259;
+    color: #4d5259;
     border-top-color: #48b0f7;
     border-bottom-color: #48b0f7;
 }
@@ -124,7 +134,7 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
 /*SIDEBAR*/
 .sidebar .menu:not(.menu-bordery)>.menu-item.active>.menu-link {
    background-color: #48b0f7;
-	color: #fff;
+    color: #fff;
 }
 .page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
     background-color: #48b0f7;
@@ -216,3 +226,16 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
         margin-right: 20px !important;
     }
 }
+
+
+/*CUSTOMIZED MEDIA QUERY*/
+@media screen and (max-width: 425px){
+    .dash-filter{
+        margin-top: -30px;
+    }
+ }
+@media screen and (min-width: 768px){
+    .edit{
+        margin-top: 10px;
+    }
+ }

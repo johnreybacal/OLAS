@@ -15,8 +15,8 @@
 
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>College Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="College Name" />
+                                <label>Name</label>
+                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>   
 

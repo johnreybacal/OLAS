@@ -1,10 +1,10 @@
-<div class="main-content">
+<div class="main-content edit">
 	<form id="book-form" enctype="multipart/form-data">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-12">
 				<div class="card card-shadowed">				
 					<header class="card-header">
-						<h4 class="card-title">Book <strong>Information</strong></h4>
+						<h4 class="card-title fs-18 fw-500">Book <strong>Information</strong></h4>
 		                <ul class="card-controls">
                   			<li>										
 								<label class="switch switch-lg switch-info">
@@ -59,7 +59,7 @@
 									</div>					
 									<div class="form-group col-md-6">
 										<label>Author</label>
-										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick" data-actions-box="true"></select>
+										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Genre</label>

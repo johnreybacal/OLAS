@@ -7,8 +7,9 @@
 	<div class="card">
         <div class="card-body">
             <!-- <label class="fs-18 fw-500">Reports</label> -->
+            <label class="fs-18 fw-500">Report date range</label>
             <div class="form-row">
-                <!-- <label>Report date range</label> -->
+            <!-- <label>Report date range</label> -->
                 <!-- <div data-provide="datepicker" data-date-format="yyyy-mm-dd"> -->
                     <!-- <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                         <label>From</label>
@@ -23,7 +24,20 @@
                         <button class="btn btn-block btn-info" onclick="Dashboard.filter()">Filter</button>
                     </div> -->
                 <!-- </div> -->
+                 <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                    <label>From</label>
+                    <input class="form-control" type="text" id="range-dashboard-from" name="range-dashboard-from" placeholder="">
+                </div>
+                <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                    <label>To</label>
+                    <input class="form-control" type="text" id="range-dashboard-to" name="range-dashboard-to" placeholder="">
+                </div>
+                <div class="col-md-2 col-sm-12 dash-filter" style="margin-bottom: 30px;">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-block btn-info" onclick="Dashboard.filter()">Filter</button>
+                </div>
             </div>
+<!--            GROUP-APPEND TYPE DATE PICKER DO NOT DELETE
                 <label class="fs-18 fw-500">Report date range</label>
             <div class="form-row mb-3">
                 <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
@@ -37,7 +51,7 @@
                     <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range date-range">
                     <button class="btn btn-info filter" onclick="Dashboard.filter()">Filter</button>                
                 </div>      
-            </div>
+            </div> -->
             <div class="row">
 
                 <div class="col-md-4 col-lg-4 col-xlg-4">

@@ -14,25 +14,25 @@
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>OutsideResearcher Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Outside Researcher Name" />
+                                <label>Name</label>
+                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>           
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Subject to research</label>
+                                <label>Subject to Research</label>
                                 <select id="SubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>			
                             </div>                                       
                         </div>    
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Date of admission</label>
+                                <label>Date of Admission</label>
                                 <input  id="DateTime" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date of admission">
                             </div>                                       
                         </div>        
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Amount Payed</label>
+                                <label>Amount Paid</label>
                                 <input  id="AmountPayed" class="form-control" type="number" name="" placeholder="Price" value = "100">
                             </div>                                       
                         </div>                                                        

@@ -14,8 +14,8 @@
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Genre Name</label>
-                                <input id="GenreName" name="GenreName" type="text" class="form-control" placeholder="Genre Name" />
+                                <label>Name</label>
+                                <input id="GenreName" name="GenreName" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>   
 

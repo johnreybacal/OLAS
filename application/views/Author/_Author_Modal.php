@@ -1,49 +1,3 @@
-<style>
-
- /*ME\\----------------MEDIA QUERIES ********** RESPONSIVENESS*/
- @media screen and (min-width: 1px) and (max-width: 320px){
-    .isactive{
-        margin-left: 74%;
-    }
- }
- @media screen and (min-width: 321px) and (max-width: 375px){
-    .isactive{
-        margin-left: 78%;
-    }
- }
- @media screen and (min-width: 376px) and (max-width: 425px){
-    .isactive{
-        margin-left: 81%;
-    }
- }
- /*@media screen and (max-width: 768px){
-    div.isactive{
-        margin-left: 84%;
-    }
- }
- @media screen and (max-width: 1024px){
-    div.isactive{
-        margin-left: 84%;
-    }
- }*/
- @media screen and (min-width: 426px) and (max-width: 1024px){
-    div.isactive{
-        margin-left: 84%;
-    }
-} 
-@media screen and (min-width: 1025px) and (max-width: 1440px){
-    div.isactive{
-        margin-left: 83%;
-    }
-}
-@media screen and (min-width: 1440px){
-    div.isactive{
-        margin-left: 83%;
-    }
-}
- 
-
-</style>
 <div class="modal modal-center fade" id="modal-author" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
@@ -54,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body form-type-line">
+                <!-- ISACTIVE SA UPPER RIGHT
                 <div class="row isactive" id="AuthorRowActive">
                     <div class="form-group">
                         <label class="switch switch-lg switch-info">
@@ -62,18 +17,18 @@
                             <label>Active</label>
                         </label>
                     </div>
-                </div> 
+                </div>  -->
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-author-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="AuthorId"/>          
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Author Name</label>
-                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Author Name" />
+                                <label>Name</label>
+                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Name"/>
                             </div>
                         </div>                          
-                        <!-- <div class="row" id="AuthorRowActive">
+                        <div class="row" id="AuthorRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
@@ -86,7 +41,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>  -->
+                        </div> 
 
                     </form>
                 </div>
@@ -117,6 +72,7 @@
         },
 
         new: function () {
+            $('#AuthorName').focus();            
             $('#AuthorId').val('0');            
             $('.modal-title').text('Add Author');    
             // $('#AuthorRowActive').addClass('invisible');        

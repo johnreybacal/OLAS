@@ -45,7 +45,7 @@
 									</div>					
 									<div class="form-group col-md-6">
 										<label>Author</label>
-										<select readonly id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick" data-actions-box="true"></select>
+										<select readonly id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Genre</label>

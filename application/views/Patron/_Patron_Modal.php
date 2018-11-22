@@ -44,20 +44,20 @@
                             </div> -->
                             <div class="form-group col-lg-6 col-md-12 col-sm-12"> <!-- has-form-text" -->
                                 <label>Email</label>
-                                <input  id="Email" class="form-control" type="email" name="Email" placeholder="Email">
+                                <input  id="Email" class="form-control" type="email" name="Email" placeholder="email@email.com">
                                 <!-- <small class="form-text">We'll never share your email with anyone else.</small> -->
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Contact Number</label>
-                                <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" >
+                                <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" placeholder="+63 999-999-9999">
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>Id Number</label>
-                                <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" >
+                                <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" placeholder="18-xxx-xxx">
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                 <label>RFID Number</label>
-                                <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" data-format="{{99}}-{{999}}-{{9999}}">
+                                <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" data-format="{{99}}-{{999}}-{{9999}}" placeholder="xx-xxx-xxxx">
                             </div>
                             <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                 <label>Email</label>

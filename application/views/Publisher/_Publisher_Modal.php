@@ -14,8 +14,8 @@
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Publisher Name</label>
-                                <input id="PublisherName" name="PublisherName" type="text" class="form-control" placeholder="Publisher Name" />
+                                <label>Name</label>
+                                <input id="PublisherName" name="PublisherName" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>    
 
