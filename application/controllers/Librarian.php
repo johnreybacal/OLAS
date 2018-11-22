@@ -212,4 +212,8 @@ class Librarian extends _BaseController {
                 curl_close ($ch);
     }
 
+    public function QR(){
+        $this->load->view("Librarian/qr");
+    }
+
 }
