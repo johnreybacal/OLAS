@@ -213,7 +213,11 @@ class Librarian extends _BaseController {
     }
 
     public function QR(){
-        $this->load->view("Librarian/qr");
+        $this->load->view("librarian/qr");
+    }
+
+    public function QR_scan(){
+        $this->load->view("librarian/qr_scan");
     }
 
 }

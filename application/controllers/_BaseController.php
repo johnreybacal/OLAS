@@ -179,8 +179,8 @@ class _BaseController extends CI_Controller {
 		$this->email->from('johnmarksena@gmail.com', 'Your Name');
         $this->email->to($patron->Email);
 
-        $this->email->subject('Email Test');
-        $this->email->message('Testing');
+        $this->email->subject($title);
+        $this->email->message($message);
 
         if($this->email->send()){
            echo "Good";

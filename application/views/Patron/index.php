@@ -27,11 +27,7 @@
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-<<<<<<< HEAD
-				<table id="table-123" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
-=======
 				<table id="patron-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
->>>>>>> master
 					<thead>
 						<tr class="bg-info">							
 							<th>Name</th>
@@ -74,11 +70,7 @@
         },
 
         reset: function () {
-<<<<<<< HEAD
-            $('#table-123').DataTable().ajax.reload();
-=======
             $('#patron-table').DataTable().ajax.reload();
->>>>>>> master
         }
     }
 </script>
