@@ -73,10 +73,10 @@
 
 
 
-<!-- Notifications -->
+<!-- Bookbag -->
 <div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title lead">Bookbag</p>
+    <p class="quickview-title lead form-title-message">Bookbag</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
@@ -98,10 +98,11 @@
 
 
 
+
 <!-- Messages -->
 <div id="qv-messages" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title">Messages</p>
+    <p class="quickview-title form-title-message">Messages</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
@@ -112,14 +113,12 @@
     </div>
 
     <footer class="quickview-footer flexbox">
-    <div>
-        <a href="#">Go to inbox</a>
+    <div style="float: right;">
+        <a href="#" data-provide="tooltip" class="close form-title" style="float: right;">Close</a>
     </div>
-    <div>
-        <a href="#" data-provide="tooltip" title="Mark all as read"><i class="fa fa-circle-o"></i></a>
-        <a href="#" data-provide="tooltip" title="Update"><i class="fa fa-repeat"></i></a>
+    <!-- <div hidden>
         <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
-    </div>
+    </div> -->
     </footer>
 </div>
 
@@ -147,9 +146,9 @@
                             $('#message').append(
                                 '<a class="media media-new" href="#">'
                                     + '<div class="media-body">'
-                                        + '<p>' + data.Title + '</p>'                                        
-                                        + '<p>' + data.Message + '</p>'                                        
-                                        + '<p>' + data.DateTime + '</p>'                                        
+                                        + '<p style="font-weight:bold;">' + data.Title + '</p>'                                        
+                                        + '<p class="message-text">' + data.Message + '</p>'                                        
+                                        + '<p><time class="float-right" datetime="2019-01-30 20:00">' + data.DateTime + '</p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );

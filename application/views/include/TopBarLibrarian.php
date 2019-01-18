@@ -2,10 +2,10 @@
     <div class="topbar-left">
     <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
 
-    <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+    <!-- <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
         <i class="material-icons fullscreen-default">fullscreen</i>
         <i class="material-icons fullscreen-active">fullscreen_exit</i>
-    </a>    
+    </a> -->    
 
     <div class="topbar-divider d-none d-md-block"></div>
     <div class="lookup d-none d-md-block ">

@@ -12,6 +12,7 @@
 	<link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
 	
 	<link href="<?php echo base_url('assetsOLAS/css/custom.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('assetsOLAS/css/style1.css'); ?>" rel="stylesheet">
 
 
 	<script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>	
@@ -30,7 +31,7 @@
 		<span class="dot3" style="background-color:#ff4e4e;"></span>
 		<span class="dot4" style="background-color:#ff4e4e;"></span>	
 		<h5><text style='color:#ff4e4e; font-family: Century Gothic; letter-spacing: 5px;'>O<text style='color:#000000; font-weight: bold;'>L</text>AS</text></h5>
-		<p>Page is loading</p>
+		<!-- <p>Page is loading</p> -->
 	</div>
 </div>
 <?php

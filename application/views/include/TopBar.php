@@ -24,19 +24,19 @@
 	<!-- Form center -->
 	<div id="qv-form-center" class="quickview backdrop-dark">
 		<header class="quickview-header">
-			<p class="quickview-title lead">Log in</p>
+			<p class="quickview-title lead form-title" >Log in</p>
 			<span class="close"><i class="ti-close"></i></span>
 		</header>
 
-		<div class="quickview-body center-v">
+		<div class="quickview-body center-v user-login">
 			<form class="quickview-block form-type-line" action = "#">
 				<div class="form-group">
-					<label for="username">ID number</label>
+					<label for="username" class="form-input">ID number</label>
 					<input type="text" class="form-control" id="IdNumber">
 				</div>
 
 				<div class="form-group">
-					<label for="password">Password</label>
+					<label for="password" class="form-input" >Password</label>
 					<input type="password" class="form-control" id="Password">
 				</div>
 
@@ -44,7 +44,7 @@
 
 				<div class="form-group flexbox flex-column flex-md-row">
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" style="color: #48b0f7 "checked>
+						<input type="checkbox" class="custom-control-input" style="color: #48b0f7 ">
 						<label class="custom-control-label">Remember me</label>
 					</div>
 				</div>
