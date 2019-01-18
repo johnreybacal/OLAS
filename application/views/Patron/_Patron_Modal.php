@@ -95,7 +95,7 @@
                 ExtensionName: $('#ExtensionName').val(),
                 Email: $('#Email').val(),
                 Password: $('#Password').val(),
-                ContactNumber: $('#ContactNumber').val(),
+                ContactNumber: $('#ContactNumber').val().split('-').join('').replace(' ',''),
                 //
                 IdNumber: $('#IdNumber').val(),
                 RFIDNo: $('#RFIDNo').val(),
