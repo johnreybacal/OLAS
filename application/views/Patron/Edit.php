@@ -1,108 +1,167 @@
-<!-- <?php  echo $id ?> -->
-<header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
-<div class="container">
-	<div class="header-info">
-	<div class="left">
-		<br>
-		<h2 class="header-title"><strong>Author</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
-	</div>
-	</div>
-
-	<div class="header-action">
-	<div class="buttons">
-		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<!-- <a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();" -->
-	<!-- data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book"> -->
-		<i class="ti-plus"></i>
-		</a>
-	</div>
-	</div>
-</div>
-</header><!--/.header -->
-
 <div class="main-content">
-	<form id="patron-add-form">
-		<input id="PatronId" hidden/>
+	<form id="book-form" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="card card-shadowed">
-					<div class="card-title">
-						<div class="row">
-							<div class="col-md-6">
-								<h4><strong>Book</strong> Information</h4>
+				<div class="card card-shadowed">				
+					<header class="card-header">
+		                <h4 class="card-title">Patron <strong>Information</strong></h4>
+	              	</header>
+					<div class="card-body form-type-line">
+						<div class="row">					
+							<input id="PatronId" hidden value="<?php echo $patron->PatronId; ?>"/>		
+							<div class="form-group col-md-6">
+								<label>Patron Type</label>
+                                <select id="PatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control show-tick"></select>
 							</div>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-row gap-1">
-									<div class="form-group col-md-6" style="margin: auto;">
-											<label>Patron Type</label>
-											<select id="EditPatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-								</div>
-								<div class="form-row gap-1">
-									<div class="form-group col-md-4">
-										<label>First Name</label>
-										<input  id="EditFirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Middle Name</label>
-										<input  id="EditMiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Last Name</label>
-										<input  id="EditLastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
-									</div>
-									 <div class="form-group col-md-4">
-											<label>Sex</label>
-											<select class="form-control" title="Sex" data-provide="selectpicker" tabindex="-98" name="Gender" id="Gender">
-													<option value="FEMALE">Female</option>
-													<option value="MALE">Male</option>
-											</select>
-									</div>
-									<div class="form-group col-md-4">
-										<label>Email</label>
-										<input  id="EditEmail" class="form-control" type="email" name="Email" placeholder="Email">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Contact Number</label>
-										<input  id="EditContactNumber" class="form-control" type="number" name="ContactNumber" placeholder="Contact Number">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Username</label>
-										<input  id="EditUsername" class="form-control" type="text" name="Username" placeholder="Username">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Password</label>
-										<input  id="EditPassword" class="form-control" type="password" name="Password" placeholder="Password">
-									</div>
-									<div class="form-group col-md-4">
-										<label>Confirm Password</label>
-										<input  id="EditConfirmPassword" class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Password">
-									</div>
-								</div>
+							<div class="form-group col-md-6">
+								<label>First Name</label>
+                                <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name" value="<?php echo $patron->FirstName; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Middle Name</label>
+                                <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name" value="<?php echo $patron->MiddleName; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Last Name</label>
+                                <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name" value="<?php echo $patron->LastName; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Extension Name</label>
+                                <input  id="ExtensionName" class="form-control" type="text" name="ExtensionName" placeholder="Extension Name" value="<?php echo $patron->ExtensionName; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Email</label>
+                                <input  id="Email" class="form-control" type="email" name="Email" placeholder="email@email.com" value="<?php echo $patron->Email; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Contact Number</label>
+                                <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" placeholder="+63 999-999-9999" value="<?php echo $patron->ContactNumber; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Id Number</label>
+                                <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" placeholder="18-xxx-xxx" value="<?php echo $patron->IdNumber; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>RFID Number</label>
+                                <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" value="<?php echo $patron->RFIDNo; ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Password</label>
+                                <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password" value="<?php echo $patron->Password; ?>">
 							</div>
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
-							<button type="button" class="btn btn-info" onclick="Patron_Add.save()">Save</button>
+						<button type="button" class="btn btn-info" onclick="Patron.validate()">Save</button>
 					</div>
-					<input id="patron" >
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
 		</div> <!-- row -->
-	</form> <!-- row -->
+	</form> <!-- form -->
 </div>
 
 <script>
 	$(document).ready(function(){
+		Patron.init();
+		$('#PatronTypeId').selectpicker('val', '<?php echo $patron->PatronTypeId?>');
 	});
+
+    var Patron = {
+        data: function () {
+            return {
+                PatronId: $('#PatronId').val(),
+                PatronTypeId: $('#PatronTypeId').selectpicker('val'),
+                FirstName: $('#FirstName').val(),
+                MiddleName: $('#MiddleName').val(),
+                LastName: $('#LastName').val(),
+                ExtensionName: $('#ExtensionName').val(),
+                Email: $('#Email').val(),
+                Password: $('#Password').val(),
+                ContactNumber: $('#ContactNumber').val().split('-').join('').replace(' ',''),                
+                IdNumber: $('#IdNumber').val(),
+                RFIDNo: $('#RFIDNo').val(),                
+            }
+            console.log(Patron.data.val());
+        },
+
+        init: function () {
+            $.ajax({
+                url: "<?php echo base_url('PatronType/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);          
+                    $('#PatronTypeId').empty();          
+                    $.each(i, function(index, data){                        
+                        $('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
+                    })
+                    $('#PatronTypeId').selectpicker('refresh');
+                }
+            });
+        },	
+
+        validate: function(){
+            $.ajax({
+                url:'<?php echo base_url('Patron/Validate'); ?>',
+                type: "POST",
+                data: {"patron": Patron.data()},
+                success: function(i){
+                    $('.invalid-feedback').remove();
+                    $('.is-invalid').removeClass('is-invalid');
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Patron.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                    // Patron.save();
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
+        },
+
+        save: function () {
+            var message;
+                console.log(Patron.data());
+                console.log($('#PatronId').val());
+                if ($('#PatronId').val() == 0) {
+                    message = "Great Job! New Patron has been created";
+                } else {
+                    message = "Nice! Patron has been updated";
+                }
+                console.log($('#PatronId').val());
+
+                swal({
+                    title: 'Confirm Submission',
+                    text: 'Save changes for Patron',
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'No! Cancel',
+                    cancelButtonClass: 'btn btn-default',
+                    confirmButtonText: 'Yes! Go for it',
+                    confirmButtonClass: 'btn btn-info'
+                }).then((result) => {
+                    if (result.value) {
+                        $.post('<?php echo base_url('Patron/Save'); ?>',{
+                        patron: Patron.data()
+                        }, function(i){
+                            swal('Good Job!', message, 'success');
+                            $('#modal-patron-edit').modal('hide');
+
+                                console.log(i);
+                                //$('table').DataTable().ajax.reload();
+                            }
+                        );	
+                    }
+                })
+            
+        }
+    };
+
+
 </script>
-							 
-							 
-							 
-							 
-							 
-							 
