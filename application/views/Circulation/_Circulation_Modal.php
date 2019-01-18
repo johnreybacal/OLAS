@@ -86,6 +86,17 @@
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             $.ajax({
+                url: "<?php echo base_url("Circulation/BookStatusList"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    $('#BookStatusId').empty();
+                    $.each(i, function(index, data){                        
+                        $('#BookStatusId').append('<option value = "' + data.BookStatusId + '">' + data.Name + '</option>');
+                    })
+                    $('#BookStatusId').selectpicker('refresh');
+                }
+            })       
+            $.ajax({
                 url: "<?php echo base_url("Patron/GetAll"); ?>",
                 success: function(i){
                     i = JSON.parse(i);                                        
@@ -128,18 +139,7 @@
         },
 
         edit: function (id) {            
-            $('.modal-title').text('Edit book issue');      
-            $.ajax({
-                url: "<?php echo base_url("Circulation/BookStatusList"); ?>",
-                success: function(i){
-                    i = JSON.parse(i);                    
-                    $('#BookStatusId').empty();
-                    $.each(i, function(index, data){                        
-                        $('#BookStatusId').append('<option value = "' + data.BookStatusId + '">' + data.Name + '</option>');
-                    })
-                    $('#BookStatusId').selectpicker('refresh');
-                }
-            })        
+            $('.modal-title').text('Edit book issue');                   
             Circulation_Modal.init();
             Circulation_Modal.get(id);
         },
