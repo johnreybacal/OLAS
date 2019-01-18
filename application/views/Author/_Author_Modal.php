@@ -35,7 +35,7 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="IsActive" name="IsActive" checked />
+                                        <input type="checkbox" id="AuthorIsActive" name="AuthorIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
