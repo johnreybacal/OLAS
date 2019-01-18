@@ -55,12 +55,17 @@ class OLAS extends _BaseController {
         $json = '{ "data": [';
         foreach($this->reservation->_list("WHERE PatronId = '".$this->session->userdata('patronId')."' AND IsDiscarded = '0' AND IsActive = '1'") as $item){
             $data = $this->bookCatalogue->_get($item->AccessionNumber);
-            $book = $this->book->_get($data->ISBN);
+			$book = $this->book->_get($data->ISBN);
+			$s = $this->series->_get($book->SeriesId);
+            $series = '';
+            if(is_object($s)){
+                $series = $s->Name;
+            }
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
-                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
