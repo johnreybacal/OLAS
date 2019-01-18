@@ -32,8 +32,4 @@ class LibrarianRoleModel extends _BaseModel{
 		}
 	}	
 
-	public function authenticate($username, $password){
-		return $this->db->query("SELECT * FROM Member WHERE Username = '$username' AND Password = '$password'")->num_rows();
-	}
-
 }
