@@ -172,18 +172,4 @@ class Patron extends _BaseController {
     public function Save(){        
         $this->patron->save($this->input->post('patron'));
     }
-
-    public function Test_Notif($patronId, $title, $message){
-        $this->message->save(array(
-			"PatronId" => $patronId,
-			"Title" => $title,
-			"Message" => $message
-        ));
-        
-        $patron = $this->patron->_get($patronId);
-		// $patron->ContactNumber //contact number
-        // $patron->Email //Email
-        
-        print_r($patron);
-    }
 }

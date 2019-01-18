@@ -156,6 +156,7 @@ class _BaseController extends CI_Controller {
 		// sena, dito ilagay ang sms at email
 		// mga need mong data:
 		// uncomment the ff:
+<<<<<<< HEAD
 		$patron = $this->patron->_get($patronId);
 
 		$number = $patron->ContactNumber;
@@ -189,6 +190,11 @@ class _BaseController extends CI_Controller {
             echo "Bad";
             $this->session->set_flashdata("email_sent","Bad!");
         }
+=======
+		// $patron = $this->patron->_get($patronId);
+		// $patron->ContactNumber //contact number
+		// $patron->Email //Email
+>>>>>>> parent of 9e51fd8... notif
 	}
 
 	//returns full data of book searched, with filter
