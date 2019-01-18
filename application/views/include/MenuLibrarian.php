@@ -11,7 +11,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Librarian/Dashboard'); ?>">
-                    <span class="icon fa fa-home"></span>
+                    <span class="icon ti ti-home"></span>
                     <span class="title">Dashboard</span>
                 </a>
             </li>        
@@ -22,7 +22,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon ti-layout"></span>
+                    <span class="icon ti-book"></span>
                     <span class="title">Book</span>
                     <span class="arrow"></span>
                 </a>
@@ -68,7 +68,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon ti-layout"></span>
+                    <span class="icon ti-book"></span>
                     <span class="title">Catalogue</span>
                     <span class="arrow"></span>
                 </a>
@@ -105,7 +105,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon fa fa-pie-chart"></span>
+                    <span class="icon ti ti-loop"></span>
                     <span class="title">Circulation</span>
                     <span class="arrow"></span>
                 </a>
@@ -139,7 +139,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon fa fa-pie-chart"></span>
+                    <span class="icon fa fa-users"></span>
                     <span class="title">Patron Management</span>
                     <span class="arrow"></span>
                 </a>
@@ -166,7 +166,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('OutsideResearcher/'); ?>">
-                    <span class="icon fa fa-home"></span>
+                    <span class="icon ti ti-user"></span>
                     <span class="title">Outside Researcher</span>
                 </a>
             </li>        
@@ -176,7 +176,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon fa fa-plus-circle"></span>
+                    <span class="icon fa fa-university"></span>
                     <span class="title">University</span>
                     <span class="arrow"></span>
                 </a>
@@ -211,7 +211,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="#">
-                    <span class="icon fa fa-pie-chart"></span>
+                    <span class="icon fa fa-user"></span>
                     <span class="title">Staff Management</span>
                     <span class="arrow"></span>
                 </a>
@@ -226,6 +226,16 @@
                 </ul>
             </li>
 
+            <?php endif; ?>
+
+            <li class="menu-category">Settings</li>
+
+            <li class="menu-item">
+                <a class="menu-link" href="<?php echo base_url('Librarian/Setting'); ?>">
+                    <span class="icon ti ti-settings"></span>
+                    <span class="title">Settings</span>
+                </a>
+            </li>
             <?php endif; ?>            
 
         </ul>

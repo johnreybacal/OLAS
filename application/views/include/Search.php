@@ -9,7 +9,7 @@
 </div>
 <?php endif; ?>
 
-<div id="search-result-container" class="main-content card">
+<div id="search-result-container" class="main-content card" style="flex: 0!important;">
     <div class="card-title">
         <button onclick="SearchResult.close()">close</button>
     </div>

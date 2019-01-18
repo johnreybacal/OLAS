@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-2 col-sm-12 dash-filter" style="margin-bottom: 30px;">
                     <label>&nbsp;</label>
-                    <button class="btn btn-block btn-info" onclick="Dashboard.filter()">Filter</button>
+                    <button class="btn btn-block btn-info" id="dashboard-filter" onclick="Dashboard.filter()">Filter</button>
                 </div>
             </div>
 <!--            GROUP-APPEND TYPE DATE PICKER DO NOT DELETE
