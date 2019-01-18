@@ -83,7 +83,7 @@ class BookModel extends _BaseModel{
 	}	
 
 	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT DISTINCT(ISBN) FROM book WHERE (LOWER(Title) LIKE "%'.$search.'%" OR LOWER(ISBN) LIKE "%'.$search.'%"))')->result();
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookcatalogue WHERE ISBN IN (SELECT DISTINCT(ISBN) FROM book WHERE (LOWER(Title) LIKE "%'.$search.'%" OR LOWER(ISBN) LIKE "%'.$search.'%"))')->result();
 		return $dbList;
 	}
 

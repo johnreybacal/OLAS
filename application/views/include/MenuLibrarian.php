@@ -236,6 +236,7 @@
                     <span class="title">Settings</span>
                 </a>
             </li>
+            <?php endif; ?>            
 
         </ul>
     </nav>

@@ -37,7 +37,7 @@ class PatronTypeModel extends _BaseModel{
 	}	
 
 	public function authenticate($username, $password){
-		return $this->db->query("SELECT * FROM Patron WHERE Username = '$username' AND Password = '$password'")->num_rows();
+		return $this->db->query("SELECT * FROM patron WHERE Username = '$username' AND Password = '$password'")->num_rows();
 	}
 
 }

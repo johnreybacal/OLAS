@@ -14,7 +14,7 @@ class SubjectModel extends _BaseModel{
 
 	public function save($subject){
 		if($subject['SubjectId'] == 0){//insert						
-			$this->db->query("INSERT into Subject "
+			$this->db->query("INSERT into subject "
 				."(Name, IsActive) VALUES ("                   
 					."'".$subject['Name']."',"
 					."'1'"
@@ -23,7 +23,7 @@ class SubjectModel extends _BaseModel{
 			return $this->db->query("SELECT MAX(SubjectId) as SubjectId FROM subject")->row()->SubjectId;
 		}
 		else{//update
-			$this->db->query("UPDATE Subject SET "
+			$this->db->query("UPDATE subject SET "
                 ."Name = '".$subject['Name']."',"
                 ."IsActive = '".$subject['IsActive']."' "
                 ."WHERE SubjectId = '".$subject['SubjectId']."'"
@@ -33,7 +33,7 @@ class SubjectModel extends _BaseModel{
 	}	
 	
 	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM bookSubject WHERE SubjectId IN (SELECT SubjectId FROM subject WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookcatalogue WHERE ISBN IN (SELECT ISBN FROM booksubject WHERE SubjectId IN (SELECT SubjectId FROM subject WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
 		return $dbList;
 	}
     

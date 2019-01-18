@@ -148,7 +148,7 @@
 		});
 		Select.init();		
 		Book.init();
-		<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>
+		<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>		
 		$('#ISBN').val('<?php echo $this->session->flashdata('uncatalogued')->ISBN ?>');
 		Book.get($('#ISBN').val());
 		if($('#Title').val() == ''){
@@ -186,6 +186,11 @@
 				success: function(i){
 					if(i == 0){
 						Book.reset(val);
+						<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>						
+							if($('#Title').val() == ''){
+								$('#Title').val('<?php echo $this->session->flashdata('uncatalogued')->Title ?>');
+							}
+						<?php endif;?>
 					}else{
 						i = JSON.parse(i);
 						$('#Title').val(i.book.Title);

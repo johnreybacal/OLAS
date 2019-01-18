@@ -33,7 +33,7 @@ class SeriesModel extends _BaseModel{
 	}	
 
 	public function search($search){
-		$dbList = $this->db->query('SELECT AccessionNumber FROM bookCatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE SeriesId IN (SELECT SeriesId FROM series WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
+		$dbList = $this->db->query('SELECT AccessionNumber FROM bookcatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE SeriesId IN (SELECT SeriesId FROM series WHERE LOWER(Name) LIKE "%'.$search.'%" OR "%'.$search.'%" LIKE LOWER(Name)))')->result();
 		return $dbList;
 	}
     
