@@ -33,7 +33,7 @@ class Book extends _BaseController {
     }
 
     public function Uncatalogued(){
-        $this->librarianView('Book/UnCatalogued', '');
+        $this->librarianView('Book/Uncatalogued', '');
     }
 
     public function GenerateTable(){
