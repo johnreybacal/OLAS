@@ -10,8 +10,7 @@
 
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Patron_Modal.new();"
-	data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Add Patron">
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" href="<?php echo base_url('Patron/Add') ?>">
 		<i class="ti-plus"></i>
 		</a>
 	</div>

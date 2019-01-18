@@ -96,6 +96,10 @@ table.table-responsive thead tr th{
     color: white;
     /*for th of datatables. (datepicker also has a table.)*/
 }
+table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+    /* border-left-width: 0; */
+    border: none;
+    }
 .center{
     text-align: center;
 }

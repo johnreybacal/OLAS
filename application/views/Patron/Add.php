@@ -10,8 +10,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();"
-	data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book">
+		<!-- <a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();" -->
+	<!-- data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book"> -->
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -20,8 +20,8 @@
 </header><!--/.header -->
 
 <div class="main-content">
-	<form id="member-add-form">
-		<input id="MemberId" hidden/>
+	<form id="patron-add-form">
+		<input id="PatronId" hidden/>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
@@ -37,8 +37,8 @@
 							<div class="col-md-12">
 								<div class="form-row gap-1">
 									<div class="form-group col-md-6" style="margin: auto;">
-											<label>Member Type</label>
-											<select id="MemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+											<label>Patron Type</label>
+											<select id="PatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 								</div>
 								<div class="form-row gap-1">
@@ -86,9 +86,9 @@
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
-							<button type="button" class="btn btn-info" onclick="Member_Add.save()">Save</button>
+							<button type="button" class="btn btn-info" onclick="Patron_Add.save()">Save</button>
 					</div>
-					<input id="member" >
+					<input id="patron" >
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
 		</div> <!-- row -->
@@ -99,39 +99,39 @@
 	$(document).ready(function(){
 		$(function () {
 			$.ajax({
-					url: "<?php echo base_url('MemberType/GetAll'); ?>",
+					url: "<?php echo base_url('PatronType/GetAll'); ?>",
 					async: false,
 					success: function(i){
 						i = JSON.parse(i);                    
-						$('#MemberTypeId').empty();
+						$('#PatronTypeId').empty();
 						$.each(i, function(index, data){                        
-							$('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+							$('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
 						})
-						$('#MemberTypeId').selectpicker('refresh');
+						$('#PatronTypeId').selectpicker('refresh');
 					}
 				})
-				$('#member-add-form')[0].reset();
+				$('#patron-add-form')[0].reset();
 				$('input').removeClass('is-invalid').addClass('');
 				$('.invalid-feedback').remove();
 		});
-		Member_Add.init;
+		Patron_Add.init;
 	})															    
-	var Member_Add = {
+	var Patron_Add = {
 		init: function () {
 			console.log("latta");
             $.ajax({
-                url: "<?php echo base_url('MemberType/GetAll'); ?>",
+                url: "<?php echo base_url('PatronType/GetAll'); ?>",
                 async: false,
                 success: function(i){
                     i = JSON.parse(i);                    
-                    $('#MemberTypeId').empty();
+                    $('#PatronTypeId').empty();
                     $.each(i, function(index, data){                        
-                        $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
+                        $('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
                     })
-                    $('#MemberTypeId').selectpicker('refresh');
+                    $('#PatronTypeId').selectpicker('refresh');
                 }
             })
-            $('#member-add-form')[0].reset();
+            $('#patron-add-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             //$('#rowActive').addClass('invisible');
@@ -140,8 +140,8 @@
 
 		data: function () {
 			return {
-				MemberId: $('#MemberId').val(),
-				MemberTypeId: $('#MemberTypeId').selectpicker('val'),
+				PatronId: $('#PatronId').val(),
+				PatronTypeId: $('#PatronTypeId').selectpicker('val'),
 				FirstName: $('#FirstName').val(),
 				LastName: $('#Lastname').val(),
 				Username: $('#Username').val(),
@@ -153,8 +153,8 @@
 		
 		save: function () {
 			var message;
-				console.log(Member_Add.data());
-				if ($('#MemberId').val() == 0) {
+				console.log(Patron_Add.data());
+				if ($('#PatronId').val() == 0) {
                     message = "Great Job! New Subject has been created";
                 } else {
                     message = "Nice! Subject has been updated";
@@ -162,7 +162,7 @@
 
 		    swal({
 				title: 'Confirm Submission',
-				text: 'Save changes for Member',
+				text: 'Save changes for Patron',
 				type: 'warning',
 				showCancelButton: true,
 				cancelButtonText: 'No! Cancel',
@@ -170,11 +170,11 @@
 				confirmButtonText: 'Yes! Go for it',
 				confirmButtonClass: 'btn btn-info'
 		    }).then((result) => {
-				console.log(Member_Add.data());
+				console.log(Patron_Add.data());
 				if (result.value) {
 
-					$.post('<?php echo base_url('Member/Save'); ?>',{
-					member: Member_Add.data()
+					$.post('<?php echo base_url('Patron/Save'); ?>',{
+					patron: Patron_Add.data()
 					}, function(i){
 						swal('Good Job!', message, 'success');
 					// if(i == 0){

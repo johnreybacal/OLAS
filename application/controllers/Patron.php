@@ -11,7 +11,16 @@ class Patron extends _BaseController {
     public function index(){		          		              	
 		$this->librarianView('Patron/index', '');
     }
+
+    public function Add(){
+        $this->librarianView('Patron/Add', '');
+    }
     
+    public function Edit($id){
+        $data['patron'] = $this->patron->_get($id);
+        $this->librarianView('Patron/Edit', $data);
+    }
+
     public function Authenticate(){        
         $result = $this->patron->authenticate($this->input->post('login')['IdNumber'], $this->input->post('login')['Password']);                    
 		if($result != 0){
@@ -151,8 +160,9 @@ class Patron extends _BaseController {
                 .'"'.$this->patronType->_get($data->PatronTypeId)->Name.'",'
                 .'"'.$data->ContactNumber.'",'
                 .'"'.$data->Email.'",'
-                .'"<button onclick = \"Patron_Modal.edit('.$data->PatronId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                // .'"<button onclick = \"Patron_Modal.edit('.$data->PatronId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
                 // .'"<a href = \"'.base_url("Patron/edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<a href = \"'.base_url("Patron/Edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Patron/Edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';            
             $json .= ',';
         }

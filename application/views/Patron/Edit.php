@@ -1,4 +1,4 @@
-<?php  echo $id ?>
+<!-- <?php  echo $id ?> -->
 <header class="header header-inverse bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
 <div class="container">
 	<div class="header-info">
@@ -11,8 +11,8 @@
 	<div class="header-action">
 	<div class="buttons">
 		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();"
-	data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book">
+		<!-- <a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Utilities_PANType_Modal.new();" -->
+	<!-- data-toggle="modal" data-target="#modal-utilities-pantype" data-provide="tooltip" data-original-title="Add Book"> -->
 		<i class="ti-plus"></i>
 		</a>
 	</div>
@@ -21,8 +21,8 @@
 </header><!--/.header -->
 
 <div class="main-content">
-	<form id="member-add-form">
-		<input id="MemberId" hidden/>
+	<form id="patron-add-form">
+		<input id="PatronId" hidden/>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
@@ -38,8 +38,8 @@
 							<div class="col-md-12">
 								<div class="form-row gap-1">
 									<div class="form-group col-md-6" style="margin: auto;">
-											<label>Member Type</label>
-											<select id="EditMemberTypeId" name="MemberTypeId" data-provide="selectpicker" title="Choose Member Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+											<label>Patron Type</label>
+											<select id="EditPatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 								</div>
 								<div class="form-row gap-1">
@@ -87,9 +87,9 @@
 						</div> <!-- row -->
 					</div> <!-- card-body -->
 					<div class="card-footer text-right">
-							<button type="button" class="btn btn-info" onclick="Member_Add.save()">Save</button>
+							<button type="button" class="btn btn-info" onclick="Patron_Add.save()">Save</button>
 					</div>
-					<input id="member" >
+					<input id="patron" >
 				</div> <!-- card -->
 			</div> <!-- col-lg-12 -->
 		</div> <!-- row -->
@@ -97,120 +97,8 @@
 </div>
 
 <script>
-console.log($('#MemberId').val());
 	$(document).ready(function(){
-		$(function (id) {
-			 $.ajax({
-        url: "<?php echo base_url('Member/Edit?id='); ?>" + id,
-                success: function(i){
-                    i = JSON.parse(i);
-                    $('#EditFirstName').val(i.Firstname);
-                    // $('#Name').val(i.Name);
-                    console.log(i);
-                }
-            });     
-		Member_View.init;
-	})
-    });			
-    // $(document).ready(function() {
-    //     $.ajax({
-    //             url: "<?php echo base_url('Member/Edit?id='); ?>" + id,
-    //             success: function(i){
-    //                 i = JSON.parse(i);
-    //                 $('#EditFirstName').val(i.Firstname);
-    //                 // $('#Name').val(i.Name);
-    //                 console.log(i);
-    //             }
-    //         });     
-    // });     											    
-	var Member_View = {
-
-        new: function (id) {
-            $('#MemberId').val(id);
-            console.log($('#MemberId').val(id));
-            Member_View.data(id);
-        },
-
-		dataa: function () {
-			return {
-				MemberId: $('#MemberId').val(),
-
-				MemberTypeId: $('#EditMemberTypeId').val(),
-				FirstName: $('#EditFirstName').val(),
-	  			LastName: $('#EditLastName').val(),
-				Username: $('#EditUsername').val(),
-				Password: $('#EditPassword').val(),
-				ContactNumber: $('#EditContactNumber').val(),
-				Email: $('#EditEmail').val(),
-			}
-            console.log($('#EditEmail').val());
-		},
-
-		init: function () {
-            $.ajax({
-                url: "<?php echo base_url('MemberType/GetAll'); ?>",
-                async: false,
-                success: function(i){
-                    i = JSON.parse(i);                    
-                    $('#MemberTypeId').empty();
-                    $.each(i, function(index, data){                        
-                        $('#MemberTypeId').append('<option value = "' + data.MemberTypeId + '">' + data.Name + '</option>');
-                    })
-                    $('#MemberTypeId').selectpicker('refresh');
-                }
-            })
-            $('#member-add-form')[0].reset();
-            $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();
-            //$('#rowActive').addClass('invisible');
-            //$('#modal-subject').modal('show');
-            Member_View.data();
-        },
-        
-        data: function(id) {
-            $.ajax({
-                url: "<?php echo base_url('Member/Get/'); ?>" + id,
-                success: function(i){
-                    i = JSON.parse(i);
-                    $('#EditFirstName').val(i.Firstname);
-                    // $('#Name').val(i.Name);
-                    console.log(i);
-                }
-            })
-        }
-		// save: function () {
-		// 	var message;
-		// 		console.log(Member_Add.data());
-		// 		if ($('#MemberId').val() == 0) {
-        //             message = "Great Job! New Subject has been created";
-        //         } else {
-        //             message = "Nice! Subject has been updated";
-        //         }
-
-		//     swal({
-		// 		title: 'Confirm Submission',
-		// 		text: 'Save changes for Member',
-		// 		type: 'warning',
-		// 		showCancelButton: true,
-		// 		cancelButtonText: 'No! Cancel',
-		// 		cancelButtonClass: 'btn btn-default',
-		// 		confirmButtonText: 'Yes! Go for it',
-		// 		confirmButtonClass: 'btn btn-info'
-		//     }).then((result) => {
-		// 		console.log(Member_Add.data());
-		// 		if (result.value) {
-
-		// 			$.post('<?php echo base_url('Member/Save'); ?>',{
-		// 			member: Member_Add.data()
-		// 			}, function(i){
-		// 				swal('Good Job!', message, 'success');
-		// 				}
-		// 			);
-		// 		} 
-		//     })
-		// }
-	}
-
+	});
 </script>
 							 
 							 
