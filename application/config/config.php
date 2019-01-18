@@ -528,13 +528,12 @@ spl_autoload_extensions('.php');
 spl_autoload_register(function($classname){
 
     if(strpos($classname,'\\') !== false){
-        $classfile = str_replace('\\', '\\', $classname);
-        if($classname[0] !== '\\'){
-            $classfile = APPPATH.'libraries\\'.$classfile.'.php';
+        $classfile = str_replace('\\', '/', $classname);
+        if($classname[0] !== '/'){
+            $classfile = APPPATH.'libraries/'.$classfile.'.php';
         }
-        require(strtolower($classfile));
-    }else if(strpos($classname, 'interface') !== false){
-        strtolower($classname);
-        require('application\\libraries\\'.$classname.'.php');
+        require($classfile);
+    }else if(strpos($classname, 'interface') !== false){        
+        require('application/libraries/'.$classname.'.php');
     }
 });
