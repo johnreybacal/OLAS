@@ -226,16 +226,7 @@
                 </ul>
             </li>
 
-            <?php endif; ?>
-
-            <li class="menu-category">Settings</li>
-
-            <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Librarian/Setting'); ?>">
-                    <span class="icon fa fa-home"></span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
+            <?php endif; ?>            
 
         </ul>
     </nav>
