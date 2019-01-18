@@ -176,7 +176,7 @@ class _BaseController extends CI_Controller {
 		return curl_exec ($ch);
 		curl_close ($ch);
 
-		$this->email->from('johnmarksena@gmail.com', 'Your Name');
+		$this->email->from('johnmarksena@gmail.com', 'OLAS');
         $this->email->to($patron->Email);
 
         $this->email->subject($title);
