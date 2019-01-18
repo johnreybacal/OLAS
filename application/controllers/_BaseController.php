@@ -157,6 +157,7 @@ class _BaseController extends CI_Controller {
 		// mga need mong data:
 		// uncomment the ff:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$patron = $this->patron->_get($patronId);
 
 		$number = $patron->ContactNumber;
@@ -190,6 +191,11 @@ class _BaseController extends CI_Controller {
             echo "Bad";
             $this->session->set_flashdata("email_sent","Bad!");
         }
+=======
+		// $patron = $this->patron->_get($patronId);
+		// $patron->ContactNumber //contact number
+		// $patron->Email //Email
+>>>>>>> parent of 9e51fd8... notif
 =======
 		// $patron = $this->patron->_get($patronId);
 		// $patron->ContactNumber //contact number
