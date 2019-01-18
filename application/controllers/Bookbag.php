@@ -49,11 +49,16 @@ class Bookbag extends _BaseController {
         foreach($this->cart->contents() as $item){
             $data = $this->bookCatalogue->_get($item['id']);
             $book = $this->book->_get($data->ISBN);
+            $s = $this->series->_get($book->SeriesId);
+            $series = '';
+            if(is_object($s)){
+                $series = $s->Name;
+            }
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
-                .'"'.$this->series->_get($book->SeriesId)->Name.'",'
+                .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
