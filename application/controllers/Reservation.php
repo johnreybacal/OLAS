@@ -44,6 +44,7 @@ class Reservation extends _BaseController {
         $c = $this->reservation->_get($reservationId);
         $this->loan->save((array)$c);
         $this->reservation->setInactive($reservationId);
+        $this->NotifyPatron($this->loan->_get($loanId)->PatronId, 'Book ', 'Please enjoy your book'.$this->book->_get($this->bookCatalogue->_get($loan->AccessionNumber)->ISBN)->Title.' Thank you.');
     }
 
     public function Discard($reservationId){
