@@ -58,6 +58,9 @@ class _BaseController extends CI_Controller {
 					$this->load->view('Series/_Series_Modal');
 					$this->load->view('Subject/_Subject_Modal');
 				}
+				if(in_array('Circulation' , $this->session->userdata('access'))){
+					$this->load->view('Circulation/QR');
+				}
 				$this->footer();
 			}else{
 				echo "403: Access Denied";
