@@ -210,20 +210,10 @@
             <?php if(in_array("Staff Management", $this->session->userdata('access'))): ?>
 
             <li class="menu-item">
-                <a class="menu-link" href="#">
+                <a class="menu-link" href="<?php echo base_url('Librarian/Manage'); ?>">
                     <span class="icon fa fa-user"></span>
-                    <span class="title">Staff Management</span>
-                    <span class="arrow"></span>
+                    <span class="title">Staff Management</span>                    
                 </a>
-
-                <ul class="menu-submenu">                   
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Librarian/Manage'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Librarian</span>
-                        </a>
-                    </li>                    
-                </ul>
             </li>
 
             <?php endif; ?>            
