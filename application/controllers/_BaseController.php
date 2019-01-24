@@ -59,7 +59,7 @@ class _BaseController extends CI_Controller {
 					$this->load->view('Subject/_Subject_Modal');
 				}
 				if(in_array('Circulation' , $this->session->userdata('access'))){
-					$this->load->view('Circulation/QR');
+					$this->load->view('Circulation/QRFab');
 				}
 				$this->footer();
 			}else{
