@@ -39,6 +39,7 @@ class Patron extends _BaseController {
     }
     
     public function LogOut($page = null){//required pala talaga lol
+        $this->cart->destroy();
         parent::LogOut('');
     }
 	
