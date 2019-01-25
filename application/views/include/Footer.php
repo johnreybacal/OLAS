@@ -42,6 +42,7 @@
 <script src = "<?php echo base_url('assets/js/core.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/js/app.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script>
+<script src = "<?php echo base_url('assets/vendor/moment/moment.min.js'); ?>"></script>
 <!-- <script src = "<?php echo base_url('assets/vendor/datatables/js/jquery.dataTables.min.js'); ?>"></script>   -->
 <script src = "<?php echo base_url('assets/vendor/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>  
 

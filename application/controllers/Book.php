@@ -36,6 +36,10 @@ class Book extends _BaseController {
         $this->librarianView('Book/Uncatalogued', '');
     }
 
+    public function QR(){
+        $this->librarianView('Book/QR', '');
+    }
+
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->bookCatalogue->_list() as $data){   

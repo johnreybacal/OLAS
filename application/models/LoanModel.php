@@ -71,5 +71,9 @@ class LoanModel extends _BaseModel{
 	public function unrecall($loanId){
 		$this->db->query("UPDATE loan SET IsRecalled = '0' WHERE LoanId = '".$loanId."'");
 	}
+	
+	public function getLoanByAccession($accessionNumber){
+		return $this->db->query("SELECT * From loan where AccessionNumber = '".$accessionNumber."' AND BookStatusId = '1'")->row();
+	}
     
 }
