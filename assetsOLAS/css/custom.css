@@ -210,6 +210,9 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .fab-320{
         margin-right: -10%;
     }
+    .lookup-circle.lookup-sm input:focus {
+    width: 90px;
+    }
  }
 @media screen and (min-width: 321px) and (max-width: 375px){
     .isactive{
