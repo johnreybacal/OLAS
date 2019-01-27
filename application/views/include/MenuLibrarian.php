@@ -97,9 +97,9 @@
                     </li>   
 
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Book/QR'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Book/QR_Scan'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Print QR</span>
+                            <span class="title">Scan QR</span>
                         </a>
                     </li>   
 

@@ -8,7 +8,7 @@ class Book extends _BaseController {
 		parent::__construct();		
     }
     
-    public function index(){		          		              	
+    public function index(){		           	
 		$this->librarianView('Book/index', '');
     }
         
@@ -36,8 +36,13 @@ class Book extends _BaseController {
         $this->librarianView('Book/Uncatalogued', '');
     }
 
-    public function QR(){
-        $this->librarianView('Book/QR', '');
+    public function QR($id){
+        $data['book'] = $this->bookCatalogue->_get($id);
+        $this->librarianView('Book/QR', $data);
+    }
+
+    public function QR_Scan(){
+        $this->librarianView('Book/QR_Scan', '');
     }
 
     public function GenerateTable(){
@@ -50,7 +55,7 @@ class Book extends _BaseController {
                 .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
                 .'"'.$data->AcquiredFrom.'",'
-                .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<a href = \"'.base_url("Book/QR/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-qrcode\"></span></a> <a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }
@@ -135,9 +140,7 @@ class Book extends _BaseController {
     //get full details of book via isbn
     public function Get($isbn){        
         $book = $this->book->_get($isbn);
-        if($book != null){
-            echo '{"book":';
-            echo $this->convert($book);
+        if($book != null){ 
             echo ', "author":';
             echo $this->convert($this->bookAuthor->_list($isbn));
             echo ', "genre":';
