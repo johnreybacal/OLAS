@@ -2,16 +2,9 @@
 <header class="topbar topbar-expand-xl">  
     <div class="topbar-left">
         <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
-        <span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span>
-        <div class="topbar-divider d-none d-md-block"></div>
+        <a href="<?php echo base_url('') ?>" class="logo"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
         <nav class="topbar-navigation">
             <ul class="menu">
-                <li class="menu-item">
-                    <a class="menu-link" href="<?php echo base_url(); ?>">
-                        <span class="icon fa fa-home"></span>
-                        <span class="title">Home</span>
-                    </a>
-                </li>            
 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
@@ -32,99 +25,105 @@
                         <span class="icon fa fa-briefcase"></span>
                         <span class="title">My Books</span>
                     </a>
-                </li>    
+                </li> 
+
+                <!-- <li class="menu-item">
+                    <a class="menu-link" href="#">
+                        <span class="icon fa fa-briefcase" data-toggle="quickview" data-target="#qv-bookbag"></span>
+                        <span class="title">Bookbag</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="#">
+                        <span class="icon fa fa-briefcase" onclick="Message.refresh()"data-toggle="quickview" data-target="#qv-messages"></span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>    -->
             </ul>
         </nav>        
     </div>
-
+    
     <div class="topbar-right">
 
+        <ul class="topbar-btns">
+        <!-- Profile Dropdown -->
+            <li class="dropdown">
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
+                    <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
+                    <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?php echo base_url('Patron/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
+                </div>
+            </li>
+        <!-- Bookbag Quick View -->
+            <li class="d-none d-md-block">
+                <span class="topbar-btn has-newa" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
+            </li>
+        <!-- Message Quick View -->
+            <li class="d-md-block">
+                <span onclick="Message.refresh()" class="topbar-btn has-newa" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
+            </li>
+        </ul>
 
-    <!-- <div class="topbar-divider d-none d-md-block"></div> -->
+        <!-- Search Form -->
+        <form class="lookup lookup-circle lookup-right lookup-sm" target="index.html">
+              <input type="text" name="s">
+        </form>
 
-    <ul class="topbar-btns">
-        <li class="dropdown">
-        <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
-        <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
-            <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-            <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url('Patron/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
-        </div>
-        </li>
-
-        <!-- Notifications -->
-        <li class=" d-md-block">
-        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
-        <span onclick="Message.refresh()" class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
-        </li>
-        <!-- END Notifications -->
-    </ul>
-
-    <form class="lookup lookup-circle lookup-lg lookup-right" target="index.html">
-        <input type="text" name="s">
-    </form>
     </div>
 </header>
 <!-- END Topbar -->
-<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+                <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
 <!-- Quickviews -->
-
-
 
 <!-- Bookbag -->
 <div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title lead form-title-message">Bookbag</p>
-    <span class="close"><i class="ti-close" style="color:white"></i></span>
+        <p class="quickview-title lead form-title-message">Bookbag</p>
+        <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
     <div class="quickview-body">
-    <div id="bookbag" class="media-list media-list-hover media-list-divided media-sm">
-           
-    </div>
+        <div id="bookbag" class="media-list media-list-hover media-list-divided media-sm"></div>
     </div>
 
     <footer class="quickview-footer flexbox">
-    <div>
-        <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a>
-    </div>
-    <div>
-        <button class="btn btn-outline btn-danger" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
-    </div>
+        <div>
+            <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a>
+        </div>
+        <div>
+            <button class="btn btn-outline btn-danger" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
+        </div>
     </footer>
 </div>
-
-
 
 
 <!-- Messages -->
 <div id="qv-messages" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title form-title-message">Messages</p>
-    <span class="close"><i class="ti-close" style="color:white"></i></span>
+        <p class="quickview-title form-title-message">Messages</p>
+        <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
     <div class="quickview-body">
-    <div id="message" class="media-list media-list-divided media-list-hover">
-
-    </div>
+        <div id="message" class="media-list media-list-divided media-list-hover"></div>
     </div>
 
     <footer class="quickview-footer flexbox">
-    <div style="float: right;">
-        <a href="#" data-provide="tooltip" class="close form-title" style="float: right;">Close</a>
-    </div>
-    <!-- <div hidden>
-        <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
-    </div> -->
+        <div style="float: right;">
+            <a href="#" data-provide="tooltip" class="close form-title" style="float: right;">Close</a>
+        </div>
     </footer>
 </div>
 
 
 
 <!-- END Quickviews -->
+
 <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 
 <script>

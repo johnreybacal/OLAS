@@ -1,3 +1,4 @@
+<!-- di na ginagamit -->
 <div class="main-content" style="margin-top: 100px;">
 
       <h1 style="font-size: 400%; font-family: Georgia; text-align: center; ">PikA<strong>Book</strong></h1>

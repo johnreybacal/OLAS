@@ -1,8 +1,9 @@
-  <div class="h-fullscreen bg-img p-70" style="background-image: url(<?php echo base_url("assetsOLAS/img/login-bg.jpg"); ?>);" data-overlay="6">
+<!-- wala na to -->
+<div class="h-fullscreen bg-img p-70" style="background-image: url(<?php echo base_url("assetsOLAS/img/login-bg.jpg"); ?>);" data-overlay="6">
 
     <h1><img src="<?php echo base_url('assets/img/logo'); ?>" alt="logo"></h1>
 
-    <br><br><br><br><br>
+    <!-- <br><br><br><br><br> -->
 
     <h2 class="text-uppercase text-white fs-50 d-none d-md-block">
       <span class="fs-70 fw-900">Launching</span><br>

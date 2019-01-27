@@ -1,15 +1,42 @@
-<div class="main-content" style="margin-top: 5%;">
+<div class="col-md-12" style="margin-top: 6%;">
+    <div class="card card-inverse bg-img text-center py-90" style="background-image: url(<?php echo base_url("assetsOLAS/img/book/dear_universe.jpg"); ?>);" data-overlay="7">
+    	<div class="card-body">
+	        <h3>Title</h3>
+	        <span class="bb-1 opacity-80 pb-2">Author Name</span>
+	        <br><br>
+	        <br><br>
+	        <a class="btn btn-outline btn-bold no-radius btn-light" href="#">Add to Bookbag</a>
+	    </div>
+    </div>
+    <div class="card">
+	    <div class="card-body">
+            <h4><a class="hover-primary" href="#">Short Intro</a></h4>
+            <p><time>Author Optional</time></p>
+
+            <p style="min-height: 100px; max-height: 300px;">Women growing older contend with ageism, misogyny, and loss. Yet as Mary Pipher shows, most older women are deeply happy and filled with gratitude for the gifts of life. Their struggles help them grow into the authentic, empathetic, and wise people they have always wanted to be.
+            </p><p>
+			In Women Rowing North, Pipher offers a timely examination of the cultural and developmental issues women face as they age. Drawing on her own experience as daughter, sister, mother, grandmother, caregiver, clinical psychologist, and cultural anthropologist, she explores ways women can cultivate resilient responses to the challenges they face. "If we can keep our wits about us, think clearly, and manage our emotions skillfully," Pipher writes, "we will experience a joyous time of our lives. If we have planned carefully and packed properly, if we have good maps and guides, the journey can be transcendent."</p>
+
+            <!-- <div class="flexbox align-items-center mt-3">
+                  <a class="btn btn-round btn-bold btn-primary" href="#">Read more</a>
+
+                <div class="gap-items-4">
+                    <a class="text-muted" href="#">
+                      <i class="fa fa-heart mr-1"></i> 12
+                    </a>
+                    <a class="text-muted" href="#">
+                      <i class="fa fa-comment mr-1"></i> 3
+                    </a>
+                </div>
+        	</div> -->
+  	    </div>
+  	</div>
+</div>
+<!-- <div class="main-content" style="margin-top: 5%;">
 	<form id="book-form">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">
-					<!-- <div class="card-title">
-						<div class="row">
-						<div class="col-md-6">
-							<h4><strong>Book</strong> Information</h4>
-						</div>
-						</div>
-					</div> -->
 
 					<header class="card-header">
 						<h4 class="card-title">Book <strong>Information</strong></h4>
@@ -83,22 +110,15 @@
 										<label>Price</label>
 										<input readonly id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
 									</div>				
-									<!-- <div class="form-group col-md-6">										
-										<label class="switch switch-lg switch-info">
-											<input readonly type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
-											<span class="switch-indicator"></span>
-											<label>Room Use Only</label>
-										</label>
-									</div>	 -->								
-								</div> <!-- form-row gap-1 -->
-							</div> <!-- col-md-12 -->
-						</div> <!-- row -->
-					</div> <!-- card-body -->					
-				</div> <!-- card -->
-			</div> <!-- col-lg-12 -->
-		</div> <!-- row -->
-	</form> <!-- form -->
-</div>
+								</div>
+							</div> 
+						</div>
+					</div> 					
+				</div>
+			</div> 
+		</div> 
+	</form> 
+</div> -->
 <script>	
 	$(document).ready(function(){
 		initializeSelectpicker();

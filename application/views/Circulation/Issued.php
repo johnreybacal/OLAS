@@ -1,18 +1,17 @@
 <header class="header header-inverse bg-ui-general"> 
 	<div class="container">
 		<div class="header-info">
-		<div class="left">
-			<br>
-			<h2 class="header-title"><strong>Circulation</strong> <small class="subtitle">List of all Books that are currently issued are available in this page.</small></h2>
-		</div>
+			<div class="left">
+				<h2 class="header-title"><strong>Circulation</strong> <small class="subtitle">List of all Books that are currently issued are available in this page.</small></h2>
+			</div>
 		</div>	
 		<div class="header-action">
-		<div class="buttons">
-			<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Circulation_Modal.new();"
-		data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Manually Issue an unreserved book">
-			<i class="ti-plus"></i>
-			</a>
-		</div>
+			<div class="buttons">
+				<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Circulation_Modal.new();"
+			data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Manually Issue an unreserved book">
+				<i class="ti-plus"></i>
+				</a>
+			</div>
 		</div>
 	</div>
 </header> 
@@ -20,7 +19,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id = "circulation-issued-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableIssued") ?>">
+				<table id = "circulation-issued-table" class="table table-responsive table-striped table-bordered display nowrap r1 r3 r4" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableIssued") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Issue no.</th>	
