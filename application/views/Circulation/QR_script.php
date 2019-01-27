@@ -1,58 +1,5 @@
-<script type="module" src="<?php echo base_url('assets/js/script/plugins/qr-scanner.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
-<style>
-	canvas {
-        display: none;
-    }
-    hr {
-        margin-top: 32px;
-    }
-    input[type="file"] {
-        display: block;
-        margin-bottom: 16px;
-    }
-    div {
-        margin-bottom: 16px;
-    }
-    video {
-        height: 400px;
-        width: 400px;
-    }
-    .container {
-        width: 200px;
-        overflow:hidden;
-        display:block;
-        height: 360px;
-    }
-    #qr-video {
-        margin-left: -110px;
-    }
-</style>
-
-<body>
-    <div class="main-content">
-        <div class="card">
-            <div class="card-body">
-	            <div class="container">
-	            	<video muted autoplay playsinline id="qr-video"></video>
-	            	<canvas id="debug-canvas"></canvas>
-	            </div>
-	            <img src="">
-	            <b>Detected QR code: </b>
-	            <a href="" id="cam-qr-result">None</a>
-	            <hr>
-
-	            <input type="file" id="file-selector">
-	            <b>Detected QR code: </b>
-	            <a href="" id="file-qr-result">None</a>
-            </div>
-        </div>
-    </div>
-</body>
-
 <script type="module">
-	
+    // QR
     import QrScanner from "<?=base_url('assets/js/script/plugins/qr-scanner.min.js');?>";
     const video = document.getElementById('qr-video');
     const debugCheckbox = document.getElementById('debug-checkbox');
@@ -109,6 +56,4 @@
             debugCanvasContext.putImageData(imageData, 0, 0);
         }
     }
-
-    
 </script>

@@ -42,7 +42,9 @@ class Book extends _BaseController {
     }
 
     public function QR_Scan(){
-        $this->librarianView('Book/QR_Scan', '');
+        // $this->librarianView('Book/QR_Scan', '');
+        $this->librarianView('Circulation/QRFab', '');
+        $this->librarianView('Circulation/QR_script', '');
     }
 
     public function GenerateTable(){

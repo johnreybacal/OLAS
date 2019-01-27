@@ -25,7 +25,7 @@
     function makeCode () {      
         var elText = "<?php echo $book->AccessionNumber; ?>";
         var link = "<?php echo base_url('Book/View/');?>" + elText;
-        qrcode.makeCode(link);
+        qrcode.makeCode(elText);
 
     }
     makeCode();
