@@ -86,10 +86,28 @@ div > a.book-title{
     box-shadow: none;
 }
 /* TABLES */
+.table>tbody>tr:hover td:first-child{
+    border:none;
+    border-left: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
+}
+.table>tbody>tr:hover td:last-child{
+    border-right: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
+}
+
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    border-bottom: .1em solid #ddd!important;
+}
+
+table th, table td {
+    border-left: none;
+    border-right: none;
+    border-top: .1em solid #efefef!important;
+}
+/*
 table, table.table-bordered.dataTable td{
     border: none;
     text-align: center;
-}
+}*/
 table.table-responsive thead tr th{
     text-align: center;
     background-color: #48b0f7;
@@ -99,24 +117,18 @@ table.table-responsive thead tr th{
 table.table-bordered.dataTable th, table.table-bordered.dataTable td {
     /* border-left-width: 0; */
     border: none;
+    /* removed all borders*/
     }
 .center{
     text-align: center;
 }
-.table-money{
-    text-align: left;
+th, td{
+  text-align: center;  
 }
-.table-date{
-    text-align: center;
-}
-.table-text{
-    text-align: center;
-}
-.table-integer{
-    text-align: right;
-}   
-.table-action{
-    text-align: justify;
+table.r1 tbody td:nth-child(1), table.r2 tbody td:nth-child(2), table.r3 tbody td:nth-child(3), 
+    table.r4 tbody td:nth-child(4), table.r5 tbody td:nth-child(5), table.r6 tbody td:nth-child(6),
+        table.r7 tbody td:nth-child(7), table.r8 tbody td:nth-child(8), table.r9 tbody td:nth-child(9){   
+            text-align: right;
 }
 /*DATE PICKER*/
 .datepicker table tr td span.active.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active:hover:active, .datepicker table tr td.active.active {
@@ -283,3 +295,7 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
         margin-top: 10px;
     }
  }
+.table{
+    border-left: none!important;    
+    border-right: none!important;    
+}
