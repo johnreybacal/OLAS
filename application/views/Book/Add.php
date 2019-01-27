@@ -29,108 +29,86 @@
 	              	</header>
 					<div class="card-body form-type-line">
 						<div class="row">
-							<!-- <div class="col-md-12"> -->
-								<div class="col-md-3">
-									<!-- <div id="imgDisplay"> -->
-	                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
-	                				<!-- </div> -->
-              					</div>
-								<div class="form-row gap-1 col-md-9 mt-3">									
-									<!-- <div class="form-group col-md-6">		
-										<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
-										<label>Select image</label>
-										<input id="image" name="image" type="file" accept="image/*" />
-									</div> -->
-									<div class="form-group col-md-6">
-										<label>ISBN</label>
-										<input  id="ISBN" class="form-control" type="text" name="ISBN" placeholder="ISBN">
-									</div>
-									<div class="form-group col-md-6">
-										<label>Call Number</label>
-										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
-									</div>	
-									<div class="form-group col-md-6">
-										<label>Title</label>
-										<input id="Title" class="form-control" type="text" name="" placeholder="Title">
-									</div>					
-									<div class="form-group col-md-6">
-										<label>Author</label>
-										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Genre</label>
-										<select id="SelectGenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Subject</label>
-										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
-									</div>
-									<div class="form-group col-md-6">
-										<label>Publisher</label>
-										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Series</label>
-										<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Edition</label>
-										<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
-									</div>	
-									<div class="form-group col-md-6">
-										<label>Date Published</label>
-										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Published">
-									</div>				
-									<div class="form-group col-md-6">
-										<label>Date Acquired</label>
-										<input  id="DateAcquired" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Acquired">
-									</div>
-									<div class="form-group col-md-6">
-										<label>Acquired from</label>
-										<input  id="AcquiredFrom" class="form-control" type="text" name="" placeholder="Supplier name">
-									</div>													
-									<div class="form-group col-md-6">
-										<label>Price</label>
-										<input  id="Price" class="form-control" type="number" name="" placeholder="Price">
-									</div>				
-									<!-- <div class="form-group col-md-6">
-										<label class="switch switch-lg switch-info">
-											<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" checked />
-											<span class="switch-indicator"></span>
-											<label>Room Use Only</label>
-										</label>
-									</div>	 -->			
-								</div> <!-- form-row gap-1 -->
-								<!-- <div class="col-md-3">
-					                <div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
-										<label>Select image</label>
-										<input id="image" name="image" type="file" accept="image/*" />
-					                <input id="image" name="image" type="file" accept="image/*" data-provide="dropify" data-show-remove="false" data-default-file="../assets/img/gallery/1.jpg">
-				              	</div> -->
-							<!--/div> <!-- col-md-12 -->
-						</div> <!-- row -->
-					</div> <!-- card-body -->
+							<div class="col-md-3">
+                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
+          					</div>
+							<div class="form-row gap-1 col-md-9 mt-3">									
+								<div class="form-group col-md-6">
+									<label>ISBN</label>
+									<input  id="ISBN" class="form-control" type="text" name="ISBN" placeholder="ISBN">
+								</div>
+								<div class="form-group col-md-6">
+									<label>Call Number</label>
+									<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
+								</div>	
+								<div class="form-group col-md-6">
+									<label>Title</label>
+									<input id="Title" class="form-control" type="text" name="" placeholder="Title">
+								</div>					
+								<div class="form-group col-md-6">
+									<label>Author</label>
+									<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Genre</label>
+									<select id="SelectGenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Subject</label>
+									<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
+								</div>
+								<div class="form-group col-md-6">
+									<label>Publisher</label>
+									<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Series</label>
+									<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Edition</label>
+									<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
+								</div>	
+								<div class="form-group col-md-6">
+									<label>Date Published</label>
+									<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Published">
+								</div>				
+								<div class="form-group col-md-6">
+									<label>Date Acquired</label>
+									<input  id="DateAcquired" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Acquired">
+								</div>
+								<div class="form-group col-md-6">
+									<label>Acquired from</label>
+									<input  id="AcquiredFrom" class="form-control" type="text" name="" placeholder="Supplier name">
+								</div>													
+								<div class="form-group col-md-6">
+									<label>Price</label>
+									<input  id="Price" class="form-control" type="number" name="" placeholder="Price">
+								</div>				
+							</div> 
+						</div> 
+					</div> 
 					<div class="card-footer text-right">
 						<button type="button" class="btn btn-info" onclick="Book.validate()">Save</button>
 					</div>
-				</div> <!-- card -->
-			</div> <!-- col-lg-12 -->
-		</div> <!-- row -->
-	</form> <!-- form -->
+				</div> 
+			</div> 
+		</div> 
+	</form> 
 </div>
 <div class="fab fab-fixed fab-dir-left fab-320">
-  <button class="btn btn-float btn-info" data-toggle="button">
-    <i class="fab-icon-default ti-plus"></i>
-    <i class="fab-icon-active ti-close"></i>
-  </button>
+  	<button class="btn btn-float btn-info" data-toggle="button">
+	    <i class="fab-icon-default ti-plus"></i>
+	    <i class="fab-icon-active ti-close"></i>
+  	</button>
 
-  <ul class="fab-buttons">
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
-  </ul>
+  	<ul class="fab-buttons">
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
+	</ul>
 </div>
 <script>	
 

@@ -29,7 +29,6 @@
 					</header>	
 					<div class="card-body form-type-line">
 						<div class="row">
-							<!-- <div class="col-md-12"> -->
 								<div class="col-md-3">
 									<!-- <div id="imgDisplay">
 	                				</div> -->
@@ -97,38 +96,31 @@
 										<label>Price</label>
 										<input  id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
 									</div>				
-									<!-- <div class="form-group col-md-6">										
-										<label class="switch switch-lg switch-info">
-											<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
-											<span class="switch-indicator"></span>
-											<label>Room Use Only</label>
-										</label>
-									</div> -->											
-								</div> <!-- form-row gap-1 -->
-							<!-- </div> col-md-12 -->
-						</div> <!-- row -->
-					</div> <!-- card-body -->
+																		
+								</div> 
+						</div> 
+					</div> 
 					<div class="card-footer text-right">
 						<button type="button" class="btn btn-info" onclick="Book.validate()">Save</button>
 					</div>
-				</div> <!-- card -->
-			</div> <!-- col-lg-12 -->
-		</div> <!-- row -->
-	</form> <!-- form -->
+				</div> 
+			</div> 
+		</div> 
+	</form> <
 </div>
 <div class="fab fab-fixed fab-dir-left fab-320">
-  <button class="btn btn-float btn-info" data-toggle="button">
-    <i class="fab-icon-default ti-plus"></i>
-    <i class="fab-icon-active ti-close"></i>
-  </button>
+  	<button class="btn btn-float btn-info" data-toggle="button">
+	    <i class="fab-icon-default ti-plus"></i>
+	    <i class="fab-icon-active ti-close"></i>
+  	</button>
 
-  <ul class="fab-buttons">
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
-    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
-  </ul>
+  	<ul class="fab-buttons">
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
+  	</ul>
 </div>
 
 <script>	

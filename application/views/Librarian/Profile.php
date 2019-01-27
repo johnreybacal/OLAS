@@ -1,19 +1,19 @@
 <header class="header bg-img" style="background-image: url(<?php echo base_url("assetsOLAS/img/book/8.jpg"); ?>)">
     <div class="header-info h-250px mb-0">
-      <div class="media align-items-end">
-        <img class="avatar avatar-xl avatar-bordered" src="<?php echo base_url("assetsOLAS/img/book/lee_3grd.png"); ?>" alt="...">
-        <div class="media-body">
-          <p class="text-white opacity-90"><strong>Rock Lee</strong></p>
-          <small class="text-white opacity-60">Sorye Ge Ton</small>
+        <div class="media align-items-end">
+            <img class="avatar avatar-xl avatar-bordered" src="<?php echo base_url("assetsOLAS/img/book/lee_3grd.png"); ?>" alt="...">
+            <div class="media-body">
+              <p class="text-white opacity-90"><strong>Rock Lee</strong></p>
+              <small class="text-white opacity-60">Sorye Ge Ton</small>
+            </div>
         </div>
-      </div>
     </div>
 
     <div class="header-action bg-white">
-      <nav class="nav">
-        <a class="nav-link active" href="#">Profile</a>
-        <a class="nav-link" href="#">Logs</a>
-      </nav>
+        <nav class="nav">
+            <a class="nav-link active" href="#">Profile</a>
+            <a class="nav-link" href="#">Logs</a>
+        </nav>
     </div>
 </header>
 

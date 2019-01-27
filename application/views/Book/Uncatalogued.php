@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-body">        
             <div id="table-responsive">
-                <table id="uncatalogued-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableUncatalogued") ?>">
+                <table id="uncatalogued-table" class="table table-striped table-bordered display nowrap r1" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTableUncatalogued") ?>">
                     <thead>
                         <tr>
                             <td>ISBN</td>

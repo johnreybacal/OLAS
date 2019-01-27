@@ -3,15 +3,8 @@
     <div class="topbar-left">
         <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
         <a href="<?php echo base_url('') ?>" class="logo"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
-        <!-- <div class="topbar-divider d-none d-md-block"></div> -->
         <nav class="topbar-navigation">
             <ul class="menu">
-                <!-- <li class="menu-item">
-                    <a class="menu-link" href="<?php echo base_url(); ?>">
-                        <span class="icon fa fa-home"></span>
-                        <span class="title">Home</span>
-                    </a>
-                </li>    -->         
 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
@@ -51,7 +44,6 @@
     </div>
     
     <div class="topbar-right">
-    <!-- <div class="topbar-divider d-none d-md-block"></div> -->
 
         <ul class="topbar-btns">
         <!-- Profile Dropdown -->
@@ -125,9 +117,6 @@
         <div style="float: right;">
             <a href="#" data-provide="tooltip" class="close form-title" style="float: right;">Close</a>
         </div>
-        <!-- <div hidden>
-            <a href="#" data-provide="tooltip" title="Settings"><i class="fa fa-gear"></i></a>
-        </div> -->
     </footer>
 </div>
 

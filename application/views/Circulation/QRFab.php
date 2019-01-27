@@ -1,7 +1,9 @@
+<!-- Fab Button -->
 <div class="fab fab-fixed">
-    <button onclick="QR_Scan.show()" class="btn btn-float btn-primary" title="Scan QR" data-provide="tooltip" data-placement="left"><i class="ti-plus"></i></button>
+    <button onclick="QR_Scan.show()" class="btn btn-float btn-primary" title="Scan QR" data-provide="tooltip" data-placement="left"><i class="fa fa-qrcode"></i></button>
 </div>
 
+<!-- QR Modal -->
 <div class="modal modal-center modal-xlg fade" id="modal-qr-scan" tabindex="-1">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">

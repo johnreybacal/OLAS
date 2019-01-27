@@ -1,23 +1,13 @@
-<header class="header bg-ui-general"> <!--header-inverse para madilim bg-ui-general-->
-<div class="container">
-	<div class="header-info">
-	<div class="left">
-		<br>
-		<h2 class="header-title"><strong>My Reservations</strong> <small class="subtitle">List of all books reserved are available in this page.</small></h2>
+<header class="header bg-ui-general"> 
+	<div class="container">
+		<div class="header-info">
+			<div class="left">
+				<h2 class="header-title"><strong>My Reservations</strong> <small class="subtitle">List of all books reserved are available in this page.</small></h2>
+			</div>
+		</div>
 	</div>
-	</div>
-
-	<div class="header-action">
-	<div class="buttons">
-		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<!-- <a href = "<?php echo base_url('Book/Add') ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Add Book">
-		<i class="ti-plus"></i>
-		</a> -->
-	</div>
-	</div>
-</div>
-</header><!--/.header -->
-
+</header>
+		<!-- will remove this inline css in the future-->
 <div class="main-content" style="margin: 30px 90px 0px 90px;">
 	<div class="card">
 		<div class="card-body">                        
