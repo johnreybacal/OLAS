@@ -17,7 +17,7 @@
                             <a href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"><img src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" onError="this.onerror=null;this.src='assetsOLAS/img/book/comingsoon.png';" class="img-fluid"></a>
 
                         </div>
-                            <div class="btn btn-bold btn-danger book-availability" style="">Unavailable</div>
+                            <!-- <div class="btn btn-bold btn-danger book-availability" style="">Unavailable</div> -->
                         <div class="book-info col-lg-9 col-9">
                             <div class="book-settings" style="float: right;">
                                 <a href="#"><i class="fa fa-ellipsis-v"></i></a>
