@@ -121,12 +121,10 @@
 
 <script>
     var qr;
-    function getQR(qr){
         $('#cam-qr-result').bind("DOMSubtreeModified", function(){
             qr = document.getElementById('cam-qr-result');  //Bacs, itong yung id na galing sa qr. 
-            return qr;                                      //Hindi ko alam kung pano ilalagay hehe.
+            console.log(qr.text);                                    //Hindi ko alam kung pano ilalagay hehe.
         })
-    }
 
     var QR_Scan = {
 
