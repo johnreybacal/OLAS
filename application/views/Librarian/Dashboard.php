@@ -61,8 +61,67 @@
             </div> -->
     <!-- End of Date Picker 1 -->
             <div class="row">
-
-                <div class="col-md-4 col-lg-4 col-xlg-4">
+          <!-- 1 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-yellow">
+                    <div class="flexbox">
+                        <span class="fa fa-book fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalBooks; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Total Books</div>
+                </div>
+            </div>
+          <!-- 2 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-info">
+                    <div class="flexbox">
+                        <span class="fa fa-book fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalBooksAcquired; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Total Books Acquired</div>
+                </div>
+            </div>
+          <!-- 3 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-danger">
+                    <div class="flexbox">
+                        <span class="fa fa-book fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalBookCirculations; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Book Circulation</div>
+                </div>
+            </div>
+          <!-- 4 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-success">
+                    <div class="flexbox">
+                        <span class="pe-7s-users fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Patrons</div>
+                </div>
+            </div>
+          <!-- 5 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-purple">
+                    <div class="flexbox">
+                        <span class="pe-7s-users fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Patrons Registered</div>
+                </div>
+            </div>
+          <!-- 6 -->
+            <div class="col-md-6 col-xl-4">
+                <div class="card card-body bg-warning">
+                    <div class="flexbox">
+                        <span class="pe-7s-users fs-40"></span>
+                        <span class="fs-40 fw-100"><?php echo $totalOutsideResearchers; ?></span>
+                    </div>
+                    <div class="text-right text-uppercase">Outside Researcher</div>
+                </div>
+            </div>
+                <!-- <div class="col-md-4 col-lg-4 col-xlg-4">
                     <div class="card">
                         <div class="small-box bg-yellow text-center">
                             <h1 id="total-books" class="text-thin text-white"><?php echo $totalBooks; ?></h1>
@@ -120,11 +179,11 @@
                             <span class="text-white text-thin text-uppercase text-sm">&nbsp;</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <div id="book-table-container" class="table-responsive">                            
-                <table id="book-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Report/GenerateTable") ?>">
+                <table id="book-table" class="table table-responsive table-striped table-bordered display nowrap r1 r2 r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Report/GenerateTable") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Accession Number</th>

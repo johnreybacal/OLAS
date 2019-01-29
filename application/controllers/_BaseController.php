@@ -60,6 +60,7 @@ class _BaseController extends CI_Controller {
 				}
 				if(in_array('Circulation' , $this->session->userdata('access'))){
 					$this->load->view('Circulation/QRFab');
+					$this->load->view('Circulation/QR_script', '');
 				}
 				$this->footer();
 			}else{

@@ -1,3 +1,35 @@
+<script type="module" src="<?php echo base_url('assets/js/script/plugins/qr-scanner.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+<style>
+	/* canvas {
+        display: none;
+    }
+    hr {
+        margin-top: 32px;
+    }
+    input[type="file"] {
+        display: block;
+        margin-bottom: 16px;
+    }
+    div {
+        margin-bottom: 16px;
+    }
+    video {
+        height: 400px;
+        width: 400px;
+    }
+    .container {
+        width: 200px;
+        overflow:hidden;
+        display:block;
+        height: 360px;
+    }
+    #qr-video {
+        margin-left: -110px;
+    } */
+</style>
+
 <!-- Fab Button -->
 <div class="fab fab-fixed">
     <button onclick="QR_Scan.show()" class="btn btn-float btn-primary" title="Scan QR" data-provide="tooltip" data-placement="left"><i class="fa fa-qrcode"></i></button>
@@ -15,7 +47,20 @@
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    //QR Scanner               
+                    <!-- QR -->
+                    <div class="container">
+                        <video muted autoplay playsinline id="qr-video"></video>
+                        <canvas id="debug-canvas"></canvas>
+                    </div>
+                    <img src="">
+                    <b>Detected QR code: </b>
+                    <a href="" id="cam-qr-result">None</a>
+                    <hr>
+
+                    <input type="file" id="file-selector">
+                    <b>Detected QR code: </b>
+                    <a href="" id="file-qr-result">None</a>              
+                    <!-- End of QR -->
                     <form id="modal-qr-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="qrLoanId"/>          
                         <input type="hidden" id="qrPatronId"/>          
@@ -67,7 +112,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button" class="btn close-modal btn-secondary " data-dismiss="modal">Close</button>
                 <button id="check-in" type="button" class="btn btn-info" onclick="QR_Scan.checkIn()">Check in</button>
             </div>
         </div>
@@ -75,9 +120,11 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        QR_Scan.init();
-    });
+    var qr;
+        $('#cam-qr-result').bind("DOMSubtreeModified", function(){
+            qr = document.getElementById('cam-qr-result');  //Bacs, itong yung id na galing sa qr. 
+            console.log(qr.text);                                    //Hindi ko alam kung pano ilalagay hehe.
+        })
 
     var QR_Scan = {
 
@@ -242,4 +289,36 @@
         }
 
     }
+
+    $('.close-modal').on("click", function(){
+        console.log(stream.getTracks());
+        if (stream!= null) {
+            stream.getTracks().map(function (val) {
+                val.stop();
+            });
+        }
+    })
+
+    $(document).ready(function() {
+        // set unique id to videoplayer for the Webflow video element
+        var src = $('#qr-video').children('iframe').attr('src');
+
+        // when object with class open-popup is clicked...
+        $('.modal show').click(function(e) {
+        e.preventDefault();
+            // change the src value of the video
+            $('#qr-video').children('iframe').attr('src', src);
+            $('.popup-bg').fadeIn();
+            console.log('in');
+        });
+
+        // when object with class close-popup is clicked...
+        $('.modal').click(function(e) {
+            e.preventDefault();
+            $('#qr-video').children('iframe').attr('src', '');
+            $('.popup-bg').fadeOut();
+            console.log('out');
+        });
+    });
+
 </script>
