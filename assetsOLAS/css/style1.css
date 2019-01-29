@@ -1,0 +1,613 @@
+.book {
+    -webkit-box-shadow: 0 1px 2px rgba(150,150,150,.3);
+    box-shadow: 0 1px 2px rgba(150,150,150,.3);
+    margin: 20px 0;
+    height: 230px; /*260*/
+    max-width: 600px;
+    background: #FFF;
+    padding: 25px 0;
+    color: #333;
+
+}
+
+/*.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 20px;
+}*/
+
+.book-cover img{
+	position:absolute;
+	max-width:110px;
+	height:150px;
+	width:90px;
+	border-radius:3px;
+		-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+		-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+		box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+}
+
+/*.book-author{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1.2em;
+
+}*/
+
+.book-availability{
+    pointer-events: none;
+}
+
+@media screen and (min-width: 1440px ) { /*1440px*/
+	.book-cover img{
+		position:absolute;
+		max-width:110px;
+		height:150px;
+		width:90px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+	    overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 360px;
+        font-size: 1.1em;
+        /*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: 1em;
+        max-height: 40px;
+        max-width: 130px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) { /*1025px*/
+	.book-cover img{
+		position:absolute;
+		max-width:90px;
+		height:130px;
+		width:70px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 360px;
+    	font-size: 1.1em;
+    	/*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+    
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: .9em;
+        max-height: 35px;
+        max-width: 120px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) { /*1025px*/
+	.book-cover img{
+		position:absolute;
+		max-width:90px;
+		height:130px;
+		width:70px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1.1em;
+    	/*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: .9em;
+        max-height: 35px;
+        max-width: 120px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+@media screen and (min-width: 425px) and (max-width: 767px) { /*1025px*/
+	.book-cover img{
+		position:absolute;
+		max-width:110px;
+		height:150px;
+		width:90px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1.1em;
+    	/*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: .9em;
+        max-height: 35px;
+        max-width: 120px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 375px) and (max-width: 424px) { /*1025px*/
+	.book-cover img{
+		position:absolute;
+		max-width:100px;
+		height:140px;
+		width:80px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1.1em;
+    	/*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: .9em;
+        max-height: 35px;
+        max-width: 120px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 10px) and (max-width: 374px) { /*preffered is 320 ---1025px*/
+	.book-cover img{
+		position:absolute;
+		max-width:80px;
+		height:120px;
+		width:60px;
+		border-radius:3px;
+			-webkit-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			-moz-box-shadow:0 10px 60px 0 rgba(29,29,31,.09);
+			box-shadow:0 10px 60px 0 rgba(29,29,31,.09)
+	}
+
+	.book-title{
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        font-size: 1.2em;
+    	font-weight: bold;
+        color: #333!important;
+        overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+	}
+
+	.book-author{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        font-size: 1.1em;
+    	/*font-weight: 550;*/
+	}
+
+	.book-year{
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	font-size: 1em;
+	}
+
+	.book-short-description{
+		max-height: 70px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+    	/*white-space: nowrap;*/
+    	font-size: 1em;
+    	font-weight : 500; 
+	}
+
+    .book-availability{
+        position: absolute;
+        top:0;
+        left: 20px; 
+        pointer-events: none;
+        font-size: .9em;
+        max-height: 35px;
+        max-width: 120px
+    }
+
+    .message-text{
+        /*max-height: 50px;*/
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (min-width: 768px) { /*991.98px*/
+    .header {
+        padding:5px 0
+    }
+
+    .header .col-12 {
+        -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+        order: 3
+    }
+
+    .menu-toggler {
+        display: block
+    }
+
+    .primary-menu .dropdown-menu {
+        box-shadow: none;
+        margin-left: .75rem
+    }
+
+    .order-column-2 {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2
+    }
+
+    .order-column-1 {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    .books-listing .book-list .book .book-cover img,.home-book-list .book-list .book .book-cover img {
+        height: 140px;
+        width: 95px;
+        top: -40px
+    }
+
+    .book-filter .show-filter {
+        display: block
+    }
+
+    #book-filter {
+        display: none
+    }
+
+    .top-filter {
+        margin: 5px 0 30px
+    }
+
+    .single-book .book-cover,.top-filter .text {
+        text-align: center
+    }
+
+    .single-book .book-cover:hover .edit-book {
+        display: none
+    }
+
+    .single-book .book-rating,.single-book .book-year,.single-book h1 {
+        text-align: center
+    }
+
+    .blog-posts .post {
+        max-height: 450px;
+        min-height: 450px
+    }
+
+    .mini-list-authors .author-photo{
+    	float:left;width:48px;margin-right:15px
+    }
+
+	.mini-list-authors .author-photo img{
+		width:48px;height:48px;-webkit-box-shadow:0 0 10px rgba(110,110,110,.3);box-shadow:0 0 10px rgba(110,110,110,.3);margin-right:20px
+    }
+
+    .mini-list-authors .author-info {
+        max-width: 260px
+    }
+
+    .single-book .book-image-gallery {
+        width: 100%
+    }
+ 
+}
+
+@media (max-width: 767.98px) {
+    .home-book-carousel .book-cover img {
+        height:170px;
+        margin: 0 auto;
+        width: 120px!important
+    }
+
+    .books-listing .book-mini-list .book .book-info {
+        padding: 0 5px 0 30px
+    }
+
+    .books-listing .book-list .book .book-cover img,.home-book-list .book-list .book .book-cover img {
+        height: 110px;
+        width: 75px;
+        top: -5px
+    }
+
+    .mini-list-posts .post {
+        margin: 10px 0;
+        text-align: center
+    }
+
+    .blog-posts .post {
+        max-height: 380px;
+        min-height: 380px
+    }
+}
+
+@media (max-width: 575.98px) {
+    .home-book-carousel .book-cover img {
+        height:190px;
+        margin: 0
+    }
+
+    .single-book .book-links a {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%
+    }
+
+    .logo img {
+        max-width: 120px
+    }
+
+    .blog-posts .post {
+        max-height: 100%;
+        min-height: auto
+    }
+}
+
+@media (max-width: 399.98px) {
+    .home-book-carousel .book-cover img {
+        height:150px
+    }
+
+    .books-listing {
+        margin: 10px 0 50px
+    }
+
+    .menu-icons .user-menu+.dropdown-menu.show {
+        right: -95px
+    }
+
+    .books-listing .book-grid .book .book-cover img,.home-book-list .book-list .book .book-cover img {
+        height: 130px;
+        width: 85px;
+        top: 5px;
+        left: -20px
+    }
+
+    .books-listing .book-list .book .book-cover img {
+        height: 95px;
+        width: 70px;
+        top: 5px;
+        left: -20px
+    }
+
+    .books-listing .book-list .book .book-info {
+        padding: 20px 15px 0 35px
+    }
+
+    .books-listing .book-list .book .book-short-description,.books-listing .book-mini-list .book .book-short-description {
+        display: none
+    }
+
+    .books-listing .book-list .book .book-rating {
+        margin: 0 0 5px
+    }
+
+    .books-listing .book-mini-list .book .book-info {
+        padding: 10px 15px 0 40px
+    }
+
+    .books-listing .book-list .book .book-title a,.books-listing .book-mini-list .book .book-title a {
+        font-family: Varela Round, Arial, Helvetica Neue, Helvetica, serif;
+        /*font-family: Verdana;*/
+        font-size: .9rem;
+    }
+
+    .page-item .page-link {
+        font-size: .8rem
+    }
+}
