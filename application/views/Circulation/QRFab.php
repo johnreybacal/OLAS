@@ -2,7 +2,8 @@
 <script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <style>
-	canvas {
+	/* canvas { */
+	/* canvas {
         display: none;
     }
     hr {
@@ -28,6 +29,7 @@
     #qr-video {
         margin-left: -110px;
     }
+    } */
 </style>
 
 <!-- Fab Button -->
@@ -112,7 +114,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button" class="btn close-modal btn-secondary " data-dismiss="modal">Close</button>
                 <button id="check-in" type="button" class="btn btn-info" onclick="QR_Scan.checkIn()">Check in</button>
             </div>
         </div>
@@ -289,4 +291,36 @@
         }
 
     }
+
+    $('.close-modal').on("click", function(){
+        console.log(stream.getTracks());
+        if (stream!= null) {
+            stream.getTracks().map(function (val) {
+                val.stop();
+            });
+        }
+    })
+
+    $(document).ready(function() {
+        // set unique id to videoplayer for the Webflow video element
+        var src = $('#qr-video').children('iframe').attr('src');
+
+        // when object with class open-popup is clicked...
+        $('.modal show').click(function(e) {
+        e.preventDefault();
+            // change the src value of the video
+            $('#qr-video').children('iframe').attr('src', src);
+            $('.popup-bg').fadeIn();
+            console.log('in');
+        });
+
+        // when object with class close-popup is clicked...
+        $('.modal').click(function(e) {
+            e.preventDefault();
+            $('#qr-video').children('iframe').attr('src', '');
+            $('.popup-bg').fadeOut();
+            console.log('out');
+        });
+    });
+
 </script>
