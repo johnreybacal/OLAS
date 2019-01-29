@@ -100,11 +100,11 @@ table[data-provide*=datatables] thead>tr>th{
 
 .table>tbody>tr:hover td:first-child{
     border:none;
-    /*border-left: 3px solid #49c5b6; /*babaguhin pa kulay nito*/*/
+    /*border-left: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
     border-left: 3px solid #48b0f7; /*babaguhin pa kulay nito*/
 }
 .table>tbody>tr:hover td:last-child{
-    /*border-right: 3px solid #49c5b6; /*babaguhin pa kulay nito*/*/
+    /*border-right: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
     border-right: 3px solid #48b0f7; /*babaguhin pa kulay nito*/
 }
 
