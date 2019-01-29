@@ -24,6 +24,13 @@ a {
     background: #48b0f7 !important;
     color: #fff;
 }
+/* FAB BUTTONS*/
+div[class*=fab] button{
+    /*background-color:#49c5b6;*/
+    background-color:#48b0f7;
+    border-color:#48b0f7;
+}
+
 /* FORMS*/
 .form-type-line .form-control {
     background-image:
@@ -39,6 +46,31 @@ a {
     transition: background 0.3s;
 }
 /* TABLES */
+table[data-provide*=datatables] thead>tr>th{
+    /*background-color:#49c5b6;*/
+    background-color:#48b0f7;
+}
+
+.table>tbody>tr:hover td:first-child{
+    border:none;
+    /*border-left: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
+    border-left: 3px solid #48b0f7; /*babaguhin pa kulay nito*/
+}
+.table>tbody>tr:hover td:last-child{
+    /*border-right: 3px solid #49c5b6; /*babaguhin pa kulay nito*/
+    border-right: 3px solid #48b0f7; /*babaguhin pa kulay nito*/
+}
+
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    border-bottom: .1em solid #ddd!important;
+}
+
+table th, table td {
+    border-left: none;
+    border-right: none;
+    border-top: .1em solid #efefef!important;
+}
+/*
 table, table.table-bordered.dataTable td{
 	border: none;
 	text-align: center;
@@ -99,8 +131,8 @@ table.table-responsive thead tr th{
 
 /*SIDEBAR*/
 .sidebar .menu:not(.menu-bordery)>.menu-item.active>.menu-link {
-   background-color: #48b0f7;
-	color: #fff;
+   background-color: rgba(255,255,255,0.2);
+    color: #fff;
 }
 .page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
     background-color: #48b0f7;
@@ -109,7 +141,8 @@ table.table-responsive thead tr th{
 }
 
 .sidebar-header {
-    background-color: #926dde;
+    /*background-color: #49c5b6; /*04e0be */
+    background-color: #48b0f7; /*04e0be*/
     padding: 0 12px;
     display: -webkit-box;
     display: flex;
@@ -118,10 +151,29 @@ table.table-responsive thead tr th{
     color: #fff;
 }
 .sidebar .menu-submenu .menu-item.active>.menu-link .dot::after, .sidebar .menu-submenu .menu-item:hover>.menu-link .dot::after {
-    background-color: #48b0f7;
-    border-color: #33cabb;
+    /*background-color: #49c5b6 ;
+    border-color: #49c5b6 ;*/
+    background-color: #48b0f7 ;
+    border-color: #48b0f7 ;
 }
+/*  MODAL   */
 
+.modal-title {
+    font-family: Roboto,sans-serif;
+    font-weight: 400;
+    letter-spacing: .5px;
+    width: 75%!important;
+    margin: 0 auto;
+    margin-left: 12%;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #14171a;
+    text-align: center!important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /* BACKDROP*/
 
 .app-backdrop, .backdrop-topbar-menu{
