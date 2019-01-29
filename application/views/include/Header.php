@@ -12,6 +12,7 @@
 	<link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
 	
 	<link href="<?php echo base_url('assetsOLAS/css/custom.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('assetsOLAS/css/style1.css'); ?>" rel="stylesheet">
 
 	<script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>	
 	<script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
