@@ -143,6 +143,8 @@ class Book extends _BaseController {
     public function Get($isbn){        
         $book = $this->book->_get($isbn);
         if($book != null){ 
+            echo '{"book":';
+            echo $this->convert($book);
             echo ', "author":';
             echo $this->convert($this->bookAuthor->_list($isbn));
             echo ', "genre":';
