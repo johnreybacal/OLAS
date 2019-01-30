@@ -18,7 +18,7 @@
 						<tr>										
 							<th>Title</th>
 							<th>Author</th>			
-							<th>Genre</th>							
+							<th>Section</th>							
 							<th>Series</th>
 							<th>Edition</th>
 							<th>Subject</th>							

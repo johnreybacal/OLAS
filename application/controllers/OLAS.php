@@ -15,8 +15,7 @@ class OLAS extends _BaseController {
 			$data['books'][] = array(
 				$b,
 				'book' => $this->book->_get($b->ISBN),
-				'author' => $this->book->getAuthor($b->ISBN),
-				'genre' => $this->book->getGenre($b->ISBN),
+				'author' => $this->book->getAuthor($b->ISBN),				
 				'subject' => $this->book->getSubject($b->ISBN),
 				'reservation' => $this->reservation->isReserved($b->AccessionNumber)
 			);
@@ -64,7 +63,7 @@ class OLAS extends _BaseController {
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
+                .'"'.$this->section->_get($data->SectionId)->Name.'",'                 
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'

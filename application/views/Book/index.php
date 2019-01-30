@@ -29,7 +29,7 @@
 							<th>ISBN</th>
 							<th>Title</th>
 							<!-- <th>Author</th>			
-							<th>Genre</th>
+							<th>Section</th>
 							<th>Publisher</th>
 							<th>Series</th>
 							<th>Edition</th>

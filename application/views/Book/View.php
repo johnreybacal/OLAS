@@ -75,8 +75,8 @@
 										<select readonly id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
 									</div>
 									<div class="form-group col-md-6">
-										<label>Genre</label>
-										<select readonly id="GenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<label>Section</label>
+										<select readonly id="SectionId" name="Section" data-provide="selectpicker" multiple title="Choose Sections" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
 										<label>Subject</label>
@@ -139,15 +139,15 @@
 			}
 		});
 		$.ajax({
-			url: "<?php echo base_url('Genre/GetAll'); ?>",
+			url: "<?php echo base_url('Section/GetAll'); ?>",
 			async: false,
 			success: function(i){
 				i = JSON.parse(i);                    
-				$('#GenreId').empty();
+				$('#SectionId').empty();
 				$.each(i, function(index, data){                        
-					$('#GenreId').append('<option value = "' + data.GenreId + '">' + data.Name + '</option>');
+					$('#SectionId').append('<option value = "' + data.SectionId + '">' + data.Name + '</option>');
 				})
-				$('#GenreId').selectpicker('refresh');
+				$('#SectionId').selectpicker('refresh');
 			}
 		});
 		$.ajax({
@@ -213,11 +213,11 @@
 							author.push(data.AuthorId);
 						});
 						$('#AuthorId').selectpicker('val', author);
-						var genre = [];
-						$.each(i.genre, function(index, data){
-							genre.push(data.GenreId);
+						var section = [];
+						$.each(i.section, function(index, data){
+							section.push(data.SectionId);
 						});
-						$('#GenreId').selectpicker('val', genre);
+						$('#SectionId').selectpicker('val', section);
 						var subject = [];
 						$.each(i.subject, function(index, data){
 							subject.push(data.SubjectId);

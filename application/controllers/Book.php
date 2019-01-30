@@ -78,7 +78,7 @@ class Book extends _BaseController {
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
+                .'"'.$this->section->_get($data->SectionId)->Name.'",'                 
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
@@ -107,7 +107,7 @@ class Book extends _BaseController {
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                
+                .'"'.$this->section->_get($data->SectionId)->Name.'",'                
                 .'"'.$this->publisher->_get($book->PublisherId)->Name.'",'
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
@@ -146,9 +146,7 @@ class Book extends _BaseController {
             echo '{"book":';
             echo $this->convert($book);
             echo ', "author":';
-            echo $this->convert($this->bookAuthor->_list($isbn));
-            echo ', "genre":';
-            echo $this->convert($this->bookGenre->_list($isbn));
+            echo $this->convert($this->bookAuthor->_list($isbn));            
             echo ', "subject":';
             echo $this->convert($this->bookSubject->_list($isbn));
             echo '}';        
@@ -225,16 +223,7 @@ class Book extends _BaseController {
         }else{
             $str .= $this->invalid('SelectAuthorId', 'Please select at least one author');
             $valid = false;
-        }
-        if(array_key_exists('GenreId', $book)){
-            if(!v::arrayVal()->notEmpty()->validate($book['GenreId'])){
-                $str .= $this->invalid('SelectGenreId', 'Please select at least one genre');
-                $valid = false;
-            }
-        }else{
-            $str .= $this->invalid('SelectGenreId', 'Please select at least one genre');
-            $valid = false;
-        }
+        }        
         if(array_key_exists('SubjectId', $book)){
             if(!v::arrayVal()->notEmpty()->validate($book['SubjectId'])){
                 $str .= $this->invalid('SelectSubjectId', 'Please select at least one subject');
@@ -247,6 +236,10 @@ class Book extends _BaseController {
         //selectpickers
         if(!v::intVal()->notEmpty()->validate($book['PublisherId'])){
             $str .= $this->invalid('SelectPublisherId', 'Please select a publisher');
+            $valid = false;
+        }         
+        if(!v::intVal()->notEmpty()->validate($book['SectionId'])){
+            $str .= $this->invalid('SelectSectionId', 'Please select a section');
             $valid = false;
         }         
         //dates
@@ -266,12 +259,11 @@ class Book extends _BaseController {
         $book = $this->input->post('book');        
         $isbn = $book['ISBN'];
         $author = $book['AuthorId'];
-        $genre = $book['GenreId'];
+        $section = $book['SectionId'];
         $subject = $book['SubjectId'];
         $this->bookCatalogue->save($book);
         $this->book->save($book);        
-        $this->bookAuthor->save($isbn, $author);
-        $this->bookGenre->save($isbn, $genre);
+        $this->bookAuthor->save($isbn, $author);        
         $this->bookSubject->save($isbn, $subject);           
     }
 

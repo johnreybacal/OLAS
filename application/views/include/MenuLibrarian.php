@@ -43,9 +43,9 @@
                     </li>
 
                     <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('Genre'); ?>">
+                        <a class="menu-link" href="<?php echo base_url('Section'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Genres</span>
+                            <span class="title">Sections</span>
                         </a>
                     </li>
 
