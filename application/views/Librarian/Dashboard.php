@@ -202,6 +202,28 @@
 					</thead>
 				</table>                          
             </div>
+            <div class="row">
+                <div class="col-4">
+                    <label>Title</label>
+                    <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
+                </div>
+                <div class="col-4">
+                    <label>Call Number</label>
+                    <select id="CallNumber" name="Call Number" data-provide="selectpicker" title="Choose Call Number" data-live-search="true" class="form-control show-tick"></select>
+                </div>
+                <div class="col-4">
+                    <label>Filter by patron type</label>
+                    <select id="PatronTypeId" name="Patron type" data-provide="selectpicker" title="Choose Patron type" data-live-search="true" class="form-control show-tick"></select>
+                </div>
+            </div>
+            <div id="book-issue-history-table-container" class="table-responsive">                
+            </div>
+            <div class="col-12">
+                <label>Patron</label>
+                <select id="PatronId" name="PatronId" data-provide="selectpicker" title="Choose Patron" data-live-search="true" class="form-control show-tick"></select>
+            </div>
+            <div id="patron-issue-history-table-container" class="table-responsive">                
+            </div>
         </div>
 	</div>
 </div>
@@ -222,9 +244,73 @@
         }).trigger('resize');
     })(jQuery);
 
+    $(document).ready(function(){
+        Dashboard.init();
+    });
+
     var Dashboard = {
+        init: function(){
+            $.ajax({
+                url: "<?php echo base_url("Patron/GetAll"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                                        
+                    $('#PatronId').empty();
+                    $.each(i, function(index, data){                        
+                        $('#PatronId').append('<option value = "' + data.PatronId + '">' + data.LastName + ', ' + data.FirstName + '</option>');
+                    })
+                    $('#PatronId').selectpicker('refresh');
+                }
+            })
+            $('#PatronId').change(function(){
+                Dashboard.patronIssueHistory();
+            });
+            $.ajax({
+                url: "<?php echo base_url("Book/GetAll"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                                        
+                    $('#ISBN').empty();
+                    $.each(i, function(index, data){                        
+                        $('#ISBN').append('<option value = "' + data.ISBN + '">' + data.ISBN + ' | ' + data.Title + '</option>');
+                    })
+                    $('#ISBN').selectpicker('refresh');
+                }
+            })
+            $('#ISBN').change(function(){
+                $.ajax({
+                    url: "<?php echo base_url('Book/GetCatalogueByISBN/'); ?>" + $(this).selectpicker('val'),
+                    success: function(i){
+                        i = JSON.parse(i);                                        
+                        $('#CallNumber').empty();
+                        $.each(i, function(index, data){                        
+                            $('#CallNumber').append('<option value = "' + data.AccessionNumber + '">' + data.CallNumber + '</option>');
+                        })
+                        $('#CallNumber').selectpicker('refresh');
+                    }
+                });
+            });
+            $('#CallNumber').change(function(){
+                Dashboard.bookIssueHistory();
+            });
+            $.ajax({
+                url: "<?php echo base_url("PatronType/GetAll"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                                        
+                    $('#PatronTypeId').empty();
+                    $.each(i, function(index, data){                        
+                        $('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
+                    })
+                    $('#PatronTypeId').selectpicker('refresh');
+                }
+            })
+            $('#PatronTypeId').change(function(){
+                Dashboard.bookIssueHistory();
+            });            
+        },
+
         filter: function(){
             if($('#range-dashboard-from').val() != null && $('#range-dashboard-to').val() != null){
+                Dashboard.patronIssueHistory();
+                Dashboard.bookIssueHistory();
                 $.ajax({
                     url: "<?php echo base_url('Report/Filter'); ?>",
                     type: "POST",
@@ -286,6 +372,68 @@
                     //$html.addClass('mobile');
                     //$html.removeClass('mobile');
                 }).trigger('resize');
+        },
+
+        bookIssueHistory: function(){
+            var accessionNumber = $('#CallNumber').selectpicker('val');
+            var patronTypeId = 0;
+            if($('#PatronTypeId').selectpicker('val') >= 1){
+                patronTypeId = $('#PatronTypeId').selectpicker('val');
+            }
+            var url = "<?php echo base_url("Report/GenerateTableBookIssueHistory/") ?>" + accessionNumber + '/' + patronTypeId;
+            var text = '';
+            if($('#range-dashboard-from').val() != '' && $('#range-dashboard-to').val() != ''){
+                text = '<h4>Patrons who borrowed this book in the time period</h4>';
+                url = "<?php echo base_url("Report/GenerateTableBookIssueHistory/") ?>" + accessionNumber + '/' + patronTypeId + '/' + $('#range-dashboard-from').val() + '/' + $('#range-dashboard-to').val();
+            }
+            $('#book-issue-history-table-container').html(
+                text + 
+                '<div class="table-responsive">' + 
+                    '<table id="book-issue-history-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                        '<thead>' +
+                            '<tr class="bg-info">' + 
+                                '<th>Patron Name</th>' + 
+                                '<th>Patron Type</th>' +
+                                '<th>Date Borrowed</th>' +
+                                '<th>Date Due</th>' +
+                                '<th>Date Returned</th>' +
+                                '<th>Penalty</th>'	+						
+                                '<th>Status</th>'	+						
+                            '</tr>' +
+                        '</thead>' + 
+                    '</table>' +              
+                '</div>'
+            );
+        },
+
+        patronIssueHistory: function(){
+            var patronId = $('#PatronId').selectpicker('val');
+            var url = "<?php echo base_url("Report/GenerateTablePatronIssueHistory/") ?>" + patronId;
+            var text = '';
+            if($('#range-dashboard-from').val() != '' && $('#range-dashboard-to').val() != ''){
+                text = '<h4>Books the patron borrowed in the time period</h4>';
+                url = "<?php echo base_url("Report/GenerateTablePatronIssueHistory/") ?>" + patronId + '/' + $('#range-dashboard-from').val() + '/' + $('#range-dashboard-to').val();
+            }
+            $('#patron-issue-history-table-container').html(
+                text + 
+                '<div class="table-responsive">' + 
+                    '<table id="patron-issue-history-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                        '<thead>' +
+                            '<tr class="bg-info">' + 
+                                '<th>Accession Number</th>' + 
+                                '<th>ISBN</th>' +
+                                '<th>Title</th>' +						                                
+                                '<th>Date Borrowed</th>' +
+                                '<th>Date Due</th>' +
+                                '<th>Date Returned</th>' +
+                                '<th>Penalty</th>'	+						
+                                '<th>Status</th>'	+						
+                            '</tr>' +
+                        '</thead>' + 
+                    '</table>' +              
+                '</div>'
+            );
         }
+      
     };
 </script>

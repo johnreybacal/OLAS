@@ -165,6 +165,14 @@ class Book extends _BaseController {
         echo $this->convert($this->bookCatalogue->_get($accessionNumber));
     }
 
+    public function GetCatalogueByISBN($isbn){
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn));
+    }
+
+    public function GetAll(){
+        echo $this->convert($this->book->_list());
+    }
+
     //for same title so that the form will be automatically filled it same isbn is set
     public function LastAcquired($isbn){
         echo $this->convert($this->bookCatalogue->lastAcquired($isbn));        
