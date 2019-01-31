@@ -54,19 +54,19 @@
                                                 <!-- Check if book is reserved by patron currently logged -->
                                                 <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
 
-                                                    <span class="badge badge-warning" style="text-transform: uppercase;">BookBagged</span>
+                                                    <span class="badge badge-warning" style="text-transform: uppercase;">Out</span>
                                                                                         
                                                     <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
 
                                                 <?php else: ?>
-                                                    <span class="badge badge-daner" style="text-transform: uppercase;">Unavailable</span>
+                                                    <span class="badge badge-daner" style="text-transform: uppercase;">Out</span>
                                                     <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a> -->
                                                 <?php endif; ?>
                                             
                                             <?php else: ?>
                                                 <!-- Add to bookbag -->
                                                 <!-- <a class="media- -primary" data-provide="tooltip" onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-eye fa-2x" style="color:;"></i></a> -->
-                                                <span class="badge badge-primary">Available</span>
+                                                <span class="badge badge-success">In</span>
 
                                             <?php endif; ?>
                                         <?php else: ?>
@@ -75,7 +75,7 @@
 
                                     <?php else: ?>
                                         <!-- IsRoomUseOnly -->
-                                        <span class="badge badge-info" style="text-transform: upp">Room Use Only</span>
+                                        <span class="badge badge-success" style="text-transform: upp">In</span>
                                     <?php endif; ?>
 
                                 <?php endif; ?>
@@ -124,7 +124,7 @@
 
                                 <?php else: ?>
                                     <!-- IsRoomUseOnly -->
-                                    <a class="media- -primary" data-provide="tooltip" href="#" title="Room Use Only"><i class="fa fa-home fa-2x" style="margin: 0 10px;"></i></a> 
+                                    <a class="media- -primary" data-provide="tooltip" href="#" title="In"><i class="fa fa-home fa-2x" style="margin: 0 10px;"></i></a> 
                                 <?php endif; ?>
 
                             <?php endif; ?>

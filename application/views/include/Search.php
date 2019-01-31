@@ -29,29 +29,35 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content col-md-8" style="border:red solid 1px;">
             <div data-search="book" id="search-book-result-container" class="tab-pane fade active show">        
                 <div class="form-group">
-                    <label>Filter by</label>
-                    <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
-                        <option value="Title" selected="true">Book (Title or ISBN)</option>
-                        <option value="Author" selected="true">Author</option>
-                        <option value="Subject" selected="true">Subject</option>
-                        <option value="Section" selected="true">Section</option>
-                        <option value="Series" selected="true">Series</option>
-                        <option value="Publisher" selected="true">Publisher</option>
-                    </select>		
-                    <label>Published date range</label>
-                    <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">From</span>
+                    <div class="row">
+                        <div class="col-4">
+                        <label>Filter by</label>
+                        <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
+                            <option value="Title" selected="true">Book (Title or ISBN)</option>
+                            <option value="Author" selected="true">Author</option>
+                            <option value="Subject" selected="true">Subject</option>
+                            <option value="Section" selected="true">Section</option>
+                            <option value="Series" selected="true">Series</option>
+                            <option value="Publisher" selected="true">Publisher</option>
+                        </select>	
                         </div>
-                        <input id="range-from" type="text" class="form-control date-range">
-                        <div class="input-group-prepend input-group-append">
-                            <span class="input-group-text">To</span>
+                        <div class="col-8">
+                            <label>Published date range</label>
+                            <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">From</span>
+                                </div>
+                                <input id="range-from" type="text" class="form-control date-range">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text">To</span>
+                                </div>
+                                <input id="range-to" type="text" class="form-control date-range">
+                            </div>		
                         </div>
-                        <input id="range-to" type="text" class="form-control date-range">
-                    </div>		
+                    </div>  
                 </div>    
                 <div class="media-list media-list-divided media-list-hover" id="search-book-result">
                 </div>
@@ -75,9 +81,15 @@
             }
         });
         $('#search').bind('input', function(){
-            if($(this).val() != ""){
+            // if($(this).val().length <= 2 ){
+
+            //     Search.search().hide();
+            if($(this).val().length >=3 ){
+            console.log($(this).val().length);
                 Search.search();
             }
+
+
         });
         $('.date-range').change(function(){
             if($('#search').val() != ""){
