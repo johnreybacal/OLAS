@@ -7,7 +7,7 @@
 	<div class="card">
         <div class="card-body">
             <!-- <label class="fs-18 fw-500">Reports</label> -->
-            <label class="fs-18 fw-500">Report date range</label>
+            <!-- <label class="fs-18 fw-500">Report Date Range</label> -->
             <div class="form-row">
     <!-- Start of Date Picker 1 -->
             <!-- <label>Report date range</label> -->
@@ -27,7 +27,7 @@
                 <!-- </div> -->
     <!-- End of Date Picker 1 -->
     <!-- Start of Date Picker 2 -->
-                 <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                 <!-- <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <label>From</label>
                     <input class="form-control" type="text" id="range-dashboard-from" name="range-dashboard-from" placeholder="">
                 </div>
@@ -40,7 +40,7 @@
                 <div class="col-md-2 col-sm-12 dash-filter" style="margin-bottom: 30px;">
                     <label>&nbsp;</label>
                     <button class="btn btn-block btn-info" id="dashboard-filter" onclick="Dashboard.filter()">Filter</button>
-                </div>
+                </div> -->
             </div>
     <!-- End of Date Picker 2 -->
     <!-- Start of Date Picker 3 -->
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-12 col-">
-                        <label class="fs-18 fw-500">Report date range</label>
+                        <label class="fs-18 fw-500">Report Date Range</label>
                         <div class="form-row mb-3">
                             <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                 <div class="input-group-prepend">

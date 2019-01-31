@@ -131,7 +131,7 @@ class Book extends _BaseController {
                 .'"'.$data->ISBN.'",'                
                 .'"'.$data->Title.'",'                                                
                 .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\">Discard</button>"'
-                .']';             
+            .']';             
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
