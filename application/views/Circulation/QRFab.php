@@ -34,7 +34,7 @@
 </div>
 
 <!-- QR Modal -->
-<div class="modal modal-center modal-xlg fade" id="modal-qr-scan" tabindex="-1">
+<div class="modal modal-center moda-lg fade" id="modal-qr-scan" tabindex="-1">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,8 +60,8 @@
                     <a href="" id="file-qr-result">None</a>              
                     <!-- End of QR -->
                     <form id="modal-qr-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="qrLoanId"/>          
-                        <input type="hidden" id="qrPatronId"/>          
+                        <input type="hidaden" id="qrLoanId" style="display: none;" />          
+                        <input type="hidzden" id="qrPatronId" style="display: none;" />          
                         
                         <div class="row mb-2">
                             <div class="col-12">

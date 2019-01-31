@@ -84,23 +84,25 @@ class Report extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateTableBookIssueHistory($accessionNumber, $patronType){
+    public function GenerateTableBookIssueHistory($accessionNumber, $patronType, $from = null, $to = null){
         $json = '{ "data": [';
         $additionalCondition = '';
         if($patronType != 0){
             $additionalCondition = " AND PatronId IN (SELECT PatronId from patron WHERE PatronTypeId = '".$patronType."')";
         }
+        if($from != null){
+            $additionalCondition .= " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
         foreach($this->loan->_list("WHERE AccessionNumber = '".$accessionNumber."'".$additionalCondition) as $data){
             $patron = $this->patron->_get($data->PatronId);                        
-            $json .= '['        
-                .'"'.$data->LoanId.'",'        
+            $json .= '['
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
                 .'"'.$this->patronType->_get($patron->PatronTypeId)->Name.'",'                
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
-                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'
+                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'"'
             .']';            
             $json .= ',';
         }
@@ -109,12 +111,15 @@ class Report extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateTablePatronIssueHistory($patronId){
+    public function GenerateTablePatronIssueHistory($patronId, $from = null, $to = null){
         $json = '{ "data": [';            
-        foreach($this->loan->_list("WHERE PatronId = '".$patronId."'") as $data){
+        $additionalCondition = '';      
+        if($from != null){
+            $additionalCondition = " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->loan->_list("WHERE PatronId = '".$patronId."'".$additionalCondition) as $data){
             $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
-            $json .= '['
-                .'"'.$data->LoanId.'",'                        
+            $json .= '['                
                 .'"'.$data->AccessionNumber.'",'
                 .'"'.$isbn.'",'
                 .'"'.$this->book->_get($isbn)->Title.'",'
@@ -122,7 +127,7 @@ class Report extends _BaseController {
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
-                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'                
+                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'"'
             .']';            
             $json .= ',';
         }
