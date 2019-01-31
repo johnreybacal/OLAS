@@ -59,11 +59,11 @@
             </li>
         <!-- Bookbag Quick View -->
             <li class="d-none d-md-block">
-                <span class="topbar-btn has-newa" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
+                <span class="topbar-btn has-newa" style="color: #aaa" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
             </li>
         <!-- Message Quick View -->
             <li class="d-md-block">
-                <span onclick="Message.refresh()" class="topbar-btn has-newa" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
+                <span onclick="Message.refresh()" class="topbar-btn has-newa" style="color: #aaa;" data-toggle="quickview" data-target="#qv-messages"><i class="ti-email"></i></span>
             </li>
         </ul>
 

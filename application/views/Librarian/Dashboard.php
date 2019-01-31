@@ -44,29 +44,35 @@
             </div>
     <!-- End of Date Picker 2 -->
     <!-- Start of Date Picker 3 -->
-<!--            GROUP-APPEND TYPE DATE PICKER DO NOT DELETE
-                <label class="fs-18 fw-500">Report date range</label>
-            <div class="form-row mb-3">
-                <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">From</span>
+           <!-- GROUP-APPEND TYPE DATE PICKER DO NOT DELETE -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-12 col-">
+                        <label class="fs-18 fw-500">Report date range</label>
+                        <div class="form-row mb-3">
+                            <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">From</span>
+                                </div>
+                                <input id="range-dashboard-from" type="text" class="form-control date-dashboard-range date-range">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text">To</span>
+                                </div>
+                                <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range date-range">
+                                <button class="btn btn-info filter" id="dashboard-filter" onclick="Dashboard.filter()">Filter</button>                
+                            </div>      
+                        </div>
                     </div>
-                    <input id="range-dashboard-from" type="text" class="form-control date-dashboard-range date-range">
-                    <div class="input-group-prepend input-group-append">
-                        <span class="input-group-text">To</span>
-                    </div>
-                    <input id="range-dashboard-to" type="text" class="form-control date-dashboard-range date-range">
-                    <button class="btn btn-info filter" onclick="Dashboard.filter()">Filter</button>                
-                </div>      
-            </div> -->
-    <!-- End of Date Picker 1 -->
+                </div>
+            </div>
+    <!-- End of Date Picker 3 -->
             <div class="row">
           <!-- 1 -->
             <div class="col-md-6 col-xl-4">
                 <div class="card card-body bg-yellow">
                     <div class="flexbox">
                         <span class="fa fa-book fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalBooks; ?></span>
+                        <span id="total-books" class="fs-40 fw-100"><?php echo $totalBooks; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Total Books</div>
                 </div>
@@ -76,7 +82,7 @@
                 <div class="card card-body bg-info">
                     <div class="flexbox">
                         <span class="fa fa-book fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalBooksAcquired; ?></span>
+                        <span id="total-books-acquired" class="fs-40 fw-100"><?php echo $totalBooksAcquired; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Total Books Acquired</div>
                 </div>
@@ -86,7 +92,7 @@
                 <div class="card card-body bg-danger">
                     <div class="flexbox">
                         <span class="fa fa-book fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalBookCirculations; ?></span>
+                        <span id="total-book-circulations" class="fs-40 fw-100"><?php echo $totalBookCirculations; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Book Circulation</div>
                 </div>
@@ -96,7 +102,7 @@
                 <div class="card card-body bg-success">
                     <div class="flexbox">
                         <span class="pe-7s-users fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
+                        <span id="total-patrons" class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Patrons</div>
                 </div>
@@ -106,7 +112,7 @@
                 <div class="card card-body bg-purple">
                     <div class="flexbox">
                         <span class="pe-7s-users fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
+                        <span id="total-patrons-registered" class="fs-40 fw-100"><?php echo $totalPatrons; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Patrons Registered</div>
                 </div>
@@ -116,7 +122,7 @@
                 <div class="card card-body bg-warning">
                     <div class="flexbox">
                         <span class="pe-7s-users fs-40"></span>
-                        <span class="fs-40 fw-100"><?php echo $totalOutsideResearchers; ?></span>
+                        <span id="total-outside-researchers" class="fs-40 fw-100"><?php echo $totalOutsideResearchers; ?></span>
                     </div>
                     <div class="text-right text-uppercase">Outside Researcher</div>
                 </div>
@@ -266,6 +272,20 @@
                     '</table>' +              
                 '</div>'
             )
+            //need i call sa lahat ng table
+            var $window = $(window);
+
+                $window.resize(function resize() {
+                    if ($window.width() > 768) {
+                        $('#book-table').removeClass('table-responsive');
+                    }
+                    else{
+                        $('#book-table').addClass('table-responsive');  
+                    }
+
+                    //$html.addClass('mobile');
+                    //$html.removeClass('mobile');
+                }).trigger('resize');
         }
     };
 </script>
