@@ -20,6 +20,14 @@ class Circulation extends _BaseController {
         $this->librarianView('Circulation/History', '');
     }
     
+    public function BookIssueHistory(){
+        $this->librarianView('Circulation/BookIssueHistory', '');
+    }
+    
+    public function PatronIssueHistory(){
+        $this->librarianView('Circulation/PatronIssueHistory', '');
+    }
+    
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->loan->_list() as $data){            

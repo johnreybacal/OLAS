@@ -15,10 +15,11 @@ class BookModel extends _BaseModel{
 	public function save($book){
 		if(!$this->bookExist($book['ISBN'])){//insert			
 			$this->db->query("INSERT into book "
-				."(ISBN, Title, PublisherId, SeriesId, Edition, DatePublished) VALUES ("
+				."(ISBN, Title, PublisherId, SectionId, SeriesId, Edition, DatePublished) VALUES ("
                     ."'".$book['ISBN']."', "
 					."'".$book['Title']."', "					
 					."'".$book['PublisherId']."', "
+					."'".$book['SectionId']."', "
 					."'".$book['SeriesId']."', "					
 					."'".$book['Edition']."', "
 					."'".$book['DatePublished']."'"
@@ -29,6 +30,7 @@ class BookModel extends _BaseModel{
 			$this->db->query("UPDATE book SET "                
                 ."Title = '".$book['Title']."', "                
                 ."PublisherId = '".$book['PublisherId']."', "
+                ."SectionId = '".$book['SectionId']."', "
                 ."SeriesId = '".$book['SeriesId']."', "                
                 ."Edition = '".$book['Edition']."', "
 				."DatePublished = '".$book['DatePublished']."' "
