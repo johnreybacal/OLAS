@@ -25,7 +25,7 @@ class _BaseController extends CI_Controller {
 	//view for librarian, redirects to 403 if the librarian doesnt have access to url
 	public function librarianView($url, $data, $loadModals = null){
 		$allowed = array(
-			'Library' => array('Book', 'Author', 'Genre', 'Series', 'Publisher'),
+			'Library' => array('Book', 'Author', 'Section', 'Series', 'Publisher'),
 			'Circulation' => array('Circulation', 'Reservation'),
 			'Patron Management' => array('Patron', 'PatronType'),
 			'Outside Researcher' => array('OutsideResearcher'),
@@ -53,7 +53,7 @@ class _BaseController extends CI_Controller {
 				$this->load->view($url, $data);
 				if($loadModals == 1){
 					$this->load->view('Author/_Author_Modal');
-					$this->load->view('Genre/_Genre_Modal');
+					$this->load->view('Section/_Section_Modal');
 					$this->load->view('Publisher/_Publisher_Modal');
 					$this->load->view('Series/_Series_Modal');
 					$this->load->view('Subject/_Subject_Modal');
@@ -214,8 +214,8 @@ class _BaseController extends CI_Controller {
 					$accessionNumber .= "'".$x->AccessionNumber."',";
 				}
 			}
-			if(in_array("Genre" , $filter)){
-				foreach($this->genre->search($search) as $x){
+			if(in_array("Section" , $filter)){
+				foreach($this->section->search($search) as $x){
 					$accessionNumber .= "'".$x->AccessionNumber."',";
 				}
 			}		
@@ -251,27 +251,14 @@ class _BaseController extends CI_Controller {
 				//author
 				$authorCounter = 0;
 				$str .= '"author":{';
-					foreach($this->bookAuthor->_list($x->ISBN) as $author){
-						if($authorCounter != 0){
-							$str .= ',';
-						}
-						$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
-						$authorCounter++;
-					}  				
-					$str .= '},';
-					
-				//genre
-				$genreCounter = 0;
-				$str .= '"genre":{';
-				foreach($this->bookGenre->_list($x->ISBN) as $genre){
-					if($genreCounter != 0){
+				foreach($this->bookAuthor->_list($x->ISBN) as $author){
+					if($authorCounter != 0){
 						$str .= ',';
 					}
-					$str .= '"'.$genreCounter.'":'.$this->convert($this->genre->_get($genre->GenreId));
-					$genreCounter++;
+					$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
+					$authorCounter++;
 				}  				
-				$str .= '},';
-	
+				$str .= '},';				
 				//subject
 				$subjectCounter = 0;
 				$str .= '"subject":{';

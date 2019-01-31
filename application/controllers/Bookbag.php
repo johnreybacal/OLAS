@@ -57,7 +57,7 @@ class Bookbag extends _BaseController {
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->loopAll($this->book->getGenre($data->ISBN)).'",'                 
+                .'"'.$this->section->_get($data->SectionId)->Name.'",'                 
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'

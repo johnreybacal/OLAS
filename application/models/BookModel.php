@@ -53,13 +53,7 @@ class BookModel extends _BaseModel{
 		$dbList = $this->db->query("select * from author WHERE AuthorID IN "
 			."(select AuthorId from bookauthor WHERE ISBN = '".$isbn."')")->result();
 		return $dbList;
-	}
-
-	public function getGenre($isbn){
-		$dbList = $this->db->query("select * from genre WHERE GenreID IN "
-			."(select GenreId from bookgenre WHERE ISBN = '".$isbn."')")->result();
-		return $dbList;
-	}
+	}	
 
 	public function getSubject($isbn){
 		$dbList = $this->db->query("select * from subject WHERE SubjectID IN "

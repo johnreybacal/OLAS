@@ -5,7 +5,7 @@
 		<div class="topbar-divider d-none d-md-block"></div>
 		<div class="lookup d-none d-md-block ">
         	<form class="lookup-placeholder">
-        		<input class="form-control" type="text" placeholder="Search books, authors, genres, etc." style="min-width: 200%;">
+        		<input class="form-control" type="text" placeholder="Search books, authors, sections, etc." style="min-width: 200%;">
     		</form>
     	</div>		
 	</div>

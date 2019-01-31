@@ -18,7 +18,7 @@
 									<button class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">new</button>
 									<div class="dropdown-menu">
 										<a onclick="Add.author()"class="dropdown-item" href="#">Add Author</a>
-										<a onclick="Add.genre()"class="dropdown-item" href="#">Add Genre</a>
+										<a onclick="Add.section()"class="dropdown-item" href="#">Add Section</a>
 										<a onclick="Add.subject()"class="dropdown-item" href="#">Add Subject</a>			
 										<a onclick="Add.publisher()"class="dropdown-item" href="#">Add Publisher</a>
 										<a onclick="Add.series()"class="dropdown-item" href="#">Add Series</a>
@@ -50,8 +50,8 @@
 									<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
 								</div>
 								<div class="form-group col-md-6">
-									<label>Genre</label>
-									<select id="SelectGenreId" name="Genre" data-provide="selectpicker" multiple title="Choose Genres" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+									<label>Section</label>
+									<select id="SelectSectionId" name="Section" data-provide="selectpicker" title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 								</div>
 								<div class="form-group col-md-6">
 									<label>Subject</label>
@@ -104,7 +104,7 @@
 
   	<ul class="fab-buttons">
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.genre()" href="#" title="Add new Genre" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.section()" href="#" title="Add new Section" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
@@ -173,6 +173,7 @@
 						i = JSON.parse(i);
 						$('#Title').val(i.book.Title);
 						$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
+						$('#SelectSectionId').selectpicker('val', i.book.SectionId);
 						if(i.book.SeriesId != null){
 							$('#SelectSeriesId').selectpicker('val', i.book.SeriesId);
 						}
@@ -182,12 +183,7 @@
 						$.each(i.author, function(index, data){
 							author.push(data.AuthorId);
 						});
-						$('#SelectAuthorId').selectpicker('val', author);
-						var genre = [];
-						$.each(i.genre, function(index, data){
-							genre.push(data.GenreId);
-						});
-						$('#SelectGenreId').selectpicker('val', genre);
+						$('#SelectAuthorId').selectpicker('val', author);						
 						var subject = [];
 						$.each(i.subject, function(index, data){
 							subject.push(data.SubjectId);
@@ -216,10 +212,10 @@
 				Title: $('#Title').val(),
 
 				AuthorId: $('#SelectAuthorId').selectpicker('val'),
-				GenreId: $('#SelectGenreId').selectpicker('val'),
 				SubjectId: $('#SelectSubjectId').selectpicker('val'),
 
 				PublisherId: $('#SelectPublisherId').selectpicker('val'),
+				SectionId: $('#SelectSectionId').selectpicker('val'),
 				SeriesId : $('#SelectSeriesId').selectpicker('val'),
 
 				Edition: $('#Edition').val(),
@@ -337,15 +333,15 @@
 			$('#SelectAuthorId').selectpicker('val', sel);
 		},
 
-		genre: function(){
-			Genre_Modal.new();
+		section: function(){
+			Section_Modal.new();
 		},
 
-		refreshGenre: function(id){
-			var sel = $('#SelectGenreId').selectpicker('val');
+		refreshSection: function(id){
+			var sel = $('#SelectSectionId').selectpicker('val');
 			sel.push(id);
-			Select.genre();
-			$('#SelectGenreId').selectpicker('val', sel);
+			Select.section();
+			$('#SelectSectionId').selectpicker('val', sel);
 		},
 
 		subject: function(){
@@ -383,7 +379,7 @@
 
 		init: function(){
 			Select.author();
-			Select.genre();
+			Select.section();
 			Select.subject();
 			Select.publisher();
 			Select.series();
@@ -404,17 +400,17 @@
 			});			
 		},
 
-		genre: function(){
+		section: function(){
 			$.ajax({
-				url: "<?php echo base_url('Genre/GetAll'); ?>",
+				url: "<?php echo base_url('Section/GetAll'); ?>",
 				async: false,
 				success: function(i){
 					i = JSON.parse(i);                    
-					$('#SelectGenreId').empty();
+					$('#SelectSectionId').empty();
 					$.each(i, function(index, data){                        
-						$('#SelectGenreId').append('<option value = "' + data.GenreId + '">' + data.Name + '</option>');
+						$('#SelectSectionId').append('<option value = "' + data.SectionId + '">' + data.Name + '</option>');
 					})
-					$('#SelectGenreId').selectpicker('refresh');
+					$('#SelectSectionId').selectpicker('refresh');
 				}
 			});
 		},

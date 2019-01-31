@@ -1,32 +1,32 @@
-<div class="modal modal-center fade" id="modal-genre" tabindex="-1">
+<div class="modal modal-center fade" id="modal-section" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Genre</h5>
+                <h5 class="modal-title">Add Section</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-genre-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="GenreId"/>          
+                    <form id="modal-section-form" action="#" class="form-group mt-2">
+                        <input type="hidden" id="SectionId"/>          
                         
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="GenreName" name="GenreName" type="text" class="form-control" placeholder="Name" />
+                                <input id="SectionName" name="SectionName" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div>   
 
-                        <div class="row" id="GenreRowActive">
+                        <div class="row" id="SectionRowActive">
                             <div class="col-sm-12 col-md-12">
                                 <label>Status:</label>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="switch switch-lg switch-info">
-                                        <input type="checkbox" id="GenreIsActive" name="GenreIsActive" checked />
+                                        <input type="checkbox" id="SectionIsActive" name="SectionIsActive" checked />
                                         <span class="switch-indicator"></span>
                                         <label>Active</label>
                                     </label>
@@ -39,63 +39,63 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Genre_Modal.validate()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Section_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var Genre_Modal = {
+    var Section_Modal = {
         data: function () {
             return {
-                GenreId: $('#GenreId').val(),                
-                Name: $('#GenreName').val(),                
-                IsActive: ($('#GenreIsActive').prop("checked") ? 1 : 0),
+                SectionId: $('#SectionId').val(),                
+                Name: $('#SectionName').val(),                
+                IsActive: ($('#SectionIsActive').prop("checked") ? 1 : 0),
             }
         },
 
         init: function () {            
-            $('#modal-genre-form')[0].reset();
+            $('#modal-section-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            // $('#GenreRowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
-            $('#modal-genre').modal('show');
+            // $('#SectionRowActive').addClass('invisible'); nukaya yon ni-hide yung toggle button
+            $('#modal-section').modal('show');
         },
 
         new: function () {
-            $('#GenreId').val('0');
-            $('.modal-title').text('Add Genre');            
-            $('#GenreRowActive').addClass('invisible');
-            Genre_Modal.init();
+            $('#SectionId').val('0');
+            $('.modal-title').text('Add Section');            
+            $('#SectionRowActive').addClass('invisible');
+            Section_Modal.init();
         },
 
         edit: function (id) {            
-            $('.modal-title').text('Edit Genre');            
-            $('#GenreRowActive').removeClass('invisible');          
-            Genre_Modal.init();
+            $('.modal-title').text('Edit Section');            
+            $('#SectionRowActive').removeClass('invisible');          
+            Section_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Genre/Get/'); ?>" + id,
+                url: "<?php echo base_url('Section/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
-                    $('#GenreId').val(i.GenreId);
-                    $('#GenreName').val(i.Name);
-                    $('#GenreIsActive').prop("checked", (i.IsActive == 1));
+                    $('#SectionId').val(i.SectionId);
+                    $('#SectionName').val(i.Name);
+                    $('#SectionIsActive').prop("checked", (i.IsActive == 1));
                 }
             });           
         },
 
         validate: function(){
             $.ajax({
-                url:'<?php echo base_url('Genre/Validate'); ?>',
+                url:'<?php echo base_url('Section/Validate'); ?>',
                 type: "POST",
-                data: {"genre": Genre_Modal.data()},
+                data: {"section": Section_Modal.data()},
                 success: function(i){
                     $('.invalid-feedback').remove();
                     $('.is-invalid').removeClass('is-invalid');
                     i = JSON.parse(i);                    
                     if(i.status == 1){
-                        Genre_Modal.save();
+                        Section_Modal.save();
                     }else{
                         $.each(i, function(element, message){
                             if(element != 'status'){
@@ -112,16 +112,16 @@
 
         save: function () {
             var message;
-            console.log(Genre_Modal.data());
-            if ($('#GenreId').val() == 0) {
-                message = "Great Job! New Genre has been created";
+            console.log(Section_Modal.data());
+            if ($('#SectionId').val() == 0) {
+                message = "Great Job! New Section has been created";
             } else {
-                message = "Nice! Genre has been updated";
+                message = "Nice! Section has been updated";
             }
 
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for Genre',
+                text: 'Save changes for Section',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',
@@ -131,15 +131,15 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url:'<?php echo base_url('Genre/Save'); ?>',
+                        url:'<?php echo base_url('Section/Save'); ?>',
                         type: "POST",
-                        data: {"genre": Genre_Modal.data()},
+                        data: {"section": Section_Modal.data()},
                         success: function(i){
                             swal('Good Job!', message, 'success');
-                            $('#modal-genre').modal('hide');
+                            $('#modal-section').modal('hide');
                             console.log(i);
                             if(typeof Add !== 'undefined'){
-                                Add.refreshGenre(i);
+                                Add.refreshSection(i);
                             }
                         }, 
                         error: function(i){

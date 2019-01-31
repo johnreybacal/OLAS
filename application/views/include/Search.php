@@ -37,7 +37,7 @@
                         <option value="Title" selected="true">Book (Title or ISBN)</option>
                         <option value="Author" selected="true">Author</option>
                         <option value="Subject" selected="true">Subject</option>
-                        <option value="Genre" selected="true">Genre</option>
+                        <option value="Section" selected="true">Section</option>
                         <option value="Series" selected="true">Series</option>
                         <option value="Publisher" selected="true">Publisher</option>
                     </select>		
