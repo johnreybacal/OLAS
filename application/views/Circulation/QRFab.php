@@ -1,33 +1,31 @@
-<script type="module" src="<?php echo base_url('assets/js/script/plugins/qr-scanner.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <style>
-	/* canvas {
+	canvas {
         display: none;
     }
-    hr {
+    /* hr {
         margin-top: 32px;
-    }
+    }  */
     input[type="file"] {
         display: block;
         margin-bottom: 16px;
     }
-    div {
-        margin-bottom: 16px;
-    }
     video {
-        height: 400px;
-        width: 400px;
+        max-width: 100%;
+        height: auto;
+
+        left: -100%;
+        right: -100%;
+        top: -100%;
+        bottom: -100%;
     }
     .container {
-        width: 200px;
+        /* width: 200px;
         overflow:hidden;
         display:block;
-        height: 360px;
+        height: 360px; */
     }
     #qr-video {
-        margin-left: -110px;
-    } */
+    }
 </style>
 
 <!-- Fab Button -->
@@ -48,7 +46,7 @@
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <!-- QR -->
-                    <div class="container">
+                    <div class="container video">
                         <video muted autoplay playsinline id="qr-video"></video>
                         <canvas id="debug-canvas"></canvas>
                     </div>
@@ -123,7 +121,8 @@
     var qr;
         $('#cam-qr-result').bind("DOMSubtreeModified", function(){
             qr = document.getElementById('cam-qr-result');  //Bacs, itong yung id na galing sa qr. 
-            console.log(qr.text);                                    //Hindi ko alam kung pano ilalagay hehe.
+            console.log(qr.text);  
+            QR_Scan.get(qr.text);                                  //Hindi ko alam kung pano ilalagay hehe.
         })
 
     var QR_Scan = {
@@ -193,6 +192,7 @@
                 url: "<?php echo base_url('Circulation/ScanQR/'); ?>" + id,                
                 success: function(i){
                     i = JSON.parse(i);
+                    console.log(i.LoanId);
                     $('#qrLoanId').val(i.LoanId);
                     $('#qrPatronId').val(i.PatronId);
                     $('#qrAccessionNumber').val(i.AccessionNumber);
@@ -313,7 +313,7 @@
         });
 
         // when object with class close-popup is clicked...
-        $('.modal').click(function(e) {
+        $('#modal-qr-scan').click(function(e) {
             e.preventDefault();
             $('#qr-video').children('iframe').attr('src', '');
             $('.popup-bg').fadeOut();
