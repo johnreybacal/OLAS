@@ -192,7 +192,7 @@
                 url: "<?php echo base_url('Circulation/ScanQR/'); ?>" + id,                
                 success: function(i){
                     i = JSON.parse(i);
-                    console.log(i.LoanId);
+                    console.log(i);
                     $('#qrLoanId').val(i.LoanId);
                     $('#qrPatronId').val(i.PatronId);
                     $('#qrAccessionNumber').val(i.AccessionNumber);
