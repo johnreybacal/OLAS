@@ -30,7 +30,7 @@
 							<th>Date Issued</th>
 							<th>Date Due</th>							
 							<th></th>
-							<th></th>
+							<!-- <th></th> -->
 							<th></th>
 						</tr>
 					</thead>
