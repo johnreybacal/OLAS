@@ -18,7 +18,7 @@ class Publisher extends _BaseController {
             $json .= '['
                 .'"'.$data->Name.'",'
                 .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
-                .'"<button onclick = \"Publisher_Modal.edit('.$data->PublisherId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                .'"<button onclick = \"Publisher_Modal.edit('.$data->PublisherId.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

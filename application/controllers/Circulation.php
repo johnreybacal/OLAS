@@ -44,12 +44,12 @@ class Circulation extends _BaseController {
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
                 .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'                
-                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info mx-2 btn-md btn-flat\"><span class=\"fa fa-edit fa-2x\"></span>Edit</button>'
+                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-md btn-flat\" title=\"Edit\"><span class=\"fa fa-edit fa-2x\"></span>Edit</button>'
                 .($data->BookStatusId == 1 
-                    ? '<button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-info mx-2 btn-md btn-flat\"><span class=\"ionicons ion-refresh fa-2x\"></span>Return</button>'
+                    ? '<button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-refresh fa-2x\" title=\"Return\"></span>Return</button>'
                     : '')
                 .($data->BookStatusId == 1 ? ($data->IsRecalled == 0) 
-                    ? '<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-left fa-2x\">Recall</span></button>' : '<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-right fa-2x\">Unrecall</span></button>'
+                    ? '<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\" title=\"Recall\"><span class=\"ionicons ion-arrow-return-left fa-2x\">Recall</span></button>' : '<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\" title=\"Unrecall\"><span class=\"ionicons ion-arrow-return-right fa-2x\">Unrecall</span></button>'
                     : '')
                 .'"'
             .']';            
@@ -73,11 +73,11 @@ class Circulation extends _BaseController {
                 .'"'.$this->book->_get($isbn)->Title.'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'                                
-                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-flat\"><span class=\"fa fa-edit fa-2x\"></span></button><button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-success btn-flat\"><span class=\"fa fa-check fa-2x\"></span></button>",'      
+                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-flat\"><span class=\"fa fa-edit fa-2x\" title=\"Edit\"></span></button><button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-success\" title=\"Return\">Return</button>",'      
                 .(($data->IsRecalled == 0) 
-                    ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-danger btn-md\">Recall</span></button>"'
+                    ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-danger btn-md\" title=\"Recall\">Recall</span></button>"'
                     // ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-left fa-2x\">Recall</span></button>"'
-                    : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md\">Unrecall</span></button>"')
+                    : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md\" title=\"Unrecall\">Unrecall</span></button>"')
                     // : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-right fa-2x\">Unrecall</span></button>"')
             .']';            
             $json .= ',';
@@ -103,7 +103,7 @@ class Circulation extends _BaseController {
                 .'"'.$data->DateReturned.'",'
                 .'"'.$data->AmountPayed.'",'
                 .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'",'                
-                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info mx-2 btn-md btn-flat\"><span class=\"fa fa-edit fa-2x\"></span></button>"'                
+                .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-md btn-flat\" title=\"Edit\"><span class=\"fa fa-edit fa-2x\"></span></button>"'                
             .']';            
             $json .= ',';
         }

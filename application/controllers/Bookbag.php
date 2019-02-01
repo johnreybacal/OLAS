@@ -62,7 +62,7 @@ class Bookbag extends _BaseController {
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
-                .'"<button onclick = \"Bookbag.remove(\''.$item['rowid'].'\');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-trash fa-2x\"></span></button>"'
+                .'"<button onclick = \"Bookbag.remove(\''.$item['rowid'].'\');\" class = \"btn btn-md btn-flat btn-danger\" title=\"Remove\"><span class = \"fa fa-trash fa-2x\"></span></button>"'
             .']';             
             $json .= ',';
         }

@@ -83,7 +83,7 @@ class Librarian extends _BaseController {
                 .'"'.$data->LastName.", ".$data->FirstName.'",'
                 .'"'.$data->Username.'",'
                 .'"'.$this->loopAll($this->librarian->getRole($data->LibrarianId)).'",'
-                .'"<button onclick = \"Librarian_Modal.edit('.$data->LibrarianId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
+                .'"<button onclick = \"Librarian_Modal.edit('.$data->LibrarianId.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
         }

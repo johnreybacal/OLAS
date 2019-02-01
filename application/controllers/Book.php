@@ -57,7 +57,7 @@ class Book extends _BaseController {
                 .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
                 .'"'.$data->AcquiredFrom.'",'
-                .'"<a href = \"'.base_url("Book/QR/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-qrcode\"></span></a> <a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<a href = \"'.base_url("Book/QR/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"QR Code\"><span class = \"fa fa-qrcode fa-2x\"></span></a> <a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }
@@ -83,7 +83,7 @@ class Book extends _BaseController {
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
-                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
+                .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Add\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
             .']';             
             $json .= ',';
         }
@@ -130,7 +130,7 @@ class Book extends _BaseController {
             $json .= '['                                
                 .'"'.$data->ISBN.'",'                
                 .'"'.$data->Title.'",'                                                
-                .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\">Discard</button>"'
+                .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\" title=\"Add\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\" title=\"Discard\">Discard</button>"'
             .']';             
             $json .= ',';
         }
