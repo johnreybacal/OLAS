@@ -131,6 +131,20 @@
                             <span class="title">Circulation History</span>
                         </a>
                     </li>
+                    
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Circulation/BookIssueHistory'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Book Issue History</span>
+                        </a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Circulation/PatronIssueHistory'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Patron Issue History</span>
+                        </a>
+                    </li>
 
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Reservation'); ?>">

@@ -17,7 +17,7 @@ class Report extends _BaseController {
 
     private function TotalToNow($column){
         return $column." BETWEEN '0001-01-01' AND '".$this->dateTo."'";
-    }
+    }        
 
     public function Filter(){
         $str = '{';
@@ -82,6 +82,58 @@ class Report extends _BaseController {
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function GenerateTableBookIssueHistory($accessionNumber, $patronType, $from = null, $to = null){
+        $json = '{ "data": [';
+        $additionalCondition = '';
+        if($patronType != 0){
+            $additionalCondition = " AND PatronId IN (SELECT PatronId from patron WHERE PatronTypeId = '".$patronType."')";
+        }
+        if($from != null){
+            $additionalCondition .= " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->loan->_list("WHERE AccessionNumber = '".$accessionNumber."'".$additionalCondition) as $data){
+            $patron = $this->patron->_get($data->PatronId);                        
+            $json .= '['
+                .'"'.$patron->LastName.', '.$patron->FirstName.'",'
+                .'"'.$this->patronType->_get($patron->PatronTypeId)->Name.'",'                
+                .'"'.$data->DateBorrowed.'",'
+                .'"'.$data->DateDue.'",'
+                .'"'.$data->DateReturned.'",'
+                .'"'.$data->AmountPayed.'",'
+                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateTablePatronIssueHistory($patronId, $from = null, $to = null){
+        $json = '{ "data": [';            
+        $additionalCondition = '';      
+        if($from != null){
+            $additionalCondition = " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->loan->_list("WHERE PatronId = '".$patronId."'".$additionalCondition) as $data){
+            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
+            $json .= '['                
+                .'"'.$data->AccessionNumber.'",'
+                .'"'.$isbn.'",'
+                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$data->DateBorrowed.'",'
+                .'"'.$data->DateDue.'",'
+                .'"'.$data->DateReturned.'",'
+                .'"'.$data->AmountPayed.'",'
+                .'"'.$this->bookStatus->_get($data->BookStatusId)->Name.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;     
     }
 
 }

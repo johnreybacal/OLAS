@@ -337,11 +337,9 @@
 			Section_Modal.new();
 		},
 
-		refreshSection: function(id){
-			var sel = $('#SelectSectionId').selectpicker('val');
-			sel.push(id);
+		refreshSection: function(id){			
 			Select.section();
-			$('#SelectSectionId').selectpicker('val', sel);
+			$('#SelectSectionId').selectpicker('val', id);
 		},
 
 		subject: function(){

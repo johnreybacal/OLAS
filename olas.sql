@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2019 at 01:24 PM
+-- Generation Time: Feb 01, 2019 at 12:58 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -27,10 +27,8 @@ USE `olas`;
 --
 -- Table structure for table `author`
 --
--- Creation: Oct 13, 2018 at 03:13 AM
--- Last update: Jan 18, 2019 at 10:55 AM
---
 
+DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `AuthorId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -62,10 +60,8 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `book`
 --
--- Creation: Jan 30, 2019 at 12:16 PM
--- Last update: Jan 30, 2019 at 12:16 PM
---
 
+DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `ISBN` varchar(13) NOT NULL,
   `Title` varchar(100) NOT NULL,
@@ -87,21 +83,20 @@ TRUNCATE TABLE `book`;
 --
 
 INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Edition`, `DatePublished`, `Image`) VALUES
-('1', 'The house of us', 1, 1, 1, '2', '2018-09-24', 'date.png'),
-('2', 'The book of knowledge', 1, 2, 3, '1', '2018-08-26', 'mama-_gumamela.png'),
-('3', 'The day you said goodnight', 1, 3, 3, '1', '2018-10-22', 'images.jpg'),
-('4', 'Star Lord', 1, 3, 0, '', '2018-10-02', 'default.png'),
-('1103', 'Zuko x Todoroki', 7, 3, 6, '', '2018-11-10', 'default.png');
+('9780000000001', 'The book of knowledge', 1, 2, 3, '1', '2018-08-26', 'mama-_gumamela.png'),
+('0786830239', 'Tales from Agrabah Aladdin and Jasmine', 1, 3, 3, '1', '2018-10-22', 'images.jpg'),
+('9781368012287', 'Star Wars The Last Jedi', 1, 3, 0, '', '2018-10-02', 'default.png'),
+('9780000000002', 'Librong Pilipino', 7, 3, 6, '', '2018-11-10', 'default.png'),
+('9780000000003', 'A research about thesis', 7, 1, 0, '', '2019-01-01', 'default.png'),
+('9780747569404', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'default.png');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `bookauthor`
 --
--- Creation: Oct 07, 2018 at 02:44 AM
--- Last update: Nov 24, 2018 at 03:29 AM
---
 
+DROP TABLE IF EXISTS `bookauthor`;
 CREATE TABLE `bookauthor` (
   `ISBN` int(11) NOT NULL,
   `AuthorId` int(11) NOT NULL
@@ -124,17 +119,17 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 (2, 1),
 (4, 2),
 (4, 3),
-(1103, 1);
+(1103, 1),
+(23456, 9),
+(2147483647, 5);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `bookcatalogue`
 --
--- Creation: Oct 17, 2018 at 11:17 AM
--- Last update: Nov 24, 2018 at 03:29 AM
---
 
+DROP TABLE IF EXISTS `bookcatalogue`;
 CREATE TABLE `bookcatalogue` (
   `AccessionNumber` int(11) NOT NULL,
   `CallNumber` varchar(20) NOT NULL,
@@ -157,38 +152,37 @@ TRUNCATE TABLE `bookcatalogue`;
 --
 
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
-(1, '112', '2', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
-(11, '123', '3', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
-(10, 'asduhaud', '2', '2018-11-01', 'Jb', 0, 1, 1, 1),
-(9, 'os91', '1', '2018-10-27', '', 0, 1, 1, 1),
-(12, 'sdg', '3', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
-(13, '34', '1', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
-(14, '1', '2', '2018-11-01', 'q', 200, 0, 1, 1),
-(15, '12343', '1', '2018-10-02', 'q', 3, 0, 1, 1),
-(16, '90', '1', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
-(17, 'scsdvs', '1', '2018-10-23', 'wef', 12, 0, 1, 1),
-(18, 'xcb ', '1', '2018-10-23', 'wef', 12, 1, 1, 1),
-(19, '4311', '4', '2018-10-25', 'jb', 100, 1, 1, 1),
-(20, '1234323', '1103', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
-(21, 'fdfgh', '1', '2018-11-13', '1', 1, 1, 1, 1),
-(22, 'rock lee', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(23, '111ewfw', '3', '2018-11-13', '12', 121, 1, 1, 1),
-(24, 'safsdf', '1', '2018-11-13', '1', 1, 1, 1, 1),
-(25, '12345tdffg', '1', '2018-11-13', '1', 1, 1, 1, 1),
-(26, 'sdv ds fsfd ', '1', '2018-11-13', '1', 1, 1, 1, 1),
-(27, 'asdfghjkhgfd', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(28, 'asdvc v vc', '2', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(29, 'r3t4grd', '3', '2018-11-19', 'edwsfdv', 4, 1, 1, 1);
+(1, '112', '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
+(11, '123', '0786830239', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
+(10, 'asduhaud', '9780000000001', '2018-11-01', 'Jb', 0, 1, 1, 1),
+(9, 'os91', '9780747569404', '2018-10-27', '', 0, 1, 1, 1),
+(12, 'sdg', '0786830239', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
+(13, '34', '9780747569404', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
+(14, '1', '9780747569404', '2018-11-01', 'National Bookstore', 400, 0, 1, 1),
+(15, '12343', '9780747569404', '2018-10-02', 'q', 3, 0, 1, 1),
+(16, '90', '9780747569404', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
+(17, 'scsdvs', '9780747569404', '2018-10-23', 'wef', 12, 0, 1, 1),
+(18, 'xcb ', '9780747569404', '2018-10-23', 'wef', 12, 1, 1, 1),
+(19, '4311', '9781368012287', '2018-10-25', 'jb', 100, 1, 1, 1),
+(20, '1234323', '9780000000002', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
+(21, 'fdfgh', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
+(22, 'rock lee', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(23, '111ewfw', '0786830239', '2018-11-13', '12', 121, 1, 1, 1),
+(24, 'safsdf', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
+(25, '12345tdffg', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
+(26, 'sdv ds fsfd ', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
+(27, 'asdfghjkhgfd', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(28, 'asdvc v vc', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
+(29, 'r3t4grd', '0786830239', '2018-11-19', 'edwsfdv', 4, 1, 1, 1),
+(30, '123456hfthfgh', '9780000000003', '2019-01-31', 'nat', 100, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `bookstatus`
 --
--- Creation: Oct 14, 2018 at 01:56 PM
--- Last update: Oct 14, 2018 at 01:56 PM
---
 
+DROP TABLE IF EXISTS `bookstatus`;
 CREATE TABLE `bookstatus` (
   `BookStatusId` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL
@@ -214,10 +208,8 @@ INSERT INTO `bookstatus` (`BookStatusId`, `Name`) VALUES
 --
 -- Table structure for table `booksubject`
 --
--- Creation: Oct 07, 2018 at 02:44 AM
--- Last update: Nov 24, 2018 at 03:29 AM
---
 
+DROP TABLE IF EXISTS `booksubject`;
 CREATE TABLE `booksubject` (
   `ISBN` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
@@ -240,17 +232,17 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 (3, 1),
 (4, 1),
 (4, 14),
-(1103, 18);
+(1103, 18),
+(23456, 1),
+(2147483647, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `college`
 --
--- Creation: Oct 13, 2018 at 03:14 AM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college` (
   `CollegeId` int(11) NOT NULL,
   `Name` varchar(20) NOT NULL,
@@ -278,10 +270,8 @@ INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `course`
 --
--- Creation: Oct 13, 2018 at 03:15 AM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `CourseId` int(11) NOT NULL,
   `CollegeId` int(11) NOT NULL,
@@ -310,10 +300,8 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `librarian`
 --
--- Creation: Nov 01, 2018 at 11:47 AM
--- Last update: Nov 09, 2018 at 08:59 AM
---
 
+DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
@@ -341,10 +329,8 @@ INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Pa
 --
 -- Table structure for table `librarianaccess`
 --
--- Creation: Nov 01, 2018 at 11:05 AM
--- Last update: Nov 09, 2018 at 08:59 AM
---
 
+DROP TABLE IF EXISTS `librarianaccess`;
 CREATE TABLE `librarianaccess` (
   `LibrarianId` int(11) NOT NULL,
   `LibrarianRoleId` int(11) NOT NULL
@@ -378,10 +364,8 @@ INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
 --
 -- Table structure for table `librarianrole`
 --
--- Creation: Nov 01, 2018 at 11:01 AM
--- Last update: Nov 03, 2018 at 09:43 AM
---
 
+DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
@@ -410,10 +394,8 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `Description`) VALUES
 --
 -- Table structure for table `loan`
 --
--- Creation: Oct 27, 2018 at 12:50 PM
--- Last update: Jan 18, 2019 at 10:55 AM
---
 
+DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -447,10 +429,8 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 --
 -- Table structure for table `marcimport`
 --
--- Creation: Nov 15, 2018 at 12:11 PM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `marcimport`;
 CREATE TABLE `marcimport` (
   `MarcImportId` int(11) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
@@ -509,10 +489,8 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 --
 -- Table structure for table `message`
 --
--- Creation: Oct 30, 2018 at 02:05 PM
--- Last update: Nov 03, 2018 at 09:43 AM
---
 
+DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `MessageId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -542,10 +520,8 @@ INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) 
 --
 -- Table structure for table `outsideresearcher`
 --
--- Creation: Oct 20, 2018 at 11:50 AM
--- Last update: Oct 28, 2018 at 01:55 PM
---
 
+DROP TABLE IF EXISTS `outsideresearcher`;
 CREATE TABLE `outsideresearcher` (
   `OutsideResearcherId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -571,10 +547,8 @@ INSERT INTO `outsideresearcher` (`OutsideResearcherId`, `Name`, `DateTime`, `Amo
 --
 -- Table structure for table `outsideresearchersubject`
 --
--- Creation: Oct 20, 2018 at 11:49 AM
--- Last update: Oct 28, 2018 at 01:55 PM
---
 
+DROP TABLE IF EXISTS `outsideresearchersubject`;
 CREATE TABLE `outsideresearchersubject` (
   `OutsideResearcherId` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
@@ -599,10 +573,8 @@ INSERT INTO `outsideresearchersubject` (`OutsideResearcherId`, `SubjectId`) VALU
 --
 -- Table structure for table `patron`
 --
--- Creation: Nov 09, 2018 at 12:39 PM
--- Last update: Jan 19, 2019 at 07:28 AM
---
 
+DROP TABLE IF EXISTS `patron`;
 CREATE TABLE `patron` (
   `PatronId` int(11) NOT NULL,
   `PatronTypeId` int(11) NOT NULL,
@@ -628,7 +600,7 @@ TRUNCATE TABLE `patron`;
 --
 
 INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`, `DateCreated`) VALUES
-(1, 2, 'Johnrey', '', 'Bacal', NULL, '123', 0, '123', '12345', 'jaosj', '2018-11-08'),
+(1, 1, 'Johnrey', 'Cumayas', 'Bacal', '', '15-037-017', 1, '12345678', '+639770110623', 'johnrey.bacal@yahoo.com', '2018-11-08'),
 (3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12123123, 'westsidenigga', '+639999999999', 'nigga@yahoo.com', '2018-11-09');
 
 -- --------------------------------------------------------
@@ -636,10 +608,8 @@ INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `La
 --
 -- Table structure for table `patrontype`
 --
--- Creation: Oct 13, 2018 at 03:21 AM
--- Last update: Oct 15, 2018 at 12:47 PM
---
 
+DROP TABLE IF EXISTS `patrontype`;
 CREATE TABLE `patrontype` (
   `PatronTypeId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
@@ -659,17 +629,16 @@ TRUNCATE TABLE `patrontype`;
 
 INSERT INTO `patrontype` (`PatronTypeId`, `Name`, `NumberOfBooks`, `NumberOfDays`, `IsActive`) VALUES
 (1, 'Student', 1, 1, 1),
-(2, 'Teacher', 10, 7, 1);
+(2, 'Faculty employee', 10, 7, 1),
+(3, 'Admin', 20, 7, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `publisher`
 --
--- Creation: Oct 13, 2018 at 03:17 AM
--- Last update: Jan 18, 2019 at 10:55 AM
---
 
+DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE `publisher` (
   `PublisherId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -687,21 +656,19 @@ TRUNCATE TABLE `publisher`;
 
 INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 (1, 'JB Publishing', 1),
-(2, 'BooksRUs', 0),
+(2, 'BooksRUs', 1),
 (4, 'Publisher', 1),
 (5, 'Piso print', 1),
 (6, 'Publiko', 1),
-(7, 'Yaoi pub', 1);
+(7, 'Manga pub', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `reservation`
 --
--- Creation: Oct 26, 2018 at 11:53 AM
--- Last update: Nov 03, 2018 at 09:43 AM
---
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `ReservationId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -737,10 +704,8 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 --
 -- Table structure for table `section`
 --
--- Creation: Oct 13, 2018 at 03:15 AM
--- Last update: Jan 18, 2019 at 10:55 AM
---
 
+DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section` (
   `SectionId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -767,10 +732,8 @@ INSERT INTO `section` (`SectionId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `series`
 --
--- Creation: Oct 13, 2018 at 03:17 AM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `series`;
 CREATE TABLE `series` (
   `SeriesId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -799,10 +762,8 @@ INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `subject`
 --
--- Creation: Oct 13, 2018 at 03:18 AM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `SubjectId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -832,10 +793,8 @@ INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 --
 -- Table structure for table `subjectcourse`
 --
--- Creation: Oct 07, 2018 at 03:07 AM
--- Last update: Nov 16, 2018 at 03:47 AM
---
 
+DROP TABLE IF EXISTS `subjectcourse`;
 CREATE TABLE `subjectcourse` (
   `SubjectId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL
@@ -991,7 +950,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -1046,7 +1005,7 @@ ALTER TABLE `patron`
 -- AUTO_INCREMENT for table `patrontype`
 --
 ALTER TABLE `patrontype`
-  MODIFY `PatronTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PatronTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `publisher`
 --

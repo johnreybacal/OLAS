@@ -130,7 +130,7 @@ class Book extends _BaseController {
             $json .= '['                                
                 .'"'.$data->ISBN.'",'                
                 .'"'.$data->Title.'",'                                                
-                .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger\">Discard</button>"'
+                .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\">Discard</button>"'
             .']';             
             $json .= ',';
         }
@@ -163,6 +163,14 @@ class Book extends _BaseController {
     //Get Catalogue of book
     public function GetCatalogue($accessionNumber){
         echo $this->convert($this->bookCatalogue->_get($accessionNumber));
+    }
+
+    public function GetCatalogueByISBN($isbn){
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn));
+    }
+
+    public function GetAll(){
+        echo $this->convert($this->book->_list());
     }
 
     //for same title so that the form will be automatically filled it same isbn is set

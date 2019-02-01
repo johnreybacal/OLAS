@@ -96,6 +96,7 @@ div[class*=fab] button{
 table[data-provide*=datatables] thead>tr>th{
     /*background-color:#49c5b6;*/
     background-color:#48b0f7;
+    color: #fff;
 }
 
 .table>tbody>tr:hover td:first-child{
@@ -153,6 +154,10 @@ table.r1 tbody td:nth-child(1), table.r2 tbody td:nth-child(2), table.r3 tbody t
 .datepicker table tr td.range-start, .datepicker table tr td.range-end {
     background-color: #48b0f7 !important;
     border-color: #48b0f7 !important;
+}
+
+.datepicker table tr td.range-start, .datepicker table tr td.range-end{
+    border-top: none!important;
 }
 /*TOPBAR*/
 .topbar .dropdown.show .topbar-btn {
