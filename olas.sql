@@ -88,7 +88,31 @@ INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Ed
 ('9781368012287', 'Star Wars The Last Jedi', 1, 3, 0, '', '2018-10-02', 'default.png'),
 ('9780000000002', 'Librong Pilipino', 7, 3, 6, '', '2018-11-10', 'default.png'),
 ('9780000000003', 'A research about thesis', 7, 1, 0, '', '2019-01-01', 'default.png'),
-('9780747569404', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'default.png');
+('9780747569404', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'default.png'),
+('9780621063099','Little Men', 1, 3, 0,'','2018-01-24', 'little_men.jpg'),
+('9780402199901','Little Women', 1, 3, 0,'','2018-02-24', 'little_women.jpg'),
+('0988941589','Good Wives', 1, 3, 0,'','2018-03-24', 'good_wives.jpg'),
+('9785386262884','Jo s Boys', 1, 3, 0,'','2018-04-24', 'joys_boys.jpg'),
+('9784773012941','Veronika Decides to Die', 1, 3, 0,'','2018-05-24', 'veronika_decides_to_die.jpg'),
+('9786523504294','The Alchemist', 1, 3, 0,'','2018-06-24', 'the_alchemist.jpg'),
+('9780549538394','Bared To You', 1, 3, 0,'','2018-07-24', 'bared_to_you.jpg'),
+('9781573309400','Reflected ln You', 1, 3, 0,'','2018-08-24', 'reflected_in_you.jpg'),
+('9781017703597','Etwined Wlth You Women', 1, 3, 0,'','2018-09-24', 'etwined_with_you.jpg'),
+('9789740928522','Captivated By You', 1, 3, 0,'','2018-10-24', 'captivated_by_you.jpg'),
+('9786361262394','One Wlth You', 1, 3, 0,'','2018-11-24', 'one_with_you.jpg'),
+('9788301119546','The Sheik 4nd the Runaway Princess', 1, 3,0,'','2018-12-24', 'the_sheik_and_the_runaway_princess.jpg'),
+('9785149961931','The Sheik s Arranged Marriage', 1, 3, 0,'','2018-12-25', 'the_Sheiks_arranged_marriage.jpg'),
+('9784466056054','The Sheik 4nd The Bride Who Said No', 1, 3, 0,'','2018-12-26', 'the_sheik_and_the_bride_who_said_no.jpg'),
+('9785789552629','The Sheik 4nd the Virgin Princess', 1, 3, 0,'','2018-12-27', 'the_sheik_and_the_virgin_princess.jpg'),
+('9787663395858','The Sheik and the Princess Bride', 1, 3, 0,'','2018-12-28', 'the_sheik_&_the_princess_bride.jpg'),
+('9783159481968','The Sheiks Secret Bride', 1, 3, 0,'','2018-12-29', 'the_sheiks_secret_bride.jpg'),
+('9781305623415','Ten Years 0n', 1, 3, 0,'','2018-12-30', 'ten_years_on.jpg'),
+('9784088744759','Sorry Please Thank You', 1, 3, 0,'','2018-12-31', 'sorry_please_thank_you.jpg'),
+('9781852769611','The Girl You Left Behind', 1, 3, 0,'','2018-12-31', 'the_girl_you_left_behind.jpg'),
+('9787835384789','Pleasure of the Night', 1, 3, 0,'','2019-01-01', 'pleasure_of_the_night.jpg'),
+('9784411754257','Heat of the Night', 1, 3, 0,'','2019-01-11', 'heat_of_the_night.jpg'),
+('9784882477143','The Ship of Bride', 1, 3, 0,'','2019-01-12', 'the_ship_of_bride.jpg'),
+('9781882803378','The Last Letter from your Lover', 1, 3, 0,'','2019-01-13', 'the_last_letter_from_your_lover.jpg');
 
 -- --------------------------------------------------------
 

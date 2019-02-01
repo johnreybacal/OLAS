@@ -1,18 +1,21 @@
 <script src = "<?php echo base_url('assets/js/script/plugins/qrcode.min.js'); ?>"></script>
 <script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>	
 
-<div class="main-content">
+<div class="col-md-6" style="margin:auto;">
 	<div class="card">
-		<div class="card-body">
-            <div><h4><?php echo $book->AccessionNumber; ?></h2></div>
+        <div class="card-title">
+            <h4>Accession Number: <?php echo $book->AccessionNumber; ?></h4>
+        </div>
+        <div class="card-body">
             <div id="qrcode"></div>
             <br />
             <div id="text" type="text" value="<?php echo $book->AccessionNumber; ?>" style="width:80%"></div>
-            <br />
-            
-            <a href="" class="btn btn-info btn-md" onclick="print();" class="myButton">Print QR</a>
-            <br/>
+            <!-- <br /> -->
         </div>
+        <div class="card-footer">
+            <a href="" class="btn btn-info btn-md" onclick="print();" class="myButton">Print QR</a>
+        </div>
+            <!-- <br/> -->
     </div>
 </div>
 
