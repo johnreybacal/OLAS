@@ -2,29 +2,20 @@
 	canvas {
         display: none;
     }
-    /* hr {
-        margin-top: 32px;
-    }  */
     input[type="file"] {
         display: block;
         margin-bottom: 16px;
     }
     video {
-        max-width: 100%;
-        height: auto;
-
-        left: -100%;
-        right: -100%;
-        top: -100%;
-        bottom: -100%;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
     }
-    .container {
-        /* width: 200px;
-        overflow:hidden;
-        display:block;
-        height: 360px; */
-    }
-    #qr-video {
+    .camera {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
     }
 </style>
 
@@ -46,7 +37,7 @@
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <!-- QR -->
-                    <div class="container video">
+                    <div class="camera" >
                         <video muted autoplay playsinline id="qr-video"></video>
                         <canvas id="debug-canvas"></canvas>
                     </div>
@@ -305,7 +296,6 @@
 
         // when object with class open-popup is clicked...
         $('.modal show').click(function(e) {
-        e.preventDefault();
             // change the src value of the video
             $('#qr-video').children('iframe').attr('src', src);
             $('.popup-bg').fadeIn();
@@ -314,11 +304,12 @@
 
         // when object with class close-popup is clicked...
         $('#modal-qr-scan').click(function(e) {
-            e.preventDefault();
             $('#qr-video').children('iframe').attr('src', '');
             $('.popup-bg').fadeOut();
             console.log('out');
         });
     });
+
+    
 
 </script>
