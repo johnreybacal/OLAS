@@ -191,4 +191,8 @@ class Circulation extends _BaseController {
         echo $this->convert($this->loan->getLoanByAccession($accessionNumber));
     }
 
+    public function GenerateQR(){
+        $this->librarianView('Circulation/QR', '');
+    }
+
 }

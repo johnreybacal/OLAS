@@ -249,7 +249,7 @@
         $.each($('.menu-item'), function(){
             if($(this).children('.menu-link').attr('href') == window.location.href){
                 $(this).addClass('active');
-                $(this).parent().parent().addClass('active');
+                $(this).parent().parent().addClass('active open');
             }
         });
     });
