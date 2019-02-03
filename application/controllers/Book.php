@@ -263,12 +263,11 @@ class Book extends _BaseController {
         echo $str;
     }
 
-    public function Save(){          
+    public function Save(){                  
         $book = $this->input->post('book');        
         $isbn = $book['ISBN'];
-        $author = $book['AuthorId'];
-        $section = $book['SectionId'];
-        $subject = $book['SubjectId'];
+        $author = $book['AuthorId'];        
+        $subject = $book['SubjectId'];        
         $this->bookCatalogue->save($book);
         $this->book->save($book);        
         $this->bookAuthor->save($isbn, $author);        

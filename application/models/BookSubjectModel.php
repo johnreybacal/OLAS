@@ -5,7 +5,7 @@ class BookSubjectModel extends CI_Model{
 
 	public function save($isbn, $subjects){
 		$this->db->query("DELETE FROM booksubject WHERE ISBN = '".$isbn."'");
-		foreach($subjects as $subject){
+		foreach($subjects as $subject){			
 			$this->db->query("INSERT into booksubject "
 				."(ISBN, SubjectId) VALUES ("                   
 					."'".$isbn."',"

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2019 at 12:58 AM
+-- Generation Time: Feb 03, 2019 at 03:55 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -53,7 +53,11 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (6, 'Teddy', 1),
 (7, 'Eddy', 0),
 (8, 'Mercury', 1),
-(9, 'Tovs', 1);
+(9, 'Tovs', 1),
+(10, 'Paulo Coelho', 1),
+(11, 'Sylvia Day', 1),
+(12, 'Susan Mallery', 1),
+(13, 'Louisa May Alcot', 1);
 
 -- --------------------------------------------------------
 
@@ -85,34 +89,34 @@ TRUNCATE TABLE `book`;
 INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Edition`, `DatePublished`, `Image`) VALUES
 ('9780000000001', 'The book of knowledge', 1, 2, 3, '1', '2018-08-26', 'mama-_gumamela.png'),
 ('0786830239', 'Tales from Agrabah Aladdin and Jasmine', 1, 3, 3, '1', '2018-10-22', 'images.jpg'),
-('9781368012287', 'Star Wars The Last Jedi', 1, 3, 0, '', '2018-10-02', 'default.png'),
-('9780000000002', 'Librong Pilipino', 7, 3, 6, '', '2018-11-10', 'default.png'),
+('9781368012287', 'Star Wars The Last Jedi', 1, 3, 1, '', '2018-10-02', 'default.png'),
+('9780000000002', 'Librong Pilipino', 7, 1, 6, '', '2018-11-10', 'default.png'),
 ('9780000000003', 'A research about thesis', 7, 1, 0, '', '2019-01-01', 'default.png'),
 ('9780747569404', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'default.png'),
-('9780621063099','Little Men', 1, 3, 0,'','2018-01-24', 'little_men.jpg'),
-('9780402199901','Little Women', 1, 3, 0,'','2018-02-24', 'little_women.jpg'),
-('0988941589','Good Wives', 1, 3, 0,'','2018-03-24', 'good_wives.jpg'),
-('9785386262884','Jo s Boys', 1, 3, 0,'','2018-04-24', 'joys_boys.jpg'),
-('9784773012941','Veronika Decides to Die', 1, 3, 0,'','2018-05-24', 'veronika_decides_to_die.jpg'),
-('9786523504294','The Alchemist', 1, 3, 0,'','2018-06-24', 'the_alchemist.jpg'),
-('9780549538394','Bared To You', 1, 3, 0,'','2018-07-24', 'bared_to_you.jpg'),
-('9781573309400','Reflected ln You', 1, 3, 0,'','2018-08-24', 'reflected_in_you.jpg'),
-('9781017703597','Etwined Wlth You Women', 1, 3, 0,'','2018-09-24', 'etwined_with_you.jpg'),
-('9789740928522','Captivated By You', 1, 3, 0,'','2018-10-24', 'captivated_by_you.jpg'),
-('9786361262394','One Wlth You', 1, 3, 0,'','2018-11-24', 'one_with_you.jpg'),
-('9788301119546','The Sheik 4nd the Runaway Princess', 1, 3,0,'','2018-12-24', 'the_sheik_and_the_runaway_princess.jpg'),
-('9785149961931','The Sheik s Arranged Marriage', 1, 3, 0,'','2018-12-25', 'the_Sheiks_arranged_marriage.jpg'),
-('9784466056054','The Sheik 4nd The Bride Who Said No', 1, 3, 0,'','2018-12-26', 'the_sheik_and_the_bride_who_said_no.jpg'),
-('9785789552629','The Sheik 4nd the Virgin Princess', 1, 3, 0,'','2018-12-27', 'the_sheik_and_the_virgin_princess.jpg'),
-('9787663395858','The Sheik and the Princess Bride', 1, 3, 0,'','2018-12-28', 'the_sheik_&_the_princess_bride.jpg'),
-('9783159481968','The Sheiks Secret Bride', 1, 3, 0,'','2018-12-29', 'the_sheiks_secret_bride.jpg'),
-('9781305623415','Ten Years 0n', 1, 3, 0,'','2018-12-30', 'ten_years_on.jpg'),
-('9784088744759','Sorry Please Thank You', 1, 3, 0,'','2018-12-31', 'sorry_please_thank_you.jpg'),
-('9781852769611','The Girl You Left Behind', 1, 3, 0,'','2018-12-31', 'the_girl_you_left_behind.jpg'),
-('9787835384789','Pleasure of the Night', 1, 3, 0,'','2019-01-01', 'pleasure_of_the_night.jpg'),
-('9784411754257','Heat of the Night', 1, 3, 0,'','2019-01-11', 'heat_of_the_night.jpg'),
-('9784882477143','The Ship of Bride', 1, 3, 0,'','2019-01-12', 'the_ship_of_bride.jpg'),
-('9781882803378','The Last Letter from your Lover', 1, 3, 0,'','2019-01-13', 'the_last_letter_from_your_lover.jpg');
+('9780621063099', 'Little Men', 1, 3, 0, '', '2018-01-24', 'little_men.jpg'),
+('9780402199901', 'Little Women', 1, 3, 0, '', '2018-02-24', 'little_women.jpg'),
+('0988941589', 'Good Wives', 1, 3, 0, '', '2018-03-24', 'good_wives.jpg'),
+('9785386262884', 'Jo s Boys', 1, 3, 0, '', '2018-04-24', 'jo\'s_boys.jpg'),
+('9784773012941', 'Veronika Decides to Die', 1, 3, 0, '', '2018-05-24', 'veronika_decides_to_die.jpg'),
+('9786523504294', 'The Alchemist', 1, 3, 0, '', '2018-06-24', 'the_alchemist.jpg'),
+('9780549538394', 'Bared To You', 1, 3, 0, '', '2018-07-24', 'bared_to_you.jpg'),
+('9781573309400', 'Reflected ln You', 1, 3, 0, '', '2018-08-24', 'reflected_in_you.jpg'),
+('9781017703597', 'Etwined Wlth You Women', 1, 3, 0, '', '2018-09-24', 'etwined_with_you.jpg'),
+('9789740928522', 'Captivated By You', 1, 3, 0, '', '2018-10-24', 'captivated_by_you.jpg'),
+('9786361262394', 'One With You', 1, 3, 0, '', '2018-11-24', 'one_with_you.jpg'),
+('9788301119546', 'The Sheik 4nd the Runaway Princess', 1, 3, 0, '', '2018-12-24', 'the_sheik_and_the_runaway_princess.jpg'),
+('9785149961931', 'The Sheik s Arranged Marriage', 1, 3, 0, '', '2018-12-25', 'the_Sheiks_arranged_marriage.jpg'),
+('9784466056054', 'The Sheik 4nd The Bride Who Said No', 1, 3, 0, '', '2018-12-26', 'the_sheik_and_the_bride_who_said_no.jpg'),
+('9785789552629', 'The Sheik 4nd the Virgin Princess', 1, 3, 0, '', '2018-12-27', 'the_sheik_and_the_virgin_princess.jpg'),
+('9787663395858', 'The Sheik and the Princess Bride', 1, 3, 0, '', '2018-12-28', 'the_sheik_&_the_princess_bride.jpg'),
+('9783159481968', 'The Sheiks Secret Bride', 1, 3, 0, '', '2018-12-29', 'the_sheiks_secret_bride.jpg'),
+('9781305623415', 'Ten Years 0n', 1, 3, 0, '', '2018-12-30', 'ten_years_on.jpg'),
+('9784088744759', 'Sorry Please Thank You', 1, 3, 0, '', '2018-12-31', 'sorry_please_thank_you.jpg'),
+('9781852769611', 'The Girl You Left Behind', 1, 3, 0, '', '2018-12-31', 'the_girl_you_left_behind.jpg'),
+('9787835384789', 'Pleasure of the Night', 1, 3, 0, '', '2019-01-01', 'pleasure_of_the_night.jpg'),
+('9784411754257', 'Heat of the Night', 1, 3, 0, '', '2019-01-11', 'heat_of_the_night.jpg'),
+('9784882477143', 'The Ship of Bride', 1, 3, 0, '', '2019-01-12', 'the_ship_of_bride.jpg'),
+('9781882803378', 'The Last Letter from your Lover', 1, 3, 0, '', '2019-01-13', 'the_last_letter_from_your_lover.jpg');
 
 -- --------------------------------------------------------
 
@@ -122,7 +126,7 @@ INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Ed
 
 DROP TABLE IF EXISTS `bookauthor`;
 CREATE TABLE `bookauthor` (
-  `ISBN` int(11) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
   `AuthorId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -136,16 +140,25 @@ TRUNCATE TABLE `bookauthor`;
 --
 
 INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
-(3, 1),
-(1, 1),
-(2, 3),
-(2, 2),
-(2, 1),
-(4, 2),
-(4, 3),
-(1103, 1),
-(23456, 9),
-(2147483647, 5);
+('9780000000001', 1),
+('9780747569404', 5),
+('0786830239', 1),
+('9781368012287', 1),
+('9780000000003', 1),
+('9780000000003', 2),
+('9780000000002', 3),
+('9780621063099', 13),
+('9780402199901', 13),
+('9785386262884', 13),
+('9784773012941', 10),
+('9786523504294', 10),
+('9780549538394', 11),
+('9781573309400', 11),
+('9781017703597', 11),
+('9789740928522', 11),
+('9786361262394', 11),
+('9788301119546', 12),
+('9785149961931', 12);
 
 -- --------------------------------------------------------
 
@@ -186,7 +199,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 (15, '12343', '9780747569404', '2018-10-02', 'q', 3, 0, 1, 1),
 (16, '90', '9780747569404', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
 (17, 'scsdvs', '9780747569404', '2018-10-23', 'wef', 12, 0, 1, 1),
-(18, 'xcb ', '9780747569404', '2018-10-23', 'wef', 12, 1, 1, 1),
+(18, '000014', '9780747569404', '2018-10-23', 'wef', 120, 1, 1, 1),
 (19, '4311', '9781368012287', '2018-10-25', 'jb', 100, 1, 1, 1),
 (20, '1234323', '9780000000002', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
 (21, 'fdfgh', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
@@ -198,7 +211,20 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 (27, 'asdfghjkhgfd', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
 (28, 'asdvc v vc', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
 (29, 'r3t4grd', '0786830239', '2018-11-19', 'edwsfdv', 4, 1, 1, 1),
-(30, '123456hfthfgh', '9780000000003', '2019-01-31', 'nat', 100, 1, 1, 1);
+(30, '123456hfthfgh', '9780000000003', '2019-01-31', 'nat', 100, 1, 1, 1),
+(31, '000001', '9780621063099', '2019-02-03', 'Tikoy', 200, 0, 1, 1),
+(32, '000002', '9780402199901', '2019-02-03', 'Acquirer', 200, 0, 1, 1),
+(33, '000003', '0988941589', '2019-02-03', 'Acquirer', 200, 0, 1, 1),
+(34, '000004', '9785386262884', '2019-02-03', 'Joy', 200, 0, 1, 1),
+(35, '000005', '9784773012941', '2019-02-03', 'Veronica', 200, 0, 1, 1),
+(36, '000006', '9786523504294', '2019-02-03', 'Paulo', 200, 0, 1, 1),
+(37, '000007', '9780549538394', '2019-02-03', 'Sylvia', 300, 0, 1, 1),
+(38, '000008', '9781573309400', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
+(39, '000009', '9781017703597', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
+(40, '000010', '9789740928522', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
+(41, '000011', '9786361262394', '2019-02-03', 'Sylvia', 250, 0, 1, 1),
+(42, '000012', '9788301119546', '2019-02-03', 'Susan', 200, 0, 1, 1),
+(43, '000013', '9785149961931', '2019-02-03', 'Susan', 250, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -235,7 +261,7 @@ INSERT INTO `bookstatus` (`BookStatusId`, `Name`) VALUES
 
 DROP TABLE IF EXISTS `booksubject`;
 CREATE TABLE `booksubject` (
-  `ISBN` int(11) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
   `SubjectId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -249,16 +275,24 @@ TRUNCATE TABLE `booksubject`;
 --
 
 INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
-(1, 11),
-(2, 11),
-(2, 1),
-(1, 1),
-(3, 1),
-(4, 1),
-(4, 14),
-(1103, 18),
-(23456, 1),
-(2147483647, 1);
+('9780000000001', 1),
+('9780747569404', 1),
+('0786830239', 11),
+('9781368012287', 14),
+('9780000000003', 14),
+('9780000000002', 15),
+('9780621063099', 11),
+('9780402199901', 15),
+('9785386262884', 15),
+('9784773012941', 11),
+('9786523504294', 1),
+('9780549538394', 17),
+('9781573309400', 14),
+('9781017703597', 14),
+('9789740928522', 14),
+('9786361262394', 16),
+('9788301119546', 15),
+('9785149961931', 15);
 
 -- --------------------------------------------------------
 
@@ -444,9 +478,9 @@ TRUNCATE TABLE `loan`;
 INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `DateDue`, `DateReturned`, `AmountPayed`, `BookStatusId`, `IsRecalled`) VALUES
 (4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
 (5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
-(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', '0000-00-00 00:00:00', 0, 1, 1),
+(6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', '2019-02-03 10:41:14', 1920, 2, 1),
 (7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0),
-(8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', NULL, NULL, 1, 0);
+(8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', '2019-02-03 10:40:03', 240, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -506,7 +540,9 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 (145, '9780307588272', 'Tea with Hezbollah :'),
 (146, '9781599954189', 'A.D. 30 :'),
 (147, '9781599953588', 'Mortal /'),
-(148, '0824771567', 'Transformation groups on manifolds /');
+(148, '0824771567', 'Transformation groups on manifolds /'),
+(150, '1595540059', 'Showdown /'),
+(151, '0439139597', 'Harry Potter and the goblet of fire /');
 
 -- --------------------------------------------------------
 
@@ -969,12 +1005,12 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -1009,7 +1045,7 @@ ALTER TABLE `loan`
 -- AUTO_INCREMENT for table `marcimport`
 --
 ALTER TABLE `marcimport`
-  MODIFY `MarcImportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `MarcImportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 --
 -- AUTO_INCREMENT for table `message`
 --
