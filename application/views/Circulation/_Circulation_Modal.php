@@ -11,7 +11,7 @@
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-circulation-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="LoanId"/>          
-                        
+                        <input type="hidden" id="IsRecalled"/>
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Patron</label>
@@ -67,6 +67,36 @@
 </div>
 
 <script>
+    function now(){
+        var date = new Date();
+        var aaaa = date.getFullYear();
+        var gg = date.getDate();
+        var mm = (date.getMonth() + 1);
+
+        if (gg < 10)
+            gg = "0" + gg;
+
+        if (mm < 10)
+            mm = "0" + mm;
+
+        var cur_day = aaaa + "-" + mm + "-" + gg;
+
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+        var seconds = date.getSeconds();
+
+        if (hours < 10)
+            hours = "0" + hours;
+
+        if (minutes < 10)
+            minutes = "0" + minutes;
+
+        if (seconds < 10)
+            seconds = "0" + seconds;
+
+        return cur_day + " " + hours + ":" + minutes + ":" + seconds;
+    }
+
     var Circulation_Modal = {
         data: function () {
             return {
@@ -78,6 +108,7 @@
                 DateReturned: $('#DateReturned').val(),
                 BookStatusId: $('#BookStatusId').selectpicker('val'),
                 AmountPayed: $('#AmountPayed').val(),                
+                IsRecalled: $('#IsRecalled').val(),                
             }
         },
 
@@ -136,12 +167,14 @@
             $('.modal-title').text('Issue an unreserved book');
             $('#rowActive').addClass('invisible');
             Circulation_Modal.init();
+            $("#DateReturned").prop("readonly", false);
         },
 
         edit: function (id) {            
             $('.modal-title').text('Edit book issue');                   
             Circulation_Modal.init();
             Circulation_Modal.get(id);
+            $("#DateReturned").prop("readonly", false);
         },
 
         return: function(id){
@@ -160,11 +193,11 @@
                 }
             })
             Circulation_Modal.init();            
-            Circulation_Modal.get(id);   
-            $('#DateReturned').val(new Date().toISOString().slice(0, 10));
+            Circulation_Modal.get(id);
+            $("#DateReturned").prop("readonly", true);
         },
 
-        get: function(id){
+        get: function(id){            
             $.ajax({
                 url: "<?php echo base_url('Circulation/Get/'); ?>" + id,                
                 success: function(i){
@@ -176,7 +209,8 @@
                     $('#DateDue').val(i.DateDue);
                     $('#DateReturned').val(i.DateReturned);
                     $('#BookStatusId').selectpicker('val', i.BookStatusId);
-                    $('#AmountPayed').val(i.AmountPayed);                    
+                    $('#AmountPayed').val(i.AmountPayed);
+                    $('#IsRecalled').val(i.IsRecalled);
                     $.ajax({
                         url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + i.AccessionNumber,
                         success: function(j){
@@ -184,6 +218,19 @@
                             $('#Title').val(j.Title);
                         }
                     })
+                    if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
+                        $('#DateReturned').val(now());
+                        var start = moment($('#DateDue').val());
+                        var end = moment($('#DateReturned').val());
+                        var diff = end.diff(start, "days");
+                        var penalty = 0;
+                        if(diff > 0){
+                            penalty = 20 * diff;
+                            $('#AmountPayed').val(penalty);
+                        }
+                        console.log(diff);                        
+                        console.log(penalty);                        
+                    }
                 }
             });   
         },

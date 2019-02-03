@@ -51,9 +51,9 @@
                     <a href="" id="file-qr-result">None</a>              
                     <!-- End of QR -->
                     <form id="modal-qr-form" action="#" class="form-group mt-2">
-                        <input type="hidaden" id="qrLoanId" style="display: none;" />          
-                        <input type="hidzden" id="qrPatronId" style="display: none;" />          
-                        
+                        <input type="hidden" id="qrLoanId" style="display: none;" />          
+                        <input type="hidden" id="qrPatronId" style="display: none;" />          
+                        <input type="hidden" id="qrIsRecalled"/>
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Patron</label>
@@ -73,11 +73,11 @@
                         <div class="row mb-2">
                             <div class="col-6">
                                 <label>Date Borrowed</label>
-                                <input readonly id="qrDateBorrowed" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Borrowed">
+                                <input readonly id="qrDateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
                             </div>
                             <div class="col-6">
                                 <label>Date Due</label>
-                                <input readonly id="qrDateDue" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Due">
+                                <input readonly readonly id="qrDateDue" class="form-control" type="text" name="" placeholder="Date Due">
                             </div>
                         </div>                        
                         <div class="row mb-2">
@@ -102,19 +102,54 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn close-modal btn-secondary " data-dismiss="modal">Close</button>
-                <button id="check-in" type="button" class="btn btn-info" onclick="QR_Scan.checkIn()">Check in</button>
+                <button id="check-in" type="button" class="btn btn-info" onclick="QR_Scan.validate()">Check in</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+
     var qr;
-        $('#cam-qr-result').bind("DOMSubtreeModified", function(){
-            qr = document.getElementById('cam-qr-result');  //Bacs, itong yung id na galing sa qr. 
-            console.log(qr.text);  
-            QR_Scan.get(qr.text);                                  //Hindi ko alam kung pano ilalagay hehe.
-        })
+    $('#cam-qr-result').bind("DOMSubtreeModified", function(){
+        qr = document.getElementById('cam-qr-result');  //Bacs, itong yung id na galing sa qr. 
+        console.log(qr.text);  
+        QR_Scan.get(qr.text);                                  //Hindi ko alam kung pano ilalagay hehe.
+    })
+
+    $(document).ready(function(){
+        QR_Scan.init();
+    });
+
+    function now(){
+        var date = new Date();
+        var aaaa = date.getFullYear();
+        var gg = date.getDate();
+        var mm = (date.getMonth() + 1);
+
+        if (gg < 10)
+            gg = "0" + gg;
+
+        if (mm < 10)
+            mm = "0" + mm;
+
+        var cur_day = aaaa + "-" + mm + "-" + gg;
+
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+        var seconds = date.getSeconds();
+
+        if (hours < 10)
+            hours = "0" + hours;
+
+        if (minutes < 10)
+            minutes = "0" + minutes;
+
+        if (seconds < 10)
+            seconds = "0" + seconds;
+
+        return cur_day + " " + hours + ":" + minutes + ":" + seconds;
+    }
 
     var QR_Scan = {
 
@@ -157,7 +192,8 @@
                 DateDue: $('#qrDateDue').val(),
                 DateReturned: $('#qrDateReturned').val(),
                 BookStatusId: $('#qrBookStatusId').selectpicker('val'),
-                AmountPayed: $('#qrAmountPayed').val(),                
+                AmountPayed: $('#qrAmountPayed').val(),       
+                IsRecalled: $('#qrIsRecalled').val(),                         
             }
         },
 
@@ -189,13 +225,14 @@
                     $('#qrAccessionNumber').val(i.AccessionNumber);
                     $('#qrDateBorrowed').val(i.DateBorrowed);
                     $('#qrDateDue').val(i.DateDue);
-                    if(i.DateReturned == ''){
-                        var dateTime = new Date();
-                        dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
-                        $('#qrDateReturned').val(dateTime);
-                    }else{
-                        $('#qrDateReturned').val(i.DateReturned);
-                    }
+                    $('#qrIsRecalled').val(i.IsRecalled);
+                    // if(i.DateReturned == ''){
+                    //     var dateTime = new Date();
+                    //     dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
+                    //     $('#qrDateReturned').val(dateTime);
+                    // }else{
+                    //     $('#qrDateReturned').val(i.DateReturned);
+                    // }
                     if(i.BookStatusId == 1){
                         $('#qrBookStatusId').selectpicker('val', 2);
                     }
@@ -214,6 +251,19 @@
                             $('#qrTitle').val(j.Title);
                         }
                     })
+                    if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
+                        $('#qrDateReturned').val(now());
+                        var start = moment($('#qrDateDue').val());
+                        var end = moment($('#qrDateReturned').val());
+                        var diff = end.diff(start, "days");
+                        var penalty = 0;
+                        if(diff > 0){
+                            penalty = 20 * diff;
+                            $('#qrAmountPayed').val(penalty);
+                        }
+                        console.log(diff);                        
+                        console.log(penalty);                        
+                    }
                 }
             });   
         },
@@ -268,7 +318,7 @@
                         data: {"loan": QR_Scan.data()},
                         success: function(i){
                             swal('Good Job!', message, 'success');
-                            $('#modal-circulation').modal('hide');
+                            $('#modal-qr-scan').modal('hide');
                             console.log(i);
                         }, 
                         error: function(i){
