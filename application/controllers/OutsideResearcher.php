@@ -20,7 +20,7 @@ class OutsideResearcher extends _BaseController {
                 .'"'.$this->loopAll($this->outsideResearcher->getSubject($data->OutsideResearcherId)).'",'
                 .'"'.$data->DateTime.'",'
                 .'"'.$data->AmountPayed.'",'                        
-                .'"<button onclick = \"OutsideResearcher_Modal.edit('.$data->OutsideResearcherId.');\" class = \"btn btn-md btn-flat btn-info\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
+                .'"<button onclick = \"OutsideResearcher_Modal.edit('.$data->OutsideResearcherId.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
             .']';            
             $json .= ',';
         }

@@ -68,7 +68,7 @@ class OLAS extends _BaseController {
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
                 .'"'.$data->CallNumber.'",'
-                .'"<button class=\"btn btn-danger\" onclick=\"MyReservations.discard('.$item->ReservationId.')\">Discard</button>"'
+                .'"<button class=\"btn btn-danger\" onclick=\"MyReservations.discard('.$item->ReservationId.')\" title=\"Discard\">Discard</button>"'
             .']';             
             $json .= ',';
         }
