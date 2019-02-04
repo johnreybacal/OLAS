@@ -31,14 +31,14 @@ class Circulation extends _BaseController {
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->loan->_list() as $data){            
-            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
-            $patron = $this->patron->_get($data->PatronId);            
+            $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
+            $patron = $this->patron->_get($data->PatronId);
             $json .= '['                
                 .'"'.$data->LoanId.'",'
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
-                .'"'.$data->AccessionNumber.'",'
-                .'"'.$isbn.'",'
-                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$data->AccessionNumber.'",'                
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'
@@ -63,14 +63,14 @@ class Circulation extends _BaseController {
     public function GenerateTableIssued(){
         $json = '{ "data": [';
         foreach($this->loan->_list("WHERE BookStatusId = '1'") as $data){            
-            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
+            $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
             $json .= '['                
                 .'"'.$data->LoanId.'",'
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$isbn.'",'
-                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'                                
                 .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-flat\"><span class=\"fa fa-edit fa-2x\" title=\"Edit\"></span></button><button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-success\" title=\"Return\">Return</button>",'      
@@ -90,14 +90,14 @@ class Circulation extends _BaseController {
     public function GenerateTableHistory(){
         $json = '{ "data": [';
         foreach($this->loan->_list("WHERE BookStatusId != '1'") as $data){            
-            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
+            $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
             $json .= '['        
                 .'"'.$data->LoanId.'",'        
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$isbn.'",'
-                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'

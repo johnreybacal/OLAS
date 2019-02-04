@@ -118,11 +118,11 @@ class Report extends _BaseController {
             $additionalCondition = " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
         }
         foreach($this->loan->_list("WHERE PatronId = '".$patronId."'".$additionalCondition) as $data){
-            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
+            $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $json .= '['                
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$isbn.'",'
-                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'

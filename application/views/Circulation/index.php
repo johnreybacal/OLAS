@@ -17,8 +17,8 @@
 							<th>Issue no.</th>	
 							<th>Borrower</th>	
 							<th>Accession Number</th>
-							<th>ISBN</th>									
-							<th>Book Issued</th>									
+							<th>Title</th>									
+							<th>Authors</th>									
 							<th>Date Issued</th>
 							<th>Date Due</th>
 							<th>Date Returned</th>

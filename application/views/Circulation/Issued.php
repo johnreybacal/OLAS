@@ -8,7 +8,7 @@
 		<div class="header-action">
 			<div class="buttons">
 				<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Circulation_Modal.new();"
-			data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Manually Issue an unreserved book">
+			data-toggle="modal" data-target="#modal-Patron" data-provide="tooltip" data-original-title="Create a new issue">
 				<i class="ti-plus"></i>
 				</a>
 			</div>
@@ -25,12 +25,11 @@
 							<th>Issue no.</th>	
 							<th>Borrower</th>	
 							<th>Accession Number</th>
-							<th>ISBN</th>									
-							<th>Book Issued</th>									
+							<th>Title</th>									
+							<th>Authors</th>
 							<th>Date Issued</th>
 							<th>Date Due</th>							
-							<th></th>
-							<!-- <th></th> -->
+							<th></th>							
 							<th></th>
 						</tr>
 					</thead>

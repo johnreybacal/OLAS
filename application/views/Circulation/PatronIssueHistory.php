@@ -90,8 +90,8 @@
                         '<thead>' +
                             '<tr class="bg-info">' + 
                                 '<th>Accession Number</th>' + 
-                                '<th>ISBN</th>' +
                                 '<th>Title</th>' +						                                
+                                '<th>Authors</th>' +
                                 '<th>Date Borrowed</th>' +
                                 '<th>Date Due</th>' +
                                 '<th>Date Returned</th>' +

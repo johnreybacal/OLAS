@@ -33,8 +33,8 @@
                     <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
                 </div>
                 <div class="col-4">
-                    <label>Call Number</label>
-                    <select id="CallNumber" name="Call Number" data-provide="selectpicker" title="Choose Call Number" data-live-search="true" class="form-control show-tick"></select>
+                    <label>Accession Number</label>
+                    <select id="AccessionNumber" name="Accession Number" data-provide="selectpicker" title="Choose an Accession Number" data-live-search="true" class="form-control show-tick"></select>
                 </div>
                 <div class="col-4">
                     <label>Filter by patron type</label>
@@ -70,15 +70,15 @@
                     url: "<?php echo base_url('Book/GetCatalogueByISBN/'); ?>" + $(this).selectpicker('val'),
                     success: function(i){
                         i = JSON.parse(i);                                        
-                        $('#CallNumber').empty();
+                        $('#AccessionNumber').empty();
                         $.each(i, function(index, data){                        
-                            $('#CallNumber').append('<option value = "' + data.AccessionNumber + '">' + data.CallNumber + '</option>');
+                            $('#AccessionNumber').append('<option value = "' + data.AccessionNumber + '">' + data.AccessionNumber + '</option>');
                         })
-                        $('#CallNumber').selectpicker('refresh');
+                        $('#AccessionNumber').selectpicker('refresh');
                     }
                 });
             });
-            $('#CallNumber').change(function(){
+            $('#AccessionNumber').change(function(){
                 Dashboard.bookIssueHistory();
             });
             $.ajax({
@@ -102,7 +102,7 @@
         },   
 
         bookIssueHistory: function(){
-            var accessionNumber = $('#CallNumber').selectpicker('val');
+            var accessionNumber = $('#AccessionNumber').selectpicker('val');
             var patronTypeId = 0;
             if($('#PatronTypeId').selectpicker('val') >= 1){
                 patronTypeId = $('#PatronTypeId').selectpicker('val');

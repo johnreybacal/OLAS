@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2019 at 01:05 PM
+-- Generation Time: Feb 04, 2019 at 01:55 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -44,19 +44,19 @@ TRUNCATE TABLE `author`;
 --
 
 INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
-(1, 'Johnrey', 1),
-(2, 'Judel Bacal', 1),
-(3, 'Ning', 1),
+(1, 'Bacal, Johnrey', 1),
+(2, 'Bacal, Judel', 1),
+(3, 'Bacal, Ning', 1),
 (4, 'Ted Dekker', 0),
-(5, 'JK Rowlings', 1),
-(6, 'Teddy', 1),
+(5, 'Rowlings, J.K.', 1),
+(6, 'Berry, Teddy', 1),
 (7, 'Eddy', 0),
-(8, 'Mercury', 1),
-(9, 'Tovs', 1),
-(10, 'Paulo Coelho', 1),
-(11, 'Sylvia Day', 1),
-(12, 'Susan Mallery', 1),
-(13, 'Louisa May Alcot', 1);
+(8, 'Mercury, Freddie', 1),
+(9, 'Tuvieron, Tovs', 1),
+(10, 'Coelho, Paulo', 1),
+(11, 'Day, Sylvia', 1),
+(12, 'Mallery, Susan', 1),
+(13, 'Alcot, Louisa May', 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,8 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 ('9789740928522', 11),
 ('9786361262394', 11),
 ('9788301119546', 12),
-('9785149961931', 12);
+('9785149961931', 12),
+('9780000000001', 4);
 
 -- --------------------------------------------------------
 
@@ -471,7 +472,8 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', '2019-02-03 10:41:14', 1920, 2, 1),
 (7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0),
 (8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', '2019-02-03 10:40:03', 240, 2, 0),
-(9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0);
+(9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0),
+(10, 3, 12, '2019-02-04 21:47:17', '2019-02-07 21:47:17', NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1021,7 +1023,7 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `marcimport`
 --

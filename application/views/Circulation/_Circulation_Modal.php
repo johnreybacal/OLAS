@@ -31,29 +31,31 @@
                         <div class="row mb-2">
                             <div class="col-6">
                                 <label>Date Borrowed</label>
-                                <input id="DateBorrowed" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Borrowed">
+                                <input readonly id="DateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
                             </div>
                             <div class="col-6">
                                 <label>Date Due</label>
                                 <input id="DateDue" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Due">
                             </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label>Date Returned</label>
-                                <input id="DateReturned" class="hide-in-return form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Returned">
-                            </div>
-                            <div class="col-6">
-                                <label>Book status</label>
-                                <select id="BookStatusId" name="BookStatusId" data-provide="selectpicker" title="Select book status" data-live-search="true" class="form-control show-tick"></select>
-                            </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Amount Payed</label>
-                                <input id="AmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
-                            </div>
-                        </div>   
+                        </div>  
+                        <div id="rowReturn">
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <label>Date Returned</label>
+                                    <input readonly id="DateReturned" class="hide-in-return form-control" type="text" name="" placeholder="Date Returned">
+                                </div>
+                                <div class="col-6">
+                                    <label>Book status</label>
+                                    <select id="BookStatusId" name="BookStatusId" data-provide="selectpicker" title="Select book status" data-live-search="true" class="form-control show-tick"></select>
+                                </div>
+                            </div>                        
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <label>Amount Payed</label>
+                                    <input id="AmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
+                                </div>
+                            </div>   
+                        </div>
 
                     </form>
                 </div>
@@ -164,21 +166,23 @@
 
         new: function () {
             $('#LoanId').val('0');            
-            $('.modal-title').text('Issue an unreserved book');
-            $('#rowActive').addClass('invisible');
-            Circulation_Modal.init();
-            $("#DateReturned").prop("readonly", false);
+            $('.modal-title').text('Create a new issue');
+            $('#rowReturn').hide();
+            $('#BookStatusId').selectpicker('val', 1)
+            Circulation_Modal.init();      
+            $('#DateBorrowed').val(now());
         },
 
         edit: function (id) {            
-            $('.modal-title').text('Edit book issue');                   
+            $('.modal-title').text('Edit book issue');
+            $('#rowReturn').show();
             Circulation_Modal.init();
-            Circulation_Modal.get(id);
-            $("#DateReturned").prop("readonly", false);
+            Circulation_Modal.get(id);            
         },
 
         return: function(id){
             $('.modal-title').text('Return issued book');              
+            $('#rowReturn').show();
             $.ajax({
                 url: "<?php echo base_url("Circulation/BookStatusList"); ?>",
                 success: function(i){
