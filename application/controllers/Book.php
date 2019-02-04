@@ -197,6 +197,11 @@ class Book extends _BaseController {
             $str .= $this->invalid('AcquiredFrom', 'Please input the name of the supplier');
             $valid = false;
         }
+        //place published
+        if(!v::notEmpty()->validate($book['PlacePublished'])){
+            $str .= $this->invalid('PlacePublished', 'Please input the place of publication');
+            $valid = false;
+        }
         //call number
         if(!v::notEmpty()->validate($book['CallNumber'])){
             $str .= $this->invalid('CallNumber', 'Please add a Call Number');

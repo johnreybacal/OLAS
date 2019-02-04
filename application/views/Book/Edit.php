@@ -85,6 +85,10 @@
 										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Published">
 									</div>				
 									<div class="form-group col-md-6">
+										<label>Place of Publication</label>
+										<input  id="PlacePublished" value = "" class="form-control" type="text" name="" placeholder="Place of Publication">
+									</div>			
+									<div class="form-group col-md-6">
 										<label>Date Acquired</label>
 										<input  id="DateAcquired" value = "<?php echo $book->DateAcquired; ?>" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Acquired">
 									</div>
@@ -173,19 +177,23 @@
 					}else{
 						i = JSON.parse(i);
 						$('#Title').val(i.book.Title);
+						$('#Edition').val(i.book.Edition);
+						$('#DatePublished').val(i.book.DatePublished);
+						$('#PlacePublished').val(i.book.PlacePublished);
+
 						$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
+						
 						$('#SelectSectionId').selectpicker('val', i.book.SectionId);
 						if(i.book.SeriesId != null){
 							$('#SelectSeriesId').selectpicker('val', i.book.SeriesId);
 						}
-						$('#Edition').val(i.book.Edition);
-						$('#DatePublished').val(i.book.DatePublished);
 
 						var author = [];
 						$.each(i.author, function(index, data){
 							author.push(data.AuthorId);
 						});
 						$('#SelectAuthorId').selectpicker('val', author);						
+
 						var subject = [];
 						$.each(i.subject, function(index, data){
 							subject.push(data.SubjectId);
@@ -213,6 +221,7 @@
 
 				Edition: $('#Edition').val(),
 				DatePublished: $('#DatePublished').val(),
+				PlacePublished: $('#PlacePublished').val(),
 
 				AccessionNumber: $('#AccessionNumber').val(),
 				CallNumber: $('#CallNumber').val(),
