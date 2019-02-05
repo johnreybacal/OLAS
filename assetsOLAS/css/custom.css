@@ -334,7 +334,158 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
         margin-top: 10px;
     }
  }
+
+ @media print {
+    body * {
+        visibility: hidden;
+    }
+    
+    #header {display:none;}
+    #comments {display:none;}
+    #sidebar {display:none;}
+    #footer {display:none;}
+    
+    .site-description {display:none;}
+    .site-title {display:none;}   
+    
+    .a4-page {
+        width: 210mm;
+        height: 296mm;
+        background: #FFF;
+        box-shadow: 0 1px 2.5px rgba(0,0,0,.5);
+        margin: 0 auto;
+        color: #000;
+        padding: 13.1mm 4.65mm;
+        overflow: hidden;
+    }
+    
+    .barcode-card {
+        width: 97.1mm;
+        height: 67.7mm;
+        border: 1px dashed #BFBFBF;
+        float: left;
+        overflow: hidden;
+        border-radius: 1.5mm;
+        margin-left: 2.5mm;
+        margin-right: 2.5mm;
+        display: block;
+    }
+    
+    .barcode-card .book-title {
+        font-size: 1em;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: .625em .625em 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
+    }
+    
+    .barcode-card .right-part {
+        padding-top: .625em;
+        padding-left: .225em;
+        padding-right: .625em;
+    }
+    
+    .barcode-card [class*=col-] {
+        padding: 0;
+    }
+    
+    .barcode-card .book-meta {
+        font-size: .75em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: .25em;
+    }
+    
+    .barcode-card .custom-text {
+        text-transform: uppercase;
+        font-size: 10px;
+        text-align: center;
+        margin-top: 5px;
+    }
+    
+    #qrcode {
+        width:160px;
+        height:160px;
+        margin-top:15px;
+    }
+
+    img {
+        margin: auto;
+        width: 100px;
+        height: 100px;
+    }
+}
+
 .table{
     border-left: none!important;    
     border-right: none!important;    
+}
+
+.a4-page {
+    width: 210mm;
+    height: 279.4mm;
+    background: #FFF;
+    box-shadow: 0 1px 2.5px rgba(0,0,0,.5);
+    margin: 0 auto;
+    color: #000;
+    padding: 13.1mm 4.65mm;
+    overflow: hidden;
+}
+
+.barcode-card {
+    width: 97.1mm;
+    height: 67.7mm;
+    border: 1px dashed #BFBFBF;
+    float: left;
+    overflow: hidden;
+    border-radius: 1.5mm;
+    margin-left: 2.5mm;
+    margin-right: 2.5mm;
+    display: block;
+}
+
+.barcode-card .book-title {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: .625em .625em 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.barcode-card .right-part {
+    padding-top: .625em;
+    padding-left: .225em;
+    padding-right: .625em;
+}
+
+.barcode-card [class*=col-] {
+    padding: 0;
+}
+
+.barcode-card .book-meta {
+    font-size: .75em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: .25em;
+}
+
+.barcode-card .custom-text {
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#qrcode {
+    width:160px;
+    height:160px;
+    margin-top:15px;
 }
