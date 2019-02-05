@@ -3,9 +3,39 @@
         <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span>
 
         <div class="d-none d-md-block ">
-            <form class="lookup lookup-circle lookup-left lookup-sm" target="index.html">
+            <!-- <form class="lookup lookup-circle lookup-left lookup-sm" target="index.html">
                 <input id="search" class="form-control" type="text" placeholder="Search" value="">
                 <button onclick="Search.search();" class="btn">Search</button>
+            </form> -->
+            <!-- <form class="lookup lookum no-icon">
+              <input class="no-radius" type="text" placeholder="Keyword">
+              <select class="d-none d-sm-block" data-provide="selectpicker" multiple>
+                <option selected>Any type</option>
+                <option>Website</option>
+                <option>Image</option>
+                <option>Video</option>
+                <option>Map</option>
+              </select>
+              <select class="d-none d-sm-block" data-provide="selectpicker">
+                <option selected>Any time</option>
+                <option>Last year</option>
+                <option>Last month</option>
+                <option>Last week</option>
+                <option>Last 24 hours</option>
+              </select>
+              <button class="btn btn-primary btn-bold no-radius fs-14">Search</button>
+            </form> -->
+            <form class="lookup lookup-lg no-icon">
+                <input class="no-radius" id="search" type="text" placeholder="Search">
+                <select class="d-none d-block librarian-search" data-provide="selectpicker" multiple>
+                    <option selected>Book</option>
+                    <option selected>Author</option>
+                    <option selected>Subject</option>
+                    <option selected>Section</option>
+                    <option selected>Series</option>
+                    <option selected>Publisher</option>
+                </select>
+                <button class="btn btn-info btn-bold no-radius fs-12" onclick="Search.search();" style="padding-top: 4px!important;"><i class="fa fa-search fa-2x"></i></button>
             </form>
         </div>
     

@@ -1,17 +1,20 @@
 <?php if(!$this->session->has_userdata('isLibrarian')): ?>
-<div id="search-container" class="main-content" style="margin: 5% 8% 0px 8%;">
+<!-- <div id="search-container" class="main-content" style="margin: 5% 8% 0px 8%;">
     <div class="lookup d-none d-md-block ">
         <form class="lookup-placeholder">
             <input id="search" class="form-control" type="text" placeholder="Search" value="">
             <button onclick="Search.search();" class="form-control">Search</button>
         </form>
     </div>	    
-</div>
+</div> -->
 <?php endif; ?>
-
-<div id="search-result-container" class="main-content card" style="flex: 0!important;">
-    <div class="card-title">
-        <button onclick="SearchResult.close()">close</button>
+<?php if(!$this->session->has_userdata('isPatron')): ?>
+<div id="search-result-container" class="card col-md-10 bg-secondary" style="flex: 0!important; margin:10px auto 0;" style="border: solid 1px blue ;">
+    <?php else: ?>
+<div id="search-result-container" class="card col-md-10 bg-secondary" style="flex: 0!important; margin:80px auto 0;" style="border: solid 1px blue ;">
+<?php endif; ?>
+    <div class="card-stitle" style="border: solid 1px purple;">
+        <button onclick="SearchResult.close()" style="float: right;"><i class="fa fa-close fa-2x"></i></button>
     </div>
     <div class="card-body">
         <ul class="nav nav-tabs">
@@ -29,20 +32,20 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content col-md-8" style="border:red solid 1px;">
+        <!-- <div class="tab-content col-md-12" style="border:red solid 1px;"> -->
             <div data-search="book" id="search-book-result-container" class="tab-pane fade active show">        
                 <div class="form-group">
                     <div class="row">
                         <div class="col-4">
-                        <label>Filter by</label>
-                        <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control form-type-combine show-tick">
-                            <option value="Title" selected="true">Book (Title or ISBN)</option>
-                            <option value="Author" selected="true">Author</option>
-                            <option value="Subject" selected="true">Subject</option>
-                            <option value="Section" selected="true">Section</option>
-                            <option value="Series" selected="true">Series</option>
-                            <option value="Publisher" selected="true">Publisher</option>
-                        </select>	
+                            <label>Filter by</label>
+                            <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control show-tick">
+                                <option value="Title" selected="true">Book (Title or ISBN)</option>
+                                <option value="Author" selected="true">Author</option>
+                                <option value="Subject" selected="true">Subject</option>
+                                <option value="Section" selected="true">Section</option>
+                                <option value="Series" selected="true">Series</option>
+                                <option value="Publisher" selected="true">Publisher</option>
+                            </select>	
                         </div>
                         <div class="col-8">
                             <label>Published date range</label>
@@ -68,7 +71,7 @@
             <div data-search="patron" class="tab-pane fade media-list media-list-divided media-list-hover" id="search-patron-result">
             </div>    
             <?php endif; ?>
-        </div>    
+        <!-- </div>     -->
     </div>
 </div>
 <script>    
@@ -166,9 +169,10 @@
                     $.each(i, function(index, data){
                         var author = '';
                         $.each(data.author, function(x, y){
-                            author += '<h5 class="fs-18 fw-300">' + y.Name + '</h5>';
+                            // author += '<h5 class="fs-18 fw-300">' + y.Name + '</h5>';
+                            author += '<div class="book-author">by' + y.Name + '</div>';
                         })
-
+console.log(i);
                         var hover = '';
                         if("<?php echo $this->session->has_userdata('patronId'); ?>" == 1){    
                             if(data.catalogue.IsRoomUseOnly == 0){
@@ -200,7 +204,7 @@
                         
                         var element = "<div class='media'><div class='media-body'>" +
                             "<h3 class=\"fs-24 fw-500\">" + data.book.Title + "</h3>" +
-                            "<h3 class=\"fs-24 fw-500\">" + author + "</h3>" + 
+                            "<div class=\"book-author\">by" + data.book.Author + "</div>" + 
                             "<h3 class=\"fs-24 fw-500\">Date Published: " + data.book.DatePublished + "</h3>" + 
                             hover +
                         "</div></div>";                        

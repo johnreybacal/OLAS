@@ -30,7 +30,7 @@
 		</form>
 	</div>
 </div>
-<p id = "message"></p>
+<!-- <span id = "message"></span> -->
 <script>	
 	$(document).keypress(function(e){
 		if(e.which == 13){			
