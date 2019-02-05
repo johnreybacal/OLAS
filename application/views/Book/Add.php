@@ -142,11 +142,17 @@
 
 	var Book = {
 
-		reset: function(val){
-			$('#book-form')[0].reset();
+		reset: function(val){			
+			$('#Title').val('');			
+			$('#Edition').val('');
+			$('#DatePublished').val('');
+			$('#PlacePublished').val('');
+			$('#CallNumber').val('');
+			$('#DateAcquired').val('');
+			$('#AcquiredFrom').val(''); 
+			$('#Price').val('');	
 			$('select').selectpicker('val', []);
-			$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
-			$('#ISBN').val(val);
+			$('#DateAcquired').val(new Date().toISOString().slice(0, 10));			
 			imageChanged = false;
 		},
 
@@ -155,10 +161,7 @@
 				var val = $(this).val()
 				if(val != '' && val.length > 9){
 					Book.get(val);
-				}
-				else{
-					Book.reset(val);
-				}
+				}				
 			})
 		},		
 

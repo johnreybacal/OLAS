@@ -150,21 +150,24 @@
 	var Book = {
 
 		reset: function(val){
-			$('#book-form')[0].reset();
-			$('select').selectpicker('val', []);
-			$('#ISBN').val(val);
+			$('#Title').val('');			
+			$('#Edition').val('');
+			$('#DatePublished').val('');
+			$('#PlacePublished').val('');
+			$('#CallNumber').val('');
+			$('#DateAcquired').val('');
+			$('#AcquiredFrom').val(''); 
+			$('#Price').val('');	
+			$('select').selectpicker('val', []);			
 		},
 
 		init: function(){
 			Book.get($('#ISBN').val());
 			$('#ISBN').bind('input', function(){				
 				var val = $(this).val()
-				if(val != ''){
+				if(val != '' && val.length > 9){
 					Book.get(val);
-				}
-				else{
-					Book.reset(val);
-				}
+				}	
 			})			
 		},
 
