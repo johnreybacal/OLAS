@@ -201,10 +201,15 @@ console.log(i);
                             hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7"></i></a>';    
                         }
                         hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
-                        
+                        var authorHTML = '<span class=\"book-author\">by </span>';
+                        $.each(data.author, function(authorIndex, author){
+                            authorHTML += "<span class=\"book-author\">"+ author.Name + "&nbsp;</span>"
+                            // if(authorIndex).last
+                            
+                        });
                         var element = "<div class='media'><div class='media-body'>" +
                             "<h3 class=\"fs-24 fw-500\">" + data.book.Title + "</h3>" +
-                            "<div class=\"book-author\">by" + data.book.Author + "</div>" + 
+                            authorHTML + 
                             "<h3 class=\"fs-24 fw-500\">Date Published: " + data.book.DatePublished + "</h3>" + 
                             hover +
                         "</div></div>";                        
