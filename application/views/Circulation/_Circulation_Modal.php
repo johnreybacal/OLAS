@@ -159,7 +159,7 @@
                         }
                     })
                     if($(this).selectpicker('val') == 3){                        
-                        $('#Notes').val(notes + " This book is damaged by " + $('#PatronId option:selected').text() + ", returned on the day of " + now());
+                        $('#Notes').val(notes + " This book is damaged by " + $('#PatronId option:selected').text() + ", returned on " + now());
                     }
                     if($(this).selectpicker('val') == 4){                        
                         $('#Notes').val(notes + "This book is lost by " + $('#PatronId option:selected').text());

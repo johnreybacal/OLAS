@@ -91,9 +91,13 @@
                             </div>
                         </div>                        
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label>Amount Payed</label>
                                 <input id="qrAmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
+                            </div>
+                            <div class="col-6">
+                                <label>Notes</label>
+                                <textarea id="qrNotes" name="Notes" type="text" class="form-control" placeholder="Notes"></textarea>
                             </div>
                         </div>   
 
@@ -150,7 +154,7 @@
 
         return cur_day + " " + hours + ":" + minutes + ":" + seconds;
     }
-
+    var qrnotes;
     var QR_Scan = {
 
         init: function(){
@@ -172,14 +176,21 @@
                 }
             })       
             $('#qrBookStatusId').change(function(){
-                if($(this).selectpicker('val') == 3 || $(this).selectpicker('val') == 4)
-                $.ajax({
-                    url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + $('#AccessionNumber').val(),
-                    success: function(i){
-                        i = JSON.parse(i);
-                        $('#qrAmountPayed').val(i.Price);
+                if($(this).selectpicker('val') == 3 || $(this).selectpicker('val') == 4){
+                    $.ajax({
+                        url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + $('#qrAccessionNumber').val(),
+                        success: function(i){
+                            i = JSON.parse(i);
+                            $('#qrAmountPayed').val(i.Price);
+                        }
+                    })
+                    if($(this).selectpicker('val') == 3){                        
+                        $('#qrNotes').val(notes + " This book is damaged by " + $('#qrPatronName').val() + ", returned on " + now());
                     }
-                })
+                    if($(this).selectpicker('val') == 4){                        
+                        $('#qrNotes').val(notes + "This book is lost by " + $('#qrPatronName').val());
+                    }
+                }
             });
         },
 
@@ -193,7 +204,8 @@
                 DateReturned: $('#qrDateReturned').val(),
                 BookStatusId: $('#qrBookStatusId').selectpicker('val'),
                 AmountPayed: $('#qrAmountPayed').val(),       
-                IsRecalled: $('#qrIsRecalled').val(),                         
+                IsRecalled: $('#qrIsRecalled').val(),    
+                Notes: $('#qrNotes').val(),                        
             }
         },
 
@@ -225,14 +237,7 @@
                     $('#qrAccessionNumber').val(i.AccessionNumber);
                     $('#qrDateBorrowed').val(i.DateBorrowed);
                     $('#qrDateDue').val(i.DateDue);
-                    $('#qrIsRecalled').val(i.IsRecalled);
-                    // if(i.DateReturned == ''){
-                    //     var dateTime = new Date();
-                    //     dateTime = moment(dateTime).format("YYYY-MM-DD HH:mm:ss");
-                    //     $('#qrDateReturned').val(dateTime);
-                    // }else{
-                    //     $('#qrDateReturned').val(i.DateReturned);
-                    // }
+                    $('#qrIsRecalled').val(i.IsRecalled);                    
                     if(i.BookStatusId == 1){
                         $('#qrBookStatusId').selectpicker('val', 2);
                     }
@@ -249,6 +254,14 @@
                         success: function(j){
                             j = JSON.parse(j);
                             $('#qrTitle').val(j.Title);
+                        }
+                    })
+                    $.ajax({
+                        url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + i.AccessionNumber,
+                        success: function(j){
+                            j = JSON.parse(j);
+                            $('#qrNotes').val(j.Notes);
+                            qrnotes = j.Notes;
                         }
                     })
                     if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
