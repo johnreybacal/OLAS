@@ -50,7 +50,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label>Call Number</label>
-										<input id="CallNumber" value = "<?php echo $book->CallNumber; ?>" class="form-control" type="text" name="" placeholder="Call Number">
+										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
 									</div>	
 									<div class="form-group col-md-6">
 										<label>Title</label>
@@ -100,7 +100,26 @@
 										<label>Price</label>
 										<input  id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
 									</div>				
-																		
+									<div class="form-group col-md-6">
+										<label>Notes</label>
+										<input  id="Notes" value = "<?php echo $book->Notes; ?>" class="form-control" type="text" name="" placeholder="Notes">
+									</div>					
+									<div class="form-group col-md-6">
+										<label>Summary</label>
+										<input  id="Summary" value = "" class="form-control" type="text" name="" placeholder="Summary">
+									</div>					
+									<div class="form-group col-md-6">
+										<label>Extent</label>
+										<input  id="Extent" value = "" class="form-control" type="text" name="" placeholder="Extent">
+									</div>					
+									<div class="form-group col-md-6">
+										<label>Other Details</label>
+										<input  id="OtherDetails" value = "" class="form-control" type="text" name="" placeholder="Details">
+									</div>					
+									<div class="form-group col-md-6">
+										<label>Size</label>
+										<input  id="Size" value = "" class="form-control" type="text" name="" placeholder="Size">
+									</div>														
 								</div> 
 						</div> 
 					</div> 
@@ -158,6 +177,11 @@
 			$('#DateAcquired').val('');
 			$('#AcquiredFrom').val(''); 
 			$('#Price').val('');	
+			$('#Notes').val('');	
+			$('#Summary').val('');	
+			$('#Extent').val('');	
+			$('#OtherDetails').val('');	
+			$('#Size').val('');	
 			$('select').selectpicker('val', []);			
 		},
 
@@ -179,10 +203,16 @@
 						Book.reset(val);
 					}else{
 						i = JSON.parse(i);
+						console.log(i);
+						$('#CallNumber').val(i.book.CallNumber);		
 						$('#Title').val(i.book.Title);
 						$('#Edition').val(i.book.Edition);
 						$('#DatePublished').val(i.book.DatePublished);
 						$('#PlacePublished').val(i.book.PlacePublished);
+						$('#Summary').val(i.book.Summary);
+						$('#Extent').val(i.book.Extent);
+						$('#OtherDetails').val(i.book.OtherDetails);
+						$('#Size').val(i.book.Size);
 
 						$('#SelectPublisherId').selectpicker('val', i.book.PublisherId);
 						
@@ -214,6 +244,7 @@
 			return {
 				ISBN: $('#ISBN').val(),				
 				Title: $('#Title').val(),
+				Summary: $('#Summary').val(),
 
 				AuthorId: $('#SelectAuthorId').selectpicker('val'),
 				SubjectId: $('#SelectSubjectId').selectpicker('val'),
@@ -226,11 +257,16 @@
 				DatePublished: $('#DatePublished').val(),
 				PlacePublished: $('#PlacePublished').val(),
 
+				Extent: $('#Extent').val(),
+				OtherDetails: $('#OtherDetails').val(),
+				Size: $('#Size').val(),
+
 				AccessionNumber: $('#AccessionNumber').val(),
 				CallNumber: $('#CallNumber').val(),
 				DateAcquired: $('#DateAcquired').val(),				
 				AcquiredFrom: $('#AcquiredFrom').val(),
 				Price: $('#Price').val(),
+				Notes: $('#Notes').val(),
 				IsRoomUseOnly: ($('#IsRoomUseOnly').prop("checked") ? 1 : 0),
 				IsAvailable: <?php echo $book->IsAvailable; ?>,
 				IsActive: <?php echo $book->IsActive; ?>, 

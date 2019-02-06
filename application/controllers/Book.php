@@ -51,7 +51,7 @@ class Book extends _BaseController {
         foreach($this->bookCatalogue->_list() as $data){   
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
@@ -81,7 +81,7 @@ class Book extends _BaseController {
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Add\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
             .']';             
             $json .= ',';
@@ -102,7 +102,7 @@ class Book extends _BaseController {
             }             
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
@@ -205,23 +205,14 @@ class Book extends _BaseController {
         if(!v::notEmpty()->validate($book['CallNumber'])){
             $str .= $this->invalid('CallNumber', 'Please add a Call Number');
             $valid = false;
-        }
-        else{
-            $ifExist = $this->bookCatalogue->_exist('CallNumber', $book['CallNumber']);            
-            if(is_object($ifExist)){
-                if($ifExist->AccessionNumber != $book['AccessionNumber']){
-                    $str .= $this->invalid('CallNumber', 'Call Number already exist');
-                    $valid = false;
-                }
-            }
-        }
+        }                        
         //price
-        if(!v::intVal()->notEmpty()->validate($book['Price'])){
+        if(!v::intVal()->validate($book['Price'])){
             $str .= $this->invalid('Price', 'Please input the cost of the book');
             $valid = false;
         } 
         else{
-            if(!v::intVal()->min(0)->validate($book['Price'])){
+            if(!v::intVal()->min(0, true)->validate($book['Price'])){
                 $str .= $this->invalid('Price', 'Price is invalid');
                 $valid = false;
             } 
