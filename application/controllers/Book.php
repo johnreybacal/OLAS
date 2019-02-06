@@ -36,9 +36,8 @@ class Book extends _BaseController {
         $this->librarianView('Book/Uncatalogued', '');
     }
 
-    public function QR($id){
-        $data['book'] = $this->bookCatalogue->_get($id);
-        $this->librarianView('Book/QR', $data);
+    public function PrintQR(){
+        $this->librarianView('Circulation/QR', '');
     }
 
     // public function QR_Scan(){

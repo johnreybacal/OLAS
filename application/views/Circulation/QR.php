@@ -154,9 +154,10 @@
     $(document).on('click', '#print', function (e) {
         var restorepage = document.body.innerHTML;
         var toPrint = document.getElementById('printpage').innerHTML;
-        document.body.innerHTML = toPrint;
+        // document.body.innerHTML = toPrint;
+        console.log(toPrint);
         window.print();
-        document.body.innerHTML = restorepage;
+        // document.body.innerHTML = restorepage;
     });
     
 </script>
