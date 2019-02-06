@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2019 at 06:08 AM
+-- Generation Time: Feb 06, 2019 at 08:48 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -196,7 +196,7 @@ TRUNCATE TABLE `bookcatalogue`;
 --
 
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `Notes`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
-(1, '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 'Mahal na mahal kita', 0, 1, 1),
+(1, '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 'Mahal na mahal kita\nThis book is lost by Bacal, Johnrey', 0, 0, 1),
 (11, '0786830239', '2018-10-26', 'dsfaa', 200, '', 1, 1, 1),
 (10, '9780000000001', '2018-11-01', 'Jb', 0, '', 1, 1, 1),
 (9, '9780747569404', '2018-10-27', '', 0, '', 1, 1, 1),
@@ -222,7 +222,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 (31, '9780621063099', '2019-02-03', 'Tikoy', 200, '', 0, 1, 1),
 (32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 (33, '0988941589', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
-(34, '9785386262884', '2019-02-03', 'Joy', 200, '', 0, 1, 1),
+(34, '9785386262884', '2019-02-03', 'Joy', 200, ' This book is damaged by Sena, John Mark, returned on the day of 2019-02-06 16:46:22', 0, 1, 1),
 (35, '9784773012941', '2019-02-03', 'Veronica', 200, '', 0, 1, 1),
 (36, '9786523504294', '2019-02-03', 'Paulo', 200, '', 0, 1, 1),
 (37, '9780549538394', '2019-02-03', 'Sylvia', 300, '', 0, 1, 1),
@@ -488,10 +488,10 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
 (5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
 (6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', '2019-02-03 10:41:14', 1920, 2, 1),
-(7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0),
+(14, 3, 34, '2019-02-06 16:42:28', '2019-02-09 16:42:28', '2019-02-06 16:46:33', 200, 3, 0),
 (8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', '2019-02-03 10:40:03', 240, 2, 0),
 (9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0),
-(10, 3, 12, '2019-02-04 21:47:17', '2019-02-07 21:47:17', NULL, NULL, 1, 0);
+(13, 1, 1, '2019-02-06 16:26:10', '2019-02-09 16:26:10', '2019-02-06 16:40:34', 500, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -1055,7 +1055,7 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `marcimport`
 --

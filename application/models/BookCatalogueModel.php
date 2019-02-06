@@ -46,8 +46,12 @@ class BookCatalogueModel extends _BaseModel{
 		return $this->db->query("SELECT AcquiredFrom, Price FROM bookcatalogue WHERE ISBN = '".$isbn."'  and DateAcquired = CURRENT_DATE")->row();
 	}
 
-	public function getByISBN($isbn){
-		return $this->db->query("SELECT * from bookcatalogue WHERE ISBN = '".$isbn."'")->result();
+	public function getByISBN($isbn, $isAvailable){
+		$availability = "";
+		if($isAvailable == 1){
+			$availability =  " AND IsAvailable = '1' AND IsRoomUseOnly = '0'";
+		}
+		return $this->db->query("SELECT * from bookcatalogue WHERE ISBN = '".$isbn."'".$availability)->result();
 	}
 
 	public function filterDateRange($accessionNumber, $from, $to){

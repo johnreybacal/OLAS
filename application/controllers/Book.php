@@ -165,7 +165,11 @@ class Book extends _BaseController {
     }
 
     public function GetCatalogueByISBN($isbn){
-        echo $this->convert($this->bookCatalogue->getByISBN($isbn));
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn, 0));
+    }
+    
+    public function GetCatalogueByISBNAvailable($isbn){
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn, 1));
     }
 
     public function GetAll(){

@@ -20,24 +20,26 @@
                         </div>      
                         <div class="row mb-2">
                             <div class="col-6">
+                                <label>Title</label>
+                                <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
+                            </div>
+                            <div class="col-6">
                                 <label>Accession Number</label>
-                                <input id="AccessionNumber" name="AccessionNumber" type="text" class="form-control" placeholder="Accession Number" />
+                                <select id="AccessionNumber" name="Accession Number" data-provide="selectpicker" title="Choose an Accession Number" data-live-search="true" class="form-control show-tick"></select>
                             </div>
-                            <div class="col-6">
-                                <label>Book Title</label>
-                                <input readonly id="Title" name="Title" type="text" class="form-control" placeholder="Title" />
-                            </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label>Date Borrowed</label>
-                                <input readonly id="DateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
-                            </div>
-                            <div class="col-6">
-                                <label>Date Due</label>
-                                <input id="DateDue" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Due">
-                            </div>
-                        </div>  
+                        </div>                       
+                        <div id="rowIssue"> 
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <label>Date Borrowed</label>
+                                    <input readonly id="DateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
+                                </div>
+                                <div class="col-6">
+                                    <label>Date Due</label>
+                                    <input id="DateDue" class="form-control" type="text" name="" placeholder="Date Due">
+                                </div>
+                            </div>  
+                        </div>
                         <div id="rowReturn">
                             <div class="row mb-2">
                                 <div class="col-6">
@@ -50,9 +52,13 @@
                                 </div>
                             </div>                        
                             <div class="row mb-2">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label>Amount Payed</label>
                                     <input id="AmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Notes</label>
+                                    <textarea id="Notes" name="Notes" type="text" class="form-control" placeholder="Notes"></textarea>
                                 </div>
                             </div>   
                         </div>
@@ -98,7 +104,7 @@
 
         return cur_day + " " + hours + ":" + minutes + ":" + seconds;
     }
-
+    var notes = '';
     var Circulation_Modal = {
         data: function () {
             return {
@@ -111,6 +117,7 @@
                 BookStatusId: $('#BookStatusId').selectpicker('val'),
                 AmountPayed: $('#AmountPayed').val(),                
                 IsRecalled: $('#IsRecalled').val(),                
+                Notes: $('#Notes').val(),                
             }
         },
 
@@ -118,6 +125,8 @@
             $('#modal-circulation-form')[0].reset();            
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
+            $('#ISBN').selectpicker('val', []);
+            $('#AccessionNumber').selectpicker('val', []);
             $.ajax({
                 url: "<?php echo base_url("Circulation/BookStatusList"); ?>",
                 success: function(i){
@@ -139,27 +148,48 @@
                     })
                     $('#PatronId').selectpicker('refresh');
                 }
-            })
-            $('#AccessionNumber').bind('input', function(){
-                if($(this).val != ''){
+            })            
+            $('#BookStatusId').change(function(){
+                if($(this).selectpicker('val') == 3 || $(this).selectpicker('val') == 4){
                     $.ajax({
-                        url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + $(this).val(),
-                        success: function(j){
-                            j = JSON.parse(j);
-                            $('#Title').val(j.Title);
+                        url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + $('#AccessionNumber').val(),
+                        success: function(i){
+                            i = JSON.parse(i);
+                            $('#AmountPayed').val(i.Price);
                         }
                     })
+                    if($(this).selectpicker('val') == 3){                        
+                        $('#Notes').val(notes + " This book is damaged by " + $('#PatronId option:selected').text() + ", returned on the day of " + now());
+                    }
+                    if($(this).selectpicker('val') == 4){                        
+                        $('#Notes').val(notes + "This book is lost by " + $('#PatronId option:selected').text());
+                    }
                 }
             });
-            $('#BookStatusId').change(function(){
-                if($(this).selectpicker('val') == 3 || $(this).selectpicker('val') == 4)
+            $.ajax({
+                url: "<?php echo base_url("Book/GetAll"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                                        
+                    $('#ISBN').empty();
+                    $.each(i, function(index, data){                        
+                        $('#ISBN').append('<option value = "' + data.ISBN + '">' + data.ISBN + ' | ' + data.Title + '</option>');
+                    })
+                    $('#ISBN').selectpicker('refresh');
+                }
+            })
+            $('#ISBN').change(function(){
                 $.ajax({
-                    url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + $('#AccessionNumber').val(),
+                    url: "<?php echo base_url('Book/GetCatalogueByISBNAvailable/'); ?>" + $(this).selectpicker('val'),
+                    async: false,
                     success: function(i){
-                        i = JSON.parse(i);
-                        $('#AmountPayed').val(i.Price);
+                        i = JSON.parse(i);                                        
+                        $('#AccessionNumber').empty();
+                        $.each(i, function(index, data){                        
+                            $('#AccessionNumber').append('<option value = "' + data.AccessionNumber + '">' + data.AccessionNumber + '</option>');
+                        })
+                        $('#AccessionNumber').selectpicker('refresh');
                     }
-                })
+                });
             });
             $('#modal-circulation').modal('show');
         },
@@ -168,6 +198,7 @@
             $('#LoanId').val('0');            
             $('.modal-title').text('Create a new issue');
             $('#rowReturn').hide();
+            $('#rowIssue').hide();
             $('#BookStatusId').selectpicker('val', 1)
             Circulation_Modal.init();      
             $('#DateBorrowed').val(now());
@@ -176,6 +207,7 @@
         edit: function (id) {            
             $('.modal-title').text('Edit book issue');
             $('#rowReturn').show();
+            $('#rowIssue').show();
             Circulation_Modal.init();
             Circulation_Modal.get(id);            
         },
@@ -183,6 +215,7 @@
         return: function(id){
             $('.modal-title').text('Return issued book');              
             $('#rowReturn').show();
+            $('#rowIssue').show();
             $.ajax({
                 url: "<?php echo base_url("Circulation/BookStatusList"); ?>",
                 success: function(i){
@@ -208,7 +241,6 @@
                     i = JSON.parse(i);
                     $('#LoanId').val(i.LoanId);
                     $('#PatronId').selectpicker('val', i.PatronId);
-                    $('#AccessionNumber').val(i.AccessionNumber);
                     $('#DateBorrowed').val(i.DateBorrowed);
                     $('#DateDue').val(i.DateDue);
                     $('#DateReturned').val(i.DateReturned);
@@ -219,7 +251,17 @@
                         url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + i.AccessionNumber,
                         success: function(j){
                             j = JSON.parse(j);
-                            $('#Title').val(j.Title);
+                            $('#ISBN').selectpicker('val', j.ISBN).trigger('change');
+                            $('#AccessionNumber').append('<option value = "' + i.AccessionNumber + '">' + i.AccessionNumber + '</option>').selectpicker('refresh');
+                            $('#AccessionNumber').selectpicker('val', i.AccessionNumber);
+                        }
+                    })
+                    $.ajax({
+                        url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + i.AccessionNumber,
+                        success: function(j){
+                            j = JSON.parse(j);
+                            $('#Notes').val(j.Notes);
+                            notes = j.Notes;
                         }
                     })
                     if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
