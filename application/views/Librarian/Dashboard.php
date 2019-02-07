@@ -206,21 +206,7 @@
 	</div>
 </div>
 <script>
-    (function($) {
-        var $window = $(window);
-
-        $window.resize(function resize() {
-            if ($window.width() > 768) {
-                $('#book-table').removeClass('table-responsive');
-            }
-            else{
-                $('#book-table').addClass('table-responsive');  
-            }
-
-            //$html.addClass('mobile');
-            //$html.removeClass('mobile');
-        }).trigger('resize');
-    })(jQuery);
+    
 
     var Dashboard = {        
 

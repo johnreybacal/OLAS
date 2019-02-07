@@ -3,11 +3,20 @@
 		<!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        		
 		<a href="<?php echo base_url(); ?>"><span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span></a>
 		<div class="topbar-divider d-none d-md-block"></div>
-		<div class="lookup d-none d-md-block ">
-        	<form class="lookup-placeholder">
-        		<input class="form-control" type="text" placeholder="Search books, authors, sections, etc." style="min-width: 200%;">
-    		</form>
-    	</div>		
+		<div class="d-none d-md-block ">
+            <form class="lookup lookup-lg no-icon">
+                <input class="no-radius" id="search" type="text" placeholder="Search">
+                <select class="d-none d-block librarian-search" data-provide="selectpicker" multiple>
+                    <option selected>Book</option>
+                    <option selected>Author</option>
+                    <option selected>Subject</option>
+                    <option selected>Section</option>
+                    <option selected>Series</option>
+                    <option selected>Publisher</option>
+                </select>
+                <button class="btn btn-info btn-bold no-radius fs-12" onclick="Search.search();" style="padding-top: 4px!important;"><i class="fa fa-search fa-2x"></i></button>
+            </form>
+        </div>		
 	</div>
 
 	<div class="topbar-right">
