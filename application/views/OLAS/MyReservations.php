@@ -1,11 +1,11 @@
 <header class="header bg-ui-general"> 
-	<div class="container">
+	<!-- <div class="container"> -->
 		<div class="header-info">
-			<div class="left">
+			<!-- <div class="left"> -->
 				<h2 class="header-title"><strong>My Reservations</strong> <small class="subtitle">List of all books reserved are available in this page.</small></h2>
-			</div>
+			<!-- </div> -->
 		</div>
-	</div>
+	<!-- </div> -->
 </header>
 		<!-- will remove this inline css in the future-->
 <div class="main-content" style="margin: 30px 90px 0px 90px;">

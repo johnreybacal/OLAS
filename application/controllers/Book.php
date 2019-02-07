@@ -36,9 +36,8 @@ class Book extends _BaseController {
         $this->librarianView('Book/Uncatalogued', '');
     }
 
-    public function QR($id){
-        $data['book'] = $this->bookCatalogue->_get($id);
-        $this->librarianView('Book/QR', $data);
+    public function PrintQR(){
+        $this->librarianView('Circulation/QR', '');
     }
 
     // public function QR_Scan(){
@@ -47,16 +46,21 @@ class Book extends _BaseController {
     //     $this->librarianView('Circulation/QR_script', '');
     // }
 
-    public function GenerateTable(){
+    public function GenerateTable($from = null, $to = null){
         $json = '{ "data": [';
-        foreach($this->bookCatalogue->_list() as $data){   
+        $additionalCondition = '';
+        if($from != null){
+            $additionalCondition .= "WHERE DateAcquired BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->bookCatalogue->_list($additionalCondition) as $data){   
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
-                .'"'.$data->CallNumber.'",'
-                .'"'.$data->ISBN.'",'                
-                .'"'.$book->Title.'",'                                
-                .'"'.$data->DateAcquired.'",'
-                .'"'.$data->AcquiredFrom.'",'
+                .'"'.$data->AccessionNumber.'",'
+                .'"'.$book->Title.'",'
+                .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
+                .'"'.$book->CallNumber.'",'
+                .'"'.$data->DateAcquired.'",'                
+                .'"'.($data->IsAvailable == 1 ? "In" : "Out").'",'                
                 .'"<a href = \"'.base_url("Book/QR/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"QR Code\"><span class = \"fa fa-qrcode fa-2x\"></span></a> <a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
@@ -82,7 +86,7 @@ class Book extends _BaseController {
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"<button onclick = \"Bookbag.add('.$data->AccessionNumber.','.$data->ISBN.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Add\"><span class = \"fa fa-plus fa-2x\"></span></button>"'
             .']';             
             $json .= ',';
@@ -103,7 +107,7 @@ class Book extends _BaseController {
             }             
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
@@ -166,7 +170,11 @@ class Book extends _BaseController {
     }
 
     public function GetCatalogueByISBN($isbn){
-        echo $this->convert($this->bookCatalogue->getByISBN($isbn));
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn, 0));
+    }
+    
+    public function GetCatalogueByISBNAvailable($isbn){
+        echo $this->convert($this->bookCatalogue->getByISBN($isbn, 1));
     }
 
     public function GetAll(){
@@ -206,23 +214,14 @@ class Book extends _BaseController {
         if(!v::notEmpty()->validate($book['CallNumber'])){
             $str .= $this->invalid('CallNumber', 'Please add a Call Number');
             $valid = false;
-        }
-        else{
-            $ifExist = $this->bookCatalogue->_exist('CallNumber', $book['CallNumber']);            
-            if(is_object($ifExist)){
-                if($ifExist->AccessionNumber != $book['AccessionNumber']){
-                    $str .= $this->invalid('CallNumber', 'Call Number already exist');
-                    $valid = false;
-                }
-            }
-        }
+        }                        
         //price
-        if(!v::intVal()->notEmpty()->validate($book['Price'])){
+        if(!v::intVal()->validate($book['Price'])){
             $str .= $this->invalid('Price', 'Please input the cost of the book');
             $valid = false;
         } 
         else{
-            if(!v::intVal()->min(0)->validate($book['Price'])){
+            if(!v::intVal()->min(0, true)->validate($book['Price'])){
                 $str .= $this->invalid('Price', 'Price is invalid');
                 $valid = false;
             } 

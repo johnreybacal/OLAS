@@ -18,7 +18,11 @@ class LoanModel extends _BaseModel{
 				$this->insert($loan);
 			}
 			else{//update
-				$this->update($loan);
+				if($loan['BookStatusId'] != 1){//when issued is not selected
+					$this->returnBook($loan);
+				}else{
+					$this->update($loan);
+				}
 			}
 		}else{
 			$this->insert($loan);
@@ -27,7 +31,7 @@ class LoanModel extends _BaseModel{
 
 	public function insert($loan){
 		$this->db->query("INSERT into loan "
-			."(PatronId, AccessionNumber, DateBorrowed, DateDue, DateReturned, AmountPayed, BookStatusId, IsRecalled) VALUES ("                   
+			."(PatronId, AccessionNumber, DateBorrowed, DateDue, DateReturned, AmountPayed, BookStatusId, IsRecalled) VALUES ("
 				."'".$loan['PatronId']."',"
 				."'".$loan['AccessionNumber']."',"
 				."CURRENT_TIMESTAMP,"
@@ -38,6 +42,7 @@ class LoanModel extends _BaseModel{
 				."'0'"
 			.")"
 		);
+		$this->db->query("UPDATE bookcatalogue SET IsAvailable = '0' WHERE AccessionNumber = '".$loan['AccessionNumber']."'");
 	}
 
 	public function update($loan){
@@ -51,17 +56,20 @@ class LoanModel extends _BaseModel{
 			."BookStatusId = '".$loan['BookStatusId']."' "
 			."WHERE LoanId = '".$loan['LoanId']."'"
 		);	
+		$this->db->query("UPDATE bookcatalogue SET Notes = '".$loan["Notes"]."'  WHERE AccessionNumber = '".$loan['AccessionNumber']."'");
 	}
 
-	public function returnBook($loan, $amountPayed, $bookStatusId){
+	public function returnBook($loan){		
 		$this->db->query("UPDATE loan SET "			
 			."DateBorrowed = '".$loan['DateBorrowed']."', "
 			."DateDue = '".$loan['DateDue']."', "
 			."DateReturned = CURRENT_TIMESTAMP, "
-			."AmountPayed = '".$amountPayed."', "
-			."BookStatusId = '".$bookStatusId."' "
+			."AmountPayed = '".$loan['AmountPayed']."', "
+			."BookStatusId = '".$loan['BookStatusId']."' "
 			."WHERE LoanId = '".$loan['LoanId']."'"
-		);	
+		);			
+		$available = ($loan['BookStatusId'] != 4) ? 1 : 0;//marks book unavaible when lost
+		$this->db->query("UPDATE bookcatalogue SET IsAvailable = '".$available."', Notes = '".$loan["Notes"]."'  WHERE AccessionNumber = '".$loan['AccessionNumber']."'");		
 	}
 
 	public function recall($loanId){

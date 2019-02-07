@@ -15,27 +15,37 @@ class BookModel extends _BaseModel{
 	public function save($book){
 		if(!$this->bookExist($book['ISBN'])){//insert			
 			$this->db->query("INSERT into book "
-				."(ISBN, Title, PublisherId, SectionId, SeriesId, Edition, DatePublished, PlacePublished) VALUES ("
+				."(ISBN, CallNumber, Title, PublisherId, SectionId, SeriesId, Edition, DatePublished, PlacePublished, Summary, Extent, OtherDetails, Size) VALUES ("
                     ."'".$book['ISBN']."', "
+					."'".$book['CallNumber']."', "					
 					."'".$book['Title']."', "					
 					."'".$book['PublisherId']."', "
 					."'".$book['SectionId']."', "
 					."'".$book['SeriesId']."', "					
 					."'".$book['Edition']."', "
 					."'".$book['DatePublished']."', "
-					."'".$book['PlacePublished']."'"
+					."'".$book['PlacePublished']."', "
+					."'".$book['Summary']."', "
+					."'".$book['Extent']."', "
+					."'".$book['OtherDetails']."', "
+					."'".$book['Size']."'"
 				.")"
 			);			
 		}
 		else{//update
 			$this->db->query("UPDATE book SET "                
+                ."CallNumber = '".$book['CallNumber']."', "
                 ."Title = '".$book['Title']."', "                
                 ."PublisherId = '".$book['PublisherId']."', "
                 ."SectionId = '".$book['SectionId']."', "
                 ."SeriesId = '".$book['SeriesId']."', "                
                 ."Edition = '".$book['Edition']."', "
 				."DatePublished = '".$book['DatePublished']."', "
-				."PlacePublished = '".$book['PlacePublished']."' "
+				."PlacePublished = '".$book['PlacePublished']."', "
+				."Summary = '".$book['Summary']."', "
+				."Extent = '".$book['Extent']."', "
+				."OtherDetails = '".$book['OtherDetails']."', "
+				."Size = '".$book['Size']."' "
 				."WHERE ISBN = '".$book['ISBN']."'"
 			);						
 		}

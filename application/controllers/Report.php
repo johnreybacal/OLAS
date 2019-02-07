@@ -52,7 +52,7 @@ class Report extends _BaseController {
             $book = $this->book->_get($data->ISBN);               
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'
@@ -71,7 +71,7 @@ class Report extends _BaseController {
             $book = $this->book->_get($data->ISBN);               
             $json .= '['
                 .'"'.$data->AccessionNumber.'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                                
                 .'"'.$data->DateAcquired.'",'

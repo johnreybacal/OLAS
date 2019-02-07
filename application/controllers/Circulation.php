@@ -87,9 +87,13 @@ class Circulation extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateTableHistory(){
+    public function GenerateTableHistory($from = null, $to = null){
         $json = '{ "data": [';
-        foreach($this->loan->_list("WHERE BookStatusId != '1'") as $data){            
+        $additionalCondition = '';
+        if($from != null){
+            $additionalCondition .= " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->loan->_list("WHERE BookStatusId != '1'".$additionalCondition) as $data){            
             $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
             $json .= '['        
@@ -126,16 +130,18 @@ class Circulation extends _BaseController {
         $str = '{';
         $valid = true;
         if(!v::notEmpty()->validate($loan['AccessionNumber'])){
-            $str .= $this->invalid('AccessionNumber', 'Please input the Accession Number of the book');
+            $str .= $this->invalid('AccessionNumber', 'Please choose a book to issue');
             $valid = false;
         }
         if(!v::date()->validate($loan['DateBorrowed'])){            
             $str .= $this->invalid('DateBorrowed', 'Please input a date');
             $valid = false;
         }
-        if(!v::date()->validate($loan['DateDue'])){            
-            $str .= $this->invalid('DateDue', 'Please input a date');
-            $valid = false;
+        if($loan['LoanId'] != 0){
+            if(!v::date()->validate($loan['DateDue'])){            
+                $str .= $this->invalid('DateDue', 'Please input a date');
+                $valid = false;
+            }
         }
         if(!v::notEmpty()->validate($loan['BookStatusId'])){
             $str .= $this->invalid('BookStatusId', 'Please select the status of the issued book');
@@ -165,12 +171,7 @@ class Circulation extends _BaseController {
     
     public function Save(){        
         $this->loan->save($this->input->post('loan'));
-    }
-
-    public function ReturnBook(){
-        $loan = $this->input->post('loan');
-        $this->loan->returnBook($this->loan->_get($loan['LoanId']), $loan['AmountPayed'], $loan['BookStatusId']);
-    }
+    }    
     
     public function Recall($loanId){
         $this->loan->recall($loanId);
@@ -189,10 +190,6 @@ class Circulation extends _BaseController {
 
     public function ScanQR($accessionNumber){
         echo $this->convert($this->loan->getLoanByAccession($accessionNumber));
-    }
-
-    public function GenerateQR(){
-        $this->librarianView('Circulation/QR', '');
     }
 
 }

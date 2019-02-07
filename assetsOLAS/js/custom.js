@@ -5,3 +5,18 @@ $(document).ready(function(){
 		'data-size','10'
 	);
 });
+    $(document).ready(function() {
+        var $window = $(window);
+
+        $window.resize(function resize() {
+            if ($window.width() > 768) {
+                $('table').removeClass('table-responsive');
+            }
+            else{
+                $('table').addClass('table-responsive');  
+            }
+
+            //$html.addClass('mobile');
+            //$html.removeClass('mobile');
+        }).trigger('resize');
+    })(jQuery);

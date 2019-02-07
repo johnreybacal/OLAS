@@ -13,7 +13,8 @@
 	
 	<link href="<?php echo base_url('assetsOLAS/css/print.css'); ?>" rel="stylesheet" media="print">
 	<link href="<?php echo base_url('assetsOLAS/css/custom.css'); ?>" rel="stylesheet">
-	<link href="<?php echo base_url('assetsOLAS/css/style1.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('assetsOLAS/css/customnat.css'); ?>" rel="stylesheet">
+	<link href="<?php echo base_url('assetsOLAS/css/style.css'); ?>" rel="stylesheet">
 
 	<link rel="icon" type="image/png" sizes="192x192"  href="<?php echo base_url('assetsOLAS/img/icons/android-icon-192x192.png'); ?>">
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('assetsOLAS/img/icons/apple-icon-180x180.png'); ?>">

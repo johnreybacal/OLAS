@@ -15,12 +15,12 @@ class BookCatalogueModel extends _BaseModel{
 	public function save($book){
 		if($book['AccessionNumber'] == 0){//insert			
 			$this->db->query("INSERT into bookcatalogue "
-				."(CallNumber, ISBN, DateAcquired, AcquiredFrom, Price, IsRoomUseOnly, IsAvailable, IsActive) VALUES ("
-					."'".$book['CallNumber']."', "
+				."(ISBN, DateAcquired, AcquiredFrom, Price, Notes, IsRoomUseOnly, IsAvailable, IsActive) VALUES ("					
 					."'".$book['ISBN']."', "					
 					."'".$book['DateAcquired']."', "
 					."'".$book['AcquiredFrom']."',"
 					."'".$book['Price']."',"
+					."'".$book['Notes']."',"
 					."'".$book['IsRoomUseOnly']."',"
 					."'1',"
 					."'1'"
@@ -28,12 +28,12 @@ class BookCatalogueModel extends _BaseModel{
 			);
 		}
 		else{//update
-			$this->db->query("UPDATE bookcatalogue SET "
-				."CallNumber = '".$book['CallNumber']."', "
+			$this->db->query("UPDATE bookcatalogue SET "				
 				."ISBN = '".$book['ISBN']."', "								
 				."DateAcquired = '".$book['DateAcquired']."', "
 				."AcquiredFrom = '".$book['AcquiredFrom']."', "
 				."Price = '".$book['Price']."', "
+				."Notes = '".$book['Notes']."', "
 				."IsRoomUseOnly = '".$book['IsRoomUseOnly']."', "
 				."IsAvailable = '".$book['IsAvailable']."', "
 				."IsActive = '".$book['IsActive']."' "
@@ -46,8 +46,12 @@ class BookCatalogueModel extends _BaseModel{
 		return $this->db->query("SELECT AcquiredFrom, Price FROM bookcatalogue WHERE ISBN = '".$isbn."'  and DateAcquired = CURRENT_DATE")->row();
 	}
 
-	public function getByISBN($isbn){
-		return $this->db->query("SELECT * from bookcatalogue WHERE ISBN = '".$isbn."'")->result();
+	public function getByISBN($isbn, $isAvailable){
+		$availability = "";
+		if($isAvailable == 1){
+			$availability =  " AND IsAvailable = '1' AND IsRoomUseOnly = '0'";
+		}
+		return $this->db->query("SELECT * from bookcatalogue WHERE ISBN = '".$isbn."'".$availability)->result();
 	}
 
 	public function filterDateRange($accessionNumber, $from, $to){

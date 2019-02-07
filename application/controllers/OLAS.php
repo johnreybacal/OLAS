@@ -67,7 +67,7 @@ class OLAS extends _BaseController {
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"<button class=\"btn btn-danger\" onclick=\"MyReservations.discard('.$item->ReservationId.')\" title=\"Discard\">Discard</button>"'
             .']';             
             $json .= ',';
@@ -90,7 +90,7 @@ class OLAS extends _BaseController {
             $book = $this->book->_get($data->ISBN);
             $json .= '['                
                 .'"'.$book->Title.'",'                
-                .'"'.$data->CallNumber.'",'
+                .'"'.$book->CallNumber.'",'
                 .'"'.$item->DateBorrowed.'",'
                 .'"'.$item->DateDue.'",'
                 .'"'.$item->DateReturned.'",'

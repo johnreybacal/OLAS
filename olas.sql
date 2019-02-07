@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2019 at 01:55 PM
+-- Generation Time: Feb 06, 2019 at 08:48 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -28,6 +28,7 @@ USE `olas`;
 -- Table structure for table `author`
 --
 
+DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `AuthorId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -64,8 +65,10 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `book`
 --
 
+DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `ISBN` varchar(13) NOT NULL,
+  `CallNumber` varchar(20) NOT NULL,
   `Title` varchar(100) NOT NULL,
   `PublisherId` int(11) NOT NULL,
   `SectionId` int(11) NOT NULL,
@@ -73,6 +76,10 @@ CREATE TABLE `book` (
   `Edition` varchar(30) DEFAULT NULL,
   `DatePublished` date NOT NULL,
   `PlacePublished` varchar(100) NOT NULL,
+  `Summary` text NOT NULL,
+  `Extent` varchar(20) NOT NULL,
+  `OtherDetails` varchar(20) NOT NULL,
+  `Size` varchar(20) NOT NULL,
   `Image` varchar(255) NOT NULL DEFAULT 'default.png'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -85,37 +92,37 @@ TRUNCATE TABLE `book`;
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Edition`, `DatePublished`, `PlacePublished`, `Image`) VALUES
-('9780000000001', 'The book of knowledge', 1, 2, 3, '1', '2018-08-26', 'Pasay', 'mama-_gumamela.png'),
-('0786830239', 'Tales from Agrabah Aladdin and Jasmine', 1, 3, 3, '1', '2018-10-22', 'Manila', 'images.jpg'),
-('9781368012287', 'Star Wars The Last Jedi', 1, 3, 1, '', '2018-10-02', 'Manila', 'default.png'),
-('9780000000002', 'Librong Pilipino', 7, 1, 6, '', '2018-11-10', 'Pasig', 'default.png'),
-('9780000000003', 'A research about thesis', 7, 1, 0, '', '2019-01-01', 'Manila', 'default.png'),
-('9780747569404', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'Manila', 'default.png'),
-('9780621063099', 'Little Men', 1, 3, 0, '', '2018-01-24', 'Manila', 'little_men.jpg'),
-('9780402199901', 'Little Women', 1, 3, 0, '', '2018-02-24', 'Manila', 'little_women.jpg'),
-('0988941589', 'Good Wives', 1, 3, 0, '', '2018-03-24', 'Manila', 'good_wives.jpg'),
-('9785386262884', 'Jo s Boys', 1, 3, 0, '', '2018-04-24', 'Manila', 'jo\'s_boys.jpg'),
-('9784773012941', 'Veronika Decides to Die', 1, 3, 0, '', '2018-05-24', 'Manila', 'veronika_decides_to_die.jpg'),
-('9786523504294', 'The Alchemist', 1, 3, 0, '', '2018-06-24', 'Manila', 'the_alchemist.jpg'),
-('9780549538394', 'Bared To You', 1, 3, 0, '', '2018-07-24', 'Manila', 'bared_to_you.jpg'),
-('9781573309400', 'Reflected ln You', 1, 3, 0, '', '2018-08-24', 'Manila', 'reflected_in_you.jpg'),
-('9781017703597', 'Etwined Wlth You Women', 1, 3, 0, '', '2018-09-24', 'Manila', 'etwined_with_you.jpg'),
-('9789740928522', 'Captivated By You', 1, 3, 0, '', '2018-10-24', 'Manila', 'captivated_by_you.jpg'),
-('9786361262394', 'One With You', 1, 3, 0, '', '2018-11-24', 'Manila', 'one_with_you.jpg'),
-('9788301119546', 'The Sheik 4nd the Runaway Princess', 1, 3, 0, '', '2018-12-24', 'Manila', 'the_sheik_and_the_runaway_princess.jpg'),
-('9785149961931', 'The Sheik s Arranged Marriage', 1, 3, 0, '', '2018-12-25', 'Manila', 'the_Sheiks_arranged_marriage.jpg'),
-('9784466056054', 'The Sheik 4nd The Bride Who Said No', 1, 3, 0, '', '2018-12-26', 'Manila', 'the_sheik_and_the_bride_who_said_no.jpg'),
-('9785789552629', 'The Sheik 4nd the Virgin Princess', 1, 3, 0, '', '2018-12-27', 'Manila', 'the_sheik_and_the_virgin_princess.jpg'),
-('9787663395858', 'The Sheik and the Princess Bride', 1, 3, 0, '', '2018-12-28', 'Manila', 'the_sheik_&_the_princess_bride.jpg'),
-('9783159481968', 'The Sheiks Secret Bride', 1, 3, 0, '', '2018-12-29', 'Manila', 'the_sheiks_secret_bride.jpg'),
-('9781305623415', 'Ten Years 0n', 1, 3, 0, '', '2018-12-30', 'Manila', 'ten_years_on.jpg'),
-('9784088744759', 'Sorry Please Thank You', 1, 3, 0, '', '2018-12-31', 'Manila', 'sorry_please_thank_you.jpg'),
-('9781852769611', 'The Girl You Left Behind', 1, 3, 0, '', '2018-12-31', 'Manila', 'the_girl_you_left_behind.jpg'),
-('9787835384789', 'Pleasure of the Night', 1, 3, 0, '', '2019-01-01', 'Manila', 'pleasure_of_the_night.jpg'),
-('9784411754257', 'Heat of the Night', 1, 3, 0, '', '2019-01-11', 'Manila', 'heat_of_the_night.jpg'),
-('9784882477143', 'The Ship of Bride', 1, 3, 0, '', '2019-01-12', 'Manila', 'the_ship_of_bride.jpg'),
-('9781882803378', 'The Last Letter from your Lover', 1, 3, 0, '', '2019-01-13', 'Manila', 'the_last_letter_from_your_lover.jpg');
+INSERT INTO `book` (`ISBN`, `CallNumber`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Edition`, `DatePublished`, `PlacePublished`, `Summary`, `Extent`, `OtherDetails`, `Size`, `Image`) VALUES
+('9780000000001', 'TD 9098', 'The book of knowledge', 1, 2, 3, '1', '2018-08-26', 'Pasay', 'This book contains knowledge', 'Hard bound', '20 pages', '1 inch', 'mama-_gumamela.png'),
+('0786830239', '', 'Tales from Agrabah Aladdin and Jasmine', 1, 3, 3, '1', '2018-10-22', 'Manila', '', '', '', '', 'images.jpg'),
+('9781368012287', '', 'Star Wars The Last Jedi', 1, 3, 1, '', '2018-10-02', 'Manila', '', '', '', '', 'default.png'),
+('9780000000002', 'TD 9099', 'Librong Pilipino', 7, 1, 6, '', '2018-11-10', 'Pasig', 'Libro ng mga pilipino', 'Hard bound', '20 pages', '1 inch', 'default.png'),
+('9780000000003', '', 'A research about thesis', 7, 1, 0, '', '2019-01-01', 'Manila', '', '', '', '', 'default.png'),
+('9780747569404', '', 'Harry Potter and the Order of the Phoenix', 2, 3, 2, '', '2003-01-01', 'Manila', '', '', '', '', 'default.png'),
+('9780621063099', '', 'Little Men', 1, 3, 0, '', '2018-01-24', 'Manila', '', '', '', '', 'little_men.jpg'),
+('9780402199901', '', 'Little Women', 1, 3, 0, '', '2018-02-24', 'Manila', '', '', '', '', 'little_women.jpg'),
+('0988941589', '', 'Good Wives', 1, 3, 0, '', '2018-03-24', 'Manila', '', '', '', '', 'good_wives.jpg'),
+('9785386262884', '', 'Jo s Boys', 1, 3, 0, '', '2018-04-24', 'Manila', '', '', '', '', 'jo\'s_boys.jpg'),
+('9784773012941', '', 'Veronika Decides to Die', 1, 3, 0, '', '2018-05-24', 'Manila', '', '', '', '', 'veronika_decides_to_die.jpg'),
+('9786523504294', '', 'The Alchemist', 1, 3, 0, '', '2018-06-24', 'Manila', '', '', '', '', 'the_alchemist.jpg'),
+('9780549538394', '', 'Bared To You', 1, 3, 0, '', '2018-07-24', 'Manila', '', '', '', '', 'bared_to_you.jpg'),
+('9781573309400', '', 'Reflected ln You', 1, 3, 0, '', '2018-08-24', 'Manila', '', '', '', '', 'reflected_in_you.jpg'),
+('9781017703597', '', 'Etwined Wlth You Women', 1, 3, 0, '', '2018-09-24', 'Manila', '', '', '', '', 'etwined_with_you.jpg'),
+('9789740928522', '', 'Captivated By You', 1, 3, 0, '', '2018-10-24', 'Manila', '', '', '', '', 'captivated_by_you.jpg'),
+('9786361262394', '', 'One With You', 1, 3, 0, '', '2018-11-24', 'Manila', '', '', '', '', 'one_with_you.jpg'),
+('9788301119546', '', 'The Sheik 4nd the Runaway Princess', 1, 3, 0, '', '2018-12-24', 'Manila', '', '', '', '', 'the_sheik_and_the_runaway_princess.jpg'),
+('9785149961931', '', 'The Sheik s Arranged Marriage', 1, 3, 0, '', '2018-12-25', 'Manila', '', '', '', '', 'the_Sheiks_arranged_marriage.jpg'),
+('9784466056054', '', 'The Sheik 4nd The Bride Who Said No', 1, 3, 0, '', '2018-12-26', 'Manila', '', '', '', '', 'the_sheik_and_the_bride_who_said_no.jpg'),
+('9785789552629', '', 'The Sheik 4nd the Virgin Princess', 1, 3, 0, '', '2018-12-27', 'Manila', '', '', '', '', 'the_sheik_and_the_virgin_princess.jpg'),
+('9787663395858', '', 'The Sheik and the Princess Bride', 1, 3, 0, '', '2018-12-28', 'Manila', '', '', '', '', 'the_sheik_&_the_princess_bride.jpg'),
+('9783159481968', '', 'The Sheiks Secret Bride', 1, 3, 0, '', '2018-12-29', 'Manila', '', '', '', '', 'the_sheiks_secret_bride.jpg'),
+('9781305623415', '', 'Ten Years 0n', 1, 3, 0, '', '2018-12-30', 'Manila', '', '', '', '', 'ten_years_on.jpg'),
+('9784088744759', '', 'Sorry Please Thank You', 1, 3, 0, '', '2018-12-31', 'Manila', '', '', '', '', 'sorry_please_thank_you.jpg'),
+('9781852769611', '', 'The Girl You Left Behind', 1, 3, 0, '', '2018-12-31', 'Manila', '', '', '', '', 'the_girl_you_left_behind.jpg'),
+('9787835384789', '', 'Pleasure of the Night', 1, 3, 0, '', '2019-01-01', 'Manila', '', '', '', '', 'pleasure_of_the_night.jpg'),
+('9784411754257', '', 'Heat of the Night', 1, 3, 0, '', '2019-01-11', 'Manila', '', '', '', '', 'heat_of_the_night.jpg'),
+('9784882477143', '', 'The Ship of Bride', 1, 3, 0, '', '2019-01-12', 'Manila', '', '', '', '', 'the_ship_of_bride.jpg'),
+('9781882803378', '', 'The Last Letter from your Lover', 1, 3, 0, '', '2019-01-13', 'Manila', '', '', '', '', 'the_last_letter_from_your_lover.jpg');
 
 -- --------------------------------------------------------
 
@@ -123,6 +130,7 @@ INSERT INTO `book` (`ISBN`, `Title`, `PublisherId`, `SectionId`, `SeriesId`, `Ed
 -- Table structure for table `bookauthor`
 --
 
+DROP TABLE IF EXISTS `bookauthor`;
 CREATE TABLE `bookauthor` (
   `ISBN` varchar(13) NOT NULL,
   `AuthorId` int(11) NOT NULL
@@ -138,7 +146,7 @@ TRUNCATE TABLE `bookauthor`;
 --
 
 INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
-('9780000000001', 1),
+('9780000000001', 4),
 ('9780747569404', 5),
 ('0786830239', 1),
 ('9781368012287', 1),
@@ -157,7 +165,7 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 ('9786361262394', 11),
 ('9788301119546', 12),
 ('9785149961931', 12),
-('9780000000001', 4);
+('9780000000001', 1);
 
 -- --------------------------------------------------------
 
@@ -165,13 +173,14 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 -- Table structure for table `bookcatalogue`
 --
 
+DROP TABLE IF EXISTS `bookcatalogue`;
 CREATE TABLE `bookcatalogue` (
   `AccessionNumber` int(11) NOT NULL,
-  `CallNumber` varchar(20) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
   `DateAcquired` date NOT NULL,
   `AcquiredFrom` varchar(100) NOT NULL,
   `Price` int(11) NOT NULL,
+  `Notes` text NOT NULL,
   `IsRoomUseOnly` tinyint(1) NOT NULL,
   `IsAvailable` tinyint(1) NOT NULL DEFAULT '1',
   `IsActive` tinyint(1) NOT NULL DEFAULT '1'
@@ -186,44 +195,45 @@ TRUNCATE TABLE `bookcatalogue`;
 -- Dumping data for table `bookcatalogue`
 --
 
-INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
-(1, '112', '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 0, 1, 1),
-(11, '123', '0786830239', '2018-10-26', 'dsfaa', 200, 1, 1, 1),
-(10, 'asduhaud', '9780000000001', '2018-11-01', 'Jb', 0, 1, 1, 1),
-(9, 'os91', '9780747569404', '2018-10-27', '', 0, 1, 1, 1),
-(12, 'sdg', '0786830239', '2018-10-21', 'sdvsdf', 0, 1, 1, 1),
-(13, '34', '9780747569404', '2018-10-22', 'dsfsff', 0, 1, 1, 1),
-(14, '1', '9780747569404', '2018-11-01', 'National Bookstore', 400, 0, 1, 1),
-(15, '12343', '9780747569404', '2018-10-02', 'q', 3, 0, 1, 1),
-(16, '90', '9780747569404', '2018-11-01', 'National BookStroe', 100, 0, 1, 1),
-(17, 'scsdvs', '9780747569404', '2018-10-23', 'wef', 12, 0, 1, 1),
-(18, '000014', '9780747569404', '2018-10-23', 'wef', 120, 1, 1, 1),
-(19, '4311', '9781368012287', '2018-10-25', 'jb', 100, 1, 1, 1),
-(20, '1234323', '9780000000002', '2018-11-11', 'Johnrey', 800, 0, 1, 1),
-(21, 'fdfgh', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
-(22, 'rock lee', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(23, '111ewfw', '0786830239', '2018-11-13', '12', 121, 1, 1, 1),
-(24, 'safsdf', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
-(25, '12345tdffg', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
-(26, 'sdv ds fsfd ', '9780747569404', '2018-11-13', '1', 1, 1, 1, 1),
-(27, 'asdfghjkhgfd', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(28, 'asdvc v vc', '9780000000001', '2018-11-13', 'rock lee', 1, 1, 1, 1),
-(29, 'r3t4grd', '0786830239', '2018-11-19', 'edwsfdv', 4, 1, 1, 1),
-(30, '123456hfthfgh', '9780000000003', '2019-01-31', 'nat', 100, 1, 1, 1),
-(31, '000001', '9780621063099', '2019-02-03', 'Tikoy', 200, 0, 1, 1),
-(32, '000002', '9780402199901', '2019-02-03', 'Acquirer', 200, 0, 1, 1),
-(33, '000003', '0988941589', '2019-02-03', 'Acquirer', 200, 0, 1, 1),
-(34, '000004', '9785386262884', '2019-02-03', 'Joy', 200, 0, 1, 1),
-(35, '000005', '9784773012941', '2019-02-03', 'Veronica', 200, 0, 1, 1),
-(36, '000006', '9786523504294', '2019-02-03', 'Paulo', 200, 0, 1, 1),
-(37, '000007', '9780549538394', '2019-02-03', 'Sylvia', 300, 0, 1, 1),
-(38, '000008', '9781573309400', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
-(39, '000009', '9781017703597', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
-(40, '000010', '9789740928522', '2019-02-03', 'Sylvia', 200, 0, 1, 1),
-(41, '000011', '9786361262394', '2019-02-03', 'Sylvia', 250, 0, 1, 1),
-(42, '000012', '9788301119546', '2019-02-03', 'Susan', 200, 0, 1, 1),
-(43, '000013', '9785149961931', '2019-02-03', 'Susan', 250, 0, 1, 1),
-(44, '23456ytrte', '9780000000002', '2019-02-04', 'Johnrey', 200, 1, 1, 1);
+INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `Notes`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
+(1, '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 'Mahal na mahal kita\nThis book is lost by Bacal, Johnrey', 0, 0, 1),
+(11, '0786830239', '2018-10-26', 'dsfaa', 200, '', 1, 1, 1),
+(10, '9780000000001', '2018-11-01', 'Jb', 0, '', 1, 1, 1),
+(9, '9780747569404', '2018-10-27', '', 0, '', 1, 1, 1),
+(12, '0786830239', '2018-10-21', 'sdvsdf', 0, '', 1, 1, 1),
+(13, '9780747569404', '2018-10-22', 'dsfsff', 0, '', 1, 1, 1),
+(14, '9780747569404', '2018-11-01', 'National Bookstore', 400, '', 0, 1, 1),
+(15, '9780747569404', '2018-10-02', 'q', 3, '', 0, 1, 1),
+(16, '9780747569404', '2018-11-01', 'National BookStroe', 100, '', 0, 1, 1),
+(17, '9780747569404', '2018-10-23', 'wef', 12, '', 0, 1, 1),
+(18, '9780747569404', '2018-10-23', 'wef', 120, '', 1, 1, 1),
+(19, '9781368012287', '2018-10-25', 'jb', 100, '', 1, 1, 1),
+(20, '9780000000002', '2018-11-11', 'Johnrey', 800, '', 0, 1, 1),
+(21, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
+(22, '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
+(23, '0786830239', '2018-11-13', '12', 121, '', 1, 1, 1),
+(24, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
+(25, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
+(26, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
+(27, '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
+(28, '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
+(29, '0786830239', '2018-11-19', 'edwsfdv', 4, '', 1, 1, 1),
+(30, '9780000000003', '2019-01-31', 'nat', 100, '', 1, 1, 1),
+(31, '9780621063099', '2019-02-03', 'Tikoy', 200, '', 0, 1, 1),
+(32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
+(33, '0988941589', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
+(34, '9785386262884', '2019-02-03', 'Joy', 200, ' This book is damaged by Sena, John Mark, returned on the day of 2019-02-06 16:46:22', 0, 1, 1),
+(35, '9784773012941', '2019-02-03', 'Veronica', 200, '', 0, 1, 1),
+(36, '9786523504294', '2019-02-03', 'Paulo', 200, '', 0, 1, 1),
+(37, '9780549538394', '2019-02-03', 'Sylvia', 300, '', 0, 1, 1),
+(38, '9781573309400', '2019-02-03', 'Sylvia', 200, '', 0, 1, 1),
+(39, '9781017703597', '2019-02-03', 'Sylvia', 200, '', 0, 1, 1),
+(40, '9789740928522', '2019-02-03', 'Sylvia', 200, '', 0, 1, 1),
+(41, '9786361262394', '2019-02-03', 'Sylvia', 250, '', 0, 1, 1),
+(42, '9788301119546', '2019-02-03', 'Susan', 200, '', 0, 1, 1),
+(43, '9785149961931', '2019-02-03', 'Susan', 250, '', 0, 1, 1),
+(44, '9780000000002', '2019-02-04', 'Johnrey', 200, '', 1, 1, 1),
+(45, '9780000000002', '2019-02-06', 'Suplayer', 0, '', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -231,6 +241,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `CallNumber`, `ISBN`, `DateAcqui
 -- Table structure for table `bookstatus`
 --
 
+DROP TABLE IF EXISTS `bookstatus`;
 CREATE TABLE `bookstatus` (
   `BookStatusId` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL
@@ -257,6 +268,7 @@ INSERT INTO `bookstatus` (`BookStatusId`, `Name`) VALUES
 -- Table structure for table `booksubject`
 --
 
+DROP TABLE IF EXISTS `booksubject`;
 CREATE TABLE `booksubject` (
   `ISBN` varchar(13) NOT NULL,
   `SubjectId` int(11) NOT NULL
@@ -297,6 +309,7 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 -- Table structure for table `college`
 --
 
+DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college` (
   `CollegeId` int(11) NOT NULL,
   `Name` varchar(20) NOT NULL,
@@ -325,6 +338,7 @@ INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `course`
 --
 
+DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `CourseId` int(11) NOT NULL,
   `CollegeId` int(11) NOT NULL,
@@ -354,6 +368,7 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `librarian`
 --
 
+DROP TABLE IF EXISTS `librarian`;
 CREATE TABLE `librarian` (
   `LibrarianId` int(11) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
@@ -382,6 +397,7 @@ INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Pa
 -- Table structure for table `librarianaccess`
 --
 
+DROP TABLE IF EXISTS `librarianaccess`;
 CREATE TABLE `librarianaccess` (
   `LibrarianId` int(11) NOT NULL,
   `LibrarianRoleId` int(11) NOT NULL
@@ -416,6 +432,7 @@ INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
 -- Table structure for table `librarianrole`
 --
 
+DROP TABLE IF EXISTS `librarianrole`;
 CREATE TABLE `librarianrole` (
   `LibrarianRoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
@@ -445,6 +462,7 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `Description`) VALUES
 -- Table structure for table `loan`
 --
 
+DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `LoanId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -470,10 +488,10 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (4, 1, 11, '2018-10-26 20:11:43', '2018-10-29 20:11:43', '2018-10-26 00:00:00', 0, 2, 0),
 (5, 1, 1, '2018-10-26 20:21:23', '2018-10-29 20:21:23', '2018-10-31 00:00:00', 30, 2, 0),
 (6, 1, 13, '2018-10-26 20:21:31', '2018-10-29 20:21:31', '2019-02-03 10:41:14', 1920, 2, 1),
-(7, 1, 11, '2018-10-28 22:06:45', '2018-10-31 22:06:45', '2018-10-30 00:00:00', 200, 4, 0),
+(14, 3, 34, '2019-02-06 16:42:28', '2019-02-09 16:42:28', '2019-02-06 16:46:33', 200, 3, 0),
 (8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', '2019-02-03 10:40:03', 240, 2, 0),
 (9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0),
-(10, 3, 12, '2019-02-04 21:47:17', '2019-02-07 21:47:17', NULL, NULL, 1, 0);
+(13, 1, 1, '2019-02-06 16:26:10', '2019-02-09 16:26:10', '2019-02-06 16:40:34', 500, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -481,6 +499,7 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 -- Table structure for table `marcimport`
 --
 
+DROP TABLE IF EXISTS `marcimport`;
 CREATE TABLE `marcimport` (
   `MarcImportId` int(11) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
@@ -542,6 +561,7 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 -- Table structure for table `message`
 --
 
+DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `MessageId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -565,7 +585,9 @@ INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) 
 (12, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-30 22:10:47'),
 (13, 1, 'Recall cancelled', 'Please enjoy your book', '2018-10-31 22:59:41'),
 (14, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-31 22:59:57'),
-(15, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-02-03 12:17:19');
+(15, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-02-03 12:17:19'),
+(16, 3, 'Your book is being recalled by the library', 'Please immediately return the book: Tales from Agrabah Aladdin and Jasmine to the library. Thank you.', '2019-02-05 10:17:25'),
+(17, 3, 'Recall cancelled', 'Please enjoy your book', '2019-02-05 10:17:30');
 
 -- --------------------------------------------------------
 
@@ -573,6 +595,7 @@ INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) 
 -- Table structure for table `outsideresearcher`
 --
 
+DROP TABLE IF EXISTS `outsideresearcher`;
 CREATE TABLE `outsideresearcher` (
   `OutsideResearcherId` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -599,6 +622,7 @@ INSERT INTO `outsideresearcher` (`OutsideResearcherId`, `Name`, `DateTime`, `Amo
 -- Table structure for table `outsideresearchersubject`
 --
 
+DROP TABLE IF EXISTS `outsideresearchersubject`;
 CREATE TABLE `outsideresearchersubject` (
   `OutsideResearcherId` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
@@ -624,6 +648,7 @@ INSERT INTO `outsideresearchersubject` (`OutsideResearcherId`, `SubjectId`) VALU
 -- Table structure for table `patron`
 --
 
+DROP TABLE IF EXISTS `patron`;
 CREATE TABLE `patron` (
   `PatronId` int(11) NOT NULL,
   `PatronTypeId` int(11) NOT NULL,
@@ -658,6 +683,7 @@ INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `La
 -- Table structure for table `patrontype`
 --
 
+DROP TABLE IF EXISTS `patrontype`;
 CREATE TABLE `patrontype` (
   `PatronTypeId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
@@ -686,6 +712,7 @@ INSERT INTO `patrontype` (`PatronTypeId`, `Name`, `NumberOfBooks`, `NumberOfDays
 -- Table structure for table `publisher`
 --
 
+DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE `publisher` (
   `PublisherId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -715,6 +742,7 @@ INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `reservation`
 --
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `ReservationId` int(11) NOT NULL,
   `PatronId` int(11) NOT NULL,
@@ -752,6 +780,7 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 -- Table structure for table `section`
 --
 
+DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section` (
   `SectionId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -779,6 +808,7 @@ INSERT INTO `section` (`SectionId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `series`
 --
 
+DROP TABLE IF EXISTS `series`;
 CREATE TABLE `series` (
   `SeriesId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -808,6 +838,7 @@ INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `subject`
 --
 
+DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `SubjectId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -838,6 +869,7 @@ INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `subjectcourse`
 --
 
+DROP TABLE IF EXISTS `subjectcourse`;
 CREATE TABLE `subjectcourse` (
   `SubjectId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL
@@ -993,7 +1025,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
 ALTER TABLE `bookcatalogue`
-  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `AccessionNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `bookstatus`
 --
@@ -1023,7 +1055,7 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `marcimport`
 --
@@ -1033,7 +1065,7 @@ ALTER TABLE `marcimport`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `outsideresearcher`
 --
