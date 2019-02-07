@@ -51,7 +51,7 @@
                         <button class="btn btn-primary pull-right" id="generate">
                             <span class="btn-icon"><i class="icon-magic-wand"></i></span> Generate
                         </button>
-                        <button type="button" class="btn btn-primary pull-left" id="print">
+                        <button type="button" class="btn btn-primary pull-left" id="print" target="_blank">
                             <span class="btn-icon"><i class="icon-printer"></i></span> Print
                         </button>
                     </form>
@@ -59,14 +59,15 @@
             </div>
         </div>
 </div>
-<!-- <div id="qrcode"></div>; -->
 <div class="container-fluid" style="height: ">
     <div class="pages" id="printpage">
     </div>
 </div>
-<br/>>
+<br/>
 
 <script>
+    var myWindow;
+
     $(document).ready(function(){
         Dashboard.init();
     });    
@@ -120,14 +121,8 @@
         $('.pages').append(mainPage);
        
         $.each($('#selectedBook tbody').children(), function(index, data){
-            // console.log(index);
-            // console.log(data);
-            // console.log("isbn: " + $(data).data('isbn'));
-            // // console.log("isbn: " + $(data).children().each('isbn').text());
-            // console.log("accession: " + $(data).data('accession'));
-            // console.log("call number: " + $(data).data('callnumber'));
             
-            var qrOnPage = '<div class="barcode-card" style="width: 63.5mm;height: 64.87mm; border-radius: 1.5mm;margin-bottom: mm;margin-left: 0.33333333333333mm; margin-right: 0.33333333333333mm;">';
+            var qrOnPage = '<div class="barcode-card" id="barcode-card" style="width: 63.5mm;height: 64.87mm; border-radius: 1.5mm;margin-bottom: mm;margin-left: 0.33333333333333mm; margin-right: 0.33333333333333mm;">';
                 qrOnPage += '<div class="row">';
                 qrOnPage += '<div class="col-sm-12">';
                 qrOnPage +=     '<h4 class="book-title" style="font-size: 1em;">'+$(data).data('isbn')+'</h4>';
@@ -151,12 +146,18 @@
         });
     });
 
-    $(document).on('click', '#print', function (e) {
-        var restorepage = document.body.innerHTML;
-        var toPrint = document.getElementById('printpage').innerHTML;
-        document.body.innerHTML = toPrint;
-        window.print();
-        document.body.innerHTML = restorepage;
+    $(document).on('click', '#print', function () {
+            myWindow = window.open();
+            var mainbody = document.getElementById('printpage').innerHTML;  
+            $(myWindow.document.head).html('<link onload="window.print();" href="<?php echo base_url('assetsOLAS/css/print.css');?>" rel="stylesheet" >'
+            +'<link href="<?php echo base_url('assetsOLAS/css/custom.css'); ?>" rel="stylesheet">'
+            + '<script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js');?>"><\/script>');
+            
+            $(myWindow.document.body).html(mainbody);
     });
+
+    function printQR() {
+        myWindow.print();
+    }
     
 </script>
