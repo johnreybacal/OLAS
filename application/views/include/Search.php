@@ -82,18 +82,12 @@
             if($('#search').val() != ""){
                 Search.search();
             }
-        });
-        $('#search').bind('input', function(){
-            // if($(this).val().length <= 2 ){
-
-            //     Search.search().hide();
-            if($(this).val().length >=3 ){
-            console.log($(this).val().length);
+        });        
+		$("#search").keypress(function(event) {
+			if(event.which == 13 && $('#search').val() != "") {
                 Search.search();
-            }
-
-
-        });
+			}
+		});
         $('.date-range').change(function(){
             if($('#search').val() != ""){
                 Search.search();
@@ -131,9 +125,9 @@
                 Search.searchAuthor();
             }
             <?php if($this->session->has_userdata('isLibrarian')): ?>
-            else if(f == 'patron'){                
-                Search.searchPatron();
-            }
+				else if(f == 'patron'){                
+					Search.searchPatron();
+				}
             <?php endif; ?>
             else{
                 var result = $('.tab-pane.active').data('search');
@@ -147,7 +141,7 @@
                 if(result == 'patron'){                
                     Search.searchPatron();
                 }
-                <?php endif; ?>
+			<?php endif; ?>
             }
         },
 
@@ -172,7 +166,6 @@
                             // author += '<h5 class="fs-18 fw-300">' + y.Name + '</h5>';
                             author += '<div class="book-author">by' + y.Name + '</div>';
                         })
-console.log(i);
                         var hover = '';
                         if("<?php echo $this->session->has_userdata('patronId'); ?>" == 1){    
                             if(data.catalogue.IsRoomUseOnly == 0){
