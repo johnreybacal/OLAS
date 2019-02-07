@@ -25,6 +25,10 @@
               </select>
               <button class="btn btn-primary btn-bold no-radius fs-14">Search</button>
             </form> -->
+        </div>
+    </div>
+    <div class="topbar-center d-none d-md-block">
+        <div>
             <form class="lookup lookup-lg no-icon">
                 <input class="no-radius" id="search" type="text" placeholder="Search">
                 <select class="d-none d-block librarian-search" data-provide="selectpicker" multiple>

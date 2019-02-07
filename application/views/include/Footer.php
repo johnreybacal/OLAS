@@ -85,7 +85,7 @@
 <script src = "<?php echo base_url('assets/vendor/moment/moment.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/script/plugins/qr-scanner.min.js'); ?>" type="module" ></script>
 <script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
-<script src = "<?php echo base_url('assets/vendor/datatables/js/jquery.dataTables.min.js'); ?>"></script>  
+<!-- <script src = "<?php echo base_url('assets/vendor/datatables/js/jquery.dataTables.min.js'); ?>"></script>   -->
 <script src = "<?php echo base_url('assets/vendor/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>  
 
 </body>

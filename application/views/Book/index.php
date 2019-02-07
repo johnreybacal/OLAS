@@ -1,6 +1,5 @@
-
 <header class="header header-inverse bg-ui-general">
-	<div class="container">
+	<!-- <div class="container"> -->
 		<div class="header-info">
 			<div class="left">
 				<h2 class="header-title"><strong>Books</strong> <small class="subtitle">List of all books are available in this page.</small></h2>
@@ -14,7 +13,7 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	<!-- </div> -->
 </header>
 
 <div class="main-content">
