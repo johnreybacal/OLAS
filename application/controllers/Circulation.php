@@ -87,9 +87,13 @@ class Circulation extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateTableHistory(){
+    public function GenerateTableHistory($from = null, $to = null){
         $json = '{ "data": [';
-        foreach($this->loan->_list("WHERE BookStatusId != '1'") as $data){            
+        $additionalCondition = '';
+        if($from != null){
+            $additionalCondition .= " AND DateBorrowed BETWEEN '".$from."' AND '".$to."'";
+        }
+        foreach($this->loan->_list("WHERE BookStatusId != '1'".$additionalCondition) as $data){            
             $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
             $json .= '['        
