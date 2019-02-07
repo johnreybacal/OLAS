@@ -1,19 +1,19 @@
 <header class="header header-inverse bg-ui-general"> 
-	<div class="container">
+	<!-- <div class="container"> -->
 		<div class="header-info">
-			<div class="left">
+			<!-- <div class="left"> -->
 				<h2 class="header-title"><strong>Patron</strong> <small class="subtitle">List of all Patrons are available in this page.</small></h2>
-			</div>
+			<!-- </div> -->
 		</div>
 
 		<div class="header-action">
-		<div class="buttons">
-			<a class="btn btn-float btn-lg btn-info float-md-right text-white" href="<?php echo base_url('Patron/Add') ?>">
-			<i class="ti-plus"></i>
-			</a>
+			<div class="buttons">
+				<a class="btn btn-float btn-lg btn-info float-md-right text-white" href="<?php echo base_url('Patron/Add') ?>">
+				<i class="ti-plus"></i>
+				</a>
+			</div>
 		</div>
-		</div>
-	</div>
+	<!-- </div> -->
 </header>
 <div class="main-content">
 	<div class="card">

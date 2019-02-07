@@ -1,11 +1,11 @@
 <header class="header header-inverse bg-ui-general"> 
-	<div class="container">
+	<!-- <div class="container"> -->
 		<div class="header-info">
-			<div class="left">
+			<!-- <div class="left"> -->
 				<h2 class="header-title"><strong>Book Issue History</strong> <small class="subtitle">List of all the patrons who borrowed the selected book.</small></h2>
-			</div>
+			<!-- </div> -->
 		</div>	
-	</div>
+	<!-- </div> -->
 </header> 
 <div class="main-content">
 	<div class="card">

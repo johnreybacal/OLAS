@@ -1,8 +1,8 @@
 <header class="header header-inverse bg-ui-general"> 
 	<div class="header-info">
-		<div class="left">
+		<!-- <div class="left"> -->
 			<h2 class="header-title"><strong>Author</strong> <small class="subtitle">List of all Authors are available in this page.</small></h2>
-		</div>
+		<!-- </div> -->
 	</div>
 
 	<div class="header-action">
