@@ -29,7 +29,7 @@
 				
                 <div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
                     <label>&nbsp;</label>
-                    <button class="btn btn-block btn-info" id="filter" onclick="ExportExcel('circulation-history-table')">Export</button>
+                    <button class="btn btn-block btn-info" onclick="ExportExcel('circulation-history-table')">Export</button>
                 </div>
             </div>
 			<div id="table-container" class="table-responsive">

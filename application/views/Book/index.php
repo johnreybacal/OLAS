@@ -21,12 +21,12 @@
 		<div class="card-body">
 			<label class="fs-18 fw-500">Filter by date acquired</label>
             <div class="form-row">  
-                <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <div class="form-group col-md-4 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <label>From</label>
                     <input class="form-control" type="text" id="range-book-from" name="range-book-from" placeholder="">
                 </div>
 
-                <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <div class="form-group col-md-4 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <label>To</label>
                     <input class="form-control" type="text" id="range-book-to" name="range-book-to" placeholder="">
                 </div>
@@ -35,9 +35,13 @@
                     <label>&nbsp;</label>
                     <button class="btn btn-block btn-info" id="filter" onclick="Book.filter()">Filter</button>
                 </div>
+				<div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-block btn-info" onclick="ExportExcel('book-table')">Export</button>
+                </div>
             </div>            
 			<div id="table-container" class="table-responsive">
-				<table class="table table-striped table-bordered display nowrap r1 r2" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
+				<table id="book-table" class="table table-striped table-bordered display nowrap r1 r2" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
 					<thead>
 						<tr class="center bg-info">
 							<th>Accession Number</th>

@@ -12,12 +12,12 @@
         <div class="card-body">
             <label class="fs-18 fw-500">Report date range</label>
             <div class="form-row">  
-                <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <div class="form-group col-md-4 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <label>From</label>
                     <input class="form-control" type="text" id="range-dashboard-from" name="range-dashboard-from" placeholder="">
                 </div>
 
-                <div class="form-group col-md-5 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                <div class="form-group col-md-4 col-sm-12" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                     <label>To</label>
                     <input class="form-control" type="text" id="range-dashboard-to" name="range-dashboard-to" placeholder="">
                 </div>
@@ -25,6 +25,11 @@
                 <div class="col-md-2 col-sm-12 dash-filter" style="margin-bottom: 30px;">
                     <label>&nbsp;</label>
                     <button class="btn btn-block btn-info" id="dashboard-filter" onclick="Dashboard.filter()">Filter</button>
+                </div>
+
+                <div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-block btn-info" onclick="ExportExcel('book-issue-history-table')">Export</button>
                 </div>
             </div>            
             <div class="row">
