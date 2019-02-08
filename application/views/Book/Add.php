@@ -91,6 +91,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label>Notes</label>
+									<textarea id="Notes" name="Remarks" class="form-control" type="text" style="resize:none;"></textarea>
 									<input  id="Notes" value = "" class="form-control" type="text" name="" placeholder="Notes">
 								</div>					
 								<div class="form-group col-md-6">

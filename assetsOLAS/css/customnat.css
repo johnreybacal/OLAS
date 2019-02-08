@@ -1,5 +1,11 @@
 /*GENERAL*/
-
+.none{
+    display: none!important;
+}
+body{
+    font-family: Varela Round,Arial, Helvetica Neue, Helvetica, serif;
+    background-color: white;
+}
 a {
     color: #48b0f7;
     transition: .2s linear;
@@ -258,6 +264,10 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
 .app-backdrop, .backdrop-topbar-menu{
     background-color: rgba(0, 0, 0, 0.5);
  }
+/* TAB PANE*/
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover{
+    border-color: #48b0f7;
+}
 
 @media screen and (min-width: 1px) and (max-width: 320px){
     .isactive{
