@@ -9,12 +9,12 @@
 </div> -->
 <?php endif; ?>
 <?php if(!$this->session->has_userdata('isPatron')): ?>
-<div id="search-result-container" class="card col-md-10 bg-secondary" style="flex: 0!important; margin:10px auto 0;" style="border: solid 1px blue ;">
+<div id="search-result-container" class="card col-md-10" style="flex: 0!important; margin:10px auto 0;">
     <?php else: ?>
-<div id="search-result-container" class="card col-md-10 bg-secondary" style="flex: 0!important; margin:80px auto 0;" style="border: solid 1px blue ;">
+<div id="search-result-container" class="card col-md-10 bg-secondary" style="flex: 0!important; margin:80px auto 0;">
 <?php endif; ?>
-    <div class="card-stitle" style="border: solid 1px purple;">
-        <button onclick="SearchResult.close()" style="float: right;"><i class="fa fa-close fa-2x"></i></button>
+    <div class="card-stitle">
+        <button onclick="SearchResult.close()" class="btn btn-md btn-flat" style="float: right;"><i class="fa fa-close fa-2x"></i></button>
     </div>
     <div class="card-body">
         <ul class="nav nav-tabs">
@@ -188,7 +188,7 @@
                                 }
                             }else{
                                 //book is room use only
-                                hover += '<a class="media-action hover-primary" href="#" data-provide="tooltip" title="This book is for room use only"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a>';
+                                hover += '<span class=\"badge badge-success\" style=\"text-transform: upp\" data-provide="tooltip" title="This book is for room use only">In</span>';
                             }                                                      
                         }else if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
                             hover += '<a class="media-action hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7"></i></a>';    
@@ -228,6 +228,9 @@
                             '<img class="avatar avatar-sm" src="<?php echo base_url("assets/img/avatar/1.jpg"); ?>" alt="...">' +
                             '<span>' + data.Name + '</span>' +
                         '</div>'
+                        // $('#search-book-result-container').addClass('none');
+                        $('#search-author-result').show();
+                        $('#search-author-result').siblings.hide();
                         $('#search-author-result').append(element);
                     });
                 }
@@ -251,6 +254,10 @@
                             '<span>' + data.IdNumber + '</span>' +
                             '<span>' + data.LastName + ', ' + data.FirstName + '</span>' +
                         '</div>'
+                        $('#search-patron-result').show();
+                        $('#search-patron-result').siblings.hide();
+                        // $('#search-book-result-container').addClass('none');
+                        // $('#search-author-result').addClass('none');
                         $('#search-patron-result').append(element);
                     });
                 }
