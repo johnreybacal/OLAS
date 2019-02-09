@@ -35,7 +35,7 @@ class Subject extends _BaseController {
     }
 
     public function GetAll(){        
-        echo $this->convert($this->subject->_list());
+        echo $this->convert($this->subject->_list("WHERE IsActive = '1'"));
     }
 
     public function Get($id){

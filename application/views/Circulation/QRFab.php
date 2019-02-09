@@ -157,7 +157,7 @@
     var qrnotes;
     var QR_Scan = {
 
-        init: function(){
+        init: function(){            
             $('#modal-qr-form')[0].reset();            
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
@@ -210,6 +210,7 @@
         },
 
         show: function(){
+            $('.modal-title').text('Scan QR to return issued book');
             $('#modal-qr-scan').modal('show');
             $('#modal-qr-form').hide();
             $('#check-in').hide();

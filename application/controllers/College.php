@@ -49,7 +49,7 @@ class College extends _BaseController {
     }
 
     public function GetAll(){        
-        echo $this->convert($this->college->_list());
+        echo $this->convert($this->college->_list("WHERE IsActive = '1'"));
     }
 
     public function Get($id){        

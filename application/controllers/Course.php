@@ -54,7 +54,7 @@ class Course extends _BaseController {
     }
 
     public function GetAll(){
-        echo $this->convert($this->course->_list());
+        echo $this->convert($this->course->_list("WHERE IsActive = '1'"));
     }
 
     public function Get($id){        

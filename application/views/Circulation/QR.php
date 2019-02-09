@@ -26,7 +26,7 @@
                                     <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
                                 </td>
                                 <td>
-                                    <select id="CallNumber" name="Call Number" data-provide="selectpicker" title="Choose Call Number" data-live-search="true" class="form-control show-tick"></select>
+                                    <select id="AccessionNumber" name="Accession Number" data-provide="selectpicker" title="Choose Accession Number" data-live-search="true" class="form-control show-tick"></select>
                                 </td>
                                 <td style="width: 50px">
                                     <a href="#" class="btn btn-outline-success" id="add-book" data-container="body" data-toggle="tooltip" title="" data-original-title="Add Book">
@@ -41,7 +41,7 @@
                             <thead>
                                 <tr>
                                     <th>Book</th>
-                                    <th style="width: 160px;">Quantity</th>
+                                    <th style="width: 160px;">Accession Number</th>
                                     <th style="width: 65px"></th>
                                 </tr>
                             </thead>
@@ -90,11 +90,11 @@
                     url: "<?php echo base_url('Book/GetCatalogueByISBN/'); ?>" + $(this).selectpicker('val'),
                     success: function(i){
                         i = JSON.parse(i);                                        
-                        $('#CallNumber').empty();
+                        $('#AccessionNumber').empty();
                         $.each(i, function(index, data){                        
-                            $('#CallNumber').append('<option value = "' + data.AccessionNumber + '">' + data.CallNumber + '</option>');
+                            $('#AccessionNumber').append('<option value = "' + data.AccessionNumber + '">' + data.AccessionNumber + '</option>');
                         })
-                        $('#CallNumber').selectpicker('refresh');
+                        $('#AccessionNumber').selectpicker('refresh');
                     }
                 });
             });           
@@ -103,11 +103,11 @@
 
     $('#add-book').on('click', function(){
         var title = $('#ISBN').children("option:selected").text();
-        var callnumber = $('#CallNumber').children("option:selected").text();
+        var AccessionNumber = $('#AccessionNumber').children("option:selected").text();
         var isbn = $('#ISBN').children("option:selected").val();
-        var accession = $('#CallNumber').children("option:selected").val();
+        var accession = $('#AccessionNumber').children("option:selected").val();
         var deleteButton = '<a href="#" class="btn btn-outline-danger border deleteBook" title="Delete Book"><i class="fa fa-times"></i></a>';
-        $('#selectedBook tbody').append('<tr data-isbn=\"'+isbn+'\" data-accession=\"'+accession+'\" data-callnumber=\"'+callnumber+'\"><td class=\"isbn\">'+title+'</td><td class = \"accession\">'+callnumber+'</td><td>'+deleteButton+'</td></tr>');
+        $('#selectedBook tbody').append('<tr data-isbn=\"'+isbn+'\" data-accession=\"'+accession+'\" data-AccessionNumber=\"'+AccessionNumber+'\"><td class=\"isbn\">'+title+'</td><td class = \"accession\">'+AccessionNumber+'</td><td>'+deleteButton+'</td></tr>');
         
         $('.deleteBook').click(function(){
             console.log($(this));
