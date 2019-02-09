@@ -5,7 +5,7 @@
     <div id="search-result-container" class="card col-md-10" style="flex: 0!important; margin:80px auto 0;">
     <?php endif; ?>    
     <div class="card-titlse">
-        <button onclick="SearchResult.close()" class="btn btn-md btn-flat" style="float: right;"><i class="fa fa-close fa-2x"></i></button>
+        <button onclick="SearchResult.close()" class="btn btn-md btn-flat" style="float: right;" data-provide="tooltip" title="Close"><i class="fa fa-close fa-2x"></i></button>
     </div>
     <div class="card-body">
         <ul class="nav nav-tabs">
@@ -27,7 +27,7 @@
             <div data-search="book" id="search-book-result-container" class="tab-pane fade active show">        
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                             <label>Filter by</label>
                             <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control show-tick">
                                 <option value="Title" selected="true">Book (Title or ISBN)</option>
@@ -38,7 +38,7 @@
                                 <option value="Publisher" selected="true">Publisher</option>
                             </select>	
                         </div>
-                        <div class="col-8">
+                        <div class="col-lg-8 col-md-8 col-sm-12">
                             <label>Published date range</label>
                             <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                 <div class="input-group-prepend">

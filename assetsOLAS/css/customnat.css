@@ -279,16 +279,69 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .lookup-circle.lookup-sm input:focus {
     width: 90px;
     }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
+    }
+    .lookup-lib{
+        max-width: 120px;
+        margin-left: -60px;
+    }
+    .lookup-patron{
+        max-width: 40px;
+        margin-left: -50px;
+    }
+    .lookup-user{
+        max-width: 10px;
+        margin-left: -50px;
+    }
+    .logo-patron{
+        display: none;
+    }
  }
 @media screen and (min-width: 321px) and (max-width: 375px){
     .isactive{
         margin-left: 78%;
+    }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
+    }
+    .lookup-lib{
+        max-width: 180px;
+        margin-left: -60px;
+    }
+    .lookup-patron{
+        max-width: 90px;
+        margin-left: -60px;
+    }
+    .logo-patron{
+        display: none;
     }
  }
 
 @media screen and (min-width: 376px) and (max-width: 425px){
     .isactive{
         margin-left: 81%;
+    }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
+    }
+    .lookup-lib{
+        max-width: 220px;
+        margin-left: -60px;
+    }
+    .lookup-patron{
+        max-width: 100px;
+        margin-left: -50px;
+    }
+    .lookup-user{
+        max-width: 70px;
+        /*margin-left: -60px;*/
+    }
+    .logo-patron{
+        display: none;
     }
  }
  @media screen and (min-width: 426px) and (max-width: 768px){
@@ -300,6 +353,10 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     }
     .date-range{
         margin-right: 8px !important;
+    }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
     }
  }
 
@@ -313,6 +370,10 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .date-range{
         margin-right: 8px !important;
     }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
+    }
  }
 @media screen and (min-width: 1025px) and (max-width: 1440px){
     div.isactive{
@@ -323,6 +384,10 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     }
     .date-range{
         margin-right: 10px !important;
+    }
+    /*Topbar Search*/
+    .ds-none{
+        display: none!important;
     }
 }
 @media screen and (min-width: 1440px){

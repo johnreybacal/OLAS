@@ -2,9 +2,16 @@
 <header class="topbar topbar-expand-xl">  
     <div class="topbar-left">
         <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
-        <a href="<?php echo base_url('') ?>" class="logo"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
+        <a href="<?php echo base_url('') ?>" class="logo logo-patron"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
         <nav class="topbar-navigation">
             <ul class="menu">
+
+                <li class="menu-item d-md-none d-lg-none">
+                    <a class="menu-link" href="<?php echo base_url(''); ?>">
+                        <span href="<?php echo base_url('') ?>" class="logo"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
@@ -42,10 +49,10 @@
             </ul>
         </nav>  
     </div>
-    <div class="topbar-center d-none d-md-block">
-        <form class="lookup lookup-lg no-icon">
+    <div class="topbar-center d-snone d-md-block">
+        <form class="lookup lookup-lg lookup-patron no-icon">
             <input class="no-radius" id="search" type="text" placeholder="Search">
-            <select class="d-none d-block librarian-search" data-provide="selectpicker" multiple>
+            <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>
                 <option selected>Subject</option>
@@ -72,7 +79,7 @@
                 </div>
             </li>
         <!-- Bookbag Quick View -->
-            <li class="d-none d-md-block">
+            <li class="d-md-block">
                 <span class="topbar-btn has-newa" style="color: #aaa" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
             </li>
         <!-- Message Quick View -->
