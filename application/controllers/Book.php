@@ -61,7 +61,7 @@ class Book extends _BaseController {
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->DateAcquired.'",'                
                 .'"'.($data->IsAvailable == 1 ? "In" : "Out").'",'                
-                .'"<a href = \"'.base_url("Book/QR/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"QR Code\"><span class = \"fa fa-qrcode fa-2x\"></span></a> <a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }

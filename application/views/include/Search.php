@@ -39,11 +39,11 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">From</span>
                                 </div>
-                                <input id="range-from" type="text" class="form-control date-range">
+                                <input id="range-from" type="text" class="form-control date-search-range date-range">
                                 <div class="input-group-prepend input-group-append">
                                     <span class="input-group-text">To</span>
                                 </div>
-                                <input id="range-to" type="text" class="form-control date-range">
+                                <input id="range-to" type="text" class="form-control date-search-range date-range">
                             </div>		
                         </div>
                     </div>  
@@ -74,7 +74,7 @@
                 Search.search();
 			}
 		});
-        $('.date-range').change(function(){
+        $('.date-search-range').change(function(){
             if($('#search').val() != ""){
                 Search.search();
             }
