@@ -39,51 +39,52 @@
 
                             <div class="book-rating">
                                 <div class="book-rating-box">
-                                <?php if($this->session->has_userdata('isPatron')): ?>      
+                                
 
                                     <!-- Check if room use only -->
                                     <?php if($book[0]->IsRoomUseOnly == 0): ?>
 
                                         <!-- Check availabillity of the book -->
                                         <?php if($book[0]->IsAvailable == 1): ?>
+                                            <?php if($this->session->has_userdata('isPatron')): ?>      
+                                                <!-- Check if book is reserved -->
+                                                <?php if($book['reservation']['IsReserved'] == 1): ?>
+                                                    <!-- Check if book is reserved by patron currently logged -->
+                                                    <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
 
-                                            <!-- Check if book is reserved -->
-                                            <?php if($book['reservation']['IsReserved'] == 1): ?>
-                                                <!-- <?php print_r($book['reservation']); ?>
-                                                <?php echo $this->session->userdata('patronId'); ?> -->
-                                                <!-- Check if book is reserved by patron currently logged -->
-                                                <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
+                                                        <span class="badge badge-warning" style="text-transform: uppercase;">You have already reserved this book</span>
+                                                                                            
+                                                        <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
 
-                                                    <span class="badge badge-warning" style="text-transform: uppercase;">Out</span>
-                                                                                        
-                                                    <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
-
+                                                    <?php else: ?>
+                                                        <span class="badge badge-daner" style="text-transform: uppercase;">This book is already reserved</span>
+                                                        <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a> -->
+                                                    <?php endif; ?>
+                                                
                                                 <?php else: ?>
-                                                    <span class="badge badge-daner" style="text-transform: uppercase;">Out</span>
-                                                    <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a> -->
-                                                <?php endif; ?>
-                                            
-                                            <?php else: ?>
                                                 <!-- Add to bookbag -->
                                                 <!-- <a class="media- -primary" data-provide="tooltip" onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-eye fa-2x" style="color:;"></i></a> -->
+                                                    <span class="badge badge-success">In</span>
+                                                <?php endif; ?>
+                                            <?php else: ?>
                                                 <span class="badge badge-success">In</span>
-
                                             <?php endif; ?>
                                         <?php else: ?>
-                                        <span class="badge badge-danger" style="text-transform: uppercase;">Unavailable</span>
+                                            <!-- Unavailable -->
+                                            <span class="badge badge-danger" style="text-transform: uppercase;">Unavailable</span>
                                         <?php endif; ?>
 
                                     <?php else: ?>
                                         <!-- IsRoomUseOnly -->
                                         <span class="badge badge-success" style="text-transform: upp">In</span>
                                     <?php endif; ?>
-
-                                <?php endif; ?>
+                                
                                         <!-- <div class="rating" style="width:0%;"></div> -->
                                 </div>
                             </div>
 
-                            <div class="book-short-description"> This work has been designed for undergraduate and postgraduate and post-experience students pursuing management and business qualifications that contain a dissertation component. It combines an extensive review of basic research methods and techniques with equally detailed guidelines on the management of the dissertation writing process, including selection of topics, and the preparation, structuring and presentation of a dissertation. The integration of both elements should aid and reassure students new to the dissertation researching and writing process while those with prior experience of this process should find the text a valuable statement of current practice. For Tutors, the book addresses many of the questions directed to them by students engaged in preparing a dissertation.
+                            <div class="book-short-description"> 
+                                <?php echo $book['book']->Summary; ?>
                             </div>
                             <!-- 
                             <div class="book-settings" style="float: right;">
@@ -115,7 +116,7 @@
                                         
                                         <?php else: ?>
                                             <!-- Add to bookbag -->
-                                            <a class="media- -primary" data-provide="tooltip" onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-eye fa-2x" style="color:;"></i></a>
+                                            <a class="media-action hover-primary" data-provide="tooltip" onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-eye fa-2x" style="color:;"></i></a>
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <a class="media-action hover-primary" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>
