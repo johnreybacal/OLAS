@@ -1,5 +1,10 @@
-<div id="search-result-container" class="card">
-    <div class="card-title">
+<!-- <div id="search-result-container" class="card"> -->
+    <?php if($this->session->has_userdata('isLibrarian') == 1): ?>
+    <div id="search-result-container" class="card col-md-10" style="flex: 0!important; margin:10px auto 0;">
+        <?php else: ?>
+    <div id="search-result-container" class="card col-md-10" style="flex: 0!important; margin:80px auto 0;">
+    <?php endif; ?>    
+    <div class="card-titlse">
         <button onclick="SearchResult.close()" class="btn btn-md btn-flat" style="float: right;"><i class="fa fa-close fa-2x"></i></button>
     </div>
     <div class="card-body">
@@ -170,7 +175,7 @@
                                         action += '<a class="hover-primary" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x"></i></a> '
                                     }
                                 }else{
-                                    status += '<span class="badge badge-danger" style="text-transform: uppercase;">In</span>';
+                                    status += '<span class="badge badge-Dange" style="text-transform: uppercase;">In</span>';
                                 }
                             }else{
                                 //book unavailable
@@ -179,16 +184,16 @@
                         }else{
                             //book is room use only
                             status += '<span class=\"badge badge-success\" style=\"text-transform: uppercase">In</span>';
-                            status += '<span class=\"badge badge-primary\" style=\"text-transform: uppercase">Room Use Only</span>';                            
+                            status += '<span class=\"badge badge-primary ml-2\" style=\"text-transform: uppercase">Room Use Only</span>';                            
                         }                                                      
                         if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
                             action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7"></i></a>';    
                         }                        
                       
                         var element = 
-                        '<div class="col-lg-6 col-md-6 col-sm-12">' +
+                        '<div class="col-lg-8 col-md-8 col-sm-12">' +
                             '<div class="row book">' +
-                                '<div class="book-cover col-lg-3 col-3">' +                                
+                                '<div class="book-cover col-lg-3 col-3" style=\"border:solid 1px red;\">' +                                
                                     '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
                                 '</div>' +
                                 '<div class="book-info col-lg-9 col-9">' +
@@ -204,7 +209,7 @@
                                         '</div>' +
                                     '</div>' +
                                     '<div class="book-rating">' +
-                                        '<div class="book-rating-box">' +
+                                        '<div class="book-rating-box" >' +
                                             status +
                                         '</div>' +
                                     '</div>' +
