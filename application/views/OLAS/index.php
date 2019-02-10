@@ -1,8 +1,9 @@
-<div class="container" style="margin-top: 10px;">
+<div class="container col-lg-12 col-xl-12" style="margin-top: 80px;">
     <div class="row book-list">
-        <div class="col-lg-9">
+        <!-- <div class="col-xl-1"></div> -->
+        <div class="col-lg-9 col-xla-8">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-xl-12">
                     <div class="section-title">
                         <h2>Latest Books</h2>
                     </div>
@@ -19,9 +20,9 @@
                         </div>
                             <!-- <div class="btn btn-bold btn-danger book-availability" style="">Unavailable</div> -->
                         <div class="book-info col-lg-9 col-9">
-                            <div class="book-settings" style="float: right;">
+                            <!-- <div class="book-settings" style="float: right;">
                                 <a href="#"><i class="fa fa-ellipsis-v"></i></a>
-                            </div>
+                            </div> -->
                             <div class="book-title">
                                 <a class="book-title" href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"> <?php echo $book['book']->Title; ?></a>
                             </div>
@@ -188,11 +189,11 @@
 
            </div>
        </div>
-                <div class="col-lg-3">
+        <div class="col-lg-3">
                     <!-- <div class="col-lg-4 col-md-4 col-sm-12"> -->
-                <div class="section-title">
-                    <h2>Popular Authors</h2>
-                </div>
+            <div class="section-title">
+                <h2>Popular Authors</h2>
+            </div>
             <div class="card-pale-secondary">
                 <!-- <h4 class="card-title">Popular Authors</h4> -->
                 <div class="media-list media-list-divided media-list-hover">

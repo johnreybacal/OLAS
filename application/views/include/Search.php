@@ -175,7 +175,7 @@
                                         action += '<a class="hover-primary" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x"></i></a> '
                                     }
                                 }else{
-                                    status += '<span class="badge badge-Dange" style="text-transform: uppercase;">In</span>';
+                                    status += '<span class="badge badge-danger" style="text-transform: uppercase;">In</span>';
                                 }
                             }else{
                                 //book unavailable
@@ -193,10 +193,10 @@
                         var element = 
                         '<div class="col-lg-8 col-md-8 col-sm-12">' +
                             '<div class="row book">' +
-                                '<div class="book-cover col-lg-3 col-3" style=\"border:solid 1px red;\">' +                                
+                                '<div class="book-cover-search col-lg-3 col-3">' +                                
                                     '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
                                 '</div>' +
-                                '<div class="book-info col-lg-9 col-9">' +
+                                '<div class="book-info-search col-lg-9 col-9">' +
                                     '<div class="book-title">' +
                                         '<a class="book-title" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '">' + data.book.Title + '</a>' +
                                     '</div>' + 
