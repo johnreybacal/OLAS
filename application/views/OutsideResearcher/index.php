@@ -20,6 +20,10 @@
 <div class="main-content">
 	<div class="card">
 		<div class="card-body">
+			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+				<label>&nbsp;</label>
+				<button class="btn btn-block btn-info" onclick="ExportExcel('outsideResearcher-table')">Export</button>
+			</div>
 			<div class="table-responsive">
 				<table id = "outsideResearcher-table" class="table table-striped table-bordered display nowrap r4" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("OutsideResearcher/GenerateTable") ?>">
 					<thead>

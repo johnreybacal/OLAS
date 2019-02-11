@@ -20,6 +20,10 @@
 		<div class="card-title">
 		</div>
 		<div class="card-body">
+			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+				<label>&nbsp;</label>
+				<button class="btn btn-block btn-info" onclick="ExportExcel('patron-table')">Export</button>
+			</div>
 			<div class="table-responsive">
 				<table id="patron-table" class="table table-striped table-bordered display nowrap r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateTable") ?>">
 					<thead>

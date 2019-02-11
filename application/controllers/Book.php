@@ -60,7 +60,7 @@ class Book extends _BaseController {
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->DateAcquired.'",'                
-                .'"'.($data->IsAvailable == 1 ? "In" : "Out").'",'                
+                .'"'.($data->IsAvailable == 1 ? '<span class=\"badge badge-success\">In</span>' : '<span class=\"badge badge-danger\">Out</span>').'",'                
                 .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
