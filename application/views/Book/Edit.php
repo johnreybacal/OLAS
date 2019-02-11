@@ -35,6 +35,10 @@
 	                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="true" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
               					</div>
 								<div class="form-row gap-1 col-md-9 mt-3">
+									<div class="col-12">
+										<h6 class="text-uppercase">Book details</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>	
 									<div class="form-group col-md-6 col-sm-12">
 										<label>Accession Number</label>
 										<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" readonly class="form-control" type="text" name="" placeholder="Accession Number">
@@ -49,28 +53,24 @@
 										<input  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="ISBN" placeholder="ISBN">
 									</div>
 									<div class="form-group col-md-6">
-										<label>Call Number</label>
-										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
-									</div>	
-									<div class="form-group col-md-6">
 										<label>Title</label>
 										<input id="Title" class="form-control" type="text" name="" placeholder="Title">
 									</div>					
 									<div class="form-group col-md-6">
-										<label>Author</label>
-										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
-									</div>
+										<label>Call Number</label>
+										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
+									</div>	
 									<div class="form-group col-md-6">
 										<label>Section</label>
 										<select id="SelectSectionId" name="Section" data-provide="selectpicker"  title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
-										<label>Subject</label>
-										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
+										<label>Author</label>
+										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
-										<label>Publisher</label>
-										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<label>Subject</label>
+										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
 									</div>
 									<div class="form-group col-md-6">
 										<label>Series</label>
@@ -80,6 +80,14 @@
 										<label>Edition</label>
 										<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
 									</div>	
+									<div class="col-12">
+										<h6 class="text-uppercase">Publisher Information</h6>
+			                			<hr class="hr-sm mb-2 border-success">
+		                			</div>	
+									<div class="form-group col-md-6">
+										<label>Publisher</label>
+										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+									</div>
 									<div class="form-group col-md-6">
 										<label>Date Published</label>
 										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Published">
@@ -88,6 +96,10 @@
 										<label>Place of Publication</label>
 										<input  id="PlacePublished" value = "" class="form-control" type="text" name="" placeholder="Place of Publication">
 									</div>			
+									<div class="col-12">
+										<h6 class="text-uppercase">Acquisition Information</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>
 									<div class="form-group col-md-6">
 										<label>Date Acquired</label>
 										<input  id="DateAcquired" value = "<?php echo $book->DateAcquired; ?>" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Acquired">
@@ -99,15 +111,11 @@
 									<div class="form-group col-md-6">
 										<label>Price</label>
 										<input  id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
-									</div>				
-									<div class="form-group col-md-6">
-										<label>Notes</label>
-										<input  id="Notes" value = "<?php echo $book->Notes; ?>" class="form-control" type="text" name="" placeholder="Notes">
-									</div>					
-									<div class="form-group col-md-6">
-										<label>Summary</label>
-										<input  id="Summary" value = "" class="form-control" type="text" name="" placeholder="Summary">
-									</div>					
+									</div>		
+									<div class="col-12">
+										<h6 class="text-uppercase">Physical Description</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>			
 									<div class="form-group col-md-6">
 										<label>Extent</label>
 										<input  id="Extent" value = "" class="form-control" type="text" name="" placeholder="Extent">
@@ -120,6 +128,14 @@
 										<label>Size</label>
 										<input  id="Size" value = "" class="form-control" type="text" name="" placeholder="Size">
 									</div>														
+									<div class="form-group col-md-12">
+										<label>Notes</label>
+										<textarea id="Notes" value = "<?php echo $book->Notes; ?>" class="form-control" type="text" name="" placeholder="Notes" style="resize:none;"></textarea>
+									</div>					
+									<div class="form-group col-md-12">
+										<label>Summary</label>
+										<textarea id="Summary" value = "" class="form-control" type="text" name="" placeholder="Summary" style="resize:none;"></textarea>
+									</div>					
 								</div> 
 						</div> 
 					</div> 
