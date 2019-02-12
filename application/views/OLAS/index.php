@@ -107,32 +107,32 @@
                                             <!-- Check if book is reserved by patron currently logged -->
                                             <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
 
-                                                <a class="media- -primary" data-provide="tooltip" title="Book already reserved"><i class="fa fa-plus fa-2x" style="color:;"></i></a>                                      
+                                                <a class="" data-provide="tooltip" title="Book already reserved"><i class="fa fa-plus fa-2x" style="color:;"></i></a>                                      
                                                 <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
 
                                             <?php else: ?>
-                                                <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a>
+                                                <a class="" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a>
                                         <!-- di ko pa naadjust tong part nato 2 -->
                                             <?php endif; ?>
                                         
                                         <?php else: ?>
                                             <!-- Add to bookbag -->
-                                            <a class="media-action hover-primary" data-provide="tooltip" onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-eye fa-2x" style="color:;"></i></a>
+                                            <a class=""  onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-plus fa-2x" style="margin: 0 10px 0 0;color:;"></i></a>
                                         <?php endif; ?>
                                     <?php else: ?>
-                                        <a class="media-action hover-primary" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>
+                                        <a class="" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>
                                         <!-- di ko pa naadjust tong part nato 1 -->
                                     <?php endif; ?>
 
                                 <?php else: ?>
                                     <!-- IsRoomUseOnly -->
-                                    <a class="" href="#" title="Library Use Only" data-provide="tooltip"><i class="fa fa-home fa-2x"></i></a> 
+                                    <a class="" href="#" title="Library Use Only" data-provide="tooltip"><i class="fa fa-home fa-2x">line 129</i></a> 
                                 <?php endif; ?>
 
                             <?php endif; ?>
-                               <!--  <a class="media- -primary" data-provide="tooltip" href="#" title="Room Use Only"><i class="fa fa-home fa-2x" style="margin: 0 10px;"></i></a>
+                                <a class="" data-provide="tooltip" href="#" title="Room Use Only"><i class="fa fa-home fa-2x" >line 133</i></a>
 
-                                <a class="media- -primary" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:;"></i></a> -->
+                                <!-- <a class="media- -primary" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:;"></i></a> -->
                                 <!-- <a href="#"><i class="fa fa-ellipsis-v"></i></a> -->
                             </div>
                         </div>
