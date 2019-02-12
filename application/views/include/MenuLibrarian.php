@@ -92,7 +92,7 @@
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Book/Uncatalogued'); ?>">
                             <span class="dot"></span>
-                            <span class="title">Uncatalogued Books</span>
+                            <span class="title">For Processing</span>
                         </a>
                     </li>   
 

@@ -21,12 +21,12 @@
 			<div class="table-responsive">
 				<table id = "circulation-issued-table" class="table table-striped table-bordered display nowrap r1 r3 r4" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableIssued") ?>">
 					<thead>
-						<tr class="bg-info">
-							<th>Issue no.</th>	
-							<th>Borrower</th>	
-							<th>Accession Number</th>
+						<tr class="bg-info">							
+							<th>Borrower</th>
 							<th>Title</th>									
 							<th>Authors</th>
+							<th>Call Nummber</th>
+							<th>Accession Number</th>
 							<th>Date Issued</th>
 							<th>Date Due</th>							
 							<th></th>							

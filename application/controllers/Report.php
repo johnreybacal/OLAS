@@ -120,9 +120,10 @@ class Report extends _BaseController {
         foreach($this->loan->_list("WHERE PatronId = '".$patronId."'".$additionalCondition) as $data){
             $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $json .= '['                
-                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
+                .'"'.$book->CallNumber.'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'

@@ -94,9 +94,10 @@
                     '<table id="patron-issue-history-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                         '<thead>' +
                             '<tr class="bg-info">' + 
-                                '<th>Accession Number</th>' + 
                                 '<th>Title</th>' +						                                
                                 '<th>Authors</th>' +
+                                '<th>Call Nummber</th>' +
+                                '<th>Accession Number</th>' + 
                                 '<th>Date Borrowed</th>' +
                                 '<th>Date Due</th>' +
                                 '<th>Date Returned</th>' +

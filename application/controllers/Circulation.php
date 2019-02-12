@@ -65,20 +65,18 @@ class Circulation extends _BaseController {
         foreach($this->loan->_list("WHERE BookStatusId = '1'") as $data){            
             $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
-            $json .= '['                
-                .'"'.$data->LoanId.'",'
+            $json .= '['                                
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
-                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
+                .'"'.$book->CallNumber.'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'                                
                 .'"<button onclick = \"Circulation_Modal.edit('.$data->LoanId.');\"class=\"btn btn-info btn-flat\"><span class=\"fa fa-edit fa-2x\" title=\"Edit\"></span></button><button onclick = \"Circulation_Modal.return('.$data->LoanId.')\" class=\"btn btn-success\" title=\"Return\">Return</button>",'      
                 .(($data->IsRecalled == 0) 
-                    ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-danger btn-md\" title=\"Recall\">Recall</span></button>"'
-                    // ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-left fa-2x\">Recall</span></button>"'
-                    : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md\" title=\"Unrecall\">Unrecall</span></button>"')
-                    // : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md btn-flat\"><span class=\"ionicons ion-arrow-return-right fa-2x\">Unrecall</span></button>"')
+                    ? '"<button onclick = \"Circulation.recall('.$data->LoanId.')\" class=\"btn btn-danger btn-md\" title=\"Recall\">Recall</span></button>"'                    
+                    : '"<button onclick = \"Circulation.unrecall('.$data->LoanId.')\" class=\"btn btn-info btn-md\" title=\"Unrecall\">Unrecall</span></button>"')                    
             .']';            
             $json .= ',';
         }
@@ -96,12 +94,12 @@ class Circulation extends _BaseController {
         foreach($this->loan->_list("WHERE BookStatusId != '1'".$additionalCondition) as $data){            
             $book = $this->book->_get($this->bookCatalogue->_get($data->AccessionNumber)->ISBN);
             $patron = $this->patron->_get($data->PatronId);            
-            $json .= '['        
-                .'"'.$data->LoanId.'",'        
+            $json .= '['
                 .'"'.$patron->LastName.', '.$patron->FirstName.'",'
-                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
+                .'"'.$book->CallNumber.'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'
