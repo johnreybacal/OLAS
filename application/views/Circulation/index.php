@@ -11,7 +11,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id = "circulation-table" class="table table-responsive table-striped table-bordered display nowrap r1 r3 r4 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
+				<table id = "circulation-table" class="table table-striped table-bordered display nowrap r1 r3 r4 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTable") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Issue no.</th>	

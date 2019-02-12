@@ -70,7 +70,7 @@
 			console.log(url);
             $('#table-container').empty().html(                
                 '<div class="table-responsive">' + 
-                    '<table id="book-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                    '<table id="book-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                         '<thead>' +
                             '<tr class="bg-info">' + 
 								"<th>Accession Number</th>" +

@@ -33,7 +33,7 @@
                 </div>
             </div>
 			<div id="table-container" class="table-responsive">
-				<table id = "circulation-history-table" class="table table-responsive table-striped table-bordered display nowrap r1 r3 r4 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableHistory") ?>" data-buttons="print">
+				<table id = "circulation-history-table" class="table table-striped table-bordered display nowrap r1 r3 r4 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableHistory") ?>" data-buttons="print">
 					<thead>
 						<tr class="bg-info">
 							<th>Issue no.</th>	
@@ -108,7 +108,7 @@
             }			
             $('#table-container').empty().html(                
                 '<div class="table-responsive">' + 
-                    '<table id="circulation-history-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                    '<table id="circulation-history-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                         '<thead>' +
                             '<tr class="bg-info">' + 
 								"<th>Issue no.</th>" +

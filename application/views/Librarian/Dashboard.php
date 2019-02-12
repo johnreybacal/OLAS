@@ -79,7 +79,7 @@
             </div>
           <!-- 2 -->
             <div class="col-md-6 col-xl-4">
-                <div class="card card-body bg-info">
+                <div class="card card-body bg-primary">
                     <div class="flexbox">
                         <span class="fa fa-book fs-40"></span>
                         <span id="total-books-acquired" class="fs-40 fw-100"><?php echo $totalBooksAcquired; ?></span>
@@ -189,7 +189,7 @@
 
             </div>
             <div id="book-table-container" class="table-responsive">                            
-                <table id="book-table" class="table table-responsive table-striped table-bordered display nowrap r1 r2 r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Report/GenerateTable") ?>">
+                <table id="book-table" class="table table-striped table-bordered display nowrap r1 r2 r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Report/GenerateTable") ?>">
 					<thead>
 						<tr class="bg-info">
 							<th>Accession Number</th>
@@ -206,6 +206,17 @@
 	</div>
 </div>
 <script>
+    $(document).ready(function(){
+        $(function () {
+            //disables filter button
+            $('#dashboard-filter').prop('disabled', 'disabled').attr('title','Select Date').css('cursor','auto');
+        });
+
+        $('#range-dashboard-from').change(function () {
+            //enables filter button
+            $('#dashboard-filter').prop('disabled', !$(this).val()).attr('title','').css('cursor','pointer');
+        });
+    });
     
 
     var Dashboard = {        
