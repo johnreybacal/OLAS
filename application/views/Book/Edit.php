@@ -61,18 +61,22 @@
 										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
 									</div>	
 									<div class="form-group col-md-6">
+										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.section();" data-provide="tooltip" data-original-title="Add Section"><i class="ti-plus"></i></button>
 										<label>Section</label>
 										<select id="SelectSectionId" name="Section" data-provide="selectpicker"  title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
+										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.author();" data-provide="tooltip" data-original-title="Add Author"><i class="ti-plus"></i></button>
 										<label>Author</label>
 										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
 									</div>
 									<div class="form-group col-md-6">
+										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.subject();" data-provide="tooltip" data-original-title="Add Subject"><i class="ti-plus"></i></button>
 										<label>Subject</label>
 										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
 									</div>
 									<div class="form-group col-md-6">
+										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.series();" data-provide="tooltip" data-original-title="Add Series"><i class="ti-plus"></i></button>
 										<label>Series</label>
 										<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
@@ -85,6 +89,7 @@
 			                			<hr class="hr-sm mb-2 border-success">
 		                			</div>	
 									<div class="form-group col-md-6">
+										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.publisher();" data-provide="tooltip" data-original-title="Add Publisher"><i class="ti-plus"></i></button>
 										<label>Publisher</label>
 										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
 									</div>
@@ -154,11 +159,11 @@
   	</button>
 
   	<ul class="fab-buttons">
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.section()" href="#" title="Add new Section" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-calendar"></i></a></li>
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
-	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.author()" href="#" title="Add new Author" data-provide="tooltip" data-placement="top"><i class="fa fa-user"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.section()" href="#" title="Add new Section" data-provide="tooltip" data-placement="top"><i class="fa fa-list"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.subject()" href="#" title="Add new Subject" data-provide="tooltip" data-placement="top"><i class="fa fa-th-large"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-user"></i></a></li>
+	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-outdent"></i></a></li>
   	</ul>
 </div>
 
