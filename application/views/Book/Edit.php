@@ -226,6 +226,7 @@
 						$('#DatePublished').val(i.book.DatePublished);
 						$('#PlacePublished').val(i.book.PlacePublished);
 						$('#Summary').val(i.book.Summary);
+						$('#Notes').val(i.book.Notes);
 						$('#Extent').val(i.book.Extent);
 						$('#OtherDetails').val(i.book.OtherDetails);
 						$('#Size').val(i.book.Size);

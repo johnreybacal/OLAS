@@ -188,7 +188,7 @@
                             status += '<span class=\"badge badge-primary ml-2\" style=\"text-transform: uppercase">Room Use Only</span>';                            
                         }                                                      
                         if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
-                            action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
+                            action += '<a class="" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
                         }                        
                       
                         var element = 

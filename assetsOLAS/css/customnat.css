@@ -21,7 +21,42 @@ div > a.book-title{
     color: #48b0f7 !important;
     transition: .2s linear !important;
 }
-        /*Checkbox*/
+
+/*Mouse Cursor*/
+.view-book {
+    position: relative;
+    cursor: text;  /* This is used */
+}
+.view-book:after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+}
+.view-book input, .view-book select, .view-book button{
+    pointer-events: none;
+}
+/*.view-book{
+    position: relative;
+    border: none;
+    cursor: auto;
+}
+    .view-book input, .view-book select{
+        pointer-events: none;
+    }
+*/
+/*.auto{
+    cursor: auto!important;
+}
+.pe-none{
+    pointer-events: none;
+}*/
+/*INPUT*/
+/*.view{
+    border: none;
+}*/
+
+    /*Checkbox*/
 
 .custom-checkbox .custom-control-label::after {
     content: "\e64c";

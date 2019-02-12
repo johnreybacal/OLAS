@@ -1,4 +1,4 @@
-<div class="col-md-12" style="margin-top: 6%;">
+<!-- <div class="col-md-12" style="margin-top: 6%;">
     <div class="card card-inverse bg-img text-center py-90" style="background-image: url(<?php echo base_url("assetsOLAS/img/book/dear_universe.jpg"); ?>);" data-overlay="7">
     	<div class="card-body">
 	        <h3>Title</h3>
@@ -17,30 +17,18 @@
             </p><p>
 			In Women Rowing North, Pipher offers a timely examination of the cultural and developmental issues women face as they age. Drawing on her own experience as daughter, sister, mother, grandmother, caregiver, clinical psychologist, and cultural anthropologist, she explores ways women can cultivate resilient responses to the challenges they face. "If we can keep our wits about us, think clearly, and manage our emotions skillfully," Pipher writes, "we will experience a joyous time of our lives. If we have planned carefully and packed properly, if we have good maps and guides, the journey can be transcendent."</p>
 
-            <!-- <div class="flexbox align-items-center mt-3">
-                  <a class="btn btn-round btn-bold btn-primary" href="#">Read more</a>
-
-                <div class="gap-items-4">
-                    <a class="text-muted" href="#">
-                      <i class="fa fa-heart mr-1"></i> 12
-                    </a>
-                    <a class="text-muted" href="#">
-                      <i class="fa fa-comment mr-1"></i> 3
-                    </a>
-                </div>
-        	</div> -->
   	    </div>
   	</div>
-</div>
-<!-- <div class="main-content" style="margin-top: 5%;">
-	<form id="book-form">
+</div> -->
+<div class="main-content" style="margin-top: 5%;">
+	<form id="book-form" disabled="true" class="auto">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="card card-shadowed">
+				<div class="card card-shadowed view">
 
 					<header class="card-header">
 						<h4 class="card-title">Book <strong>Information</strong></h4>
-		                <ul class="card-controls">
+		                <ul class="card-controls view-book">
                   			<li>										
 								<label class="switch switch-lg switch-info">
 									<input readonly type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" <?php echo ($book->IsRoomUseOnly == 1) ? "Checked" : ""; ?> />
@@ -52,24 +40,37 @@
 					</header>	
 					<div class="card-body form-type-line">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-4">
+								<img id="image" class="img-fluid img-hov-stretchout" src="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" />
+            					<!-- <input readonly id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;"> -->
+          					</div>
+          					<!--  -->
+
+          					<!--  -->
+							<div class="form-row gap-1 col-md-8 mt-3 view-book">
 								<div class="form-row gap-1">
+									<div class="col-12">
+										<h6 class="text-uppercase">Basic Information</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>
 									<div class="form-group col-md-12 col-sm-12">
 										<label>Accession Number</label>
-										<input readonly  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number">
+										<input readonly  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number" style="border:none!important;">
 									</div>
 									<div class="form-group col-md-6">
 										<label>ISBN</label>
 										<input readonly  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="" placeholder="ISBN">
 									</div>
 									<div class="form-group col-md-6">
-										<label>Call Number</label>
-										<input readonly id="CallNumber" value = "<?php echo $book->CallNumber; ?>" class="form-control" type="text" name="" placeholder="Call Number">
-									</div>	
-									<div class="form-group col-md-6">
 										<label>Title</label>
 										<input readonly id="Title" class="form-control" type="text" name="" placeholder="Title">
 									</div>					
+									<div class="form-group col-md-6">
+										<label>Call Number</label>
+										<!-- value = "<?php echo $book->CallNumber; ?>"  -->
+										<input readonly id="CallNumber" 
+										class="form-control" type="text" name="" placeholder="Call Number">
+									</div>	
 									<div class="form-group col-md-6">
 										<label>Author</label>
 										<select readonly id="AuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
@@ -80,11 +81,7 @@
 									</div>
 									<div class="form-group col-md-6">
 										<label>Subject</label>
-										<select readonly id="SubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
-									</div>
-									<div class="form-group col-md-6">
-										<label>Publisher</label>
-										<select readonly id="PublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select readonly id="SubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick pe-none"></select>				
 									</div>
 									<div class="form-group col-md-6">
 										<label>Series</label>
@@ -94,10 +91,26 @@
 										<label>Edition</label>
 										<input readonly readonly  id="Edition" class="form-control" type="text" name="" placeholder="">
 									</div>	
+									<div class="col-12">
+										<h6 class="text-uppercase">Publication Information</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>	
+									<div class="form-group col-md-12">
+										<label>Place of Publication</label>
+										<input readonly id="PlacePublished" value = "" class="form-control" type="text" name="" placeholder="Place of Publication">
+									</div>			
+									<div class="form-group col-md-6">
+										<label>Publisher</label>
+										<select readonly id="PublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick" disabled="true" class="auto"></select>
+									</div>
 									<div class="form-group col-md-6">
 										<label>Date Published</label>
 										<input readonly  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="">
-									</div>				
+									</div>	
+									<div class="col-12">
+										<h6 class="text-uppercase">Acquisition Information</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>	
 									<div class="form-group col-md-6">
 										<label>Date Acquired</label>
 										<input readonly  id="DateAcquired" value = "<?php echo $book->DateAcquired; ?>" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="">
@@ -109,6 +122,30 @@
 									<div class="form-group col-md-6">
 										<label>Price</label>
 										<input readonly id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
+									</div>
+									<div class="col-12">
+										<h6 class="text-uppercase">Physical Description</h6>
+				                		<hr class="hr-sm mb-2 border-success">
+			                		</div>			
+									<div class="form-group col-md-5">
+										<label>Extent</label>
+										<input  id="Extent" value = "" class="form-control" type="text" name="" placeholder="Extent">
+									</div>					
+									<div class="form-group col-md-4">
+										<label>Other Details</label>
+										<input  id="OtherDetails" value = "" class="form-control" type="text" name="" placeholder="Details">
+									</div>					
+									<div class="form-group col-md-3">
+										<label>Size</label>
+										<input  id="Size" value = "" class="form-control" type="text" name="" placeholder="Size">
+									</div>														
+									<div class="form-group col-md-12">
+										<label>Notes</label>
+										<textarea id="Notes" value = "<?php echo $book->Notes; ?>" class="form-control" type="text" name="" placeholder="Notes" style="resize:none;"></textarea>
+									</div>					
+									<div class="form-group col-md-12">
+										<label>Summary</label>
+										<textarea id="Summary" value = "" class="form-control" type="text" name="" placeholder="Summary" style="resize:none;"></textarea>
 									</div>				
 								</div>
 							</div> 
@@ -118,7 +155,7 @@
 			</div> 
 		</div> 
 	</form> 
-</div> -->
+</div>
 <script>	
 	$(document).ready(function(){
 		initializeSelectpicker();
@@ -203,11 +240,18 @@
 						Book.reset(val);
 					}else{
 						i = JSON.parse(i);
+						$('#CallNumber').val(i.book.CallNumber);
 						$('#Title').val(i.book.Title);
 						$('#PublisherId').selectpicker('val', i.book.PublisherId);
+						$('#PlacePublished').val(i.book.PlacePublished);
 						$('#SeriesId').selectpicker('val', i.book.SeriesId);
 						$('#Edition').val(i.book.Edition);
 						$('#DatePublished').val(i.book.DatePublished);
+						$('#Summary').val(i.book.Summary);
+						$('#Notes').val(i.book.Notes);
+						$('#Extent').val(i.book.Extent);
+						$('#OtherDetails').val(i.book.OtherDetails);
+						$('#Size').val(i.book.Size);
 						var author = [];
 						$.each(i.author, function(index, data){
 							author.push(data.AuthorId);
