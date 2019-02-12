@@ -159,7 +159,8 @@
                             author += '<span class=\"badge badge-secondary\">' + y.Name + '</span>';
                         })
                         var status = '';
-                        var action = '<a class="hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
+                        var action ='';
+                        // '<a class="hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
                         if(data.catalogue.IsRoomUseOnly == 0){//check if book is room use only
                             if(data.catalogue.IsAvailable == 1){//check if book is available
                                 if("<?php echo $this->session->has_userdata('patronId'); ?>" == "1"){//check if patron is logged in
@@ -187,7 +188,7 @@
                             status += '<span class=\"badge badge-primary ml-2\" style=\"text-transform: uppercase">Room Use Only</span>';                            
                         }                                                      
                         if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
-                            action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7"></i></a>';    
+                            action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
                         }                        
                       
                         var element = 

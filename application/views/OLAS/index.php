@@ -1,9 +1,9 @@
-<div class="container col-lg-12 col-xl-12" style="margin-top: 80px;">
+<div class="container co.l-lg-12 col-.xl-12" style="margin-top: 80px;">
     <div class="row book-list">
         <!-- <div class="col-xl-1"></div> -->
         <div class="col-lg-9 col-xla-8">
             <div class="row">
-                <div class="col-lg-12 col-xl-12">
+                <div class="col-lg-12 col-xal-12">
                     <div class="section-title">
                         <h2>Latest Books</h2>
                     </div>
@@ -91,7 +91,7 @@
                             <div class="book-settings" style="float: right;">
                                 <a href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div> -->
-                            <div class="book-settings" style="float: right; margin-top: 10px;">
+                            <div class="book-settings" style="float: risght; margin-top: 10px;">
                             <?php if($this->session->has_userdata('isPatron')): ?>      
 
                                 <!-- Check if room use only -->
@@ -126,7 +126,7 @@
 
                                 <?php else: ?>
                                     <!-- IsRoomUseOnly -->
-                                    <a class="media- -primary" data-provide="tooltip" href="#" title="In"><i class="fa fa-home fa-2x" style="margin: 0 10px;"></i></a> 
+                                    <a class="" href="#" title="Library Use Only" data-provide="tooltip"><i class="fa fa-home fa-2x"></i></a> 
                                 <?php endif; ?>
 
                             <?php endif; ?>
