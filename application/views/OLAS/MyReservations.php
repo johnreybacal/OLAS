@@ -1,4 +1,4 @@
-<header class="header bg-ui-general"> 
+<header class="header header-inverse bg-ui-general" style="margin-top:5%;"> 
 	<!-- <div class="container"> -->
 		<div class="header-info">
 			<!-- <div class="left"> -->

@@ -172,15 +172,15 @@
                                         }
                                     }else{
                                         //book available for reservation                                        
-                                        status += '<span class="badge badge-success" style="text-transform: uppercase;">In</span>';                                        
-                                        action += '<a class="hover-primary" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x"></i></a> '
+                                        status += '<span class=\"badge badge-success\" style="text-transform: uppercase;">In</span>';                                        
+                                        action += '<a class=\"hover-primary\" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x"></i></a> '
                                     }
                                 }else{
-                                    status += '<span class="badge badge-danger" style="text-transform: uppercase;">In</span>';
+                                    status += '<span class=\"badge badge-danger\" style="text-transform: uppercase;">In</span>';
                                 }
                             }else{
                                 //book unavailable
-                                status += '<span class="badge badge-danger" style="text-transform: uppercase;">Out</span>';
+                                status += '<span class=\"badge badge-danger\" style="text-transform: uppercase;">Out</span>';
                             }
                         }else{
                             //book is room use only
@@ -188,7 +188,7 @@
                             status += '<span class=\"badge badge-primary ml-2\" style=\"text-transform: uppercase">Room Use Only</span>';                            
                         }                                                      
                         if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
-                            action += '<a class="" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
+                            action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
                         }                        
                       
                         var element = 

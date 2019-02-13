@@ -92,14 +92,13 @@
                                 <a href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div> -->
                             <div class="book-settings" style="float: risght; margin-top: 10px;">
-                            <?php if($this->session->has_userdata('isPatron')): ?>      
 
-                                <!-- Check if room use only -->
-                                <?php if($book[0]->IsRoomUseOnly == 0): ?>
+                            <!-- Check if room use only -->
+                            <?php if($book[0]->IsRoomUseOnly == 0): ?>
 
-                                    <!-- Check availabillity of the book -->
-                                    <?php if($book[0]->IsAvailable == 1): ?>
-
+                                <!-- Check availabillity of the book -->
+                                <?php if($book[0]->IsAvailable == 1): ?>
+                                    <?php if($this->session->has_userdata('isPatron')): ?>      
                                         <!-- Check if book is reserved -->
                                         <?php if($book['reservation']['IsReserved'] == 1): ?>
                                             <!-- <?php print_r($book['reservation']); ?>
@@ -117,21 +116,18 @@
                                         
                                         <?php else: ?>
                                             <!-- Add to bookbag -->
-                                            <a class=""  onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-plus fa-2x" style="margin: 0 10px 0 0;color:;"></i></a>
+                                            <a class=""  onclick="Bookbag.add('<?php echo $book[0]->AccessionNumber; ?>','<?php echo $book[0]->ISBN; ?>');" title="Add to Bookbag"><i class="fa fa-plus fa-2x" style="margin: 0 10px 0 0;cursor:pointer;color:;"></i></a>
                                         <?php endif; ?>
-                                    <?php else: ?>
-                                        <a class="" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>
-                                        <!-- di ko pa naadjust tong part nato 1 -->
                                     <?php endif; ?>
-
                                 <?php else: ?>
-                                    <!-- IsRoomUseOnly -->
-                                    <a class="" href="#" title="Library Use Only" data-provide="tooltip"><i class="fa fa-home fa-2x">line 129</i></a> 
+                                    <a class="hover-primary" href="#" data-provide="tooltip" title="Book is not present at the library at the moment"><i class="fa fa-disable fa-2x" style="color:#48b0f7"></i></a>
+                                    <!-- di ko pa naadjust tong part nato 1 -->
                                 <?php endif; ?>
 
+                            <?php else: ?>
+                                <!-- IsRoomUseOnly -->
+                                <a class="" href="#" title="Library Use Only" data-provide="tooltip"><i class="fa fa-home fa-2x">   </i></a> 
                             <?php endif; ?>
-                                <a class="" data-provide="tooltip" href="#" title="Room Use Only"><i class="fa fa-home fa-2x" >line 133</i></a>
-
                                 <!-- <a class="media- -primary" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:;"></i></a> -->
                                 <!-- <a href="#"><i class="fa fa-ellipsis-v"></i></a> -->
                             </div>
