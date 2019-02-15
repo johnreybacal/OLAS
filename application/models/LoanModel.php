@@ -80,6 +80,11 @@ class LoanModel extends _BaseModel{
 		$this->db->query("UPDATE loan SET IsRecalled = '0' WHERE LoanId = '".$loanId."'");
 	}
 	
+	public function checkIssueExist($accessionNumber){
+		$result = $this->db->query("SELECT * From loan where AccessionNumber = '".$accessionNumber."' AND BookStatusId = '1'")->row();
+		return is_object($result) ? "1" : "0";		
+	}
+
 	public function getLoanByAccession($accessionNumber){
 		return $this->db->query("SELECT * From loan where AccessionNumber = '".$accessionNumber."' AND BookStatusId = '1'")->row();
 	}
