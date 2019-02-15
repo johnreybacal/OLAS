@@ -44,18 +44,18 @@
                     <img src="">
                     <b>Detected QR code: </b>
                     <a href="" id="cam-qr-result">None</a>
-                    <hr>
-
-                    <input type="file" id="file-selector">
-                    <b>Detected QR code: </b>
-                    <a href="" id="file-qr-result">None</a>              
+                    <hr>                    
                     <!-- End of QR -->
                     <form id="modal-qr-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="qrLoanId" style="display: none;" />          
                         <input type="hidden" id="qrPatronId" style="display: none;" />          
                         <input type="hidden" id="qrIsRecalled"/>
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div id="patronIssue" class="col-12">
+                                <label>Patron</label>
+                                <select id="qrPatronId2" name="PatronId" data-provide="selectpicker" title="Choose Patron" data-live-search="true" class="form-control show-tick"></select>
+                            </div>
+                            <div id="patronReturn" class="col-12">
                                 <label>Patron</label>
                                 <input readonly id="qrPatronName" name="Patron" type="text" class="form-control" placeholder="Patron" />
                             </div>
@@ -69,38 +69,39 @@
                                 <label>Book Title</label>
                                 <input readonly id="qrTitle" name="Title" type="text" class="form-control" placeholder="Title" />
                             </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label>Date Borrowed</label>
-                                <input readonly id="qrDateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
-                            </div>
-                            <div class="col-6">
-                                <label>Date Due</label>
-                                <input readonly readonly id="qrDateDue" class="form-control" type="text" name="" placeholder="Date Due">
-                            </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label>Date Returned</label>
-                                <input id="qrDateReturned" class="hide-in-return form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Returned">
-                            </div>
-                            <div class="col-6">
-                                <label>Book status</label>
-                                <select id="qrBookStatusId" name="BookStatusId" data-provide="selectpicker" title="Select book status" data-live-search="true" class="form-control show-tick"></select>
-                            </div>
-                        </div>                        
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label>Amount Payed</label>
-                                <input id="qrAmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
-                            </div>
-                            <div class="col-6">
-                                <label>Notes</label>
-                                <textarea id="qrNotes" name="Notes" type="text" class="form-control" placeholder="Notes"></textarea>
-                            </div>
-                        </div>   
-
+                        </div>      
+                        <div id="qrRowReturn">
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <label>Date Borrowed</label>
+                                    <input readonly id="qrDateBorrowed" class="form-control" type="text" name="" placeholder="Date Borrowed">
+                                </div>
+                                <div class="col-6">
+                                    <label>Date Due</label>
+                                    <input readonly readonly id="qrDateDue" class="form-control" type="text" name="" placeholder="Date Due">
+                                </div>
+                            </div>                        
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <label>Date Returned</label>
+                                    <input id="qrDateReturned" class="hide-in-return form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Returned">
+                                </div>
+                                <div class="col-6">
+                                    <label>Book status</label>
+                                    <select id="qrBookStatusId" name="BookStatusId" data-provide="selectpicker" title="Select book status" data-live-search="true" class="form-control show-tick"></select>
+                                </div>
+                            </div>                        
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <label>Amount Payed</label>
+                                    <input id="qrAmountPayed" name="AmountPayed" type="number" class="form-control" placeholder="Penalty" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Notes</label>
+                                    <textarea id="qrNotes" name="Notes" type="text" class="form-control" placeholder="Notes"></textarea>
+                                </div>
+                            </div>   
+                        </div>
                     </form>     
                 </div>
             </div>
@@ -174,7 +175,21 @@
                     })
                     $('#qrBookStatusId').selectpicker('refresh');
                 }
-            })       
+            })   
+            $.ajax({
+                url: "<?php echo base_url("Patron/GetAll"); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                                        
+                    $('#qrPatronId2').empty();
+                    $.each(i, function(index, data){                        
+                        $('#qrPatronId2').append('<option value = "' + data.PatronId + '">' + data.LastName + ', ' + data.FirstName + '</option>');
+                    })
+                    $('#qrPatronId2').selectpicker('refresh');
+                }
+            })           
+            $('#qrPatronId2').change(function(){
+                $('#qrPatronId').val($(this).val());
+            })
             $('#qrBookStatusId').change(function(){
                 if($(this).selectpicker('val') == 3 || $(this).selectpicker('val') == 4){
                     $.ajax({
@@ -195,6 +210,12 @@
         },
 
         data: function () {
+            var bs;
+            if($('#qrLoanId').val() == 0){
+                bs = 1;
+            }else{
+                bs = $('#qrBookStatusId').selectpicker('val');
+            }
             return {
                 LoanId: $('#qrLoanId').val(),
                 PatronId: $('#qrPatronId').val(),
@@ -202,7 +223,7 @@
                 DateBorrowed: $('#qrDateBorrowed').val(),
                 DateDue: $('#qrDateDue').val(),
                 DateReturned: $('#qrDateReturned').val(),
-                BookStatusId: $('#qrBookStatusId').selectpicker('val'),
+                BookStatusId: bs,
                 AmountPayed: $('#qrAmountPayed').val(),       
                 IsRecalled: $('#qrIsRecalled').val(),    
                 Notes: $('#qrNotes').val(),                        
@@ -210,7 +231,7 @@
         },
 
         show: function(){
-            $('.modal-title').text('Scan QR to return issued book');
+            $('.modal-title').text('Scan QR');
             $('#modal-qr-scan').modal('show');
             $('#modal-qr-form').hide();
             $('#check-in').hide();
@@ -227,59 +248,93 @@
 
         //sena dito mo isend ung accession number ng qr na iniscan
         get: function(id){
+            $('#modal-qr-form')[0].reset();            
             QR_Scan.showForm();
             $.ajax({
-                url: "<?php echo base_url('Circulation/ScanQR/'); ?>" + id,                
-                success: function(i){
-                    i = JSON.parse(i);
-                    console.log(i);
-                    $('#qrLoanId').val(i.LoanId);
-                    $('#qrPatronId').val(i.PatronId);
-                    $('#qrAccessionNumber').val(i.AccessionNumber);
-                    $('#qrDateBorrowed').val(i.DateBorrowed);
-                    $('#qrDateDue').val(i.DateDue);
-                    $('#qrIsRecalled').val(i.IsRecalled);                    
-                    if(i.BookStatusId == 1){
-                        $('#qrBookStatusId').selectpicker('val', 2);
+                url: "<?php echo base_url('Circulation/CheckIssueExist/'); ?>" + id,                
+                success: function(j){
+                    console.log("does this exist? " + j);
+                    if(j == 1){
+                        $('#qrRowReturn').show();
+                        $('#patronIssue').hide();
+                        $('#patronReturn').show();
+                        $('.modal-title').html('Return Issued Book');
+                        $('#check-in').html('Check in');
+                        $.ajax({
+                            url: "<?php echo base_url('Circulation/ScanQR/'); ?>" + id,                
+                            success: function(i){
+                                i = JSON.parse(i);
+                                console.log(i);
+                                $('#qrLoanId').val(i.LoanId);
+                                $('#qrPatronId').val(i.PatronId);
+                                $('#qrAccessionNumber').val(i.AccessionNumber);
+                                $('#qrDateBorrowed').val(i.DateBorrowed);
+                                $('#qrDateDue').val(i.DateDue);
+                                $('#qrIsRecalled').val(i.IsRecalled);                    
+                                if(i.BookStatusId == 1){
+                                    $('#qrBookStatusId').selectpicker('val', 2);
+                                }
+                                $('#qrAmountPayed').val(i.AmountPayed);                    
+                                $.ajax({
+                                    url: "<?php echo base_url('Patron/Get/'); ?>" + i.PatronId,
+                                    success: function(j){
+                                        j = JSON.parse(j);
+                                        $('#qrPatronName').val(j.LastName + ", " + j.FirstName);
+                                    }
+                                })
+                                $.ajax({
+                                    url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + i.AccessionNumber,
+                                    success: function(j){
+                                        j = JSON.parse(j);
+                                        $('#qrTitle').val(j.Title);
+                                    }
+                                })
+                                $.ajax({
+                                    url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + i.AccessionNumber,
+                                    success: function(j){
+                                        j = JSON.parse(j);
+                                        $('#qrNotes').val(j.Notes);
+                                        qrnotes = j.Notes;
+                                    }
+                                })
+                                if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
+                                    $('#qrDateReturned').val(now());
+                                    var start = moment($('#qrDateDue').val());
+                                    var end = moment($('#qrDateReturned').val());
+                                    var diff = end.diff(start, "days");
+                                    var penalty = 0;
+                                    if(diff > 0){
+                                        penalty = 20 * diff;
+                                        $('#qrAmountPayed').val(penalty);
+                                    }
+                                    console.log(diff);                        
+                                    console.log(penalty);                        
+                                }
+                            }
+                        });   
+
                     }
-                    $('#qrAmountPayed').val(i.AmountPayed);                    
-                    $.ajax({
-                        url: "<?php echo base_url('Patron/Get/'); ?>" + i.PatronId,
-                        success: function(j){
-                            j = JSON.parse(j);
-                            $('#qrPatronName').val(j.LastName + ", " + j.FirstName);
-                        }
-                    })
-                    $.ajax({
-                        url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + i.AccessionNumber,
-                        success: function(j){
-                            j = JSON.parse(j);
-                            $('#qrTitle').val(j.Title);
-                        }
-                    })
-                    $.ajax({
-                        url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + i.AccessionNumber,
-                        success: function(j){
-                            j = JSON.parse(j);
-                            $('#qrNotes').val(j.Notes);
-                            qrnotes = j.Notes;
-                        }
-                    })
-                    if(i.DateReturned == '0000-00-00 00:00:00' || i.DateReturned == ''){
-                        $('#qrDateReturned').val(now());
-                        var start = moment($('#qrDateDue').val());
-                        var end = moment($('#qrDateReturned').val());
-                        var diff = end.diff(start, "days");
-                        var penalty = 0;
-                        if(diff > 0){
-                            penalty = 20 * diff;
-                            $('#qrAmountPayed').val(penalty);
-                        }
-                        console.log(diff);                        
-                        console.log(penalty);                        
+                    else{
+                        $('#qrRowReturn').hide();
+                        $('#patronIssue').show();
+                        $('#patronReturn').hide();
+                        $('#qrAccessionNumber').val(id);
+                        $('#qrDateBorrowed').val(now());
+                        $('#qrBookStatusId').selectpicker('val', 1);
+                        $('#qrLoanId').selectpicker(0);
+                        $('#check-in').html('Save Issue');
+                        $('.modal-title').html('Create a new Issue');
+
+                        $.ajax({
+                            url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + id,
+                            success: function(k){
+                                k = JSON.parse(k);
+                                $('#qrTitle').val(k.Title);
+                            }
+                        })
                     }
                 }
-            });   
+            });
         },
 
         validate: function(){

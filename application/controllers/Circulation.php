@@ -185,6 +185,10 @@ class Circulation extends _BaseController {
         $this->loan->unrecall($loanId);
         $this->NotifyPatron($this->loan->_get($loanId)->PatronId, 'Recall cancelled', 'Please enjoy your book');
     }
+    
+    public function CheckIssueExist($accessionNumber){
+        echo $this->loan->checkIssueExist($accessionNumber);
+    }
 
     public function ScanQR($accessionNumber){
         echo $this->convert($this->loan->getLoanByAccession($accessionNumber));
