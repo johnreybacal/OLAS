@@ -24,7 +24,7 @@ class Subject extends _BaseController {
                 $json .= ' '.$course->Name.',';
             }
             $json = $this->removeExcessComma($json).'",'
-                .'"'.$this->loopAll($this->college->getDistinct($courses)).'",'
+                .'"'.$this->loopAll($this->college->getDistinct($courses)).'", '
                 .'"'.($data->IsActive ? '<span class =\"badge badge-success\">Active</span>' : '<span class = \"badge badge-danger\">Inactive</span>').'",'
                 .'"<button onclick = \"Subject_Modal.edit('.$data->SubjectId.');\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></button>"'                
             .'],';

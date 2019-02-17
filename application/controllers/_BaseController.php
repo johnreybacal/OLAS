@@ -132,7 +132,12 @@ class _BaseController extends CI_Controller {
 				$first = false;
 			}
 		}
-		return $this->removeExcessComma(substr($str, 0, strlen($str) - 1));
+		if(substr($str, strlen($str) - 1, strlen($str)) == ' '){
+			return $this->removeExcessComma(substr($str, 0, strlen($str) - 1));
+		}else{
+			return $this->removeExcessComma($str);
+		}
+		// return $str;
 	}
 
 	//removes excess comma at the end for generating tables
