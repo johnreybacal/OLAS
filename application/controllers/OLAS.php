@@ -63,7 +63,7 @@ class OLAS extends _BaseController {
             $json .= '['                
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
-                .'"'.$this->section->_get($data->SectionId)->Name.'",'                 
+                .'"'.$this->section->_get($book->SectionId)->Name.'",'                 
                 .'"'.$series.'",'
                 .'"'.$book->Edition.'",'
                 .'"'.$this->loopAll($this->book->getSubject($data->ISBN)).'",'
