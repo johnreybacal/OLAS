@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2019 at 08:48 AM
+-- Generation Time: Feb 17, 2019 at 02:45 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -57,7 +57,8 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 (10, 'Coelho, Paulo', 1),
 (11, 'Day, Sylvia', 1),
 (12, 'Mallery, Susan', 1),
-(13, 'Alcot, Louisa May', 1);
+(13, 'Alcot, Louisa May', 1),
+(14, 'Sena, John Mark', 1);
 
 -- --------------------------------------------------------
 
@@ -196,7 +197,7 @@ TRUNCATE TABLE `bookcatalogue`;
 --
 
 INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `AcquiredFrom`, `Price`, `Notes`, `IsRoomUseOnly`, `IsAvailable`, `IsActive`) VALUES
-(1, '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 'Mahal na mahal kita\nThis book is lost by Bacal, Johnrey', 0, 0, 1),
+(1, '9780000000001', '2018-09-04', 'Johnrey Pogi', 500, 'Mahal na mahal kita This book is lost by Bacal, Johnrey', 0, 0, 1),
 (11, '0786830239', '2018-10-26', 'dsfaa', 200, '', 1, 1, 1),
 (10, '9780000000001', '2018-11-01', 'Jb', 0, '', 1, 1, 1),
 (9, '9780747569404', '2018-10-27', '', 0, '', 1, 1, 1),
@@ -208,8 +209,8 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 (17, '9780747569404', '2018-10-23', 'wef', 12, '', 0, 1, 1),
 (18, '9780747569404', '2018-10-23', 'wef', 120, '', 1, 1, 1),
 (19, '9781368012287', '2018-10-25', 'jb', 100, '', 1, 1, 1),
-(20, '9780000000002', '2018-11-11', 'Johnrey', 800, '', 0, 1, 1),
-(21, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
+(20, '9780000000002', '2018-11-11', 'Johnrey', 800, ' This book is damaged by Sena, John Mark, returned on 2019-02-06 17:11:31', 0, 0, 1),
+(21, '9780747569404', '2018-11-13', '1', 1, '', 1, 0, 1),
 (22, '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
 (23, '0786830239', '2018-11-13', '12', 121, '', 1, 1, 1),
 (24, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
@@ -220,7 +221,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 (29, '0786830239', '2018-11-19', 'edwsfdv', 4, '', 1, 1, 1),
 (30, '9780000000003', '2019-01-31', 'nat', 100, '', 1, 1, 1),
 (31, '9780621063099', '2019-02-03', 'Tikoy', 200, '', 0, 1, 1),
-(32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
+(32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 0, 1),
 (33, '0988941589', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 (34, '9785386262884', '2019-02-03', 'Joy', 200, ' This book is damaged by Sena, John Mark, returned on the day of 2019-02-06 16:46:22', 0, 1, 1),
 (35, '9784773012941', '2019-02-03', 'Veronica', 200, '', 0, 1, 1),
@@ -491,7 +492,11 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (14, 3, 34, '2019-02-06 16:42:28', '2019-02-09 16:42:28', '2019-02-06 16:46:33', 200, 3, 0),
 (8, 1, 16, '2019-01-18 14:10:33', '2019-01-21 14:10:33', '2019-02-03 10:40:03', 240, 2, 0),
 (9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0),
-(13, 1, 1, '2019-02-06 16:26:10', '2019-02-09 16:26:10', '2019-02-06 16:40:34', 500, 4, 0);
+(13, 1, 1, '2019-02-06 16:26:10', '2019-02-09 16:26:10', '2019-02-06 16:40:34', 500, 4, 0),
+(15, 3, 20, '2019-02-06 17:05:51', '2019-02-09 17:05:51', '2019-02-06 17:11:38', 800, 3, 0),
+(16, 3, 20, '2019-02-12 17:19:22', '2019-02-15 17:19:22', NULL, NULL, 1, 0),
+(17, 1, 21, '2019-02-15 13:42:35', '2019-02-18 13:42:35', NULL, NULL, 1, 0),
+(18, 1, 32, '2019-02-17 11:32:50', '2019-02-20 11:32:50', NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -517,12 +522,8 @@ TRUNCATE TABLE `marcimport`;
 
 INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 (113, '1595540059', 'Showdown /'),
-(149, '1', 'try'),
-(115, '0849944996', 'The martyr\'s song /'),
 (116, '0849943736', 'Obsessed /'),
 (117, '0849917921', 'White /'),
-(118, '0849917913', 'Red /'),
-(119, '0849917905', 'Black /'),
 (120, '0849943728', 'Thr3e /'),
 (121, '084994371X', 'Blink /'),
 (122, '0849943809', 'A man called Blessed /'),
@@ -532,7 +533,6 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 (126, '0849942411', 'Heaven\'s wager /'),
 (127, '9780979590023', 'White :'),
 (128, '0979590019', 'Red :'),
-(129, '1595541578', 'House'),
 (130, '1404102337', 'The promise :'),
 (131, '0849963672', 'Black'),
 (132, '1595541551', 'House /'),
@@ -542,18 +542,14 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 (136, '1595540083', 'Sinner /'),
 (137, '9781602852068', 'Adam /'),
 (138, '1595543716', 'Renegade /'),
-(139, '1595543724', 'Chaos /'),
 (140, '0979590000', 'Black :'),
 (141, '9781602552173', 'Rojo :'),
 (142, '9781602552159', 'Negro :'),
 (143, '9781595544711', 'Burn /'),
 (144, '9781599951966', 'The bride collector /'),
 (145, '9780307588272', 'Tea with Hezbollah :'),
-(146, '9781599954189', 'A.D. 30 :'),
 (147, '9781599953588', 'Mortal /'),
-(148, '0824771567', 'Transformation groups on manifolds /'),
-(150, '1595540059', 'Showdown /'),
-(151, '0439139597', 'Harry Potter and the goblet of fire /');
+(150, '1595540059', 'Showdown /');
 
 -- --------------------------------------------------------
 
@@ -772,7 +768,9 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 (17, 1, 1, '2018-10-30 11:21:01', 1, 0),
 (18, 1, 1, '2018-10-31 22:47:44', 1, 0),
 (19, 1, 1, '2018-11-01 18:06:24', 1, 0),
-(20, 3, 34, '2019-02-03 12:14:01', 0, 0);
+(20, 3, 34, '2019-02-03 12:14:01', 0, 0),
+(21, 3, 31, '2019-02-17 20:42:03', 0, 1),
+(22, 3, 34, '2019-02-17 20:42:03', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -800,7 +798,7 @@ INSERT INTO `section` (`SectionId`, `Name`, `IsActive`) VALUES
 (1, 'Filipinana', 1),
 (2, 'Thesis', 1),
 (3, 'Fiction', 1),
-(10, 'Section', 1);
+(10, 'Section', 0);
 
 -- --------------------------------------------------------
 
@@ -1020,7 +1018,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `bookcatalogue`
 --
@@ -1055,7 +1053,7 @@ ALTER TABLE `librarianrole`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `marcimport`
 --
@@ -1090,7 +1088,7 @@ ALTER TABLE `publisher`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `section`
 --
