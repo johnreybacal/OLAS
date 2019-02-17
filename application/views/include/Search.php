@@ -166,17 +166,17 @@
                                 if("<?php echo $this->session->has_userdata('patronId'); ?>" == "1"){//check if patron is logged in
                                     if(data.reservation.IsReserved == 1){//check if book is reserved
                                         if(data.reservation.PatronId == '<?php echo $this->session->userdata('patronId'); ?>'){//reserved by current patron
-                                            status += '<span class="badge badge-warning" style="text-transform: uppercase;">You have already reserved this book</span>';
+                                            status += '<span class="badge badge-warning" style="text-transform: uppercase;">Already Reserved</span>';
                                         }else{//reserved by another patron
-                                            status += '<span class="badge badge-danger" style="text-transform: uppercase;">This book is already reserved</span>';
+                                            status += '<span class="badge badge-danger" style="text-transform: uppercase;">Reserved</span>';
                                         }
                                     }else{
                                         //book available for reservation                                        
                                         status += '<span class=\"badge badge-success\" style="text-transform: uppercase;">In</span>';                                        
-                                        action += '<a class=\"hover-primary\" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x"></i></a> '
+                                        action += '<a class=\"hover-primary\" data-provide="tooltip" href="#" title="Add to bookbag" onclick = "Bookbag.add(' + data.catalogue.AccessionNumber + ',' + data.catalogue.ISBN + ');"><i class="fa fa-plus fa-2x mt-2"></i></a> '
                                     }
                                 }else{
-                                    status += '<span class=\"badge badge-danger\" style="text-transform: uppercase;">In</span>';
+                                    // status += '<span class=\"badge badge-danger\" style="text-transform: uppercase;">In</span>';
                                 }
                             }else{
                                 //book unavailable

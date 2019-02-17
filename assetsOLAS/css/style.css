@@ -37,12 +37,32 @@
 .book-availability{
     pointer-events: none;
 }
+/* Portrait and Landscape */
+@media 
+  (min-device-width: 800px) 
+  and (max-device-width: 1200px) {
+
+}
+
+/* Portrait and Landscape */
+@media 
+  (min-device-width: 800px) 
+  and (max-device-width: 1200px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
 
 /* ----------- Non-Retina Screens ----------- */
 @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
+    body{
+        font-size: 
+    }
+    .menu-item>.menu-link span.title{
+        font-size: 20px;
+    }
 }
 
 /* ----------- Retina Screens ----------- */
@@ -51,6 +71,26 @@
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
+    .menu-item>.menu-link span.title{
+        font-size: 20px;
+    }
+    form label{
+        font-size: 2vw;
+    }
+
+    div.bootstrap-selectbutton> button.dropdown-toggle, form input.form-control, form input[type*=checkbox], form span.switch-indicator{
+        font-size: 1.5vw;
+    }
+}
+
+@media screen 
+  and (min-device-width: 1600px) 
+  and (max-device-width: 2000px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .menu-item>.menu-link span.title{
+        font-size: 20px;
+    }
 }
 
 @media screen and (min-width: 1440px ) { /*1440px*/
