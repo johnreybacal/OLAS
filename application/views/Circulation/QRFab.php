@@ -327,7 +327,7 @@
                                     $('#qrAccessionNumber').val(id);
                                     $('#qrDateBorrowed').val(now());
                                     $('#qrBookStatusId').selectpicker('val', 1);
-                                    $('#qrLoanId').selectpicker(0);
+                                    $('#qrLoanId').val(0);
                                     $('#check-in').html('Save Issue');
                                     $('.modal-title').html('Create a new Issue');
                                     $.ajax({
@@ -362,6 +362,11 @@
                         $.each(i, function(element, message){
                             if(element != 'status'){
                                 $('#qr' + element).addClass('is-invalid').parent().append(message);
+                                if($('.modal-title').html() == 'Create a new Issue'){
+                                    $('.invalid-feedback').remove();
+                                    $('.is-invalid').removeClass('is-invalid');
+                                    $('#qr' + element + '2').addClass('is-invalid').parent().append(message);
+                                }
                             }
                         });
                     }

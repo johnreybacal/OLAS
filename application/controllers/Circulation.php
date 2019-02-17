@@ -131,6 +131,10 @@ class Circulation extends _BaseController {
             $str .= $this->invalid('AccessionNumber', 'Please choose a book to issue');
             $valid = false;
         }
+        if(!v::notEmpty()->validate($loan['PatronId'])){
+            $str .= $this->invalid('PatronId', 'Please choose a patron');
+            $valid = false;
+        }
         if(!v::date()->validate($loan['DateBorrowed'])){            
             $str .= $this->invalid('DateBorrowed', 'Please input a date');
             $valid = false;
