@@ -1,41 +1,41 @@
 <script src = "<?php echo base_url('assets/js/script/plugins/qrcode.min.js'); ?>"></script>
 
-<header class="header header-inverse bg-ui-general"> 
-	<div class="container">
-		<div class="header-info">
-			<div class="left">
-				<h2 class="header-title"><strong></strong> <small class="subtitle">Generate QR Code</small></h2>
-			</div>
-		</div>	
-	</div>
-</header> 
+<header class="header header-inverse bg-ui-general">
+        <div class="header-info">
+            <div class="left">
+                <h2 class="header-title"><strong>Generate QR Code</strong> <small class="subtitle"></small></h2>
+            </div>
+        </div>
+</header>
 <div class="main-content">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Call Number</th>
-                                <th style="width: 50px"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
-                                </td>
-                                <td>
-                                    <select id="AccessionNumber" name="Accession Number" data-provide="selectpicker" title="Choose Accession Number" data-live-search="true" class="form-control show-tick"></select>
-                                </td>
-                                <td style="width: 50px">
-                                    <a href="#" class="btn btn-outline-success" id="add-book" data-container="body" data-toggle="tooltip" title="" data-original-title="Add Book">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="table-container" class="table-responsive">
+                        <table id="book-table" class="table table-striped table-bordered display nowrap r2 bg-info" style="width:100%; overflow-x:auto;" cellspacing="0" >
+                            <thead>
+                                <tr class="center bg-info">
+                                    <th>Title</th>
+                                    <th>Call Number</th>
+                                    <th style="width: 50px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select id="ISBN" name="ISBN" data-provide="selectpicker" title="Choose Book" data-live-search="true" class="form-control show-tick"></select>
+                                    </td>
+                                    <td>
+                                        <select id="AccessionNumber" name="Accession Number" data-provide="selectpicker" title="Choose Accession Number" data-live-search="true" class="form-control show-tick"></select>
+                                    </td>
+                                    <td style="width: 50px">
+                                        <a href="#" class="btn btn-success" id="add-book" data-container="body" data-toggle="tooltip" title="" data-original-title="Add Book">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <form id="books" class="validate-books" novalidate="novalidate">
                         <table id="selectedBook" class="table" >
                             <thead>
@@ -48,12 +48,14 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <button class="btn btn-primary pull-right" id="generate">
-                            <span class="btn-icon"><i class="icon-magic-wand"></i></span> Generate
-                        </button>
-                        <button type="button" class="btn btn-primary pull-left" id="print" target="_blank">
-                            <span class="btn-icon"><i class="icon-printer"></i></span> Print
-                        </button>
+                        <div class="row" style="float: right;">
+                            <button type="button" class="btn btn-success pull-left" id="print" target="_blank">
+                                <span class="btn-icon"><i class="icon-printer"></i></span> Print
+                            </button>
+                            <button class="btn btn-primary pull-right ml-2" id="generate">
+                                <span class="btn-icon"><i class="icon-magic-wand"></i></span> Generate
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
