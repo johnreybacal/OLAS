@@ -249,13 +249,13 @@
 
         //sena dito mo isend ung accession number ng qr na iniscan
         get: function(id){
-            $('#modal-qr-form')[0].reset();            
-            QR_Scan.showForm();
+            $('#modal-qr-form')[0].reset();                        
             $.ajax({
                 url: "<?php echo base_url('Circulation/CheckIssueExist/'); ?>" + id,                
                 success: function(j){
                     console.log("does this exist? " + j);
                     if(j == 1){
+                        QR_Scan.showForm();
                         $('#qrRowReturn').show();
                         $('#patronIssue').hide();
                         $('#patronReturn').show();
@@ -315,22 +315,31 @@
                         });   
 
                     }
-                    else{
-                        $('#qrRowReturn').hide();
-                        $('#patronIssue').show();
-                        $('#patronReturn').hide();
-                        $('#qrAccessionNumber').val(id);
-                        $('#qrDateBorrowed').val(now());
-                        $('#qrBookStatusId').selectpicker('val', 1);
-                        $('#qrLoanId').selectpicker(0);
-                        $('#check-in').html('Save Issue');
-                        $('.modal-title').html('Create a new Issue');
-
+                    else{                        
                         $.ajax({
-                            url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + id,
-                            success: function(k){
-                                k = JSON.parse(k);
-                                $('#qrTitle').val(k.Title);
+                            url: "<?php echo base_url('Book/CheckRoomUseOnly/'); ?>" + id,
+                            success: function(roomUseOnly){
+                                if(roomUseOnly == 0){
+                                    QR_Scan.showForm();
+                                    $('#qrRowReturn').hide();
+                                    $('#patronIssue').show();
+                                    $('#patronReturn').hide();
+                                    $('#qrAccessionNumber').val(id);
+                                    $('#qrDateBorrowed').val(now());
+                                    $('#qrBookStatusId').selectpicker('val', 1);
+                                    $('#qrLoanId').selectpicker(0);
+                                    $('#check-in').html('Save Issue');
+                                    $('.modal-title').html('Create a new Issue');
+                                    $.ajax({
+                                        url: "<?php echo base_url('Book/GetByAccessionNumber/'); ?>" + id,
+                                        success: function(k){
+                                            k = JSON.parse(k);
+                                            $('#qrTitle').val(k.Title);
+                                        }
+                                    });
+                                }else{
+                                    swal('This book is for room use only', "This book cannot be circulated. Please kindly return the book to its respective shelf", 'warning');
+                                }
                             }
                         })
                     }

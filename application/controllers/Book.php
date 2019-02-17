@@ -164,6 +164,10 @@ class Book extends _BaseController {
         echo $this->convert($this->book->_get($this->bookCatalogue->_get($accessionNumber)->ISBN));
     }
 
+    public function CheckRoomUseOnly($accessionNumber){
+        echo $this->bookCatalogue->_get($accessionNumber)->IsRoomUseOnly;
+    }
+
     //Get Catalogue of book
     public function GetCatalogue($accessionNumber){
         echo $this->convert($this->bookCatalogue->_get($accessionNumber));
