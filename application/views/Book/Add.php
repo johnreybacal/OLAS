@@ -144,7 +144,7 @@
 		</div> 
 	</form> 
 </div>
-<div class="fab fab-fixed fab-dir-left fab-320">
+<!-- <div class="fab fab-fixed fab-dir-left fab-320">
   	<button class="btn btn-float btn-info" data-toggle="button">
 	    <i class="fab-icon-default ti-plus"></i>
 	    <i class="fab-icon-active ti-close"></i>
@@ -157,7 +157,7 @@
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.publisher()" href="#" title="Add new Publisher" data-provide="tooltip" data-placement="top"><i class="fa fa-music"></i></a></li>
 	    <li><a class="btn btn-float btn-sm btn-info" onclick="Add.series()" href="#" title="Add new Series" data-provide="tooltip" data-placement="top"><i class="fa fa-video-camera"></i></a></li>
 	</ul>
-</div>
+</div> -->
 <script>	
 
 	var imageChanged = false;
