@@ -10,6 +10,7 @@
                     <div class="row">
                         <div class="col-6 ">
                             <div class="row">    
+                                <input type="hidden" id="PatronId" value="<?php echo $patron->PatronId; ?>" />
                                 <div class="col-12">
                                     <h6 class="text-uppercase">Personal Information</h6>
                                     <hr class="hr-sm mb-2 border-success">
@@ -21,25 +22,25 @@
                                 <div class="form-group col-md-8">
                                     <label>ID Number</label>
                                     <small class="sidetitle">15-999-999</small>
-                                    <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" placeholder="18-xxx-xxx">
+                                    <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" placeholder="18-xxx-xxx" value="<?php echo $patron->IdNumber; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Last Name</label>
-                                    <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
+                                    <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name" value="<?php echo $patron->LastName; ?>">
                                 </div>
                         <div class="divider divider-vertical border-warning"></div>
                                 <div class="form-group col-md-8">
                                     <label>First Name</label>
-                                    <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
+                                    <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name" value="<?php echo $patron->FirstName; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Extension Name</label>
                                     <small class="sidetitle">optional</small>
-                                    <input  id="ExtensionName" class="form-control" type="text" name="ExtensionName" placeholder="Extension Name">
+                                    <input  id="ExtensionName" class="form-control" type="text" name="ExtensionName" placeholder="Extension Name" value="<?php echo $patron->ExtensionName; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Middle Name</label>
-                                    <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name">
+                                    <input  id="MiddleName" class="form-control" type="text" name="MiddleName" placeholder="Middle Name" value="<?php echo $patron->MiddleName; ?>">
                                 </div>
                             </div> <!-- row -->
                         </div> <!-- card-body -->
@@ -53,20 +54,20 @@
                                 <div class="form-group col-md-8">
                                     <label>Email</label>
                                     <small class="sidetitle">olas@email.com</small>
-                                    <input  id="Email" class="form-control" type="email" name="Email" placeholder="email@email.com">
+                                    <input  id="Email" class="form-control" type="email" name="Email" placeholder="email@email.com" value="<?php echo $patron->Email; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Contact Number</label>
                                     <small class="sidetitle">+63-999-999-9999</small>
-                                    <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" placeholder="+63 999-999-9999">
+                                    <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" placeholder="+63 999-999-9999" value="<?php echo $patron->ContactNumber; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>RFID Number</label>
-                                    <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo">
+                                    <input  id="RFIDNo" class="form-control" type="text" name="RFIDNo" value="<?php echo $patron->RFIDNo; ?>">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Password</label>
-                                    <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password">
+                                    <input  id="Password" class="form-control" type="password" name="Password" placeholder="Password" value="<?php echo $patron->Password; ?>">
                                 </div>
                             </div>
                         </div>
