@@ -33,7 +33,7 @@
                 </div>
             </div>
 			<div id="table-container" class="table-responsive">
-				<table id = "circulation-history-table" class="table table-striped table-bordered display nowrap r1 r2 r3 r4 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableHistory") ?>" data-buttons="print">
+				<table id = "circulation-history-table" class="table table-striped table-bordered display nowrap r4 r5 r9" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Circulation/GenerateTableHistory") ?>" data-buttons="print">
 					<thead>
 						<tr class="bg-info">							
 							<th>Borrower</th>	
@@ -44,7 +44,7 @@
 							<th>Date Issued</th>
 							<th>Date Due</th>
 							<th>Date Returned</th>
-							<th>Amount Payed</th>
+							<th>Amount Fined</th>
 							<th>Status</th>
 							<th></th>
 						</tr>

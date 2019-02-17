@@ -164,7 +164,7 @@ table, table.table-bordered.dataTable td{
     border: none;
     text-align: center;
 }*/
-table.table-responsive thead tr th{
+table[data-provide*=datatables].table-responsive thead tr th{
     text-align: center;
     background-color: #48b0f7;
     color: white;

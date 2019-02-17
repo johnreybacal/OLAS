@@ -121,7 +121,7 @@
             $('#book-issue-history-table-container').html(
                 text + 
                 '<div class="table-responsive">' + 
-                    '<table id="book-issue-history-table" class="table table-responsive table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                    '<table id="book-issue-history-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                         '<thead>' +
                             '<tr class="bg-info">' + 
                                 '<th>Patron Name</th>' + 

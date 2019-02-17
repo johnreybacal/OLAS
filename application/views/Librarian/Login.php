@@ -16,7 +16,7 @@
 			<div id = "message"></div>
 
 			<div class="form-group flexbox flex-column flex-md-row">
-				<div class="custom-control custom-checkbox">
+				<div class="custom-control custom-checkbox" style="visibility: hidden;">
 					<input type="checkbox" class="custom-control-input" checked>
 					<label class="custom-control-label">Remember me</label>
 				</div>

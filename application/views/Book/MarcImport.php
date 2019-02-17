@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <h6 class="mb-1">Marc File</h6>
-                    <input type="file" id="marc-input" data-provide="dropify">
+                    <input type="file" id="marc-input" data-provide="dropify" data-show-remove="false">
                 </div>
                 <!-- <input type = "file" id = "marc-input" class="form-control" /> -->
                 <div class="col-md-3" style="margin: auto;">

@@ -48,6 +48,9 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#DateTime').val(new Date().toISOString().slice(0, 10));
+    });
     var OutsideResearcher_Modal = {
         data: function () {
             return {

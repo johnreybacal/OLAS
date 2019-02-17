@@ -17,10 +17,10 @@
 </header>
 <div class="main-content">
 	<div class="card">
-		<div class="card-title">
-		</div>
+		<!-- <div class="card-title"> -->
+		<!-- </div> -->
 		<div class="card-body">
-			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
+			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px; float: right;">
 				<label>&nbsp;</label>
 				<button class="btn btn-block btn-info" onclick="ExportExcel('patron-table')">Export</button>
 			</div>

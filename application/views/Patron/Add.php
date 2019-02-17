@@ -9,13 +9,18 @@
                     <div class="card-body form-type-line">
                     <div class="row">
                         <div class="col-6 ">
-                            <div class="row">                           
+                            <div class="row">    
+                                <div class="col-12">
+                                    <h6 class="text-uppercase">Personal Information</h6>
+                                    <hr class="hr-sm mb-2 border-success">
+                                </div>                         
                                 <div class="form-group col-md-10">
                                     <label>Patron Type</label>
                                     <select id="PatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control show-tick"></select>
                                 </div>
                                 <div class="form-group col-md-8">
-                                    <label>Id Number</label>
+                                    <label>ID Number</label>
+                                    <small class="sidetitle">15-999-999</small>
                                     <input  id="IdNumber" class="form-control" type="text" name="Id Number"data-format="{{99}}-{{999}}-{{999}}" data-minlength="3" placeholder="18-xxx-xxx">
                                 </div>
                                 <div class="form-group col-md-8">
@@ -29,6 +34,7 @@
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Extension Name</label>
+                                    <small class="sidetitle">optional</small>
                                     <input  id="ExtensionName" class="form-control" type="text" name="ExtensionName" placeholder="Extension Name">
                                 </div>
                                 <div class="form-group col-md-8">
@@ -38,14 +44,20 @@
                             </div> <!-- row -->
                         </div> <!-- card-body -->
 
-                        <div class="card-body col-6 form-type-line">
+                        <div class="col-6">
+                                <div class="col-12">
+                                    <h6 class="text-uppercase">Contact Details</h6>
+                                    <hr class="hr-sm mb-2 border-success">
+                                </div>  
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <label>Email</label>
+                                    <small class="sidetitle">olas@email.com</small>
                                     <input  id="Email" class="form-control" type="email" name="Email" placeholder="email@email.com">
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label>Contact Number</label>
+                                    <small class="sidetitle">+63-999-999-9999</small>
                                     <input data-format="+63 9{{99}}-{{999}}-{{9999}}" id="ContactNumber" class="form-control" type="text" name="ContactNumber" data-format="+63 9{{99}}-{{999}}-{{9999}}" placeholder="+63 999-999-9999">
                                 </div>
                                 <div class="form-group col-md-8">

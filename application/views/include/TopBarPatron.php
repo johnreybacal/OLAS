@@ -15,21 +15,21 @@
 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('Bookbag'); ?>">
-                        <span class="icon fa fa-briefcase"></span>
+                        <!-- <span class="icon fa fa-briefcase"></span> -->
                         <span class="title">Bookbag</span>
                     </a>
                 </li>    
                 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('MyReservations'); ?>">
-                        <span class="icon fa fa-briefcase"></span>
+                        <!-- <span class="icon fa fa-briefcase"></span> -->
                         <span class="title">My Reservations</span>
                     </a>
                 </li>    
                 
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('MyBooks'); ?>">
-                        <span class="icon fa fa-briefcase"></span>
+                        <!-- <span class="icon fa fa-briefcase"></span> -->
                         <span class="title">My Books</span>
                     </a>
                 </li> 

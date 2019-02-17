@@ -22,7 +22,8 @@
 
 <!-- Fab Button -->
 <div class="fab fab-fixed">
-    <button onclick="QR_Scan.show()" class="btn btn-float btn-primary" title="Scan QR" data-provide="tooltip" data-placement="left"><i class="fa fa-qrcode"></i></button>
+    <button onclick="QR_Scan.show()" class="btn btn-float btn-primary" title="Scan QR" data-provide="tooltip" data-placement="left" style="background-color:#33cabb;
+    border-color:#33cabb;"><i class="fa fa-qrcode"></i></button>
 </div>
 
 <!-- QR Modal -->

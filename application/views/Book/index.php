@@ -41,7 +41,7 @@
                 </div>
             </div>            
 			<div id="table-container" class="table-responsive">
-				<table id="book-table" class="table table-striped table-bordered display nowrap r1 r2" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
+				<table id="book-table" class="table table-striped table-bordered display nowrap r1 r4" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Book/GenerateTable") ?>">
 					<thead>
 						<tr class="center bg-info">
 							<th>Accession Number</th>
