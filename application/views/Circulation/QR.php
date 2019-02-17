@@ -10,7 +10,7 @@
 <div class="main-content">
             <div class="card">
                 <div class="card-body">
-                    <div id="table-container" class="table-responsive">
+                    <div class="table-responsive">
                         <table id="book-table" class="table table-striped table-bordered display nowrap r2 bg-info" style="width:100%; overflow-x:auto;" cellspacing="0" >
                             <thead>
                                 <tr class="center bg-info">
@@ -37,17 +37,19 @@
                         </table>
                     </div>
                     <form id="books" class="validate-books" novalidate="novalidate">
-                        <table id="selectedBook" class="table" >
-                            <thead>
-                                <tr>
-                                    <th>Book</th>
-                                    <th style="width: 160px;">Accession Number</th>
-                                    <th style="width: 65px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="selectedBook" class="table table-striped table-bordered r2 bg-info">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th style="width: 160px;">Accession Number</th>
+                                        <th style="width: 65px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody  style="color:#333;">
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="row" style="float: right;">
                             <button type="button" class="btn btn-success pull-left" id="print" target="_blank">
                                 <span class="btn-icon"><i class="icon-printer"></i></span> Print
@@ -108,7 +110,7 @@
         var AccessionNumber = $('#AccessionNumber').children("option:selected").text();
         var isbn = $('#ISBN').children("option:selected").val();
         var accession = $('#AccessionNumber').children("option:selected").val();
-        var deleteButton = '<a href="#" class="btn btn-outline-danger border deleteBook" title="Delete Book"><i class="fa fa-times"></i></a>';
+        var deleteButton = '<a href="#" class="btn btn-danger border deleteBook" title="Delete Book"><i class="fa fa-times"></i></a>';
         $('#selectedBook tbody').append('<tr data-isbn=\"'+isbn+'\" data-accession=\"'+accession+'\" data-AccessionNumber=\"'+AccessionNumber+'\"><td class=\"isbn\">'+title+'</td><td class = \"accession\">'+AccessionNumber+'</td><td>'+deleteButton+'</td></tr>');
         
         $('.deleteBook').click(function(){
