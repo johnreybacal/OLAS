@@ -53,12 +53,12 @@
                                                     <!-- Check if book is reserved by patron currently logged -->
                                                     <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
 
-                                                        <span class="badge badge-warning" style="text-transform: uppercase;">You have already reserved this book</span>
+                                                        <span class="badge badge-warning" style="text-transform: uppercase;">Already Reserved</span>
                                                                                             
                                                         <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
 
                                                     <?php else: ?>
-                                                        <span class="badge badge-daner" style="text-transform: uppercase;">This book is already reserved</span>
+                                                        <span class="badge badge-danger" style="text-transform: uppercase;">Reserved</span>
                                                         <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a> -->
                                                     <?php endif; ?>
                                                 
@@ -106,11 +106,11 @@
                                             <!-- Check if book is reserved by patron currently logged -->
                                             <?php if($book['reservation']['PatronId'] == $this->session->userdata('patronId')): ?>    
 
-                                                <a class="" data-provide="tooltip" title="Book already reserved"><i class="fa fa-plus fa-2x" style="color:;"></i></a>                                      
+                                                <a class="" data-provide="tooltip" title="Book already reserved"><i class="fa fa-plus fa-2x" style="color:;display: none;"></i></a>                                      
                                                 <!-- <a class="media-action hover-primary" href="#" data-provide="tooltip"   title="You have already reserved this book"><i class="fa fa-home fa-2x" style="color:#48b0f7"></i></a> -->
 
                                             <?php else: ?>
-                                                <a class="" href="#" data-provide="tooltip"   title="This book is already reserved by someone else"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Unavailable</i></a>
+                                                <a class="" href="#" data-provide="tooltip"   title="This book is already reserved by someone else" style="display: none;"><i class="fa fa-homae fa-2x" style="color:#48b0f7">Reserved</i></a>
                                         <!-- di ko pa naadjust tong part nato 2 -->
                                             <?php endif; ?>
                                         

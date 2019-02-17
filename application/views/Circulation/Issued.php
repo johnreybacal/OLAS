@@ -25,7 +25,7 @@
 							<th>Borrower</th>
 							<th>Title</th>									
 							<th>Authors</th>
-							<th>Call Nummber</th>
+							<th>Call Number</th>
 							<th>Accession Number</th>
 							<th>Date Issued</th>
 							<th>Date Due</th>							

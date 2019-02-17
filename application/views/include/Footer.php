@@ -30,7 +30,7 @@
         });
         $('select').attr(
             // 'data-selected-text-format':'count > 3',
-            'data-size','10'
+            'data-size','15'
         );
         var $window = $(window);
         $window.resize(function resize() {

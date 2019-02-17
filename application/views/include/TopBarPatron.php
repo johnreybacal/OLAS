@@ -72,8 +72,8 @@
                 <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
-                    <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
+                    <!-- <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a> -->
+                    <!-- <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?php echo base_url('Patron/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
                 </div>
