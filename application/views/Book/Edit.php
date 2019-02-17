@@ -230,8 +230,7 @@
 						$('#Edition').val(i.book.Edition);
 						$('#DatePublished').val(i.book.DatePublished);
 						$('#PlacePublished').val(i.book.PlacePublished);
-						$('#Summary').val(i.book.Summary);
-						$('#Notes').val(i.book.Notes);
+						$('#Summary').val(i.book.Summary);						
 						$('#Extent').val(i.book.Extent);
 						$('#OtherDetails').val(i.book.OtherDetails);
 						$('#Size').val(i.book.Size);
@@ -257,6 +256,14 @@
 
 						$('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
 						imageChanged = false;
+
+						$.ajax({
+							url: "<?php echo base_url('Book/GetCatalogue/'); ?>" + $('#AccessionNumber').val(),
+							success: function(j){
+								j = JSON.parse(j);
+								$('#Notes').val(j.Notes);
+							}
+						})
 					}
 				}
 			});
