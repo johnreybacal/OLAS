@@ -55,10 +55,10 @@
             <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>
-                <option selected>Subject</option>
+                <!-- <option selected>Subject</option> -->
                 <option selected>Section</option>
-                <option selected>Series</option>
-                <option selected>Publisher</option>
+                <!-- <option selected>Series</option> -->
+                <!-- <option selected>Publisher</option> -->
             </select>
             <button class="btn btn-info btn-bold no-radius fs-12" onclick="Search.search();" style="padding-top: 4px!important;"><i class="fa fa-search fa-2x"></i></button>
         </form>      
