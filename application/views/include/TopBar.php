@@ -1,12 +1,12 @@
 <header class="topbar">
 	<div class="topbar-left">
 		<!-- <span class="topbar-btn sidebar-toggler"><i>&#9776;</i></span> -->        		
-		<a href="<?php echo base_url(); ?>"><span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon"></span></a>
+		<a href="<?php echo base_url(); ?>"><span class="logo"><img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="logo-icon" style="max-width: unset;"></span></a>
 		<div class="topbar-divider d-none d-md-block"></div>
 		<div class="d-snone d-md-block ">
-            <form class="lookup lookup-lg lookup-user no-icon">
-                <input class="no-radius" id="search" type="text" placeholder="Search">
-                <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
+            <form class="lookup lookup-lg lookup-user no-icon mx-1">
+                <input class="no-radius topbar-search" id="search" type="text" placeholder="Search" style="width:50%;">
+                <select class="dss-none d-block librarian-search" data-provide="selectpicker" multiple>
                     <option selected>Book</option>
                     <option selected>Author</option>
                     <option selected>Subject</option>

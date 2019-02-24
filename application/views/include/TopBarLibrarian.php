@@ -30,8 +30,8 @@
     <div class="topbar-center d-md-block">
         <div id="search-div">
             <form class="lookup lookup-lg lookup-lib no-icon">
-                <input class="no-radius" id="search" type="text" placeholder="Search">
-                <select class="d-block librarian-search ds-none" data-provide="selectpicker" multiple>
+                <input class="no-radius topbar-librarian-search" id="search" type="text" placeholder="Search">
+                <select class="dss-none d-block librarian-search" data-provide="selectpicker" multiple>
                     <option selected>Book</option>
                     <option selected>Author</option>
                     <option selected>Subject</option>

@@ -2,7 +2,7 @@
 <header class="topbar topbar-expand-xl">  
     <div class="topbar-left">
         <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
-        <a href="<?php echo base_url('') ?>" class="logo logo-patron"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
+        <a href="<?php echo base_url('') ?>" class="logo logo-patron"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea; max-width: unset;"></a>
         <nav class="topbar-navigation">
             <ul class="menu">
 
@@ -51,7 +51,7 @@
     </div>
     <div class="topbar-center d-snone d-md-block">
         <form class="lookup lookup-lg lookup-patron no-icon">
-            <input class="no-radius" id="search" type="text" placeholder="Search">
+            <input class="no-radius topbar-patron-search" id="search" type="text" placeholder="Search">
             <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>

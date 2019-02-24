@@ -385,6 +385,15 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .logo-patron{
         display: none;
     }
+    input.topbar-search{
+        width: 50%;
+    }
+    input.topbar-librarian-search{
+        max-width: 70px;
+    }
+    form.lookup-lib>.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 100px;
+    }
  }
 
 @media screen and (min-width: 376px) and (max-width: 425px){
@@ -410,6 +419,18 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .logo-patron{
         display: none;
     }
+    input.topbar-search{
+        width: 50%;
+    }
+    input.topbar-librarian-search{
+        max-width: 90px;
+    }
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 120px;
+    }
+    form.lookup-lib>.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 120px;
+    }
  }
  @media screen and (min-width: 426px) and (max-width: 768px){
     .isactive{
@@ -425,6 +446,15 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     .ds-none{
         display: none!important;
     }
+    input.topbar-search{
+        width: 50%;
+    }
+    input.topbar-librarian-search{
+        width: 50%;
+    }
+    form.lookup-lib>.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 120px;
+    }
  }
 
  @media screen and (min-width: 769px) and (max-width: 1024px){
@@ -439,7 +469,14 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     }
     /*Topbar Search*/
     .ds-none{
-        display: none!important;
+        /*display: none!important;*/
+    }
+    .olas-icon{
+        /*max-width: none!important;*/
+        max-width: unset!important;
+    }
+    input.topbar-search{
+        width: 50%;    
     }
  }
 @media screen and (min-width: 1025px) and (max-width: 1440px){
@@ -454,7 +491,7 @@ background-image: linear-gradient(#48b0f7, #48b0f7),linear-gradient(#48b0f7, #48
     }
     /*Topbar Search*/
     .ds-none{
-        display: none!important;
+        /*display: none!important;*/
     }
 }
 @media screen and (min-width: 1440px){
