@@ -51,4 +51,11 @@ class Reservation extends _BaseController {
         $this->reservation->discard($reservationId);
     }
     
+    public function Limit(){
+        echo '{';
+            echo '"reserved":"'.$this->reservation->checkReservation().'",';
+            echo '"total":"'.$this->cart->total_items().'"';
+        echo '}';
+    }
+
 }

@@ -280,31 +280,51 @@
         },
 
         reserve: function(){
-            swal({
-                title: 'Reserve books in bookbag?',
-                text: 'You must pick up the books at the library before 3 days or else your reservation will be discarded',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {                                        
-                    $.ajax({
-                        url: "<?php echo base_url('Reservation/Save'); ?>",
-                        success: function(i){                        
-                            Bookbag.removeAllAjax();
-                            $('#bookbag-table').DataTable().ajax.reload();
-                            swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
-                        },
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');                            
-                            console.log(i);
-                        }
-                    });
+            $.ajax({
+                url: "<?php echo base_url('Reservation/Limit'); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    
+                    if(i.reserved > 0){
+                        swal('Oops!', "You have already reserved a book", 'warning');
+                    } 
+                    else if(i.total > 1){
+                        swal('Oops!', "You can only reserve 1 book", 'warning');
+                    }
+                    else{
+                        swal({
+                            title: 'Reserve books in bookbag?',
+                            text: 'You must pick up the books at the library before 3 days or else your reservation will be discarded',
+                            type: 'warning',
+                            showCancelButton: true,
+                            cancelButtonText: 'No! Cancel',
+                            cancelButtonClass: 'btn btn-default',
+                            confirmButtonText: 'Yes! Go for it',
+                            confirmButtonClass: 'btn btn-info'
+                        }).then((result) => {
+                            if (result.value) {                                        
+                                $.ajax({
+                                    url: "<?php echo base_url('Reservation/Save'); ?>",
+                                    success: function(i){                        
+                                        Bookbag.removeAllAjax();
+                                        $('#bookbag-table').DataTable().ajax.reload();
+                                        swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
+                                    },
+                                    error: function(i){
+                                        swal('Oops!', "Something went wrong", 'error');                            
+                                        console.log(i);
+                                    }
+                                });
+                            }
+                        })
+                    }                                                                           
+                },
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');                            
+                    console.log(i);
                 }
-            })            
+            });
+                        
         }
 
     };
