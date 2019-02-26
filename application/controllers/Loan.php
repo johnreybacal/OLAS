@@ -26,7 +26,7 @@ class Loan extends _BaseController {
             $json .= '['
                 .'"<a href = \''.base_url('Book/IssuedBooks/'.$data->LoanId).'\'>'.$data->LoanId.'</a>",'
                 .'"'.$data->MemberId.'",'
-                .'"'.$data->AccessionNumber.'",'
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'"'

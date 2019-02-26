@@ -55,7 +55,7 @@ class Book extends _BaseController {
         foreach($this->bookCatalogue->_list($additionalCondition) as $data){   
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
-                .'"'.$data->AccessionNumber.'",'
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
@@ -106,7 +106,7 @@ class Book extends _BaseController {
                 $series = $s->Name;
             }             
             $json .= '['
-                .'"'.$data->AccessionNumber.'",'
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
