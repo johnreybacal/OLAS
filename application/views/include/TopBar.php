@@ -69,7 +69,7 @@
 
 <script>
 	$(document).keypress(function(e){
-		if(e.which == 13){			
+		if(e.which == 13 && $('#qv-form-center').hasClass('reveal')){			
 			login.validate();
 		}
 	});
