@@ -52,7 +52,7 @@
     <div class="topbar-center d-snone d-md-block">
         <form class="lookup lookup-lg lookup-patron no-icon">
             <input class="no-radius topbar-patron-search" id="search" type="text" placeholder="Search">
-            <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
+            <select id="filter" name="filter" class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>
                 <!-- <option selected>Subject</option> -->
