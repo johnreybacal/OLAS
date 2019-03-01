@@ -210,7 +210,7 @@ class _BaseController extends CI_Controller {
 		//filter
 		if(array_key_exists('filter', $this->input->post('search'))){
 			$filter = $this->input->post('search')['filter'];		
-			if(in_array("Title" , $filter)){			
+			if(in_array("Book" , $filter)){			
 				foreach($this->book->search($search) as $x){
 					$accessionNumber .= "'".$x->AccessionNumber."',";				
 				}
@@ -251,14 +251,16 @@ class _BaseController extends CI_Controller {
 		}		
 		$accessionNumber = $this->removeExcessComma($accessionNumber);				
 		if($accessionNumber != null){
-			foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
+			// foreach($this->bookCatalogue->_list('WHERE AccessionNumber IN ('.$accessionNumber.')') as $x){
+			foreach($this->bookCatalogue->search($accessionNumber) as $x){
 				$book = $this->book->_get($x->ISBN);
-				$str .= '"'.$x->AccessionNumber.'":{';
-				$str .= '"catalogue":'.$this->convert($x).',';
+				$str .= '"'.$x->ISBN.'":{';
+				// $str .= '"catalogue":'.$this->convert($x).',';
 				$str .= '"book":'.$this->convert($book).',';
-				$str .= '"series":'.$this->convert($this->series->_get($book->SeriesId)).',';
-				$str .= '"publisher":'.$this->convert($this->publisher->_get($book->PublisherId)).',';
-				$str .= '"reservation":'.$this->convert($this->reservation->isReserved($x->AccessionNumber)).',';
+				$str .= '"copies":'.$x->Copies.',';
+				// $str .= '"series":'.$this->convert($this->series->_get($book->SeriesId)).',';
+				// $str .= '"publisher":'.$this->convert($this->publisher->_get($book->PublisherId)).',';
+				// $str .= '"reservation":'.$this->convert($this->reservation->isReserved($x->AccessionNumber)).',';
 				//author
 				$authorCounter = 0;
 				$str .= '"author":{';
@@ -269,18 +271,18 @@ class _BaseController extends CI_Controller {
 					$str .= '"'.$authorCounter.'":'.$this->convert($this->author->_get($author->AuthorId));
 					$authorCounter++;
 				}  				
-				$str .= '},';				
+				$str .= '}';				
 				//subject
-				$subjectCounter = 0;
-				$str .= '"subject":{';
-				foreach($this->bookSubject->_list($x->ISBN) as $subject){
-					if($subjectCounter != 0){
-						$str .= ',';
-					}
-					$str .= '"'.$subjectCounter.'":'.$this->convert($this->subject->_get($subject->SubjectId));
-					$subjectCounter++;
-				}  				
-				$str .= '}';
+				// $subjectCounter = 0;
+				// $str .= '"subject":{';
+				// foreach($this->bookSubject->_list($x->ISBN) as $subject){
+				// 	if($subjectCounter != 0){
+				// 		$str .= ',';
+				// 	}
+				// 	$str .= '"'.$subjectCounter.'":'.$this->convert($this->subject->_get($subject->SubjectId));
+				// 	$subjectCounter++;
+				// }  				
+				// $str .= '}';
 	
 	
 				$str .= '},';			

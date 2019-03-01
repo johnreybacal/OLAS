@@ -58,4 +58,8 @@ class BookCatalogueModel extends _BaseModel{
 		return $this->db->query("SELECT AccessionNumber FROM bookcatalogue WHERE ISBN IN (SELECT ISBN FROM book WHERE DatePublished BETWEEN '".$from."' AND '".$to."' AND ISBN IN (SELECT ISBN FROM bookcatalogue WHERE AccessionNumber IN (".$accessionNumber.")))")->result();
 	}
 
+	public function search($accessionNumber){
+		return $this->db->query("SELECT count(AccessionNumber) as Copies, ISBN FROM bookcatalogue WHERE AccessionNumber IN (".$accessionNumber.") GROUP BY ISBN")->result();
+	}
+
 }
