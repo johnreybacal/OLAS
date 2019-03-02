@@ -11,6 +11,13 @@
 				<a href = "<?php echo base_url('Book/Add') ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Add Book">
 				<i class="ti-plus"></i>
 				</a>
+				<a href = "<?php echo base_url('Book/MarcImport'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Import from MARC">
+				<i class="ti-import"></i>
+				<a href = "<?php echo base_url('Book/Uncatalogued'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="For Processing">
+				<i class="ti-loading"></i>
+				<a href = "<?php echo base_url('Book/PrintQR'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Print QR">
+				<i class="ti-QR"></i>
+				</a>
 			</div>
 		</div>
 	<!-- </div> -->

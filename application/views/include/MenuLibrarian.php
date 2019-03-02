@@ -23,7 +23,7 @@
             <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon ti-book"></span>
-                    <span class="title">Book</span>
+                    <span class="title">Book Inventory</span>
                     <span class="arrow"></span>
                 </a>
 
@@ -34,7 +34,9 @@
                             <span class="title">Books</span>
                         </a>
                     </li>                                                                               
-
+                                        
+                    <li class="menu-category">Book Data</li>
+                    
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
                             <span class="dot"></span>
@@ -62,11 +64,11 @@
                             <span class="title">Series</span>
                         </a>
                     </li>  
-                
+                    
                 </ul>
             </li>
 
-            <li class="menu-item">
+            <!-- <li class="menu-item">
                 <a class="menu-link" href="#">
                     <span class="icon ti-book"></span>
                     <span class="title">Catalogue</span>
@@ -104,7 +106,7 @@
                     </li>   
 
                 </ul>
-            </li>
+            </li> -->
 
             <?php endif; ?>
             
