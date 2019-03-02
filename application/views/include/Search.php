@@ -66,22 +66,7 @@
     </div>
 </div>
 
-<div class="modal modal-center fade" id="modal-book-copies" tabindex="-1">
-    <div class="modal-dialog modal-xlg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="book-copies-title" class="modal-title">Book</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="book-copies-table-container" class="table-responsive">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php include("_Copies_Modal.php"); ?>
 
 <script>    
 
@@ -125,16 +110,16 @@
             $('style').hide();
         },
 
-        showModal: function(title, isbn){
+        showModal: function(title, isbn, callnumber, author){
             var url = "<?php echo base_url('Book/GenerateTableCopies/'); ?>" + isbn;
             $('#modal-book-copies').modal('show');
             $('#book-copies-title').html(title);
             $('#book-copies-table-container').empty();
             $('#book-copies-table-container').append(
-                '<table id="book-copies-table" class="table table-striped table-bordered display nowrap r3 r4 r8" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                '<table id="book-copies-table" class="table table-striped table-bordered display nowrap r2 r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
                     '<thead>' +
                         '<tr class="bg-info">' + 
-                            '<th>Title</th>' +			                                
+                            // '<th>Title</th>' +			                                
                             '<th>Authors</th>' +
                             '<th>Call Nummber</th>' +
                             '<th>Accession Number</th>' +   
@@ -231,7 +216,7 @@
                       
                         var element = 
                         '<div class="col-lg-8 col-md-8 col-sm-12">' +
-                            '<div class="row book" onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\')">' +
+                            '<div class="row book" >' +
                                 '<div class="book-cover-search col-lg-3 col-3">' +                                
                                     // '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
                                     '<img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid">' + 
@@ -257,8 +242,8 @@
                                     '<div class="book-short-description">' +
                                         data.book.Summary +
                                     '</div>' +
-                                    '<div>' +
-                                        'Number of copies: ' + data.copies +
+                                    '<div >' +
+                                        'Number of copies: ' + '<a onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\',\'' + data.book.CallNumber + '\',\'' + data.author + '\')" style="cursor:pointer;">'+ data.copies +'</a>' +
                                     '</div>' +
                                     // '<div class="book-settings">' +
                                     //     action +
