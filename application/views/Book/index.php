@@ -12,11 +12,14 @@
 				<i class="ti-plus"></i>
 				</a>
 				<a href = "<?php echo base_url('Book/MarcImport'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Import from MARC">
-				<i class="ti-import"></i>
+				<i class="fa fa-upload"></i>
+				</a>
 				<a href = "<?php echo base_url('Book/Uncatalogued'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="For Processing">
-				<i class="ti-loading"></i>
+				<i class="ti-book"></i>
+				</a>
 				<a href = "<?php echo base_url('Book/PrintQR'); ?>" class="btn btn-float btn-lg btn-info float-md-right text-white" data-provide="tooltip" data-original-title="Print QR">
-				<i class="ti-QR"></i>
+				<!-- <i class="fa fa-qrcode"></i> -->
+				<i class="ion-qr-scanner"></i>
 				</a>
 			</div>
 		</div>

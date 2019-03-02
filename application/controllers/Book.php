@@ -56,12 +56,13 @@ class Book extends _BaseController {
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
                 .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
-                .'"'.$book->Title.'",'
+                .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$book->Title.'</a>",'    
+                // .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->DateAcquired.'",'                
                 .'"'.($data->IsAvailable == 1 ? '<span class=\"badge badge-success\">In</span>' : '<span class=\"badge badge-danger\">Out</span>').'",'                
-                .'"<a href = \"'.base_url("Book/View/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"View\"><span class = \"fa fa-eye fa-2x\"></span></a><a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+                .'"<a href = \"'.base_url("Book/Edit/".$data->AccessionNumber).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
             .']';             
             $json .= ',';
         }
@@ -149,7 +150,7 @@ class Book extends _BaseController {
             $book = $this->book->_get($isbn);   
             $reservation = $this->reservation->isReserved($data->AccessionNumber);
             $json .= '['                                
-                .'"'.$book->Title.'",'                                                
+                // .'"'.$book->Title.'",'                                                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'                                                
                 .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",';
@@ -164,28 +165,28 @@ class Book extends _BaseController {
                             //check if current patron reserved the book
                             if($reservation['PatronId'] == $this->session->userdata('patronId')){
                                 //reserved by current patron
-                                $json .= '"<span class=\"badge badge-warning\" style=\"text-transform: uppercase;\">Already Reserved</span>"';
+                                $json .= '"<span class=\"badge badge-warning mx-1\" style=\"text-transform: uppercase;\">Already Reserved</span>"';
                             }
                             else{
                                 //reserved by someone else
-                                $json .= '"<span class=\"badge badge-warning\" style=\"text-transform: uppercase;\">Reserved</span>"';
+                                $json .= '"<span class=\"badge badge-warning mx-1\" style=\"text-transform: uppercase;\">Reserved</span>"';
                             }
                         }
                         else{
                             //add to bookbag
-                            $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span><a class=\"hover-primary\" data-provide=\"tooltip\" href=\"#\" title=\"Add to bookbag\" onclick = \"Bookbag.add('.$data->AccessionNumber.','.$isbn.');\"><i class=\"fa fa-plus fa-2x mt-2\"></i></a>"';
+                            $json .= '"<span class=\"badge badge-success mx-1\" style=\"text-transform: uppercase;\">In</span><a class=\"hover-primary\" data-provide=\"tooltip\" href=\"#\" title=\"Add to bookbag\" onclick = \"Bookbag.add('.$data->AccessionNumber.','.$isbn.');\"><span class=\"badge badge-primary mx-1\">Add to Bookbag</span></a>"';
                             
                         }
                     }else{
-                        $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span>"';
+                        $json .= '"<span class=\"badge badge-success mx-1\" style=\"text-transform: uppercase;\">In</span>"';
                     }
                 }
                 else{
                     //out
-                    $json .= '"<span class=\"badge badge-danger\" style=\"text-transform: uppercase;\">Out</span>"';
+                    $json .= '"<span class=\"badge badge-danger mx-1\" style=\"text-transform: uppercase;\">Out</span>"';
                 }
             }else{
-                $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span><span class=\"badge badge-info\" style=\"text-transform: uppercase;\">Room use only</span>"';
+                $json .= '"<span class=\"badge badge-success mx-1\" style=\"text-transform: uppercase;\">In</span><span class=\"badge badge-info\" style=\"text-transform: uppercase;\">Room use only</span>"';
                 //room use only
             }
             $json .= ']';             
