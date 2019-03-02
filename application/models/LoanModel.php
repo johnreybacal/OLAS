@@ -69,7 +69,15 @@ class LoanModel extends _BaseModel{
 			."WHERE LoanId = '".$loan['LoanId']."'"
 		);			
 		$available = ($loan['BookStatusId'] != 4) ? 1 : 0;//marks book unavaible when lost
-		$this->db->query("UPDATE bookcatalogue SET IsAvailable = '".$available."', Notes = '".$loan["Notes"]."'  WHERE AccessionNumber = '".$loan['AccessionNumber']."'");		
+		$this->db->query("UPDATE bookcatalogue SET IsAvailable = '".$available."', Notes = '".$loan["Notes"]."'  WHERE AccessionNumber = '".$loan['AccessionNumber']."'");
+		$penalty = array(
+			"PenaltyId" => 0,
+			"PatronId" => $loan['PatronId'],
+			"LoanId" => $loan['LoanId'],
+		);		
+		if($loan['AmountPayed'] > 0){
+			$this->penalty->save($penalty);
+		}
 	}
 
 	public function recall($loanId){

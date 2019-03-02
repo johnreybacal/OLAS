@@ -36,7 +36,7 @@
                     </li>                                                                               
                                         
                     <li class="menu-category">Book Data</li>
-                    
+
                     <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Author/'); ?>">
                             <span class="dot"></span>
@@ -179,6 +179,13 @@
                         <a class="menu-link" href="<?php echo base_url('PatronType'); ?>">
                             <span class="dot"></span>
                             <span class="title">Patron Type</span>
+                        </a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Patron/Clearance'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Clearance</span>
                         </a>
                     </li>
                 </ul>

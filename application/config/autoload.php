@@ -156,6 +156,7 @@ $autoload['model'] = array(
 	'MarcImportModel' => 'marcImport',
 	'OutsideResearcherModel' => 'outsideResearcher',
 	'OutsideResearcherSubjectModel' => 'outsideResearcherSubject',
+	'PenaltyModel' => 'penalty',
 	'PublisherModel' => 'publisher',
 	'ReservationModel' => 'reservation',
 	'ReportModel' => 'report',

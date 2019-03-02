@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2019 at 02:45 PM
+-- Generation Time: Mar 02, 2019 at 02:57 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -209,8 +209,8 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 (17, '9780747569404', '2018-10-23', 'wef', 12, '', 0, 1, 1),
 (18, '9780747569404', '2018-10-23', 'wef', 120, '', 1, 1, 1),
 (19, '9781368012287', '2018-10-25', 'jb', 100, '', 1, 1, 1),
-(20, '9780000000002', '2018-11-11', 'Johnrey', 800, ' This book is damaged by Sena, John Mark, returned on 2019-02-06 17:11:31', 0, 0, 1),
-(21, '9780747569404', '2018-11-13', '1', 1, '', 1, 0, 1),
+(20, '9780000000002', '2018-11-11', 'Johnrey', 800, ' This book is damaged by Sena, John Mark, returned on 2019-02-06 17:11:31, hello', 0, 1, 1),
+(21, '9780747569404', '2018-11-13', '1', 1, 'This book is lost by Bacal, Johnrey', 1, 1, 1),
 (22, '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
 (23, '0786830239', '2018-11-13', '12', 121, '', 1, 1, 1),
 (24, '9780747569404', '2018-11-13', '1', 1, '', 1, 1, 1),
@@ -221,7 +221,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 (29, '0786830239', '2018-11-19', 'edwsfdv', 4, '', 1, 1, 1),
 (30, '9780000000003', '2019-01-31', 'nat', 100, '', 1, 1, 1),
 (31, '9780621063099', '2019-02-03', 'Tikoy', 200, '', 0, 1, 1),
-(32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 0, 1),
+(32, '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 (33, '0988941589', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 (34, '9785386262884', '2019-02-03', 'Joy', 200, ' This book is damaged by Sena, John Mark, returned on the day of 2019-02-06 16:46:22', 0, 1, 1),
 (35, '9784773012941', '2019-02-03', 'Veronica', 200, '', 0, 1, 1),
@@ -494,9 +494,9 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (9, 3, 34, '2019-02-03 12:17:19', '2019-02-06 12:17:19', '2019-02-03 12:17:57', 0, 2, 0),
 (13, 1, 1, '2019-02-06 16:26:10', '2019-02-09 16:26:10', '2019-02-06 16:40:34', 500, 4, 0),
 (15, 3, 20, '2019-02-06 17:05:51', '2019-02-09 17:05:51', '2019-02-06 17:11:38', 800, 3, 0),
-(16, 3, 20, '2019-02-12 17:19:22', '2019-02-15 17:19:22', NULL, NULL, 1, 0),
-(17, 1, 21, '2019-02-15 13:42:35', '2019-02-18 13:42:35', NULL, NULL, 1, 0),
-(18, 1, 32, '2019-02-17 11:32:50', '2019-02-20 11:32:50', NULL, NULL, 1, 0);
+(16, 3, 20, '2019-02-12 17:19:22', '2019-02-15 17:19:22', '2019-03-02 10:41:37', 280, 2, 0),
+(17, 1, 21, '2019-02-15 13:42:35', '2019-02-18 13:42:35', '2019-03-02 10:45:11', 220, 2, 0),
+(18, 1, 32, '2019-02-17 11:32:50', '2019-02-20 11:32:50', '2019-03-02 10:47:22', 180, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -670,7 +670,7 @@ TRUNCATE TABLE `patron`;
 --
 
 INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`, `DateCreated`) VALUES
-(1, 1, 'Johnrey', 'Cumayas', 'Bacal', '', '15-037-017', 1, '12345678', '+639770110623', 'johnrey.bacal@yahoo.com', '2018-11-08'),
+(1, 1, 'Johnrey', 'Cumayas', 'Bacal', 'PhD', '15-037-017', 1, '12345678', '+639977011062', 'johnrey.bacal@yahoo.com', '2018-11-08'),
 (3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12123123, 'westsidenigga', '+639999999999', 'nigga@yahoo.com', '2018-11-09');
 
 -- --------------------------------------------------------
@@ -701,6 +701,32 @@ INSERT INTO `patrontype` (`PatronTypeId`, `Name`, `NumberOfBooks`, `NumberOfDays
 (1, 'Student', 1, 1, 1),
 (2, 'Faculty employee', 10, 7, 1),
 (3, 'Admin', 20, 7, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penalty`
+--
+
+DROP TABLE IF EXISTS `penalty`;
+CREATE TABLE `penalty` (
+  `PenaltyId` int(11) NOT NULL,
+  `PatronId` int(11) NOT NULL,
+  `LoanId` int(11) NOT NULL,
+  `Status` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Truncate table before insert `penalty`
+--
+
+TRUNCATE TABLE `penalty`;
+--
+-- Dumping data for table `penalty`
+--
+
+INSERT INTO `penalty` (`PenaltyId`, `PatronId`, `LoanId`, `Status`) VALUES
+(1, 1, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -769,8 +795,11 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 (18, 1, 1, '2018-10-31 22:47:44', 1, 0),
 (19, 1, 1, '2018-11-01 18:06:24', 1, 0),
 (20, 3, 34, '2019-02-03 12:14:01', 0, 0),
-(21, 3, 31, '2019-02-17 20:42:03', 0, 1),
-(22, 3, 34, '2019-02-17 20:42:03', 0, 1);
+(21, 3, 31, '2019-02-17 20:42:03', 1, 0),
+(22, 3, 34, '2019-02-17 20:42:03', 1, 0),
+(23, 3, 14, '2019-02-18 09:26:27', 1, 0),
+(24, 3, 31, '2019-02-26 17:24:33', 1, 0),
+(25, 3, 39, '2019-03-01 20:32:10', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -981,6 +1010,12 @@ ALTER TABLE `patrontype`
   ADD PRIMARY KEY (`PatronTypeId`);
 
 --
+-- Indexes for table `penalty`
+--
+ALTER TABLE `penalty`
+  ADD PRIMARY KEY (`PenaltyId`);
+
+--
 -- Indexes for table `publisher`
 --
 ALTER TABLE `publisher`
@@ -1080,6 +1115,11 @@ ALTER TABLE `patron`
 ALTER TABLE `patrontype`
   MODIFY `PatronTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `penalty`
+--
+ALTER TABLE `penalty`
+  MODIFY `PenaltyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `publisher`
 --
 ALTER TABLE `publisher`
@@ -1088,7 +1128,7 @@ ALTER TABLE `publisher`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `section`
 --
