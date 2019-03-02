@@ -46,6 +46,48 @@ class Patron extends _BaseController {
         }        
         echo $result;
     }
+
+
+    public function GenerateTable(){
+        $json = '{ "data": [';
+        foreach($this->patron->_list() as $data){
+            $json .= '['
+                .'"<a href = \''.base_url('Patron/View/'.$data->PatronId).'\'>'.$data->LastName.", ".$data->FirstName.'</a>",'                
+                .'"'.$this->patronType->_get($data->PatronTypeId)->Name.'",'
+                .'"'.$data->ContactNumber.'",'
+                .'"'.$data->Email.'",'                
+                .'"'.$this->penalty->patronClearance($data->PatronId).'",'                
+                .'"<a href = \"'.base_url("Patron/Edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+    
+    public function GenerateTableClearance(){
+        $json = '{ "data": [';
+        foreach($this->penalty->_list("WHERE Status = '0'") as $data){
+            $patron = $this->patron->_get($data->PatronId);
+            $loan = $this->loan->_get($data->LoanId);
+            $book = $this->book->_get(
+                $this->bookCatalogue->_get(
+                    $loan->AccessionNumber
+                )->ISBN
+            );
+            $json .= '['
+                .'"'.$patron->LastName.", ".$patron->FirstName.' ",'     
+                .'"'.$book->Title.'",'
+                .'"'.$loan->AmountPayed.'",'
+                .'"<button onclick = \"Clearance.clear('.$data->PenaltyId.')\" class = \"btn btn-md btn-flat btn-success\" title=\"Clear\"><span class = \"fa fa-check fa-2x\"></span></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
     
     public function LogOut($page = null){//required pala talaga lol
         $this->cart->destroy();
@@ -160,47 +202,6 @@ class Patron extends _BaseController {
         echo $str;
         //
 
-    }
-
-	public function GenerateTable(){
-        $json = '{ "data": [';
-        foreach($this->patron->_list() as $data){
-            $json .= '['
-                .'"<a href = \''.base_url('Patron/View/'.$data->PatronId).'\'>'.$data->LastName.", ".$data->FirstName.'</a>",'                
-                .'"'.$this->patronType->_get($data->PatronTypeId)->Name.'",'
-                .'"'.$data->ContactNumber.'",'
-                .'"'.$data->Email.'",'                
-                .'"'.$this->penalty->patronClearance($data->PatronId).'",'                
-                .'"<a href = \"'.base_url("Patron/Edit/".$data->PatronId).'\" class = \"btn btn-md btn-flat btn-info\" title=\"Edit\"><span class = \"fa fa-edit fa-2x\"></span></a>"'
-            .']';            
-            $json .= ',';
-        }
-        $json = $this->removeExcessComma($json);
-        $json .= ']}';
-        echo $json;        
-    }
-    
-    public function GenerateTableClearance(){
-        $json = '{ "data": [';
-        foreach($this->penalty->_list("WHERE Status = '0'") as $data){
-            $patron = $this->patron->_get($data->PatronId);
-            $loan = $this->loan->_get($data->LoanId);
-            $book = $this->book->_get(
-                $this->bookCatalogue->_get(
-                    $loan->AccessionNumber
-                )->ISBN
-            );
-            $json .= '['
-                .'"'.$patron->LastName.", ".$patron->FirstName.' ",'     
-                .'"'.$book->Title.'",'
-                .'"'.$loan->AmountPayed.'",'
-                .'"<button onclick = \"Clearance.clear('.$data->PenaltyId.')\" class = \"btn btn-md btn-flat btn-info\" title=\"Clear\"><span class = \"fa fa-check fa-2x\"></span></a>"'
-            .']';            
-            $json .= ',';
-        }
-        $json = $this->removeExcessComma($json);
-        $json .= ']}';
-        echo $json;        
     }
 
     public function Get($id){

@@ -1,16 +1,10 @@
 <header class="header header-inverse bg-ui-general"> 
-	<!-- <div class="container"> -->
 		<div class="header-info">
-			<!-- <div class="left"> -->
 				<h2 class="header-title"><strong>Clearance</strong> <small class="subtitle">List of all Patrons that needs clearance.</small></h2>
-			<!-- </div> -->
 		</div>
-	<!-- </div> -->
 </header>
 <div class="main-content">
 	<div class="card">
-		<!-- <div class="card-title"> -->
-		<!-- </div> -->
 		<div class="card-body">
 			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px; float: right;">
 				<label>&nbsp;</label>
@@ -33,6 +27,19 @@
 </div>
 
 <script>
+	// var $window = $(window);
+
+ //                $window.resize(function resize() {
+ //                    if ($window.width() > 768) {
+ //                        $('#book-table').removeClass('table-responsive');
+ //                    }
+ //                    else{
+ //                        $('#book-table').addClass('table-responsive');  
+ //                    }
+
+ //                    //$html.addClass('mobile');
+ //                    //$html.removeClass('mobile');
+ //                }).trigger('resize');
     var Clearance = {
         clear: function(penaltyId){
             $.ajax({

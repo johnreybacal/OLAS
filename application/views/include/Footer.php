@@ -34,7 +34,7 @@
         );
         var $window = $(window);
         $window.resize(function resize() {
-            if ($window.width() > 768) {
+            if ($window.width() >= 768) {
                 $('table').removeClass('table-responsive');
             }
             else{
@@ -43,6 +43,21 @@
             //$html.addClass('mobile');
             //$html.removeClass('mobile');
         }).trigger('resize');
+
+        // var $window = $(window);
+        // console.log("una");
+        // $window.resize(function resize() {
+        //     if ($window.width() > 768) {
+        //         $('table').addClass('table-responsive');
+        //         $('table').closest('div')removeClass('table-responsive');
+        //         console.log(">768");
+        //     }
+        //     else{
+        //         $('table').removeClass('table-responsive');  
+        //         $('table').closest('div').addClass('table-responsive');  
+        //         console.log("else");
+        //     }
+        // }).trigger('resize');
     });
 
     function ExportExcel(id){
