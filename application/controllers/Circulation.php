@@ -85,6 +85,22 @@ class Circulation extends _BaseController {
         echo $json;        
     }
 
+    public function Allbooks(){
+        $books = $this->loan->_list("WHERE BookStatusId = '1'");
+        foreach($books as $data){
+            $book[] = $data->DateDue;
+            $due = strtotime($data->DateDue);
+            $now = strtotime(date("Y-m-d h:i:sa"));
+
+            if($due == $now || $due < $now){
+                $loanI]d = $data->LoanId;
+                echo $loanId." ";
+                $this->loan->unrecall($loanId);
+                $this->NotifyPatron($this->loan->_get($loanId)->PatronId, 'Recall cancelled', 'Please enjoy your book');
+            }
+        }
+    }
+
     public function GenerateTableHistory($from = null, $to = null){
         $json = '{ "data": [';
         $additionalCondition = '';
