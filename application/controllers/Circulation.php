@@ -13,7 +13,29 @@ class Circulation extends _BaseController {
     }
     
     public function Issued(){
+
+        $books = $this->loan->_list("WHERE BookStatusId = '1'");
+        foreach($books as $data){
+            $book[] = $data->DateDue;
+            $due = strtotime($data->DateDue);
+            // $now = strtotime("2019-03-05 13:42:01");
+            $now = strtotime(date("Y-m-d h:i:sa"));
+            $loanId = $data->LoanId;
+
+            if($due == $now || $due < $now){
+                if(($data->IsRecalled) == 0){
+                    $this->loan->recall($loanId);
+                    $loan = $this->loan->_get($loanId);
+                    $this->NotifyPatron(
+                    $loan->PatronId,
+                        'Your book is being recalled by the library',
+                        'Please immediately return the book: '.$this->book->_get($this->bookCatalogue->_get($loan->AccessionNumber)->ISBN)->Title.' to the library. Thank you.'
+                    ); 
+                }  
+            }
+        }
         $this->librarianView('Circulation/Issued', '');
+        // return();
     }    
     
     public function History(){
@@ -86,23 +108,7 @@ class Circulation extends _BaseController {
     }
 
     public function Allbooks(){
-        $books = $this->loan->_list("WHERE BookStatusId = '1'");
-        foreach($books as $data){
-            $book[] = $data->DateDue;
-            $due = strtotime($data->DateDue);
-            $now = strtotime(date("Y-m-d h:i:sa"));
-
-            if($due == $now || $due < $now){
-                $loanId = $data->LoanId;
-                $this->loan->recall($loanId);
-                $loan = $this->loan->_get($loanId);
-                $this->NotifyPatron(
-                    $loan->PatronId,
-                    'Your book is being recalled by the library',
-                    'Please immediately return the book: '.$this->book->_get($this->bookCatalogue->_get($loan->AccessionNumber)->ISBN)->Title.' to the library. Thank you.'
-                );    
-            }
-        }
+        
     }
 
     public function GenerateTableHistory($from = null, $to = null){
