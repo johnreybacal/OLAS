@@ -51,6 +51,10 @@ class ReservationModel extends _BaseModel{
 			."WHERE ReservationId = '".$reservationId."'"
 		);			
 	}
+
+	public function checkReservation(){
+		return $this->db->query("SELECT * FROM reservation WHERE IsActive = '1' AND PatronId = '".$this->session->userdata('patronId')."'")->num_rows();
+	}
 	
     
 }

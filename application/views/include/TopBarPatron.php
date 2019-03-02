@@ -2,7 +2,7 @@
 <header class="topbar topbar-expand-xl">  
     <div class="topbar-left">
         <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
-        <a href="<?php echo base_url('') ?>" class="logo logo-patron"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea;"></a>
+        <a href="<?php echo base_url('') ?>" class="logo logo-patron"><img src="<?php echo base_url('assetsOLAS/img/icons/favicon-32x32.png'); ?>" alt="logo-icon" style="display: nonea; max-width: unset;"></a>
         <nav class="topbar-navigation">
             <ul class="menu">
 
@@ -51,14 +51,14 @@
     </div>
     <div class="topbar-center d-snone d-md-block">
         <form class="lookup lookup-lg lookup-patron no-icon">
-            <input class="no-radius" id="search" type="text" placeholder="Search">
-            <select class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
+            <input class="no-radius topbar-patron-search" id="search" type="text" placeholder="Search">
+            <select id="filter" name="filter" class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>
-                <option selected>Subject</option>
+                <!-- <option selected>Subject</option> -->
                 <option selected>Section</option>
-                <option selected>Series</option>
-                <option selected>Publisher</option>
+                <!-- <option selected>Series</option> -->
+                <!-- <option selected>Publisher</option> -->
             </select>
             <button class="btn btn-info btn-bold no-radius fs-12" onclick="Search.search();" style="padding-top: 4px!important;"><i class="fa fa-search fa-2x"></i></button>
         </form>      
@@ -280,31 +280,51 @@
         },
 
         reserve: function(){
-            swal({
-                title: 'Reserve books in bookbag?',
-                text: 'You must pick up the books at the library before 3 days or else your reservation will be discarded',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {                                        
-                    $.ajax({
-                        url: "<?php echo base_url('Reservation/Save'); ?>",
-                        success: function(i){                        
-                            Bookbag.removeAllAjax();
-                            $('#bookbag-table').DataTable().ajax.reload();
-                            swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
-                        },
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');                            
-                            console.log(i);
-                        }
-                    });
+            $.ajax({
+                url: "<?php echo base_url('Reservation/Limit'); ?>",
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    
+                    if(i.reserved > 0){
+                        swal('Oops!', "You have already reserved a book", 'warning');
+                    } 
+                    else if(i.total > 1){
+                        swal('Oops!', "You can only reserve 1 book", 'warning');
+                    }
+                    else{
+                        swal({
+                            title: 'Reserve books in bookbag?',
+                            text: 'You must pick up the books at the library before 3 days or else your reservation will be discarded',
+                            type: 'warning',
+                            showCancelButton: true,
+                            cancelButtonText: 'No! Cancel',
+                            cancelButtonClass: 'btn btn-default',
+                            confirmButtonText: 'Yes! Go for it',
+                            confirmButtonClass: 'btn btn-info'
+                        }).then((result) => {
+                            if (result.value) {                                        
+                                $.ajax({
+                                    url: "<?php echo base_url('Reservation/Save'); ?>",
+                                    success: function(i){                        
+                                        Bookbag.removeAllAjax();
+                                        $('#bookbag-table').DataTable().ajax.reload();
+                                        swal('Reservation complete', "Please pick up your books before your reservation is discarded", 'success');                            
+                                    },
+                                    error: function(i){
+                                        swal('Oops!', "Something went wrong", 'error');                            
+                                        console.log(i);
+                                    }
+                                });
+                            }
+                        })
+                    }                                                                           
+                },
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');                            
+                    console.log(i);
                 }
-            })            
+            });
+                        
         }
 
     };

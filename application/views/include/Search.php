@@ -27,7 +27,7 @@
             <div data-search="book" id="search-book-result-container" class="tab-pane fade active show">        
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <!-- <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                             <label>Filter by</label>
                             <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control show-tick">
                                 <option value="Title" selected="true">Book (Title or ISBN)</option>
@@ -37,7 +37,7 @@
                                 <option value="Series" selected="true">Series</option>
                                 <option value="Publisher" selected="true">Publisher</option>
                             </select>	
-                        </div>
+                        </div> -->
                         <div class="col-lg-8 col-md-8 col-sm-12">
                             <label>Published date range</label>
                             <div class="input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
@@ -65,6 +65,24 @@
         </div>    
     </div>
 </div>
+
+<div class="modal modal-center fade" id="modal-book-copies" tabindex="-1">
+    <div class="modal-dialog modal-xlg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="book-copies-title" class="modal-title">Book</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="book-copies-table-container" class="table-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>    
 
     $(document).ready(function(){
@@ -105,6 +123,26 @@
             $('#search-container').show();
             $('script').hide();
             $('style').hide();
+        },
+
+        showModal: function(title, isbn){
+            var url = "<?php echo base_url('Book/GenerateTableCopies/'); ?>" + isbn;
+            $('#modal-book-copies').modal('show');
+            $('#book-copies-title').html(title);
+            $('#book-copies-table-container').empty();
+            $('#book-copies-table-container').append(
+                '<table id="book-copies-table" class="table table-striped table-bordered display nowrap r3 r4 r8" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "' + url + '">' + 
+                    '<thead>' +
+                        '<tr class="bg-info">' + 
+                            '<th>Title</th>' +			                                
+                            '<th>Authors</th>' +
+                            '<th>Call Nummber</th>' +
+                            '<th>Accession Number</th>' +   
+                            '<th></th>' + 
+                        '</tr>' +
+                    '</thead>' + 
+                '</table>'
+            );
         }
     };
     var Search = {
@@ -161,7 +199,7 @@
                         var status = '';
                         var action ='';
                         // '<a class="hover-primary" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="More information about this book"><i class="fa fa-eye fa-2x" style="color:#48b0f7"></i></a>';
-                        if(data.catalogue.IsRoomUseOnly == 0){//check if book is room use only
+                        /*if(data.catalogue.IsRoomUseOnly == 0){//check if book is room use only
                             if(data.catalogue.IsAvailable == 1){//check if book is available
                                 if("<?php echo $this->session->has_userdata('patronId'); ?>" == "1"){//check if patron is logged in
                                     if(data.reservation.IsReserved == 1){//check if book is reserved
@@ -189,17 +227,19 @@
                         }                                                      
                         if("<?php echo $this->session->has_userdata('librarianId'); ?>" == 1){
                             action += '<a class="hover-primary" href="<?php echo base_url('Book/Edit/'); ?>' + data.catalogue.AccessionNumber + '" data-provide="tooltip" title="Edit this book"><i class="fa fa-edit fa-2x" style="color:#48b0f7; margin-top:4px;"></i></a>';    
-                        }                        
+                        }*/                        
                       
                         var element = 
                         '<div class="col-lg-8 col-md-8 col-sm-12">' +
-                            '<div class="row book">' +
+                            '<div class="row book" onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\')">' +
                                 '<div class="book-cover-search col-lg-3 col-3">' +                                
-                                    '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
+                                    // '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
+                                    '<img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid">' + 
                                 '</div>' +
                                 '<div class="book-info-search col-lg-9 col-9">' +
                                     '<div class="book-title">' +
-                                        '<a class="book-title" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '">' + data.book.Title + '</a>' +
+                                        // '<a class="book-title" href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '">' + data.book.Title + '</a>' +
+                                        '<a class="book-title">' + data.book.Title + '</a>' +
                                     '</div>' + 
                                     '<div>' +
                                         'Call Number: ' + data.book.CallNumber +
@@ -209,17 +249,20 @@
                                             author + 
                                         '</div>' +
                                     '</div>' +
-                                    '<div class="book-rating">' +
-                                        '<div class="book-rating-box" >' +
-                                            status +
-                                        '</div>' +
-                                    '</div>' +
+                                    // '<div class="book-rating">' +
+                                    //     '<div class="book-rating-box" >' +
+                                    //         status +
+                                    //     '</div>' +
+                                    // '</div>' +
                                     '<div class="book-short-description">' +
                                         data.book.Summary +
                                     '</div>' +
-                                    '<div class="book-settings">' +
-                                        action +
+                                    '<div>' +
+                                        'Number of copies: ' + data.copies +
                                     '</div>' +
+                                    // '<div class="book-settings">' +
+                                    //     action +
+                                    // '</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';                                

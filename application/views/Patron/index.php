@@ -32,6 +32,7 @@
 							<th>Patron Type </th>
 							<th>Contact Number</th>
 							<th>Email</th>
+							<th>Clearance</th>
 							<th></th>
 						</tr>
 					</thead>

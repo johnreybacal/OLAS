@@ -30,14 +30,14 @@
     <div class="topbar-center d-md-block">
         <div id="search-div">
             <form class="lookup lookup-lg lookup-lib no-icon">
-                <input class="no-radius" id="search" type="text" placeholder="Search">
-                <select class="d-block librarian-search ds-none" data-provide="selectpicker" multiple>
+                <input class="no-radius topbar-librarian-search" id="search" type="text" placeholder="Search">
+                <select id="filter" name="filter" class="dss-none d-block librarian-search" data-provide="selectpicker" multiple>
                     <option selected>Book</option>
                     <option selected>Author</option>
-                    <option selected>Subject</option>
+                    <!-- <option selected>Subject</option> -->
                     <option selected>Section</option>
-                    <option selected>Series</option>
-                    <option selected>Publisher</option>
+                    <!-- <option selected>Series</option> -->
+                    <!-- <option selected>Publisher</option> -->
                 </select>
                 <button class="btn btn-info btn-bold no-radius fs-12" onclick="Search.search();" style="padding-top: 4px!important;" data-provide="tooltip" title="Search"><i class="fa fa-search fa-2x"></i></button>
             </form>

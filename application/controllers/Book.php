@@ -55,7 +55,7 @@ class Book extends _BaseController {
         foreach($this->bookCatalogue->_list($additionalCondition) as $data){   
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
-                .'"'.$data->AccessionNumber.'",'
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
@@ -106,7 +106,7 @@ class Book extends _BaseController {
                 $series = $s->Name;
             }             
             $json .= '['
-                .'"'.$data->AccessionNumber.'",'
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
@@ -136,6 +136,59 @@ class Book extends _BaseController {
                 .'"'.$data->Title.'",'                                                
                 .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\" title=\"Add\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\" title=\"Discard\">Discard</button>"'
             .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+    
+    public function GenerateTableCopies($isbn){
+        $json = '{ "data": [';
+        foreach($this->bookCatalogue->_list("WHERE ISBN = '".$isbn."'") as $data){               
+            $book = $this->book->_get($isbn);   
+            $reservation = $this->reservation->isReserved($data->AccessionNumber);
+            $json .= '['                                
+                .'"'.$book->Title.'",'                                                
+                .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
+                .'"'.$book->CallNumber.'",'                                                
+                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",';
+            //check room use
+            if($data->IsRoomUseOnly == 0){
+                //check availability
+                if($data->IsAvailable == 1){
+                    //check if patron is logged in
+                    if($this->session->has_userdata('isPatron')){
+                        //check if book is reserved
+                        if($reservation['IsReserved'] == 1){
+                            //check if current patron reserved the book
+                            if($reservation['PatronId'] == $this->session->userdata('patronId')){
+                                //reserved by current patron
+                                $json .= '"<span class=\"badge badge-warning\" style=\"text-transform: uppercase;\">Already Reserved</span>"';
+                            }
+                            else{
+                                //reserved by someone else
+                                $json .= '"<span class=\"badge badge-warning\" style=\"text-transform: uppercase;\">Reserved</span>"';
+                            }
+                        }
+                        else{
+                            //add to bookbag
+                            $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span><a class=\"hover-primary\" data-provide=\"tooltip\" href=\"#\" title=\"Add to bookbag\" onclick = \"Bookbag.add('.$data->AccessionNumber.','.$isbn.');\"><i class=\"fa fa-plus fa-2x mt-2\"></i></a>"';
+                            
+                        }
+                    }else{
+                        $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span>"';
+                    }
+                }
+                else{
+                    //out
+                    $json .= '"<span class=\"badge badge-danger\" style=\"text-transform: uppercase;\">Out</span>"';
+                }
+            }else{
+                $json .= '"<span class=\"badge badge-success\" style=\"text-transform: uppercase;\">In</span><span class=\"badge badge-info\" style=\"text-transform: uppercase;\">Room use only</span>"';
+                //room use only
+            }
+            $json .= ']';             
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
