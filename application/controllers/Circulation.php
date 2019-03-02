@@ -93,10 +93,14 @@ class Circulation extends _BaseController {
             $now = strtotime(date("Y-m-d h:i:sa"));
 
             if($due == $now || $due < $now){
-                $loanI]d = $data->LoanId;
-                echo $loanId." ";
-                $this->loan->unrecall($loanId);
-                $this->NotifyPatron($this->loan->_get($loanId)->PatronId, 'Recall cancelled', 'Please enjoy your book');
+                $loanId = $data->LoanId;
+                $this->loan->recall($loanId);
+                $loan = $this->loan->_get($loanId);
+                $this->NotifyPatron(
+                    $loan->PatronId,
+                    'Your book is being recalled by the library',
+                    'Please immediately return the book: '.$this->book->_get($this->bookCatalogue->_get($loan->AccessionNumber)->ISBN)->Title.' to the library. Thank you.'
+                );    
             }
         }
     }
