@@ -51,7 +51,7 @@
 								</div>					
 								<div class="form-group col-md-6">
 									<label>Call Number</label>
-									<input id="CallNumber" class="form-control pb-30" type="text" name="" placeholder="Call Number">
+									<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
 								</div>	
 								<div class="form-group col-md-6">
 									<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.section();" data-provide="tooltip" data-original-title="Add Section"><i class="ti-plus"></i></button>

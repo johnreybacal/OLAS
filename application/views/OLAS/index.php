@@ -15,7 +15,7 @@
                         <div class="book-cover col-lg-3 col-3">
 
                             <!-- <div class="btn btn-danger" style="max-width: 1px; max-height: 20px;"> sdasds</div> -->
-                            <a href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"><img src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" onError="this.onerror=null;this.src='assetsOLAS/img/book/comingsoon.png';" class="img-fluid"></a>
+                            <a href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"><img src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" alt="image" onError="this.onerror=null;this.src='assetsOLAS/img/book/comingsoon.png';" class="img-fluid"></a>
 
                         </div>
                             <!-- <div class="btn btn-bold btn-danger book-availability" style="">Unavailable</div> -->
@@ -77,7 +77,7 @@
 
                                     <?php else: ?>
                                         <!-- IsRoomUseOnly -->
-                                        <span class="badge badge-success" style="text-transform: upp">In</span>
+                                        <span class="badge badge-success">In</span>
                                     <?php endif; ?>
                                 
                                         <!-- <div class="rating" style="width:0%;"></div> -->
@@ -91,7 +91,7 @@
                             <div class="book-settings" style="float: right;">
                                 <a href="#"><i class="fa fa-ellipsis-v"></i></a>
                             </div> -->
-                            <div class="book-settings" style="float: risght; margin-top: 10px;">
+                            <div class="book-settings" style="margin-top: 10px;">
 
                             <!-- Check if room use only -->
                             <?php if($book[0]->IsRoomUseOnly == 0): ?>

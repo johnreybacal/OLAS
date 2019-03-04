@@ -30,12 +30,12 @@
                         <!-- <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
                             <label>Filter by</label>
                             <select id="filter" name="filter" data-min-option="1" data-provide="selectpicker" multiple title="Filter search result" data-live-search="true" class="form-control show-tick">
-                                <option value="Title" selected="true">Book (Title or ISBN)</option>
-                                <option value="Author" selected="true">Author</option>
-                                <option value="Subject" selected="true">Subject</option>
-                                <option value="Section" selected="true">Section</option>
-                                <option value="Series" selected="true">Series</option>
-                                <option value="Publisher" selected="true">Publisher</option>
+                                <option value="Title" selected>Book (Title or ISBN)</option>
+                                <option value="Author" selected>Author</option>
+                                <option value="Subject" selected>Subject</option>
+                                <option value="Section" selected>Section</option>
+                                <option value="Series" selected>Series</option>
+                                <option value="Publisher" selected>Publisher</option>
                             </select>	
                         </div> -->
                         <div class="col-lg-8 col-md-8 col-sm-12">
