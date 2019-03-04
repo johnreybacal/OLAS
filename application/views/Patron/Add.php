@@ -27,7 +27,7 @@
                                     <label>Last Name</label>
                                     <input  id="LastName" class="form-control" type="text" name="Lastname" placeholder="Last Name">
                                 </div>
-                        <div class="divider divider-vertical border-warning"></div>
+                            <div class="divider divider-vertical border-warning"></div>
                                 <div class="form-group col-md-8">
                                     <label>First Name</label>
                                     <input  id="FirstName" class="form-control" type="text" name="FirstName" placeholder="First Name">
