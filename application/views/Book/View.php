@@ -41,8 +41,8 @@
 					<div class="card-body form-type-line">
 						<div class="row">
 							<div class="col-md-4">
-								<img id="image" class="img-fluid img-hov-stretchout" src="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" />
-            					<!-- <input readonly id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;"> -->
+								<!-- img id="image" class="img-fluid img-hov-stretchout" src="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" /> -->
+            					<input readonly id="image" class="img-fluid img-hov-stretchout" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px; pointer-events: none; cursor: pointer;">
           					</div>
           					<!--  -->
 
@@ -158,6 +158,16 @@
 </div>
 <script>	
 	$(document).ready(function(){
+		$("#image").change(function(event){						
+			var tgt = event.target || window.event.srcElement, files = tgt.files;		
+			var fr = new FileReader();
+			fr.onload = function(){
+				$("#imgDisplay").children('img').attr('src', fr.result);
+				imageChanged = true;
+			}
+			fr.readAsDataURL(files[0]);
+		});
+
 		initializeSelectpicker();
 		Book.init();
 	});
@@ -267,6 +277,8 @@
 							subject.push(data.SubjectId);
 						});
 						$('#SubjectId').selectpicker('val', subject);
+
+						$('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('assetsOLAS/img/book/'); ?>" + i.book.Image);
 					}
 				}
 			});
