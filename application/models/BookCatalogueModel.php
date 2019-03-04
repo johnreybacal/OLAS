@@ -12,10 +12,11 @@ class BookCatalogueModel extends _BaseModel{
 		);
 	}
 
-	public function save($book){
-		if($book['AccessionNumber'] == 0){//insert			
+	public function save($book, $isInsert){		
+		if($isInsert){//insert
 			$this->db->query("INSERT into bookcatalogue "
-				."(ISBN, DateAcquired, AcquiredFrom, Price, Notes, IsRoomUseOnly, IsAvailable, IsActive) VALUES ("					
+				."(AccessionNumber, ISBN, DateAcquired, AcquiredFrom, Price, Notes, IsRoomUseOnly, IsAvailable, IsActive) VALUES ("					
+					."'".$book['AccessionNumber']."', "					
 					."'".$book['ISBN']."', "					
 					."'".$book['DateAcquired']."', "
 					."'".$book['AcquiredFrom']."',"
@@ -29,6 +30,7 @@ class BookCatalogueModel extends _BaseModel{
 		}
 		else{//update
 			$this->db->query("UPDATE bookcatalogue SET "				
+				."AccessionNumber = '".$book['AccessionNumber']."', "								
 				."ISBN = '".$book['ISBN']."', "								
 				."DateAcquired = '".$book['DateAcquired']."', "
 				."AcquiredFrom = '".$book['AcquiredFrom']."', "
@@ -37,10 +39,16 @@ class BookCatalogueModel extends _BaseModel{
 				."IsRoomUseOnly = '".$book['IsRoomUseOnly']."', "
 				."IsAvailable = '".$book['IsAvailable']."', "
 				."IsActive = '".$book['IsActive']."' "
-				."WHERE AccessionNumber = '".$book['AccessionNumber']."'"
+				."WHERE AccessionNumber = '".$book['AccessionNumberCurrent']."'"
 			);			
 		}
 	}		
+
+	public function getLastAccession(){
+		$accessionNumber = $this->db->query("SELECT AccessionNumber FROM bookcatalogue ORDER BY CAST(AccessionNumber AS unsigned) DESC LIMIT 1")->row()->AccessionNumber;
+		$accessionNumber = '0000000'.((int)$accessionNumber + 1);
+		return substr($accessionNumber, (strlen($accessionNumber) - 7));
+	}
 
 	public function lastAcquired($isbn){
 		return $this->db->query("SELECT AcquiredFrom, Price FROM bookcatalogue WHERE ISBN = '".$isbn."'  and DateAcquired = CURRENT_DATE")->row();

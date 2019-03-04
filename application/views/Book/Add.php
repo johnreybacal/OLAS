@@ -37,6 +37,10 @@
 									<h6 class="text-uppercase">Book details</h6>
 			                		<hr class="hr-sm mb-2 border-success">
 		                		</div>									
+								<div class="form-group col-md-6 col-sm-12">
+									<label>Accession Number</label>
+									<input  id="AccessionNumber" value = "<?php echo $AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number">
+								</div>
 								<div class="form-group col-md-6">
 									<label>ISBN</label>
 									<input  id="ISBN" class="form-control" type="text" name="ISBN" placeholder="ISBN">
@@ -294,7 +298,7 @@
 				OtherDetails: $('#OtherDetails').val(),
 				Size: $('#Size').val(),
 				
-				AccessionNumber: 0,
+				AccessionNumber: $('#AccessionNumber').val(),
 				CallNumber: $('#CallNumber').val(),
 				DateAcquired: $('#DateAcquired').val(),
 				AcquiredFrom: $('#AcquiredFrom').val(), 
@@ -361,7 +365,7 @@
 			}).then((result) => {
 				if (result.value) {        
 					$.ajax({
-						url:'<?php echo base_url('Book/Save'); ?>',
+						url:'<?php echo base_url('Book/Insert'); ?>',
 						type: "POST",
 						data: {"book": Book.data()},
 						success: function(i){

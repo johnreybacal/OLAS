@@ -40,8 +40,9 @@
 				                		<hr class="hr-sm mb-2 border-success">
 			                		</div>	
 									<div class="form-group col-md-6 col-sm-12">
+										<input type="hidden" id="AccessionNumberCurrent" value = "<?php echo $book->AccessionNumber; ?>" />
 										<label>Accession Number</label>
-										<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" readonly class="form-control" type="text" name="" placeholder="Accession Number">
+										<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number">
 									</div>
 									<!-- <div class="form-group col-md-6">		
 										<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
@@ -291,6 +292,7 @@
 				Size: $('#Size').val(),
 
 				AccessionNumber: $('#AccessionNumber').val(),
+				AccessionNumberCurrent: $('#AccessionNumberCurrent').val(),
 				CallNumber: $('#CallNumber').val(),
 				DateAcquired: $('#DateAcquired').val(),				
 				AcquiredFrom: $('#AcquiredFrom').val(),
@@ -357,7 +359,7 @@
 			}).then((result) => {
 				if (result.value) {  
 					$.ajax({
-						url:'<?php echo base_url('Book/Save'); ?>',
+						url:'<?php echo base_url('Book/Update'); ?>',
 						type: "POST",
 						data: {"book": Book.data()},
 						success: function(i){
@@ -374,7 +376,8 @@
 								confirmButtonText: 'Yes',
 								confirmButtonClass: 'btn btn-info'
 							}).then((result) => {
-								if (result.value) {									
+								if (result.value) {			
+									$('#AccessionNumberCurrent').val($('#AccessionNumber').val());
 								}else{
 									window.location.href = "<?php echo base_url('Book'); ?>"
 								}
