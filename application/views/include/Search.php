@@ -217,6 +217,7 @@
                         var element = 
                         '<div class="col-lg-8 col-md-8 col-sm-12">' +
                             '<div class="row book" >' +
+                            // '<div class="row book" onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\')">' +
                                 '<div class="book-cover-search col-lg-3 col-3">' +                                
                                     // '<a href="<?php echo base_url('Book/View/'); ?>' + data.catalogue.AccessionNumber + '"><img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid"></a>' + 
                                     '<img src="<?php echo base_url("assetsOLAS/img/book/"); ?>' + data.book.Image + '" onError="<?php echo base_url('assetsOLAS/img/book/comingsoon.png'); ?>" class="img-fluid">' + 
@@ -242,7 +243,7 @@
                                     '<div class="book-short-description">' +
                                         data.book.Summary +
                                     '</div>' +
-                                    '<div >' +
+                                    '<div onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\',\'' + data.book.CallNumber + '\',\'' + data.author + '\')" style="cursor:pointer;">' +
                                         'Number of copies: ' + '<a onclick="SearchResult.showModal(\'' + data.book.Title + '\',\'' + data.book.ISBN + '\',\'' + data.book.CallNumber + '\',\'' + data.author + '\')" style="cursor:pointer;">'+ data.copies +'</a>' +
                                     '</div>' +
                                     // '<div class="book-settings">' +
