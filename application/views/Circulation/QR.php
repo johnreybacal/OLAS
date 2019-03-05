@@ -10,7 +10,7 @@
 <div class="main-content">
             <div class="card">
                 <div class="card-body">
-                    <div id="table-container" class="table-responsive">
+                    <div class="table-responsive">
                         <table id="book-table" class="table table-striped table-bordered display nowrap r2 bg-info" style="width:100%; overflow-x:auto;" cellspacing="0" >
                             <thead>
                                 <tr class="center bg-info">
@@ -46,7 +46,7 @@
                                         <th style="width: 65px"></th>
                                     </tr>
                                 </thead>
-                                <tbody  style="color:#333;">
+                                <tbody>
                                 </tbody>
                             </table>
                         </div>

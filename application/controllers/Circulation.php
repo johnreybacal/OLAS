@@ -107,10 +107,6 @@ class Circulation extends _BaseController {
         echo $json;        
     }
 
-    public function Allbooks(){
-        
-    }
-
     public function GenerateTableHistory($from = null, $to = null){
         $json = '{ "data": [';
         $additionalCondition = '';

@@ -69,7 +69,7 @@
         <ul class="topbar-btns">
         <!-- Profile Dropdown -->
             <li class="dropdown">
-                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1.png'); ?>" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
                     <!-- <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a> -->
