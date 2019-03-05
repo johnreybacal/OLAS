@@ -29,66 +29,74 @@
 					</header>	
 					<div class="card-body form-type-line">
 						<div class="row">
-								<div class="col-md-3">
-									<!-- <div id="imgDisplay">
-	                				</div> -->
-	                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="true" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
-              					</div>
-								<div class="form-row gap-1 col-md-9 mt-3">
-									<div class="col-12">
-										<h6 class="text-uppercase">Book details</h6>
-				                		<hr class="hr-sm mb-2 border-success">
-			                		</div>	
-									<div class="form-group col-md-6 col-sm-12">
-										<label>Accession Number</label>
-										<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" readonly class="form-control" type="text" name="" placeholder="Accession Number">
-									</div>
-									<!-- <div class="form-group col-md-6">		
-										<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
-										<label>Select image</label>
-										<input id="image" name="image" type="file" accept="image/*" />
-									</div> -->
-									<div class="form-group col-md-6">
-										<label>ISBN</label>
-										<input  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="ISBN" placeholder="ISBN">
-									</div>
-									<div class="form-group col-md-6">
-										<label>Title</label>
-										<input id="Title" class="form-control" type="text" name="" placeholder="Title">
-									</div>					
-									<div class="form-group col-md-6">
-										<label>Call Number</label>
-										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
-									</div>	
-									<div class="form-group col-md-6">
-										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.section();" data-provide="tooltip" data-original-title="Add Section"><i class="ti-plus"></i></button>
-										<label>Section</label>
-										<select id="SelectSectionId" name="Section" data-provide="selectpicker"  title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.author();" data-provide="tooltip" data-original-title="Add Author"><i class="ti-plus"></i></button>
-										<label>Author</label>
-										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.subject();" data-provide="tooltip" data-original-title="Add Subject"><i class="ti-plus"></i></button>
-										<label>Subject</label>
-										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
-									</div>
-									<div class="form-group col-md-6">
-										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.series();" data-provide="tooltip" data-original-title="Add Series"><i class="ti-plus"></i></button>
-										<label>Series</label>
-										<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
-										<label>Edition</label>
-										<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
-									</div>	
+							<div class="col-md-3">
+										<!-- <div id="imgDisplay">
+		                				</div> -->
+		                					<input id="image" name="image" type="file" data-provide="dropify" data-show-remove="true" data-default-file="<?php echo base_url("assetsOLAS/img/book/bookdefault.jpg"); ?>" style="border: solid black 1px;">
+	              			</div>
+	              			<div class="col-md-3">
+	              				<div class="form-row">
+									<!-- <div class="form-row gap-1 col-md-12 mt-3"> -->
+										<div class="col-12">
+											<h6 class="text-uppercase">Book details</h6>
+					                		<hr class="hr-sm mb-2 border-success">
+				                		</div>	
+										<div class="form-group col-md-12 col-sm-12">
+											<input type="hidden" id="AccessionNumberCurrent" value = "<?php echo $book->AccessionNumber; ?>" />
+											<label>Accession Number</label>
+											<input  id="AccessionNumber" value = "<?php echo $book->AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number">
+										</div>
+										<!-- <div class="form-group col-md-6">		
+											<div id="imgDisplay" style="border:solid thin black; height:150px; width: 150px;"><img src='' alt="pick an image" style="width: 100%; height: 100%" /></div>				
+											<label>Select image</label>
+											<input id="image" name="image" type="file" accept="image/*" />
+										</div> -->
+										<div class="form-group col-md-12">
+											<label>ISBN</label>
+											<input  id="ISBN" value = "<?php echo $book->ISBN; ?>" class="form-control" type="text" name="ISBN" placeholder="ISBN">
+										</div>
+										<div class="form-group col-md-12">
+											<label>Title</label>
+											<input id="Title" class="form-control" type="text" name="" placeholder="Title">
+										</div>					
+										<div class="form-group col-md-12">
+											<label>Call Number</label>
+											<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
+										</div>	
+										<div class="form-group col-md-12">
+											<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.section();" data-provide="tooltip" data-original-title="Add Section"><i class="ti-plus"></i></button>
+											<label>Section</label>
+											<select id="SelectSectionId" name="Section" data-provide="selectpicker"  title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										</div>
+										<div class="form-group col-md-12">
+											<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.author();" data-provide="tooltip" data-original-title="Add Author"><i class="ti-plus"></i></button>
+											<label>Author</label>
+											<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"></select>
+										</div>
+										<div class="form-group col-md-12">
+											<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.subject();" data-provide="tooltip" data-original-title="Add Subject"><i class="ti-plus"></i></button>
+											<label>Subject</label>
+											<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
+										</div>
+										<div class="form-group col-md-12">
+											<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.series();" data-provide="tooltip" data-original-title="Add Series"><i class="ti-plus"></i></button>
+											<label>Series</label>
+											<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										</div>
+										<div class="form-group col-md-12">
+											<label>Edition</label>
+											<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
+										</div>	
+								</div>
+							</div>
+							<div class="divider divider-vertical"></div>
+							<div class="col-md-5">
+								<div class="row">
 									<div class="col-12">
 										<h6 class="text-uppercase">Publisher Information</h6>
 			                			<hr class="hr-sm mb-2 border-success">
 		                			</div>	
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-8">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.publisher();" data-provide="tooltip" data-original-title="Add Publisher"><i class="ti-plus"></i></button>
 										<label>Publisher</label>
 										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
@@ -105,15 +113,15 @@
 										<h6 class="text-uppercase">Acquisition Information</h6>
 				                		<hr class="hr-sm mb-2 border-success">
 			                		</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Date Acquired</label>
 										<input  id="DateAcquired" value = "<?php echo $book->DateAcquired; ?>" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Acquired">
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Acquired from</label>
 										<input  id="AcquiredFrom" value = "<?php echo $book->AcquiredFrom; ?>" class="form-control" type="text" name="" placeholder="Supplier name">
 									</div>			
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Price</label>
 										<input  id="Price" value = "<?php echo $book->Price; ?>" class="form-control" type="number" name="" placeholder="Price">
 									</div>		
@@ -121,27 +129,28 @@
 										<h6 class="text-uppercase">Physical Description</h6>
 				                		<hr class="hr-sm mb-2 border-success">
 			                		</div>			
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Extent</label>
 										<input  id="Extent" value = "" class="form-control" type="text" name="" placeholder="Extent">
 									</div>					
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Other Details</label>
 										<input  id="OtherDetails" value = "" class="form-control" type="text" name="" placeholder="Details">
 									</div>					
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>Size</label>
 										<input  id="Size" value = "" class="form-control" type="text" name="" placeholder="Size">
 									</div>														
 									<div class="form-group col-md-12">
 										<label>Notes</label>
-										<textarea id="Notes" value = "<?php echo $book->Notes; ?>" class="form-control" type="text" name="" placeholder="Notes" style="resize:none;"></textarea>
+										<textarea id="Notes" value = "<?php echo $book->Notes; ?>" rows="3" class="form-control" type="text" name="" placeholder="Notes" style="resize:none;"></textarea>
 									</div>					
 									<div class="form-group col-md-12">
 										<label>Summary</label>
-										<textarea id="Summary" value = "" class="form-control" type="text" name="" placeholder="Summary" style="resize:none;"></textarea>
+										<textarea id="Summary" value = "" rows="3" class="form-control" type="text" name="" placeholder="Summary" style="resize:none;"></textarea>
 									</div>					
 								</div> 
+							</div>
 						</div> 
 					</div> 
 					<div class="card-footer text-right">
@@ -291,6 +300,7 @@
 				Size: $('#Size').val(),
 
 				AccessionNumber: $('#AccessionNumber').val(),
+				AccessionNumberCurrent: $('#AccessionNumberCurrent').val(),
 				CallNumber: $('#CallNumber').val(),
 				DateAcquired: $('#DateAcquired').val(),				
 				AcquiredFrom: $('#AcquiredFrom').val(),
@@ -357,7 +367,7 @@
 			}).then((result) => {
 				if (result.value) {  
 					$.ajax({
-						url:'<?php echo base_url('Book/Save'); ?>',
+						url:'<?php echo base_url('Book/Update'); ?>',
 						type: "POST",
 						data: {"book": Book.data()},
 						success: function(i){
@@ -374,7 +384,8 @@
 								confirmButtonText: 'Yes',
 								confirmButtonClass: 'btn btn-info'
 							}).then((result) => {
-								if (result.value) {									
+								if (result.value) {			
+									$('#AccessionNumberCurrent').val($('#AccessionNumber').val());
 								}else{
 									window.location.href = "<?php echo base_url('Book'); ?>"
 								}

@@ -53,6 +53,9 @@ div > a.book-title{
     color: #48b0f7 !important;
     transition: .2s linear !important;
 }
+.form-group>label{
+    font-weight:500;
+}
 
 /*Mouse Cursor*/
 .view-book {

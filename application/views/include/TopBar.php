@@ -22,50 +22,49 @@
 	<div class="topbar-right">
 		<ul class="topbar-btns">
 			<li class="dropdown">
-			<a class="btn btn-sm btn-outline btn-info hover-shadow-2 ml-1" href="#qv-form-center" data-toggle="quickview">Patron</a>   
+				<a class="btn btn-sm btn-outline btn-info hover-shadow-2 ml-1" href="#qv-form-center" data-toggle="quickview">Patron</a>   
 			</li>     
-		<div class="topbar-divider d-none d-md-block"></div>
-		<li class="dropdown">
-			<a class="btn btn-sm btn-outline btn-info hover-shadow-2 mr-1" href = "<?php echo base_url('Librarian'); ?>" >Librarian</a>
-		</li>
-	</ul>
+			<li class="dropdown">
+				<a class="btn btn-sm btn-outline btn-info hover-shadow-2 mr-1" href = "<?php echo base_url('Librarian'); ?>" >Librarian</a>
+			</li>
+		</ul>
 	</div>
-	<!-- Form center -->
-	<div id="qv-form-center" class="quickview backdrop-dark">
-		<header class="quickview-header">
-			<p class="quickview-title lead form-title" >Log in</p>
-			<span class="close"><i class="ti-close"></i></span>
-		</header>
-
-		<div class="quickview-body center-v user-login">
-			<form class="quickview-block form-type-line" action = "#">
-				<div class="form-group">
-					<label for="username" class="form-input">ID number</label>
-					<input type="text" class="form-control" id="IdNumber">
-				</div>
-
-				<div class="form-group">
-					<label for="password" class="form-input" >Password</label>
-					<input type="password" class="form-control" id="Password">
-				</div>
-
-				<div id = "message"></div>
-
-				<div class="form-group flexbox flex-column flex-md-row">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" style="color: #48b0f7 ">
-						<label class="custom-control-label">Remember me</label>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<button class="btn btn-bold btn-block btn-info"  onclick = "login.validate()" type="submit">Login</button>
-				</div>
-			</form>			
-		</div>
-	</div>
-
 </header>
+
+<!-- Patron Login Quick View -->
+<div id="qv-form-center" class="quickview backdrop-dark">
+	<header class="quickview-header">
+		<p class="quickview-title lead form-title" >Log in</p>
+		<span class="close"><i class="ti-close"></i></span>
+	</header>
+
+	<div class="quickview-body center-v user-login">
+		<form class="quickview-block form-type-line" action = "#">
+			<div class="form-group">
+				<label for="IdNumber" class="form-input">ID number</label>
+				<input type="text" class="form-control" id="IdNumber">
+			</div>
+
+			<div class="form-group">
+				<label for="Password" class="form-input" >Password</label>
+				<input type="password" class="form-control" id="Password">
+			</div>
+
+			<div id = "message"></div>
+
+			<div class="form-group flexbox flex-column flex-md-row">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" style="color: #48b0f7 ">
+					<label class="custom-control-label">Remember me</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button class="btn btn-bold btn-block btn-info"  onclick = "login.validate()" type="submit">Login</button>
+			</div>
+		</form>			
+	</div>
+</div>
 
 <script>
 	$(document).keypress(function(e){

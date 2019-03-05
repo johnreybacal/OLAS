@@ -51,7 +51,7 @@ class Report extends _BaseController {
         foreach($this->bookCatalogue->_list($filter."ORDER BY DateAcquired DESC") as $data){   
             $book = $this->book->_get($data->ISBN);               
             $json .= '['
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                                
@@ -70,7 +70,7 @@ class Report extends _BaseController {
         foreach($this->bookCatalogue->_list("WHERE DateAcquired BETWEEN '".$from."' AND '".$to."' ORDER BY DateAcquired DESC") as $data){   
             $book = $this->book->_get($data->ISBN);               
             $json .= '['
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                                
@@ -123,7 +123,7 @@ class Report extends _BaseController {
                 .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($book->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$data->DateBorrowed.'",'
                 .'"'.$data->DateDue.'",'
                 .'"'.$data->DateReturned.'",'

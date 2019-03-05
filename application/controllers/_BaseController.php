@@ -142,7 +142,7 @@ class _BaseController extends CI_Controller {
 
 	//formats accession number
 	public function formatAccessionNumber($accessionNumber){
-		$accessionNumber = '000000'.$accessionNumber;
+		$accessionNumber = '0000000'.$accessionNumber;
 		return substr($accessionNumber, (strlen($accessionNumber) - 6));
 	}
 

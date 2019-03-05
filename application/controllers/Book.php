@@ -13,7 +13,8 @@ class Book extends _BaseController {
     }
         
     public function Add(){
-        $this->librarianView('Book/Add', '', 1);       
+        $data['AccessionNumber'] = $this->bookCatalogue->getLastAccession();
+        $this->librarianView('Book/Add', $data, 1);       
     }
     
     public function Edit($id){
@@ -55,7 +56,7 @@ class Book extends _BaseController {
         foreach($this->bookCatalogue->_list($additionalCondition) as $data){   
             $book = $this->book->_get($data->ISBN);                
             $json .= '['                
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
+                .'"'.$data->AccessionNumber.'",'                
                 .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$book->Title.'</a>",'    
                 // .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
@@ -107,7 +108,7 @@ class Book extends _BaseController {
                 $series = $s->Name;
             }             
             $json .= '['
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",'
+                .'"'.$data->AccessionNumber.'",'
                 .'"'.$book->CallNumber.'",'
                 .'"'.$data->ISBN.'",'                
                 .'"'.$book->Title.'",'                
@@ -153,7 +154,7 @@ class Book extends _BaseController {
                 // .'"'.$book->Title.'",'                                                
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'                                                
-                .'"'.$this->formatAccessionNumber($data->AccessionNumber).'",';
+                .'"'.$data->AccessionNumber.'",';
             //check room use
             if($data->IsRoomUseOnly == 0){
                 //check availability
@@ -248,6 +249,30 @@ class Book extends _BaseController {
         $book = $this->input->post('book');        
         $str = '{';
         $valid = true;
+        //accession number
+        if(!v::notEmpty()->validate($book['AccessionNumber'])){
+            $str .= $this->invalid('AccessionNumber', 'Accession Number is required');
+            $valid = false;
+        }
+        else{
+            // print_r($this->bookCatalogue->_exist('AccessionNumber', $book['AccessionNumber']));
+            $ifExist = $this->bookCatalogue->_exist('AccessionNumber', $book['AccessionNumber']);
+            if(is_object($ifExist)){
+                if($ifExist->AccessionNumber == $book['AccessionNumber']){
+                    if(array_key_exists('AccessionNumberCurrent', $book)){
+                        if($book['AccessionNumber'] != $book['AccessionNumberCurrent']){
+                            $str .= $this->invalid('AccessionNumber', 'Accession Number is already taken');
+                            $valid = false;
+                        }
+                    }
+                    else{
+                        $str .= $this->invalid('AccessionNumber', 'Accession Number is already taken');
+                        $valid = false;
+                    }
+                }
+            }
+            // }
+        }
         //isbn
         if(!v::notEmpty()->validate($book['ISBN'])){
             $str .= $this->invalid('ISBN', 'ISBN is required');
@@ -325,12 +350,23 @@ class Book extends _BaseController {
         echo $str;
     }
 
-    public function Save(){                  
+    public function Insert(){                  
         $book = $this->input->post('book');        
         $isbn = $book['ISBN'];
         $author = $book['AuthorId'];        
         $subject = $book['SubjectId'];        
-        $this->bookCatalogue->save($book);
+        $this->bookCatalogue->save($book, true);
+        $this->book->save($book);        
+        $this->bookAuthor->save($isbn, $author);        
+        $this->bookSubject->save($isbn, $subject);           
+    }
+    
+    public function Update(){                  
+        $book = $this->input->post('book');        
+        $isbn = $book['ISBN'];
+        $author = $book['AuthorId'];        
+        $subject = $book['SubjectId'];        
+        $this->bookCatalogue->save($book, false);
         $this->book->save($book);        
         $this->bookAuthor->save($isbn, $author);        
         $this->bookSubject->save($isbn, $subject);           
