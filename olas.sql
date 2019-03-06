@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2019 at 01:11 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: Mar 06, 2019 at 03:37 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,13 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `olas`
 --
-CREATE DATABASE IF NOT EXISTS `olas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `olas`;
 
 -- --------------------------------------------------------
 
@@ -28,18 +26,13 @@ USE `olas`;
 -- Table structure for table `author`
 --
 
-DROP TABLE IF EXISTS `author`;
-CREATE TABLE `author` (
-  `AuthorId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `author` (
+  `AuthorId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`AuthorId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
---
--- Truncate table before insert `author`
---
-
-TRUNCATE TABLE `author`;
 --
 -- Dumping data for table `author`
 --
@@ -66,8 +59,7 @@ INSERT INTO `author` (`AuthorId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `book`
 --
 
-DROP TABLE IF EXISTS `book`;
-CREATE TABLE `book` (
+CREATE TABLE IF NOT EXISTS `book` (
   `ISBN` varchar(13) NOT NULL,
   `CallNumber` varchar(20) NOT NULL,
   `Title` varchar(100) NOT NULL,
@@ -81,14 +73,10 @@ CREATE TABLE `book` (
   `Extent` varchar(20) NOT NULL,
   `OtherDetails` varchar(20) NOT NULL,
   `Size` varchar(20) NOT NULL,
-  `Image` varchar(255) NOT NULL DEFAULT 'default.png'
+  `Image` varchar(255) NOT NULL DEFAULT 'default.png',
+  PRIMARY KEY (`ISBN`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `book`
---
-
-TRUNCATE TABLE `book`;
 --
 -- Dumping data for table `book`
 --
@@ -103,7 +91,7 @@ INSERT INTO `book` (`ISBN`, `CallNumber`, `Title`, `PublisherId`, `SectionId`, `
 ('9780621063099', '', 'Little Men', 1, 3, 0, '', '2018-01-24', 'Manila', '', '', '', '', 'little_men.jpg'),
 ('9780402199901', '', 'Little Women', 1, 3, 0, '', '2018-02-24', 'Manila', '', '', '', '', 'little_women.jpg'),
 ('0988941589', '', 'Good Wives', 1, 3, 0, '', '2018-03-24', 'Manila', '', '', '', '', 'good_wives.jpg'),
-('9785386262884', '', 'Jo s Boys', 1, 3, 0, '', '2018-04-24', 'Manila', '', '', '', '', 'jo\'s_boys.jpg'),
+('9785386262884', '', 'Jo s Boys', 1, 3, 0, '', '2018-04-24', 'Manila', '', '', '', '', 'jo''s_boys.jpg'),
 ('9784773012941', '', 'Veronika Decides to Die', 1, 3, 0, '', '2018-05-24', 'Manila', '', '', '', '', 'veronika_decides_to_die.jpg'),
 ('9786523504294', '', 'The Alchemist', 1, 3, 0, '', '2018-06-24', 'Manila', '', '', '', '', 'the_alchemist.jpg'),
 ('9780549538394', '', 'Bared To You', 1, 3, 0, '', '2018-07-24', 'Manila', '', '', '', '', 'bared_to_you.jpg'),
@@ -131,17 +119,11 @@ INSERT INTO `book` (`ISBN`, `CallNumber`, `Title`, `PublisherId`, `SectionId`, `
 -- Table structure for table `bookauthor`
 --
 
-DROP TABLE IF EXISTS `bookauthor`;
-CREATE TABLE `bookauthor` (
+CREATE TABLE IF NOT EXISTS `bookauthor` (
   `ISBN` varchar(13) NOT NULL,
   `AuthorId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `bookauthor`
---
-
-TRUNCATE TABLE `bookauthor`;
 --
 -- Dumping data for table `bookauthor`
 --
@@ -173,8 +155,7 @@ INSERT INTO `bookauthor` (`ISBN`, `AuthorId`) VALUES
 -- Table structure for table `bookcatalogue`
 --
 
-DROP TABLE IF EXISTS `bookcatalogue`;
-CREATE TABLE `bookcatalogue` (
+CREATE TABLE IF NOT EXISTS `bookcatalogue` (
   `AccessionNumber` varchar(7) NOT NULL,
   `ISBN` varchar(13) NOT NULL,
   `DateAcquired` date NOT NULL,
@@ -183,14 +164,10 @@ CREATE TABLE `bookcatalogue` (
   `Notes` text NOT NULL,
   `IsRoomUseOnly` tinyint(1) NOT NULL,
   `IsAvailable` tinyint(1) NOT NULL DEFAULT '1',
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`AccessionNumber`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `bookcatalogue`
---
-
-TRUNCATE TABLE `bookcatalogue`;
 --
 -- Dumping data for table `bookcatalogue`
 --
@@ -219,7 +196,7 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 ('28', '9780000000001', '2018-11-13', 'rock lee', 1, '', 1, 1, 1),
 ('29', '0786830239', '2018-11-19', 'edwsfdv', 4, '', 1, 1, 1),
 ('30', '9780000000003', '2019-01-31', 'nat', 100, '', 1, 1, 1),
-('31', '9780621063099', '2019-02-03', 'Tikoy', 200, '', 0, 1, 1),
+('31', '9780621063099', '2019-02-03', 'Tikoy', 200, 'This book is lost by Sena, John Mark', 0, 0, 1),
 ('32', '9780402199901', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 ('33', '0988941589', '2019-02-03', 'Acquirer', 200, '', 0, 1, 1),
 ('34', '9785386262884', '2019-02-03', 'Joy', 200, ' This book is damaged by Sena, John Mark, returned on the day of 2019-02-06 16:46:22', 0, 1, 1),
@@ -242,17 +219,12 @@ INSERT INTO `bookcatalogue` (`AccessionNumber`, `ISBN`, `DateAcquired`, `Acquire
 -- Table structure for table `bookstatus`
 --
 
-DROP TABLE IF EXISTS `bookstatus`;
-CREATE TABLE `bookstatus` (
-  `BookStatusId` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `bookstatus` (
+  `BookStatusId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(30) NOT NULL,
+  PRIMARY KEY (`BookStatusId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Truncate table before insert `bookstatus`
---
-
-TRUNCATE TABLE `bookstatus`;
 --
 -- Dumping data for table `bookstatus`
 --
@@ -269,17 +241,11 @@ INSERT INTO `bookstatus` (`BookStatusId`, `Name`) VALUES
 -- Table structure for table `booksubject`
 --
 
-DROP TABLE IF EXISTS `booksubject`;
-CREATE TABLE `booksubject` (
+CREATE TABLE IF NOT EXISTS `booksubject` (
   `ISBN` varchar(13) NOT NULL,
   `SubjectId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `booksubject`
---
-
-TRUNCATE TABLE `booksubject`;
 --
 -- Dumping data for table `booksubject`
 --
@@ -310,18 +276,13 @@ INSERT INTO `booksubject` (`ISBN`, `SubjectId`) VALUES
 -- Table structure for table `college`
 --
 
-DROP TABLE IF EXISTS `college`;
-CREATE TABLE `college` (
-  `CollegeId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `college` (
+  `CollegeId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`CollegeId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
---
--- Truncate table before insert `college`
---
-
-TRUNCATE TABLE `college`;
 --
 -- Dumping data for table `college`
 --
@@ -339,19 +300,14 @@ INSERT INTO `college` (`CollegeId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `course`;
-CREATE TABLE `course` (
-  `CourseId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `course` (
+  `CourseId` int(11) NOT NULL AUTO_INCREMENT,
   `CollegeId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`CourseId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- Truncate table before insert `course`
---
-
-TRUNCATE TABLE `course`;
 --
 -- Dumping data for table `course`
 --
@@ -369,20 +325,15 @@ INSERT INTO `course` (`CourseId`, `CollegeId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `librarian`
 --
 
-DROP TABLE IF EXISTS `librarian`;
-CREATE TABLE `librarian` (
-  `LibrarianId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `librarian` (
+  `LibrarianId` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Password` varchar(50) NOT NULL,
+  PRIMARY KEY (`LibrarianId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Truncate table before insert `librarian`
---
-
-TRUNCATE TABLE `librarian`;
 --
 -- Dumping data for table `librarian`
 --
@@ -398,17 +349,11 @@ INSERT INTO `librarian` (`LibrarianId`, `FirstName`, `LastName`, `Username`, `Pa
 -- Table structure for table `librarianaccess`
 --
 
-DROP TABLE IF EXISTS `librarianaccess`;
-CREATE TABLE `librarianaccess` (
+CREATE TABLE IF NOT EXISTS `librarianaccess` (
   `LibrarianId` int(11) NOT NULL,
   `LibrarianRoleId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `librarianaccess`
---
-
-TRUNCATE TABLE `librarianaccess`;
 --
 -- Dumping data for table `librarianaccess`
 --
@@ -433,18 +378,13 @@ INSERT INTO `librarianaccess` (`LibrarianId`, `LibrarianRoleId`) VALUES
 -- Table structure for table `librarianrole`
 --
 
-DROP TABLE IF EXISTS `librarianrole`;
-CREATE TABLE `librarianrole` (
-  `LibrarianRoleId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `librarianrole` (
+  `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
-  `Description` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`LibrarianRoleId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
---
--- Truncate table before insert `librarianrole`
---
-
-TRUNCATE TABLE `librarianrole`;
 --
 -- Dumping data for table `librarianrole`
 --
@@ -463,9 +403,8 @@ INSERT INTO `librarianrole` (`LibrarianRoleId`, `Name`, `Description`) VALUES
 -- Table structure for table `loan`
 --
 
-DROP TABLE IF EXISTS `loan`;
-CREATE TABLE `loan` (
-  `LoanId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `loan` (
+  `LoanId` int(11) NOT NULL AUTO_INCREMENT,
   `PatronId` int(11) NOT NULL,
   `AccessionNumber` int(11) NOT NULL,
   `DateBorrowed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -473,14 +412,10 @@ CREATE TABLE `loan` (
   `DateReturned` datetime DEFAULT NULL,
   `AmountPayed` int(11) DEFAULT NULL,
   `BookStatusId` int(11) NOT NULL,
-  `IsRecalled` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsRecalled` tinyint(1) NOT NULL,
+  PRIMARY KEY (`LoanId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
---
--- Truncate table before insert `loan`
---
-
-TRUNCATE TABLE `loan`;
 --
 -- Dumping data for table `loan`
 --
@@ -496,7 +431,13 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 (15, 3, 20, '2019-02-06 17:05:51', '2019-02-09 17:05:51', '2019-02-06 17:11:38', 800, 3, 0),
 (16, 3, 20, '2019-02-12 17:19:22', '2019-02-15 17:19:22', '2019-03-02 10:41:37', 280, 2, 0),
 (17, 1, 21, '2019-02-15 13:42:35', '2019-02-18 13:42:35', '2019-03-02 10:45:11', 220, 2, 0),
-(18, 1, 32, '2019-02-17 11:32:50', '2019-02-20 11:32:50', '2019-03-02 10:47:22', 180, 2, 0);
+(18, 1, 32, '2019-02-17 11:32:50', '2019-02-20 11:32:50', '2019-03-02 10:47:22', 180, 2, 0),
+(19, 3, 31, '2019-03-05 16:08:21', '2019-03-08 16:08:21', '2019-03-05 17:42:35', 200, 4, 0),
+(20, 1, 39, '2019-03-06 01:23:15', '2019-03-09 01:23:15', '2019-03-06 01:24:46', 0, 2, 1),
+(21, 1, 39, '2019-03-06 02:17:46', '2019-03-09 02:17:46', '2019-03-06 04:21:45', 0, 2, 0),
+(22, 1, 39, '2019-03-06 02:17:50', '2019-03-09 02:17:50', '2019-03-06 03:40:58', 0, 2, 0),
+(23, 1, 32, '2019-03-06 03:40:20', '2019-03-09 03:40:20', '2019-03-06 03:40:50', 0, 2, 0),
+(24, 1, 39, '2019-03-06 04:21:13', '2019-03-09 04:21:13', '2019-03-06 04:21:37', 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -504,18 +445,13 @@ INSERT INTO `loan` (`LoanId`, `PatronId`, `AccessionNumber`, `DateBorrowed`, `Da
 -- Table structure for table `marcimport`
 --
 
-DROP TABLE IF EXISTS `marcimport`;
-CREATE TABLE `marcimport` (
-  `MarcImportId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `marcimport` (
+  `MarcImportId` int(11) NOT NULL AUTO_INCREMENT,
   `ISBN` varchar(13) NOT NULL,
-  `Title` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Title` varchar(255) NOT NULL,
+  PRIMARY KEY (`MarcImportId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=152 ;
 
---
--- Truncate table before insert `marcimport`
---
-
-TRUNCATE TABLE `marcimport`;
 --
 -- Dumping data for table `marcimport`
 --
@@ -530,7 +466,7 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 (123, '0849942926', 'Thunder of heaven /'),
 (124, '0849943124', 'Blessed child /'),
 (125, '0849942918', 'When heaven weeps /'),
-(126, '0849942411', 'Heaven\'s wager /'),
+(126, '0849942411', 'Heaven''s wager /'),
 (127, '9780979590023', 'White :'),
 (128, '0979590019', 'Red :'),
 (130, '1404102337', 'The promise :'),
@@ -557,20 +493,15 @@ INSERT INTO `marcimport` (`MarcImportId`, `ISBN`, `Title`) VALUES
 -- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE `message` (
-  `MessageId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `message` (
+  `MessageId` int(11) NOT NULL AUTO_INCREMENT,
   `PatronId` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
   `Message` text NOT NULL,
-  `DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `DateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`MessageId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
---
--- Truncate table before insert `message`
---
-
-TRUNCATE TABLE `message`;
 --
 -- Dumping data for table `message`
 --
@@ -583,7 +514,14 @@ INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) 
 (14, 1, 'Your book is being recalled by the library', 'Please immediately return the book: The house of us to the library. Thank you.', '2018-10-31 22:59:57'),
 (15, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-02-03 12:17:19'),
 (16, 3, 'Your book is being recalled by the library', 'Please immediately return the book: Tales from Agrabah Aladdin and Jasmine to the library. Thank you.', '2019-02-05 10:17:25'),
-(17, 3, 'Recall cancelled', 'Please enjoy your book', '2019-02-05 10:17:30');
+(17, 3, 'Recall cancelled', 'Please enjoy your book', '2019-02-05 10:17:30'),
+(18, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-05 16:08:21'),
+(19, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-06 01:23:15'),
+(20, 1, 'Your book is being recalled by the library', 'Please immediately return the book: Etwined Wlth You Women to the library. Thank you.', '2019-03-06 01:24:33'),
+(21, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-06 02:17:46'),
+(22, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-06 02:17:50'),
+(23, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-06 03:40:20'),
+(24, 0, 'Book ', 'Please enjoy your book Thank you.', '2019-03-06 04:21:13');
 
 -- --------------------------------------------------------
 
@@ -591,19 +529,14 @@ INSERT INTO `message` (`MessageId`, `PatronId`, `Title`, `Message`, `DateTime`) 
 -- Table structure for table `outsideresearcher`
 --
 
-DROP TABLE IF EXISTS `outsideresearcher`;
-CREATE TABLE `outsideresearcher` (
-  `OutsideResearcherId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `outsideresearcher` (
+  `OutsideResearcherId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   `DateTime` datetime NOT NULL,
-  `AmountPayed` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `AmountPayed` int(11) NOT NULL,
+  PRIMARY KEY (`OutsideResearcherId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Truncate table before insert `outsideresearcher`
---
-
-TRUNCATE TABLE `outsideresearcher`;
 --
 -- Dumping data for table `outsideresearcher`
 --
@@ -618,17 +551,11 @@ INSERT INTO `outsideresearcher` (`OutsideResearcherId`, `Name`, `DateTime`, `Amo
 -- Table structure for table `outsideresearchersubject`
 --
 
-DROP TABLE IF EXISTS `outsideresearchersubject`;
-CREATE TABLE `outsideresearchersubject` (
+CREATE TABLE IF NOT EXISTS `outsideresearchersubject` (
   `OutsideResearcherId` int(11) NOT NULL,
   `SubjectId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `outsideresearchersubject`
---
-
-TRUNCATE TABLE `outsideresearchersubject`;
 --
 -- Dumping data for table `outsideresearchersubject`
 --
@@ -644,9 +571,8 @@ INSERT INTO `outsideresearchersubject` (`OutsideResearcherId`, `SubjectId`) VALU
 -- Table structure for table `patron`
 --
 
-DROP TABLE IF EXISTS `patron`;
-CREATE TABLE `patron` (
-  `PatronId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `patron` (
+  `PatronId` int(11) NOT NULL AUTO_INCREMENT,
   `PatronTypeId` int(11) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `MiddleName` varchar(50) NOT NULL,
@@ -657,21 +583,17 @@ CREATE TABLE `patron` (
   `Password` varchar(50) NOT NULL,
   `ContactNumber` varchar(20) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `DateCreated` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `DateCreated` date DEFAULT NULL,
+  PRIMARY KEY (`PatronId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Truncate table before insert `patron`
---
-
-TRUNCATE TABLE `patron`;
 --
 -- Dumping data for table `patron`
 --
 
 INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `LastName`, `ExtensionName`, `IdNumber`, `RFIDNo`, `Password`, `ContactNumber`, `Email`, `DateCreated`) VALUES
 (1, 1, 'Johnrey', 'Cumayas', 'Bacal', 'PhD', '15-037-017', 1, '12345678', '+639977011062', 'johnrey.bacal@yahoo.com', '2018-11-08'),
-(3, 1, 'John Mark', 'Lumbria', 'Sena', 'Negro', '15-000-000', 12123123, 'westsidenigga', '+639999999999', 'nigga@yahoo.com', '2018-11-09');
+(3, 1, 'John Mark', 'Lumbria', 'Sena', '', '15-037-027', 12123123, '12345678', '+639966367165', 'johnmarksena@gmail.com', '2018-11-09');
 
 -- --------------------------------------------------------
 
@@ -679,20 +601,15 @@ INSERT INTO `patron` (`PatronId`, `PatronTypeId`, `FirstName`, `MiddleName`, `La
 -- Table structure for table `patrontype`
 --
 
-DROP TABLE IF EXISTS `patrontype`;
-CREATE TABLE `patrontype` (
-  `PatronTypeId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `patrontype` (
+  `PatronTypeId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
   `NumberOfBooks` int(11) NOT NULL,
   `NumberOfDays` int(11) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`PatronTypeId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Truncate table before insert `patrontype`
---
-
-TRUNCATE TABLE `patrontype`;
 --
 -- Dumping data for table `patrontype`
 --
@@ -708,25 +625,21 @@ INSERT INTO `patrontype` (`PatronTypeId`, `Name`, `NumberOfBooks`, `NumberOfDays
 -- Table structure for table `penalty`
 --
 
-DROP TABLE IF EXISTS `penalty`;
-CREATE TABLE `penalty` (
-  `PenaltyId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `penalty` (
+  `PenaltyId` int(11) NOT NULL AUTO_INCREMENT,
   `PatronId` int(11) NOT NULL,
   `LoanId` int(11) NOT NULL,
-  `Status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`PenaltyId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Truncate table before insert `penalty`
---
-
-TRUNCATE TABLE `penalty`;
 --
 -- Dumping data for table `penalty`
 --
 
 INSERT INTO `penalty` (`PenaltyId`, `PatronId`, `LoanId`, `Status`) VALUES
-(1, 1, 18, 1);
+(1, 1, 18, 1),
+(2, 3, 19, 0);
 
 -- --------------------------------------------------------
 
@@ -734,18 +647,13 @@ INSERT INTO `penalty` (`PenaltyId`, `PatronId`, `LoanId`, `Status`) VALUES
 -- Table structure for table `publisher`
 --
 
-DROP TABLE IF EXISTS `publisher`;
-CREATE TABLE `publisher` (
-  `PublisherId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `publisher` (
+  `PublisherId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`PublisherId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- Truncate table before insert `publisher`
---
-
-TRUNCATE TABLE `publisher`;
 --
 -- Dumping data for table `publisher`
 --
@@ -764,42 +672,56 @@ INSERT INTO `publisher` (`PublisherId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `reservation`
 --
 
-DROP TABLE IF EXISTS `reservation`;
-CREATE TABLE `reservation` (
-  `ReservationId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `ReservationId` int(11) NOT NULL AUTO_INCREMENT,
   `PatronId` int(11) NOT NULL,
   `AccessionNumber` int(11) NOT NULL,
   `DateReserved` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Expiration` varchar(30) NOT NULL,
   `IsDiscarded` tinyint(1) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ReservationId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
---
--- Truncate table before insert `reservation`
---
-
-TRUNCATE TABLE `reservation`;
 --
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `DateReserved`, `IsDiscarded`, `IsActive`) VALUES
-(14, 1, 1, '2018-10-28 22:04:15', 1, 0),
-(11, 1, 10, '2018-10-26 19:21:47', 1, 0),
-(7, 1, 13, '2018-10-17 13:56:45', 0, 0),
-(6, 1, 11, '2018-10-17 13:56:44', 1, 0),
-(13, 1, 1, '2018-10-26 19:24:40', 0, 0),
-(15, 1, 11, '2018-10-28 22:04:16', 0, 0),
-(16, 1, 1, '2018-10-28 22:05:39', 1, 0),
-(17, 1, 1, '2018-10-30 11:21:01', 1, 0),
-(18, 1, 1, '2018-10-31 22:47:44', 1, 0),
-(19, 1, 1, '2018-11-01 18:06:24', 1, 0),
-(20, 3, 34, '2019-02-03 12:14:01', 0, 0),
-(21, 3, 31, '2019-02-17 20:42:03', 1, 0),
-(22, 3, 34, '2019-02-17 20:42:03', 1, 0),
-(23, 3, 14, '2019-02-18 09:26:27', 1, 0),
-(24, 3, 31, '2019-02-26 17:24:33', 1, 0),
-(25, 3, 39, '2019-03-01 20:32:10', 0, 1);
+INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `DateReserved`, `Expiration`, `IsDiscarded`, `IsActive`) VALUES
+(14, 1, 1, '2018-10-28 22:04:15', '', 1, 0),
+(11, 1, 10, '2018-10-26 19:21:47', '', 1, 0),
+(7, 1, 13, '2018-10-17 13:56:45', '', 0, 0),
+(6, 1, 11, '2018-10-17 13:56:44', '', 1, 0),
+(13, 1, 1, '2018-10-26 19:24:40', '', 0, 0),
+(15, 1, 11, '2018-10-28 22:04:16', '', 0, 0),
+(16, 1, 1, '2018-10-28 22:05:39', '', 1, 0),
+(17, 1, 1, '2018-10-30 11:21:01', '', 1, 0),
+(18, 1, 1, '2018-10-31 22:47:44', '', 1, 0),
+(19, 1, 1, '2018-11-01 18:06:24', '', 1, 0),
+(20, 3, 34, '2019-02-03 12:14:01', '', 0, 0),
+(21, 3, 31, '2019-02-17 20:42:03', '', 1, 0),
+(22, 3, 34, '2019-02-17 20:42:03', '', 1, 0),
+(23, 3, 14, '2019-02-18 09:26:27', '', 1, 0),
+(24, 3, 31, '2019-02-26 17:24:33', '', 1, 0),
+(25, 3, 39, '2019-03-01 20:32:10', '', 1, 0),
+(26, 3, 31, '2019-03-05 16:02:47', '', 0, 0),
+(27, 3, 32, '2019-03-05 16:21:12', '', 1, 0),
+(28, 1, 38, '2019-03-06 00:34:42', '2019-03-05 05:34:42pm', 1, 0),
+(29, 1, 39, '2019-03-06 00:40:11', '2019-03-05 17:40:11', 1, 0),
+(30, 1, 39, '2019-03-06 00:56:53', '2019-03-06 00:56:53', 1, 0),
+(31, 1, 39, '2019-03-06 01:03:40', '2019-03-07 01:03:40', 0, 0),
+(32, 1, 39, '2019-03-06 01:25:20', '2019-03-07 01:25:20', 1, 0),
+(33, 1, 39, '2019-03-06 01:39:40', '2019-03-07 01:39:40', 0, 0),
+(34, 1, 32, '2019-03-06 02:18:48', '2019-03-07 02:18:48', 0, 0),
+(35, 1, 39, '2019-03-06 03:41:18', '2019-03-07 03:41:18', 0, 0),
+(36, 1, 39, '2019-03-06 04:22:28', '2019-03-06 05:49:11', 1, 0),
+(37, 3, 32, '2019-03-06 05:13:03', '2019-03-07 05:13:03', 1, 0),
+(38, 3, 39, '2019-03-06 07:11:53', '2019-03-07 07:11:53', 1, 0),
+(39, 3, 39, '2019-03-06 07:17:50', '2019-03-07 07:31:10', 1, 0),
+(40, 3, 39, '2019-03-06 07:34:14', '2019-03-07 07:34:14', 1, 0),
+(41, 3, 39, '2019-03-06 09:58:51', '2019-03-07 09:58:51', 1, 0),
+(42, 3, 39, '2019-03-06 10:02:07', '2019-03-07 10:02:07', 0, 1),
+(43, 1, 32, '2019-03-06 22:26:05', '2019-03-06 22:34:05', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -807,18 +729,13 @@ INSERT INTO `reservation` (`ReservationId`, `PatronId`, `AccessionNumber`, `Date
 -- Table structure for table `section`
 --
 
-DROP TABLE IF EXISTS `section`;
-CREATE TABLE `section` (
-  `SectionId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `section` (
+  `SectionId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`SectionId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
---
--- Truncate table before insert `section`
---
-
-TRUNCATE TABLE `section`;
 --
 -- Dumping data for table `section`
 --
@@ -835,18 +752,13 @@ INSERT INTO `section` (`SectionId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `series`
 --
 
-DROP TABLE IF EXISTS `series`;
-CREATE TABLE `series` (
-  `SeriesId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `series` (
+  `SeriesId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`SeriesId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
---
--- Truncate table before insert `series`
---
-
-TRUNCATE TABLE `series`;
 --
 -- Dumping data for table `series`
 --
@@ -865,18 +777,13 @@ INSERT INTO `series` (`SeriesId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `subject`
 --
 
-DROP TABLE IF EXISTS `subject`;
-CREATE TABLE `subject` (
-  `SubjectId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `subject` (
+  `SubjectId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`SubjectId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
---
--- Truncate table before insert `subject`
---
-
-TRUNCATE TABLE `subject`;
 --
 -- Dumping data for table `subject`
 --
@@ -896,17 +803,11 @@ INSERT INTO `subject` (`SubjectId`, `Name`, `IsActive`) VALUES
 -- Table structure for table `subjectcourse`
 --
 
-DROP TABLE IF EXISTS `subjectcourse`;
-CREATE TABLE `subjectcourse` (
+CREATE TABLE IF NOT EXISTS `subjectcourse` (
   `SubjectId` int(11) NOT NULL,
   `CourseId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `subjectcourse`
---
-
-TRUNCATE TABLE `subjectcourse`;
 --
 -- Dumping data for table `subjectcourse`
 --
@@ -921,224 +822,6 @@ INSERT INTO `subjectcourse` (`SubjectId`, `CourseId`) VALUES
 (17, 1),
 (18, 1);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `author`
---
-ALTER TABLE `author`
-  ADD PRIMARY KEY (`AuthorId`);
-
---
--- Indexes for table `book`
---
-ALTER TABLE `book`
-  ADD PRIMARY KEY (`ISBN`);
-
---
--- Indexes for table `bookcatalogue`
---
-ALTER TABLE `bookcatalogue`
-  ADD PRIMARY KEY (`AccessionNumber`);
-
---
--- Indexes for table `bookstatus`
---
-ALTER TABLE `bookstatus`
-  ADD PRIMARY KEY (`BookStatusId`);
-
---
--- Indexes for table `college`
---
-ALTER TABLE `college`
-  ADD PRIMARY KEY (`CollegeId`);
-
---
--- Indexes for table `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`CourseId`);
-
---
--- Indexes for table `librarian`
---
-ALTER TABLE `librarian`
-  ADD PRIMARY KEY (`LibrarianId`);
-
---
--- Indexes for table `librarianrole`
---
-ALTER TABLE `librarianrole`
-  ADD PRIMARY KEY (`LibrarianRoleId`);
-
---
--- Indexes for table `loan`
---
-ALTER TABLE `loan`
-  ADD PRIMARY KEY (`LoanId`);
-
---
--- Indexes for table `marcimport`
---
-ALTER TABLE `marcimport`
-  ADD PRIMARY KEY (`MarcImportId`);
-
---
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`MessageId`);
-
---
--- Indexes for table `outsideresearcher`
---
-ALTER TABLE `outsideresearcher`
-  ADD PRIMARY KEY (`OutsideResearcherId`);
-
---
--- Indexes for table `patron`
---
-ALTER TABLE `patron`
-  ADD PRIMARY KEY (`PatronId`);
-
---
--- Indexes for table `patrontype`
---
-ALTER TABLE `patrontype`
-  ADD PRIMARY KEY (`PatronTypeId`);
-
---
--- Indexes for table `penalty`
---
-ALTER TABLE `penalty`
-  ADD PRIMARY KEY (`PenaltyId`);
-
---
--- Indexes for table `publisher`
---
-ALTER TABLE `publisher`
-  ADD PRIMARY KEY (`PublisherId`);
-
---
--- Indexes for table `reservation`
---
-ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`ReservationId`);
-
---
--- Indexes for table `section`
---
-ALTER TABLE `section`
-  ADD PRIMARY KEY (`SectionId`);
-
---
--- Indexes for table `series`
---
-ALTER TABLE `series`
-  ADD PRIMARY KEY (`SeriesId`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`SubjectId`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `author`
---
-ALTER TABLE `author`
-  MODIFY `AuthorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `bookstatus`
---
-ALTER TABLE `bookstatus`
-  MODIFY `BookStatusId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `college`
---
-ALTER TABLE `college`
-  MODIFY `CollegeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `course`
---
-ALTER TABLE `course`
-  MODIFY `CourseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `librarian`
---
-ALTER TABLE `librarian`
-  MODIFY `LibrarianId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `librarianrole`
---
-ALTER TABLE `librarianrole`
-  MODIFY `LibrarianRoleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `loan`
---
-ALTER TABLE `loan`
-  MODIFY `LoanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `marcimport`
---
-ALTER TABLE `marcimport`
-  MODIFY `MarcImportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
---
--- AUTO_INCREMENT for table `message`
---
-ALTER TABLE `message`
-  MODIFY `MessageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `outsideresearcher`
---
-ALTER TABLE `outsideresearcher`
-  MODIFY `OutsideResearcherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `patron`
---
-ALTER TABLE `patron`
-  MODIFY `PatronId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `patrontype`
---
-ALTER TABLE `patrontype`
-  MODIFY `PatronTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `penalty`
---
-ALTER TABLE `penalty`
-  MODIFY `PenaltyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `publisher`
---
-ALTER TABLE `publisher`
-  MODIFY `PublisherId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `reservation`
---
-ALTER TABLE `reservation`
-  MODIFY `ReservationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `section`
---
-ALTER TABLE `section`
-  MODIFY `SectionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `series`
---
-ALTER TABLE `series`
-  MODIFY `SeriesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `SubjectId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
