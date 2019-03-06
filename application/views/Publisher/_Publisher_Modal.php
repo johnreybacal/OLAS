@@ -46,6 +46,18 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#PublisherName').bind("enterKey",function(e){
+                Publisher_Modal.validate();
+            });
+        $('#PublisherName').keyup(function(e){
+            if(e.keyCode == 13)
+            {
+              $(this).trigger("enterKey");
+            }
+        });
+    });
+
     var Publisher_Modal = {
         data: function () {
             return {
@@ -135,7 +147,7 @@
                         type: "POST",
                         data: {"publisher": Publisher_Modal.data()},
                         success: function(i){
-                            swal('Good Job!', message, 'success');
+                            // swal('Good Job!', message, 'success');
                             $('#modal-publisher').modal('hide');
                             console.log(i);
                             if(typeof Add !== 'undefined'){

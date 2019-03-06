@@ -78,22 +78,11 @@ div[class*=form-group]:hover{
     /*border: solid 1px #48b0f7;*/
 }
 
-html{
-  @include responsive("font-size", 11px,
-    (
-       600px: 12px,
-       800px: 13px,
-      1180px: 14px,
-      1300px: 15px,
-      1750px: 16px,
-      1900px: 17px,
-      2100px: 18px,
-      2400px: 19px
-    )
-  );
-} 
+#book-table_wrapper .dataTables_wrapper .dt-bootstrap4
+
 /*di gamit*/
 .selected-input { border: #f00 1px solid; padding: 10px; }
+
 
 .form-row h6{
     font-weight: bold;

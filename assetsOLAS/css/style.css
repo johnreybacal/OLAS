@@ -94,6 +94,12 @@
     body *{
         font-size:large!important;
     }
+    div.modal *{
+        font-size: x-large!important;
+    }
+    div.swal2-icon.swal2-warning, .swal2-icon.swal2-info, .swal2-icon.swal2-question{
+        font-size: 3.75em!important;
+    }
 
     .menu-item>.menu-link span.title{
         font-size: 20px;
