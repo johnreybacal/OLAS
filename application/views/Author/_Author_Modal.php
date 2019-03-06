@@ -25,7 +25,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Name"/>
+                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Name" autofocus/>
                             </div>
                         </div>                          
                         <div class="row" id="AuthorRowActive">

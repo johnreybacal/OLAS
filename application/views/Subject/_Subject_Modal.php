@@ -14,12 +14,12 @@
 
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Courses associated with subject</label>
-                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
+                                <label>Name</label>
+                                <input id="SubjectName" name="SubjectName" type="text" class="form-control" placeholder="Subject Name" autofocus/>
                             </div>
                             <div class="col-12">
-                                <label>Name</label>
-                                <input id="SubjectName" name="SubjectName" type="text" class="form-control" placeholder="Subject Name" />
+                                <label>Courses associated with subject</label>
+                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick" ></select>
                             </div>
                         </div>    
 

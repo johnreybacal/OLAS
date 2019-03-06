@@ -31,7 +31,7 @@
         <div id="search-div">
             <form class="lookup lookup-lg lookup-lib no-icon">
                 <input class="no-radius topbar-librarian-search" id="search" type="text" placeholder="Search">
-                <select id="filter" name="filter" class="dss-none d-block librarian-search" data-provide="selectpicker" multiple>
+                <select id="filter" name="filter" class="dss-none d-block search librarian-search" data-provide="selectpicker" multiple>
                     <option selected>Book</option>
                     <option selected>Author</option>
                     <!-- <option selected>Subject</option> -->

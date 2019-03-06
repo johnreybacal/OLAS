@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="SeriesName" name="SeriesName" type="text" class="form-control" placeholder="Name" />
+                                <input id="SeriesName" name="SeriesName" type="text" class="form-control" placeholder="Name" autofocus/>
                             </div>
                         </div>
 
