@@ -28,10 +28,26 @@
         $('form').submit(function(form){
             form.preventDefault();
         });
-        $('select').attr(
+        $('.bootstrap-select').attr(
+        // $('div.btn-group.bootstrap-select').attr({
             // 'data-selected-text-format':'count > 3',
-            'data-size','15'
+            'data-size','10'
         );
+        // Autofocus on first input in every form.class akala ko nagana pota
+        $("form.form input:text:visible:first").focus();
+        console.log($("form.form input:text:visible:first").val());
+        // Autofocus on modal sapa to
+        $('.modal').on('shown.bs.modal', function() {
+            $(this).find('[autofocus]').focus();
+        });
+        
+        // gumagana pero minsan bug nadidisplay parin lahat
+        // $("#DatePublished").datepicker({
+        //     format: " yyyy",
+        //     viewMode: "years", 
+        //     minViewMode: "years"
+        // });
+
         var $window = $(window);
         $window.resize(function resize() {
             if ($window.width() >= 768) {
@@ -102,6 +118,7 @@
 <script src="<?php echo base_url('assets/js/script/plugins/qr-scanner-worker.min.js'); ?>"></script>
 <!-- <script src = "<?php echo base_url('assets/vendor/datatables/js/jquery.dataTables.min.js'); ?>"></script>   -->
 <script src = "<?php echo base_url('assets/vendor/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>  
+<!-- <script src = "<?php echo base_url('assetsOLAS/js/custom1.js'); ?>"></script>   -->
 
 </body>
 </html>

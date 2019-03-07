@@ -14,12 +14,12 @@
 
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Courses associated with subject</label>
-                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
+                                <label>Name</label>
+                                <input id="SubjectName" name="SubjectName" type="text" class="form-control" placeholder="Subject Name" autofocus/>
                             </div>
                             <div class="col-12">
-                                <label>Name</label>
-                                <input id="SubjectName" name="SubjectName" type="text" class="form-control" placeholder="Subject Name" />
+                                <label>Courses associated with subject</label>
+                                <select id="CourseId" name="CourseId" data-provide="selectpicker" multiple title="Choose Course" data-live-search="true" class="form-control show-tick" ></select>
                             </div>
                         </div>    
 
@@ -51,6 +51,18 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#CourseId').bind("enterKey",function(e){
+                Subject_Modal.validate();
+            });
+        $('#CourseId').keyup(function(e){
+            if(e.keyCode == 13)
+            {
+              $(this).trigger("enterKey");
+            }
+        });
+    });
+
     var Subject_Modal = {
         data: function () {
             return {
@@ -161,7 +173,7 @@
                             type: "POST",
                             data: {"subject": Subject_Modal.data()},
                             success: function(i){
-                                swal('Good Job!', message, 'success');
+                                // swal('Good Job!', message, 'success');
                                 $('#modal-subject').modal('hide');
                                 console.log(i);
                                 if(typeof Add !== 'undefined'){

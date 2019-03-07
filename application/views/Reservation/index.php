@@ -18,6 +18,7 @@
 							<th>ISBN</th>									
 							<th>Book Reserved</th>									
 							<th>Date Reserved</th>	
+							<th>Expiration</th>
 							<th>Action</th>						
 						</tr>
 					</thead>
@@ -26,8 +27,16 @@
 		</div>
 	</div>
 </div>
-
+<?php include("_Reservation_Modal.php"); ?>
 <script>
+	$(document).ready(function(){
+		setInterval(ld, 1000);
+	})
+
+	function ld(){
+		$('#reservation-table').DataTable().ajax.reload();
+	}
+
 	var Reservation = {
 
 		refresh: function(){
@@ -55,4 +64,5 @@
 		}
 
 	};
+	
 </script>

@@ -253,13 +253,46 @@
 
 </aside>
 <script>
-    // console.log(window.location.href);
+    + new Date();
+
     $(document).ready(function(){
+        setInterval(refresh, 1000);
         $.each($('.menu-item'), function(){
             if($(this).children('.menu-link').attr('href') == window.location.href){
                 $(this).addClass('active');
                 $(this).parent().parent().addClass('active open');
             }
         });
-    });
+    })
+
+    function refresh() {
+        var currentDate = Date.now() / 1000;
+        $.ajax({
+            url: '<?php echo base_url('Reservation/AllData'); ?>', 
+            success: function(i){
+                i = JSON.parse(i);
+                $.each(i.data, function(index){
+                    var id = i.data[index][0];
+                    var expirydate = i.data[index][4];
+                    var mill = new Date(expirydate).getTime() / 1000;
+                    
+                    if(mill <= currentDate){
+                        console.log("Expire");
+                        $.ajax({
+                            url: "<?php echo base_url('Reservation/Discard'); ?>/" + id,
+                            success: function(j){
+                                console.log("Reservation ID " + id + " has expired.");
+                            }
+                        })
+                    }
+                    else console.log("Not Yet");
+                })
+            },
+            error: function(i){
+                console.log("Error");
+            }  
+        })
+    }
+    
+
 </script>

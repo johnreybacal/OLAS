@@ -53,8 +53,45 @@ div > a.book-title{
     color: #48b0f7 !important;
     transition: .2s linear !important;
 }
+/*Forms*/
+.form-control, .form-control:focus{
+    background-color: #f7f9fa;
+}
+
+input,.bootstrap-select, textarea{
+    /*padding-right : 8px!important;*/
+    padding-left: 8px!important;
+}
+/*clear ko lang to nasa itaas*/
+.bootstrap-select:not(.input-group-btn).search {
+    padding: 0!important;
+}
+
+
+div.dropdown-menu.open.show{
+    left:7%!important;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 90%!important;
+}
+div[class*=form-group]:hover{
+    /*border: solid 1px #48b0f7;*/
+}
+
+#book-table_wrapper .dataTables_wrapper .dt-bootstrap4
+
+/*di gamit*/
+.selected-input { border: #f00 1px solid; padding: 10px; }
+
+
+.form-row h6{
+    font-weight: bold;
+}
 .form-group>label{
-    font-weight:500;
+    font-weight: 600;
+}
+.form-group>input,.form-group>select, textarea{
+    font-weight: 500;
 }
 
 /*Mouse Cursor*/

@@ -52,7 +52,7 @@
     <div class="topbar-center d-snone d-md-block">
         <form class="lookup lookup-lg lookup-patron no-icon">
             <input class="no-radius topbar-patron-search" id="search" type="text" placeholder="Search">
-            <select id="filter" name="filter" class="ds-none d-block librarian-search" data-provide="selectpicker" multiple>
+            <select id="filter" name="filter" class="ds-none d-block search librarian-search" data-provide="selectpicker" multiple>
                 <option selected>Book</option>
                 <option selected>Author</option>
                 <!-- <option selected>Subject</option> -->
@@ -69,7 +69,7 @@
         <ul class="topbar-btns">
         <!-- Profile Dropdown -->
             <li class="dropdown">
-                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1'); ?>" alt="..."></span>
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar" src="<?php echo base_url('assets/img/avatar/1.jpg'); ?>" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>            
                     <!-- <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a> -->
@@ -294,7 +294,7 @@
                     else{
                         swal({
                             title: 'Reserve books in bookbag?',
-                            text: 'You must pick up the books at the library before 3 days or else your reservation will be discarded',
+                            text: 'You must pick up the books at the library before a day or else your reservation will be discarded',
                             type: 'warning',
                             showCancelButton: true,
                             cancelButtonText: 'No! Cancel',

@@ -1,5 +1,5 @@
 <div class="main-content">
-	<form id="book-form" enctype="multipart/form-data">
+	<form id="book-form" class="form" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card card-shadowed">				
@@ -7,11 +7,15 @@
 		                <h4 class="card-title">Book <strong>Information</strong></h4>
 		                <ul class="card-controls">
                   			<li>
-								<label class="switch switch-lg switch-info">
+                  				<div class="form-group">
+				                  	<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" data-provide="switchery" data-color="#48b0f7" checked>
+									<label>Room Use Only</label>
+				                </div>
+								<!-- <label class="switch switch-xlg switch-info">
 									<input type="checkbox" id="IsRoomUseOnly" name="IsRoomUseOnly" checked />
 									<span class="switch-indicator"></span>
 									<label>Room Use Only</label>
-								</label>
+								</label> -->
 							</li>
 							<!-- <li>
 								<div class="btn-group">
@@ -38,46 +42,47 @@
 										<h6 class="text-uppercase">Book details</h6>
 				                		<hr class="hr-sm mb-2 border-success">
 			                		</div>									
-									<div class="form-group col-md-12 col-sm-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<label>Accession Number</label>
-										<input  id="AccessionNumber" value = "<?php echo $AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number">
+										<input id="AccessionNumber" value = "<?php echo $AccessionNumber; ?>" class="form-control" type="text" name="" placeholder="Accession Number" autofocuss>
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<label>ISBN</label>
 										<input  id="ISBN" class="form-control" type="text" name="ISBN" placeholder="ISBN">
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<label>Title</label>
 										<input id="Title" class="form-control" type="text" name="" placeholder="Title">
 									</div>					
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<label>Call Number</label>
 										<input id="CallNumber" class="form-control" type="text" name="" placeholder="Call Number">
 									</div>	
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.section();" data-provide="tooltip" data-original-title="Add Section"><i class="ti-plus"></i></button>
 										<label>Section</label>
-										<select id="SelectSectionId" name="Section" data-provide="selectpicker" title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select id="SelectSectionId" name="Section" data-provide="selectpicker" title="Choose Section" data-live-search="true" class="form-control form-type-combine show-tick" data-size="10"></select>
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.author();" data-provide="tooltip" data-original-title="Add Author"><i class="ti-plus"></i></button>
 										<label>
 										Author</label>
-										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control show-tick"Profile></select>
+										<select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Author" data-live-search="true" class="form-control show-tick" data-size="10"></select>
+										<!-- <select id="SelectAuthorId" name="Author" data-provide="selectpicker" multiple title="Choose Authors" data-live-search="true" class="form-control selectpicker show-tick"></select> -->
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.subject();" data-provide="tooltip" data-original-title="Add Subject"><i class="ti-plus"></i></button>
 										<label>Subject</label>
-										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick"></select>				
+										<select id="SelectSubjectId" name="Subject" data-provide="selectpicker" multiple title="Choose Subjects" data-live-search="true" class="form-control form-type-combine show-tick" data-size="10"></select>				
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.series();" data-provide="tooltip" data-original-title="Add Series"><i class="ti-plus"></i></button>
 										<label>Series</label>
-										<select id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick"></select>
+										<select data-size="10" id="SelectSeriesId" name="Series" data-provide="selectpicker" title="Choose Series" data-live-search="true" class="form-control form-type-combine show-tick" data-size="10"></select>
 									</div>
-									<div class="form-group col-md-12">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
 										<label>Edition</label>
-										<input  id="Edition" class="form-control pb-30" type="text" name="" placeholder="Edition">
+										<input  id="Edition" class="form-control" type="text" name="" placeholder="Edition">
 									</div>	
 								</div>
 							</div>
@@ -88,16 +93,16 @@
 										<h6 class="text-uppercase">Publisher Information</h6>
 				                		<hr class="hr-sm mb-2 border-success">
 			                		</div>
-									<div class="form-group col-md-8">
+									<div class="form-group col-sm-12 col-md-10">
 										<label>Publisher</label>
-										<select id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick"></select>
-									</div>
-									<div class="form-group col-md-6">
 										<button class="btn btn-square btn-round btn-primary float-right" onclick="Add.publisher();" data-provide="tooltip" data-original-title="Add Publisher"><i class="ti-plus"></i></button>
+										<select data-size="10" id="SelectPublisherId" name="Publisher" data-provide="selectpicker" title="Choose Publisher" data-live-search="true" class="form-control form-type-combine show-tick" data-size="10"></select>
+									</div>
+									<div class="form-group col-sm-12 col-md-5">
 										<label>Date Published</label>
 										<input  id="DatePublished" class="form-control" type="text" data-provide="datepicker" data-date-format="yyyy-mm-dd" name="" placeholder="Date Published">
 									</div>				
-									<div class="form-group col-md-6">
+									<div class="form-group col-sm-12 col-md-5">
 										<label>Place of Publication</label>
 										<input  id="PlacePublished" value = "" class="form-control" type="text" name="" placeholder="Place of Publication">
 									</div>	
@@ -193,6 +198,16 @@
 		}
 		<?php endif;?>
 		$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
+
+		// $('form').bind("enterKey",function(e){
+		// 		Book.validate();
+		// 	});
+		// $('form').keyup(function(e){
+		// 	if(e.keyCode == 13)
+		// 	{
+		// 	  $(this).trigger("enterKey");
+		// 	}
+		// });
 	});
 
 	var Book = {
@@ -325,7 +340,8 @@
 				success: function(i){
 					$('.invalid-feedback').remove();
 					$('.is-invalid').removeClass('is-invalid');
-					i = JSON.parse(i);                    
+					i = JSON.parse(i);       
+					console.log(i);             
 					if(i.status == 1){
 						Book.save();
 					}else{

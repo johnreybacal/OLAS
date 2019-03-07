@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 include('_BaseController.php');
-
+use Respect\Validation\Validator as v;
 class Reservation extends _BaseController {
     
     public function __construct(){
@@ -22,6 +22,7 @@ class Reservation extends _BaseController {
                 .'"'.$isbn.'",'
                 .'"'.$this->book->_get($isbn)->Title.'",'
                 .'"'.$data->DateReserved.'",'
+                .'"<div onclick = \"Reservation_Modal.edit('.$data->ReservationId.')\" style= \"cursor:pointer;\">'.$data->Expiration.'</div>",'
                 .'"<button onclick = \"Reservation.issue('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-success\" title=\"Reserve\"><span class = \"fa fa-check fa-2x\"></span></button><button onclick = \"Reservation.discard('.$data->ReservationId.');\" class = \"btn btn-md btn-flat btn-danger\" title=\"Discard\"><span class = \"fa fa-trash fa-2x\"></span></button>"'
             .']';            
             $json .= ',';
@@ -57,5 +58,47 @@ class Reservation extends _BaseController {
             echo '"total":"'.$this->cart->total_items().'"';
         echo '}';
     }
+
+    public function Get($id){
+        echo $this->convert($this->reservation->_get($id));
+    }
+
+    public function UpdateExpiry(){
+        $this->reservation->update($this->input->post('reservation'));
+    }
+
+    public function Validate(){
+        $reservation = $this->input->post('reservation');
+        $str = '{';
+        $valid = true;
+        
+        if($reservation['ReservationId'] != 0){
+            if(!v::date()->validate($reservation['Expiration'])){            
+                $str .= $this->invalid('DateDue', 'Please input a date');
+                $valid = false;
+            }
+        } 
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }
+
+    public function AllData(){
+        $json = '{ "data": [';
+        foreach($this->reservation->_list("WHERE IsActive = '1'") as $data){            
+            $isbn = $this->bookCatalogue->_get($data->AccessionNumber)->ISBN;
+            $patron = $this->patron->_get($data->PatronId);            
+            $json .= '['      
+                .'"'.$data->ReservationId.'",'
+                .'"'.$patron->LastName.', '.$patron->FirstName.'",'
+                .'"'.$isbn.'",'
+                .'"'.$this->book->_get($isbn)->Title.'",'
+                .'"'.$data->Expiration.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }    
 
 }

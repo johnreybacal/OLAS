@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="SeriesName" name="SeriesName" type="text" class="form-control" placeholder="Name" />
+                                <input id="SeriesName" name="SeriesName" type="text" class="form-control" placeholder="Name" autofocus/>
                             </div>
                         </div>
 
@@ -46,6 +46,18 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#SeriesName').bind("enterKey",function(e){
+                Series_Modal.validate();
+            });
+        $('#SeriesName').keyup(function(e){
+            if(e.keyCode == 13)
+            {
+              $(this).trigger("enterKey");
+            }
+        });
+    });
+
     var Series_Modal = {
         data: function () {
             return {
@@ -58,7 +70,7 @@
         init: function () {            
             $('#modal-series-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();            
+            $('.invalid-feedback').remove();
             $('#modal-series').modal('show');
         },
 
@@ -134,7 +146,7 @@
                         type: "POST",
                         data: {"series": Series_Modal.data()},
                         success: function(i){
-                            swal('Good Job!', message, 'success');
+                            // swal('Good Job!', message, 'success');
                             $('#modal-series').modal('hide');
                             console.log(i);
                             if(typeof Add !== 'undefined'){

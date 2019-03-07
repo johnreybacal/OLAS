@@ -45,9 +45,15 @@ class BookCatalogueModel extends _BaseModel{
 	}		
 
 	public function getLastAccession(){
-		$accessionNumber = $this->db->query("SELECT AccessionNumber FROM bookcatalogue ORDER BY CAST(AccessionNumber AS unsigned) DESC LIMIT 1")->row()->AccessionNumber;
-		$accessionNumber = '0000000'.((int)$accessionNumber + 1);
-		return substr($accessionNumber, (strlen($accessionNumber) - 7));
+		$accessionNumber = $this->db->query("SELECT AccessionNumber FROM bookcatalogue ORDER BY CAST(AccessionNumber AS unsigned) DESC LIMIT 1")->row();
+		if(is_object($accessionNumber)){
+			$accessionNumber = $accessionNumber->AccessionNumber;
+			$accessionNumber = '0000000'.((int)$accessionNumber + 1);
+			return substr($accessionNumber, (strlen($accessionNumber) - 7));			
+		}
+		else{
+			return "0000001";
+		}
 	}
 
 	public function lastAcquired($isbn){
