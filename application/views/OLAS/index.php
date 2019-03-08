@@ -255,8 +255,8 @@
                     </div> -->
                 </div>
 </div>
-<div class="fb-customerchat" page_id="342927939764635"></div>
-</div>
+<!-- <div class="fb-customerchat" page_id="342927939764635"></div>
+</div> -->
 <script>
     $(document).ready(function(){               
         $('#welcome').fadeOut({         
