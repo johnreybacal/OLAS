@@ -51,7 +51,7 @@
 		<span class="dot2" style="background-color:#000000;"></span>
 		<span class="dot3" style="background-color:#ff4e4e;"></span>
 		<span class="dot4" style="background-color:#ff4e4e;"></span>	
-		<h5 style="font-family: Century Gothic; letter-spacing: 5px;"><text style="color:#ff4e4e;">O</text><text style='color:#000000; font-weight: bold;'>L</text>AS</h5>
+		<h5 style="font-family: Century Gothic; letter-spacing: 5px;"><label style="color:#ff4e4e;">O</label><label style='color:#000000; font-weight: bold;'>L</label>AS</h5>
 	</div>
 </div>
 <?php

@@ -58,6 +58,7 @@ class Book extends _BaseController {
             $json .= '['                
                 .'"'.$data->AccessionNumber.'",'                
                 .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'>'.$book->Title.'</a>",'    
+                // .'"<a href = \''.base_url('Book/View/'.$data->AccessionNumber).'\'><span class=\"badge badge-dark\">'.$book->Title.'</span></a>",'    
                 // .'"'.$book->Title.'",'
                 .'"'.$this->loopAll($this->book->getAuthor($data->ISBN)).'",'
                 .'"'.$book->CallNumber.'",'
