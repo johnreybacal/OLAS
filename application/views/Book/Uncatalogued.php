@@ -7,6 +7,8 @@
                         <tr class="bg-info">
                             <td>ISBN</td>
                             <td>Title</td>
+                            <td>Author</td>
+                            <td>Call Number</td>
                             <td>Action</td>
                         </tr>
                     </thead>

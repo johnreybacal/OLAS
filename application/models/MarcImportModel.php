@@ -12,14 +12,23 @@ class MarcImportModel extends _BaseModel{
 		);
     }
     
-    public function save($isbn, $title){
-        if(strpos($title, "'") != 0){
-            $title = str_replace("'","\'" ,$title);
+    public function save($ISBN, $Title, $CallNumber, $Author, $Series, $Publisher, $YearPublished, $PlaceOfPublication, $Extent, $Other, $Size){
+        if(strpos($Title, "'") != 0){
+            $Title = str_replace("'","\'" ,$Title);
         }
         $this->db->query("INSERT into marcimport "
-            ."(ISBN, Title) VALUES ("                   
-                ."'".$isbn."', "                
-                ."'".$title."'"                
+            ."(ISBN, Title, CallNumber, Author, Series, Publisher, YearPublished, PlaceOfPublication, Extent, Other, Size) VALUES ("                
+                ."'".$ISBN."', "
+                ."'".$Title."', "
+                ."'".$CallNumber."', "
+                ."'".$Author."', "
+                ."'".$Series."', "
+                ."'".$Publisher."', "
+                ."'".$YearPublished."', "
+                ."'".$PlaceOfPublication."', "
+                ."'".$Extent."', "
+                ."'".$Other."', "
+                ."'".$Size."'"
             .")"
         );
     }

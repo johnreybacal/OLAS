@@ -1,5 +1,14 @@
-var isbn = [];
-var title = [];
+var ISBN = [];
+var Title = [];
+var CallNumber = [];
+var Author = [];
+var Series = [];
+var Publisher = [];
+var YearPublished = [];
+var PlaceOfPublication = [];
+var Extent = [];
+var Other = [];
+var Size = [];
 var hex = String.fromCharCode;
 var marc = {
 
@@ -16,25 +25,114 @@ var marc = {
 	// 	});
 	// },
 
-	isbn: function(x, t){
+	isbn: function(x, title, callNumber, author, physical, series, publication){
 		
 		var ok = true;
 		if(x !== undefined){
 			if(x.length > 13){
-				isbn.push(x.split(' ')[0]);
+				ISBN.push(x.split(' ')[0]);
 			}else if(x.length == 13 || x.length == 10){
-				isbn.push(x);
+				ISBN.push(x);
 			}else{
 				ok = false;
 			}
 			if(ok){
-				if(t['10'] !== undefined){
-					title.push(t['10']['a']);
-				} else if(t['12'] !== undefined){
-					title.push(t['12']['a']);					
-				} else if(t['14'] !== undefined){
-					title.push(t['14']['a']);										
+				
+				//title
+				var hasData = false;//para append null kapag empty
+				$.each(title, function(_index, data){
+					if(data.a !== undefined){
+						// console.log('title: ' + data.a);
+						Title.push(data.a);
+						hasData = true;
+						return false;
+					}
+				});
+				if(!hasData){
+					Title.push('');
 				}
+
+				//call number
+				hasData = false;
+				$.each(callNumber, function(_index, data){
+					if(data.a !== undefined){
+						// console.log('call number: ' + data.a);
+						CallNumber.push(data.a);
+						hasData = true;
+						return false;
+					}
+				});		
+				if(!hasData){
+					CallNumber.push('');
+				}		
+
+				//author
+				hasData = false;
+				$.each(author, function(_index, data){
+					if(data.a !== undefined){
+						// console.log('author: ' + data.a);
+						Author.push(data.a);
+						hasData = true;
+						return false;
+					}
+				});	
+				if(!hasData){
+					Author.push('');
+				}
+
+				//series
+				hasData = false;
+				$.each(series, function(_index, data){
+					if(data.a !== undefined){
+						// console.log('series: ' + data.a);
+						Series.push(data.a);
+						hasData = true;
+						return false;
+					}
+				});
+				if(!hasData){
+					Series.push('');			
+				}
+				
+				//publication
+				if(publication !== undefined && 'a' in publication && publication.a !== undefined){
+					// console.log("place: " + publication.a);
+					PlaceOfPublication.push(publication.a);
+				}else{
+					PlaceOfPublication.push('');
+				}
+				if(publication !== undefined && 'b' in publication && publication.b !== undefined){	
+					// console.log("publisher: " + publication.b);
+					Publisher.push(publication.b);
+				}else{
+					Publisher.push('');
+				}
+				if(publication !== undefined && 'c' in publication && publication.c !== undefined){	
+					// console.log("year: " + publication.c);
+					YearPublished.push(publication.c);
+				}else{
+					YearPublished.push('');
+				}			
+
+				//physical			
+				if(physical !== undefined && 'a' in physical && physical.a !== undefined){
+					// console.log("extent: " + physical.a);
+					Extent.push(physical.a);
+				}else{
+					Extent.push('');
+				}
+				if(physical !== undefined && 'b' in physical && physical.b !== undefined){					
+					// console.log("other: " + physical.b);
+					Other.push(physical.b);
+				}else{
+					Other.push('');
+				}
+				if(physical !== undefined && 'c' in physical && physical.c !== undefined){					
+					// console.log("size: " + physical.c);					
+					Size.push(physical.c);
+				}else{
+					Size.push('');
+				}				
 			}
 		}	
 		
@@ -44,30 +142,64 @@ var marc = {
 	read: function(marcText){
 		var record = marcText.split(hex(0x1d));
 		obj = [];		
-		isbn = [];		
-		title = [];
+		ISBN = [];
+		Title = [];
+		CallNumber = [];
+		Author = [];
+		Series = [];
+		Publisher = [];
+		YearPublished = [];
+		PlaceOfPublication = [];
+		Extent = [];
+		Other = [];
+		Size = [];
 		for(var i = 0; i < record.length; i += 50){
 			var counter = i + 50;
 			if(counter > record.length){
 				counter = record.length;
-			}		
+			}					
 			$.each(JSON.parse('{' + marc.chunk(record.slice(i, counter), i) + '}'), function(index, data){
 				if(data['020'] !== undefined){
 					if(data['020'] instanceof Array){
 						$.each(data['020'], function(i, d){
 							if(d['a'] !== undefined)
-								marc.isbn(d['a'], data['245']);
+								marc.isbn(
+									d['a'], 
+									data['245'],
+									data['050'],
+									data['100'],
+									data['300'],
+									data['490'],									
+									data['260'],
+								);
 						});
 					}else{
-						marc.isbn(data['020']['a'], data['245']);
+						marc.isbn(
+							data['020']['a'], 
+							data['245'],
+							data['050'],
+							data['100'],
+							data['300'],
+							data['490'],							
+							data['260'],
+						);
 					}
 				}				
 				
 			});			
 		}		        
-		console.log("Total book found: " + isbn.length);
-		console.log(isbn);        		
-		console.log(title);    
+		console.log("Total book found: " + ISBN.length);
+		console.log(ISBN);
+		console.log(Title);
+		console.log(CallNumber);
+		console.log(Author);
+		console.log(Series);
+		console.log(Publisher);
+		console.log(YearPublished);
+		console.log(PlaceOfPublication);
+		console.log(Extent);
+		console.log(Other);
+		console.log(Size);
 		MarcImport.success();    
 	},
 
@@ -174,6 +306,7 @@ var marc = {
                 json += '}';
             }            
 		}
+		console.log(JSON.parse('{' + json + '}'));
 		return json;    
 	},
 

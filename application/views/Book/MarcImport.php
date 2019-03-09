@@ -21,6 +21,8 @@
                         <tr class="bg-info">
                             <td>ISBN</td>
                             <td>Title</td>
+                            <td>Author</td>
+                            <td>Call Number</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,8 +52,8 @@
 
         success: function(){
             $('#marc-table tbody').empty();
-            for(var i = 0; i < isbn.length; i++){
-                $('#marc-table tbody').append('<tr><td>' + isbn[i] + '</td><td>' + title[i] + '</td></tr>')
+            for(var i = 0; i < ISBN.length; i++){
+                $('#marc-table tbody').append('<tr><td>' + ISBN[i] + '</td><td>' + Title[i] + '</td>' + '</td><td>' + Author[i] + '</td>' + '</td><td>' + CallNumber[i] + '</td></tr>')
             }
             $('#import-button').show();
         }, 
@@ -61,9 +63,18 @@
                 url: "<?php echo base_url('Book/ImportMarc'); ?>",
                 type: "POST",
                 data: {
-                    "marc":{
-                        "isbn": isbn,
-                        "title": title
+                    "marc":{                        
+                        "ISBN": ISBN, 
+                        "Title": Title,
+                        "CallNumber": CallNumber,
+                        "Author": Author,
+                        "Series": Series,
+                        "Publisher": Publisher,
+                        "YearPublished": YearPublished,
+                        "PlaceOfPublication": PlaceOfPublication,
+                        "Extent": Extent,
+                        "Other": Other,
+                        "Size": Size
                     }
                 },
                 success: function(i){

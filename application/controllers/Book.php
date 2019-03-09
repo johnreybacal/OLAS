@@ -136,6 +136,8 @@ class Book extends _BaseController {
             $json .= '['                                
                 .'"'.$data->ISBN.'",'                
                 .'"'.$data->Title.'",'                                                
+                .'"'.$data->Author.'",'                                                
+                .'"'.$data->CallNumber.'",'                                                
                 .'"<button onclick=\"Uncatalogued.add('.$data->MarcImportId.')\" class = \"btn btn-info\" title=\"Add\">Catalogue</button><button onclick=\"Uncatalogued.discard('.$data->MarcImportId.')\" class = \"btn btn-danger ml-3\" title=\"Discard\">Discard</button>"'
             .']';             
             $json .= ',';
@@ -390,11 +392,32 @@ class Book extends _BaseController {
         }    
     }
 
-    public function ImportMarc(){
-        $isbn = $this->input->post('marc')['isbn'];
-        $title = $this->input->post('marc')['title'];
-        for($i = 0; $i < count($isbn); $i++){
-            $this->marcImport->save($isbn[$i], $title[$i]);
+    public function ImportMarc(){        
+        $ISBN = $this->input->post('marc')['ISBN'];
+        $Title = $this->input->post('marc')['Title'];
+        $CallNumber = $this->input->post('marc')['CallNumber'];
+        $Author = $this->input->post('marc')['Author'];
+        $Series = $this->input->post('marc')['Series'];
+        $Publisher = $this->input->post('marc')['Publisher'];
+        $YearPublished = $this->input->post('marc')['YearPublished'];
+        $PlaceOfPublication = $this->input->post('marc')['PlaceOfPublication'];
+        $Extent = $this->input->post('marc')['Extent'];
+        $Other = $this->input->post('marc')['Other'];
+        $Size = $this->input->post('marc')['Size'];
+        for($i = 0; $i < count($ISBN); $i++){
+            $this->marcImport->save(
+                $ISBN[$i],
+                $Title[$i],
+                $CallNumber[$i],
+                $Author[$i],
+                $Series[$i],
+                $Publisher[$i],
+                $YearPublished[$i],
+                $PlaceOfPublication[$i],
+                $Extent[$i],
+                $Other[$i],
+                $Size[$i]
+            );
         }
         // print_r($this->input->post('marc'));
     }
