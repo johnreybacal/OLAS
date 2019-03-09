@@ -25,7 +25,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Name"/>
+                                <input id="AuthorName" name="AuthorName" type="text" class="form-control" placeholder="Name" autofocus/>
                             </div>
                         </div>                          
                         <div class="row" id="AuthorRowActive">
@@ -55,6 +55,19 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#AuthorName').bind("enterKey",function(e){
+                Author_Modal.validate();
+            });
+        $('#AuthorName').keyup(function(e){
+            if(e.keyCode == 13)
+            {
+              $(this).trigger("enterKey");
+            }
+        });
+    });
+
+    
     var Author_Modal = {
         data: function () {
             return {
@@ -139,6 +152,7 @@
                 cancelButtonText: 'No! Cancel',
                 cancelButtonClass: 'btn btn-default',
                 confirmButtonText: 'Yes! Go for it',
+                allowEnterKey: true, //default value na to eh
                 confirmButtonClass: 'btn btn-info'
             }).then((result) => {
                 if (result.value) {
@@ -147,7 +161,7 @@
                         type: "POST",
                         data: {"author": Author_Modal.data()},
                         success: function(i){
-                            swal('Good Job!', message, 'success');
+                            // swal('Good Job!', message, 'success',timer: 2000);
                             $('#modal-author').modal('hide');
                             console.log(i);
                             if(typeof Add !== 'undefined'){

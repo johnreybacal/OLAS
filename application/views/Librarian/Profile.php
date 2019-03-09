@@ -26,7 +26,7 @@
                         <div class="row mb-2">
                         	<div class="col-md-3">
 								<!-- <div id="imgDisplay"> -->
-                					<input id="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/default.png"); ?>" style="border: solid black 1px;">
+                					<input id="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("assetsOLAS/img/book/bookdefault.jpg"); ?>" style="border: solid black 1px;">
                 				<!-- </div> -->
           					</div>
           					<div class="col-md-9">

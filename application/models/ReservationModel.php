@@ -15,9 +15,10 @@ class ReservationModel extends _BaseModel{
 	public function save($reservation){
 		//current-timestamp ung date kaya di na need
 		$this->db->query("INSERT into reservation "
-			."(PatronId, AccessionNumber, IsDiscarded, IsActive) VALUES ("                   
+			."(PatronId, AccessionNumber, Expiration, IsDiscarded, IsActive) VALUES ("                   
 				."'".$reservation['PatronId']."',"
 				."'".$reservation['AccessionNumber']."',"
+				."date_add(CURRENT_TIMESTAMP, INTERVAL 1 DAY),"
 				."'0',"
 				."'1'"
 			.")"
@@ -55,6 +56,11 @@ class ReservationModel extends _BaseModel{
 	public function checkReservation(){
 		return $this->db->query("SELECT * FROM reservation WHERE IsActive = '1' AND PatronId = '".$this->session->userdata('patronId')."'")->num_rows();
 	}
-	
+	public function update($reservation){
+		$this->db->query("UPDATE reservation SET "
+			."Expiration = '".$reservation['Expiration']."' "
+			."WHERE ReservationId = '".$reservation['ReservationId']."'"
+	);
+	}
     
 }

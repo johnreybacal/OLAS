@@ -15,7 +15,7 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="PublisherName" name="PublisherName" type="text" class="form-control" placeholder="Name" />
+                                <input id="PublisherName" name="PublisherName" type="text" class="form-control" placeholder="Name" autofocus/>
                             </div>
                         </div>    
 
@@ -46,6 +46,18 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#PublisherName').bind("enterKey",function(e){
+                Publisher_Modal.validate();
+            });
+        $('#PublisherName').keyup(function(e){
+            if(e.keyCode == 13)
+            {
+              $(this).trigger("enterKey");
+            }
+        });
+    });
+
     var Publisher_Modal = {
         data: function () {
             return {
@@ -135,7 +147,7 @@
                         type: "POST",
                         data: {"publisher": Publisher_Modal.data()},
                         success: function(i){
-                            swal('Good Job!', message, 'success');
+                            // swal('Good Job!', message, 'success');
                             $('#modal-publisher').modal('hide');
                             console.log(i);
                             if(typeof Add !== 'undefined'){

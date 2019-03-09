@@ -9,7 +9,7 @@
                 <!-- <input type = "file" id = "marc-input" class="form-control" /> -->
                 <div class="col-md-3" style="margin: auto;">
                     <h6>&nbsp;</h6>
-                    <button class="btn btn-w-lg btn-multiline btn-info" onclick="MarcImport.upload()"><i class="ti-upload fs-20"></i><br>Upload</button>
+                    <button class="btn btn-w-lg btn-multiline btn-info" onclick="MarcImport.upload()" id="upload-button"><i class="ti-upload fs-20"></i><br>Upload</button>
                     <button class="btn btn-w-lg btn-multiline btn-info" onclick="MarcImport.import()" id="import-button" style="margin-top: 5px;"><i class="ti-import fs-20"></i><br>Import</button>
                 </div>
             </div>
@@ -81,6 +81,10 @@
                     console.log(i);
                 }
             });
+            swal({
+                title: "Uploaded!", 
+                text: "MARC file is imported", 
+                type: "success"});
         }
 
     };

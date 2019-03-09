@@ -3,7 +3,7 @@
                         <div class="book-cover col-lg-3 col-3">
 
                             <!-- <div class="btn btn-danger" style="max-width: 1px; max-height: 20px;"> sdasds</div> -->
-                            <a href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"><img src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" onError="this.onerror=null;this.src='assetsOLAS/img/book/comingsoon.png';" class="img-fluid"></a>
+                            <a href="<?php echo base_url('Book/View/'.$book[0]->AccessionNumber); ?>"><img src="<?php echo base_url("assetsOLAS/img/book/").$book['book']->Image; ?>" all="image" onError="this.onerror=null;this.src='assetsOLAS/img/book/comingsoon.png';" class="img-fluid"></a>
 
                         </div>
                             <!-- <div class="btn btn-bold btn-danger book-availability" style="">Unavailable</div> -->
