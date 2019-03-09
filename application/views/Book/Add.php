@@ -191,10 +191,10 @@
 		Select.init();		
 		Book.init();
 		<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>		
-		$('#ISBN').val('<?php echo $this->session->flashdata('uncatalogued')->ISBN ?>');
+		$('#ISBN').val('<?php echo $this->session->flashdata('uncatalogued')->ISBN; ?>');
 		Book.get($('#ISBN').val());
-		if($('#Title').val() == ''){
-			$('#Title').val('<?php echo $this->session->flashdata('uncatalogued')->Title ?>');
+		if($('#Title').val() == ''){			
+			$('#Title').val("<?php echo $this->session->flashdata('uncatalogued')->Title; ?>");			
 		}
 		<?php endif;?>
 		$('#DateAcquired').val(new Date().toISOString().slice(0, 10));
@@ -250,6 +250,16 @@
 						<?php if(is_object($this->session->flashdata('uncatalogued'))): ?>						
 							if($('#Title').val() == ''){
 								$('#Title').val('<?php echo $this->session->flashdata('uncatalogued')->Title ?>');
+								$('#CallNumber').val("<?php echo $this->session->flashdata('uncatalogued')->CallNumber; ?>");
+								$('#Title').val("<?php echo $this->session->flashdata('uncatalogued')->Title; ?>");
+								$('#DatePublished').val("<?php echo $this->session->flashdata('uncatalogued')->YearPublished; ?>");
+								$('#PlacePublished').val("<?php echo $this->session->flashdata('uncatalogued')->PlaceOfPublication; ?>");
+								$('#Extent').val("<?php echo $this->session->flashdata('uncatalogued')->Extent; ?>");
+								$('#OtherDetails').val("<?php echo $this->session->flashdata('uncatalogued')->Other; ?>");
+								$('#Size').val("<?php echo $this->session->flashdata('uncatalogued')->Size; ?>");
+								$('#SelectAuthorId').selectpicker('val', "<?php echo $this->session->flashdata('author'); ?>");
+								$('#SelectPublisherId').selectpicker('val', "<?php echo $this->session->flashdata('publisher'); ?>");
+								$('#SelectSeriesId').selectpicker('val', "<?php echo $this->session->flashdata('series'); ?>");
 							}
 						<?php endif;?>
 					}else{

@@ -256,7 +256,7 @@
     + new Date();
 
     $(document).ready(function(){
-        setInterval(refresh, 1000);
+        setInterval(refresh, 10000);
         $.each($('.menu-item'), function(){
             if($(this).children('.menu-link').attr('href') == window.location.href){
                 $(this).addClass('active');

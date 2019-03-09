@@ -428,9 +428,53 @@ class Book extends _BaseController {
     }
 
     public function SetFlashdata(){        
+        $marc = $this->marcImport->_get($this->input->post('MarcImportId'));
+        $Author = '';
+        $Publisher = '';
+        $Series = '';
+        if($marc->Author != ''){
+            $author = $this->author->_exist('Name', $marc->Author);            
+            if(is_object($author)){ 
+                $Author = $author->AuthorId;
+            }else{
+                $Author = $this->author->save(array(
+                    "Author" => 0,
+                    "Name" => $marc->Author
+                ));
+            }
+
+        }
+        if($marc->Publisher != ''){
+            $publisher = $this->author->_exist('Name', $marc->Publisher);            
+            if(is_object($publisher)){ 
+                $Publisher = $publisher->PublisherId;
+            }else{
+                $Publisher = $this->publisher->save(array(
+                    "PublisherId" => 0,
+                    "Name" => $marc->Publisher
+                ));
+            }
+
+        }
+        if($marc->Series != ''){
+            $series = $this->author->_exist('Name', $marc->Series);            
+            if(is_object($series)){ 
+                $Series = $series->SeriesId;
+            }else{
+                $Series = $this->series->save(array(
+                    "SeriesId" => 0,
+                    "Name" => $marc->Series
+                ));
+            }
+
+        }
         $this->session->set_flashdata(
-            'uncatalogued', 
-            $this->marcImport->_get($this->input->post('MarcImportId'))
+            array(
+                'uncatalogued' => $marc,
+                'author' => $Author,
+                'publisher' => $Publisher,
+                'series' => $Series
+            )
         );  
         // print_r($this->marcImport->_get($this->input->post('MarcImportId')));
     }

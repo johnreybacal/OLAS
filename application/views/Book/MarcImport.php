@@ -29,6 +29,7 @@
                     </tbody>
                 </table>
             </div>
+            <a href="<?php echo base_url('Book/Uncatalogued'); ?>">Go to For Processing stage</a>
         </div>
     </div>
 </div>
