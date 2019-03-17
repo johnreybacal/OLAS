@@ -23,8 +23,26 @@
 
 
 <!-- Scripts -->
-<script>    
-    $(document).ready(function(){               
+<script>        
+    
+    $(document).ready(function(){      
+        var val = $.fn.val;
+        $.fn.val = function(value){
+            if(typeof value == 'undefined'){
+                console.log(this);                
+                var x = val.call(this) + ""; 
+                if(this[0].localName == 'input'){                    
+                    return x.replace(/"/g, "\\\"").replace(/'/g, "\\\'");
+                }
+                else{
+                    return val.call(this);
+                }
+            }
+            else{
+                return val.call(this, value);
+            }
+        };
+        // val = $.fn.val;             
         $('form').submit(function(form){
             form.preventDefault();
         });
