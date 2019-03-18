@@ -19,7 +19,7 @@ class _BaseModel extends CI_Model{
 	public function _get($id, $query = null){
 		$dbList = $this->db->query("SELECT * from ".$this->table." WHERE ".$this->identifier." = '".$id."' ".$query)->row();
 		foreach($dbList as $key => $value){
-			$value = trim(preg_replace('/\s+/', '\n', $value));
+			// $value = trim(preg_replace('/\s+/', '\n', $value));
 			$dbList->$key = str_replace('"', '\"', $value);
 		}
 		return $dbList;		
@@ -31,7 +31,7 @@ class _BaseModel extends CI_Model{
 		$dbList = $this->db->query("SELECT * from ".$this->table." ".$query)->result();
 		foreach($dbList as $row){
 			foreach($row as $key => $value){
-				$value = trim(preg_replace('/\s+/', '\n', $value));
+				// $value = trim(preg_replace('/\s+/', '\n', $value));
 				$row->$key = str_replace('"', '\"', $value);
 			}
 			$list[] = $row;
