@@ -138,6 +138,7 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
 	'_BaseModel',
+	'AdmissionModel' => 'admission',
 	'AuthorModel' => 'author',
 	'BookAuthorModel' => 'bookAuthor',
 	'BookCatalogueModel' => 'bookCatalogue',	
@@ -162,6 +163,7 @@ $autoload['model'] = array(
 	'ReportModel' => 'report',
 	'SectionModel' => 'section',
 	'SeriesModel' => 'series',
+	'StudentCourseModel' => 'studentCourse',
 	'SubjectCourseModel' => 'subjectCourse',
 	'SubjectModel' => 'subject',
 

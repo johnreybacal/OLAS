@@ -18,6 +18,10 @@
                                     <label>Patron Type</label>
                                     <select id="PatronTypeId" name="PatronTypeId" data-provide="selectpicker" title="Choose Patron Type" data-live-search="true" class="form-control show-tick"></select>
                                 </div>
+                                <div id="CourseIdContainer" class="form-group col-md-10">
+                                    <label>Course</label>
+                                    <select id="CourseId" name="CourseId" data-provide="selectpicker" title="Choose Course" data-live-search="true" class="form-control show-tick"></select>
+                                </div>
                                 <div class="form-group col-md-8">
                                     <label>ID Number</label>
                                     <small class="sidetitle">15-999-999</small>
@@ -91,6 +95,7 @@
             return {
                 PatronId: 0,
                 PatronTypeId: $('#PatronTypeId').selectpicker('val'),
+                CourseId: $('#CourseId').selectpicker('val'),
                 FirstName: $('#FirstName').val(),
                 MiddleName: $('#MiddleName').val(),
                 LastName: $('#LastName').val(),
@@ -115,6 +120,25 @@
                         $('#PatronTypeId').append('<option value = "' + data.PatronTypeId + '">' + data.Name + '</option>');
                     })
                     $('#PatronTypeId').selectpicker('refresh');
+                }
+            });
+            $.ajax({
+                url: "<?php echo base_url('Course/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);          
+                    $('#CourseId').empty();          
+                    $.each(i, function(index, data){                        
+                        $('#CourseId').append('<option value = "' + data.CourseId + '">' + data.Name + '</option>');
+                    })
+                    $('#CourseId').selectpicker('refresh');
+                }
+            });
+            $('#PatronTypeId').change(function(){
+                if($(this).val() == 1){
+                    $('#CourseIdContainer').show();
+                }else{                    
+                    $('#CourseIdContainer').hide();
                 }
             });
         },
