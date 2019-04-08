@@ -22,12 +22,17 @@ class Patron extends _BaseController {
     
     public function Edit($id){
         $data['patron'] = $this->patron->_get($id);
+        $data['course'] = $this->studentCourse->_get($id);
         $this->librarianView('Patron/Edit', $data);
     }
 
     public function View($id){
         $data['patron'] = $this->patron->_get($id);
         $this->librarianView('Patron/View', $data);
+    }
+
+    public function Admission(){
+        $this->librarianView('Patron/Admission', '');
     }
 
     public function Authenticate(){        
@@ -46,8 +51,7 @@ class Patron extends _BaseController {
         }        
         echo $result;
     }
-
-
+        
     public function GenerateTable(){
         $json = '{ "data": [';
         foreach($this->patron->_list() as $data){
@@ -88,6 +92,30 @@ class Patron extends _BaseController {
         $json .= ']}';
         echo $json;        
     }
+
+    public function GenerateStudentAdmission($college = null){
+        $additionalQuery = '';
+        if($college != null){
+            $additionalQuery = "WHERE PatronId IN (SELECT PatronId FROM studentcourse WHERE CourseId IN (SELECT CourseId FROM course WHERE CollegeId = '".$college."'))";
+        }
+        $json = '{ "data": [';
+        foreach($this->admission->_list($additionalQuery) as $data){
+            $patron = $this->patron->_get($data->PatronId);
+            $course = $this->course->_get($this->studentCourse->_get($data->PatronId));
+            $college = $this->college->_get($course->CollegeId);
+            $json .= '['
+                .'"'.$data->DateTime.'",'
+                .'"<a href = \''.base_url('Patron/View/'.$patron->PatronId).'\'>'.$patron->IdNumber.'</a>",'
+                .'"'.$patron->LastName.", ".$patron->FirstName.'",'                
+                .'"'.$course->Name.'",'
+                .'"'.$college->Name.'"'                
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
     
     public function LogOut($page = null){//required pala talaga lol
         $this->cart->destroy();
@@ -104,6 +132,11 @@ class Patron extends _BaseController {
         if(!v::intVal()->notEmpty()->validate($patron['PatronTypeId'])){
             $str .= $this->invalid('PatronTypeId', 'Please select patron type');
             $valid = false;
+        }else{
+            if($patron['PatronTypeId'] == 1 && !v::intVal()->notEmpty()->validate($patron['CourseId'])){
+                $str .= $this->invalid('CourseId', 'Please select student course');
+                $valid = false;
+            }
         }
 
         //fname
@@ -213,10 +246,24 @@ class Patron extends _BaseController {
     }
 
     public function Save(){        
-        $this->patron->save($this->input->post('patron'));
+        $patron = $this->input->post('patron');
+        $this->patron->save($patron);
+        if($patron['PatronTypeId'] == 1){
+            $this->studentCourse->save($patron['PatronId'], $patron['CourseId']);
+        }
     }
 
     public function Clear($penaltyId){
         $this->penalty->clear($penaltyId);
+    }
+
+    public function StudentAdmit($IdNumber){
+        $student = $this->studentCourse->studentExist($IdNumber);
+        if(is_object($student)){            
+            $this->admission->save($student->PatronId);
+            echo "1";
+        }else{
+            echo "0";
+        }
     }
 }

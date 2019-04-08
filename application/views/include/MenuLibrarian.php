@@ -183,6 +183,13 @@
                     </li>
                     
                     <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('Patron/Admission'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Student Admission</span>
+                        </a>
+                    </li>
+                    
+                    <li class="menu-item">
                         <a class="menu-link" href="<?php echo base_url('Patron/Clearance'); ?>">
                             <span class="dot"></span>
                             <span class="title">Clearance</span>
