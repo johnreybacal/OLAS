@@ -6,19 +6,20 @@
 <div class="main-content">
 	<div class="card">
 		<div class="card-body">
-			<div class="col-md-10">
-				<label>Student ID: </label>
-				<input type="text" id="StudentId" />
-				<button class="btn btn-block btn-info" onclick="Admission.search()">Admit</button>
+			<div class="input-group">
+				<label class="mr-3 fs-18 fw-500">Student ID: </label>
+				<input type="text" class="form-control" id="StudentId" />
+                <span class="input-group-append">
+					<button class="btn btn-info mx-1" onclick="Admission.search()">Admit</button>
+					<button class="btn btn-primary" onclick="ExportExcel('student-admission-table')">Export</button>
+              	</span>
 			</div>
-			<div class="col-md-2 col-sm-12" style="margin-bottom: 30px;">
-				<label>&nbsp;</label>
-				<button class="btn btn-block btn-info" onclick="ExportExcel('student-admission-table')">Export</button>
-			</div>
-			<div class="col-4">
-                    <label>Filter by College</label>
-                    <select id="CollegeId" name="Patron type" data-provide="selectpicker" title="Choose College" data-live-search="true" class="form-control show-tick"></select>
-                </div>
+			<div class="row">
+				<div class="col-3 mt-10">
+					<label>Filter by College</label>
+                	<select id="CollegeId" name="Patron type" data-provide="selectpicker" title="Choose College" data-live-search="true" class="form-control show-tick"></select>
+	            </div>
+	        </div>
 			<div class="table-responsive" id="student-admission-table-container">
 				<table id="student-admission-table" class="table table-striped table-bordered display nowrap r3" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Patron/GenerateStudentAdmission") ?>">
 					<thead>
